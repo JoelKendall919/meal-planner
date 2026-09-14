@@ -1,6 +1,6 @@
 # Meal Planner
 
-A catalogue of 107 recipes with a calendar planner and editable shopping lists,
+A catalogue of 197 recipes with a calendar planner and editable shopping lists,
 built as a single offline-capable web page.
 
 **Live site:** https://joelkendall919.github.io/meal-planner/
@@ -26,8 +26,8 @@ the tests gate deployment.
 
 | Path | Purpose |
 | --- | --- |
-| `data/foods.json` | 143 foods: nutrition per 100 g, shopping group, pack size, aisle |
-| `data/recipes-*.json` | The recipe catalogue: 25 breakfasts, 31 lunches, 31 dinners, 20 snacks |
+| `data/foods.json` | 236 foods: nutrition per 100 g, shopping group, pack size, aisle |
+| `data/recipes-*.json` | The recipe catalogue: 35 breakfasts, 61 lunches, 61 dinners, 40 snacks |
 | `scripts/build_foods.py` | Generates `foods.json` — **edit this, not the JSON** |
 | `scripts/validate_recipes.py` | Checks a recipe file before it is committed |
 | `src/mealplanner/catalogue.py` | Loads foods and recipes, computes macros and derived tags |
