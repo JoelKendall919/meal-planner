@@ -6,13 +6,17 @@
 # driver appended, lets the driver exercise the real views and read the DOM
 # back, and prints its results.
 #
-#   ./scripts/run_driver.sh scripts/drive_tweaks.js
+#   ./scripts/run_driver.sh scripts/drive_tweaks.js [seed.js]
+#
+# An optional seed script is injected *before* the app's own script, which is
+# the only way to test how the app boots against data already in localStorage.
 #
 # Set CHROME to point at a different browser binary.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
-driver="${1:?usage: run_driver.sh <driver.js>}"
+driver="${1:?usage: run_driver.sh <driver.js> [seed.js]}"
+seed="${2:-}"
 
 chrome="${CHROME:-}"
 if [ -z "$chrome" ]; then
@@ -33,15 +37,21 @@ if [ ! -f dist/index.html ]; then
   exit 1
 fi
 
-python - "$driver" <<'PY'
+python - "$driver" "$seed" <<'PY'
 import sys
 from pathlib import Path
 
 built = Path("dist/index.html").read_text(encoding="utf-8")
 driver = Path(sys.argv[1]).read_text(encoding="utf-8")
-Path("dist/drv.html").write_text(
-    built.replace("</body>", f"<script>\n{driver}\n</script>\n</body>"), encoding="utf-8"
-)
+page = built.replace("</body>", f"<script>\n{driver}\n</script>\n</body>")
+
+if sys.argv[2]:
+    seed = Path(sys.argv[2]).read_text(encoding="utf-8")
+    # Before the first <script>, so the app boots against whatever it writes.
+    at = page.index("<script>")
+    page = page[:at] + f"<script>\n{seed}\n</script>\n" + page[at:]
+
+Path("dist/drv.html").write_text(page, encoding="utf-8")
 PY
 
 # A tall window so every day of the week is laid out rather than clipped.

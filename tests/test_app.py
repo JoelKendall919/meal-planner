@@ -816,3 +816,34 @@ def test_fill_reaches_the_protein_top_up_on_a_fully_planned_day(tmp_path):
     # nothing and a slot with an empty pool is skipped.
     assert "const added = planned() - before;" in fill, "the toast count is assumed, not measured"
     assert "Nothing more to add" in fill, "a fill that adds nothing gives no feedback"
+
+
+def test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist(tmp_path):
+    """Retired recipe ids must not linger in a saved plan.
+
+    They are invisible but not absent: the tile renders empty because the id
+    does not resolve, yet the slot still counts as taken, so fill skips it and
+    the day can never be completed. The v2 migration checked ids; the ordinary
+    v3 load did not, so any plan saved before a catalogue edit could rot.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    prune = js_block(html, "function prunePlan(plan){")
+    assert "if (day[slot] && !BY_ID[day[slot]]){ delete day[slot]; dropped++; }" in prune, (
+        "unresolvable ids are not dropped"
+    )
+    assert "if (!Object.keys(day).length) delete plan[date];" in prune, (
+        "a day emptied by pruning is left behind as an empty object"
+    )
+    # Corrupt state must not throw on the way in.
+    assert 'if (!day || typeof day !== "object"){ delete plan[date]; return; }' in prune, (
+        "a malformed day would throw during load"
+    )
+
+    # It has to run on the ordinary load path, not just the v2 migration.
+    load = html[html.index("let S = blank();") : html.index("function save(){")]
+    assert "pruned = prunePlan(S.plan);" in load, "the load path never prunes"
+    # ...and be written back, or it recurs on every launch.
+    assert "if (pruned) save();" in load, "the pruned plan is never saved"
+
+    # Silently deleting planned meals needs saying.
+    assert "no longer in the catalogue and" in html, "the user is not told their plan changed"

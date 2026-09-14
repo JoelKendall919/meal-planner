@@ -398,13 +398,36 @@ function migrate(state){
   return state;
 }
 
+/* Recipes are renamed and retired as the catalogue is edited, so a plan saved
+ * against an older build can hold ids that no longer resolve. Left in place
+ * they are invisible but not absent: the tile renders empty because the lookup
+ * misses, yet the slot still counts as taken, so "fill empty slots" skips it
+ * and the day can never be completed. Drop them on load so what is stored
+ * matches what is shown. */
+function prunePlan(plan){
+  let dropped = 0;
+  Object.keys(plan).forEach(date => {
+    const day = plan[date];
+    if (!day || typeof day !== "object"){ delete plan[date]; return; }
+    SLOTS.forEach(slot => {
+      if (day[slot] && !BY_ID[day[slot]]){ delete day[slot]; dropped++; }
+    });
+    if (!Object.keys(day).length) delete plan[date];
+  });
+  return dropped;
+}
+
 let S = blank();
+let pruned = 0;
 try {
   const raw = STORE_OK ? localStorage.getItem(KEY) : null;
   if (raw) {
     const saved = JSON.parse(raw);
     S = Object.assign(blank(), saved);
     S.goals = Object.assign({}, DATA.targets, saved.goals || {});
+    if (!S.plan || typeof S.plan !== "object") S.plan = {};
+    pruned = prunePlan(S.plan);
+    if (pruned) save();
   } else if (STORE_OK) {
     S = migrate(S);
   }
@@ -1661,6 +1684,13 @@ document.addEventListener("submit", e => {
 });
 
 render();
+
+// Said once, after the first render: silently dropping planned meals would
+// leave the plan looking wrong for no stated reason.
+if (pruned){
+  toast(`${pruned} planned meal${pruned === 1 ? " is" : "s are"} no longer in the catalogue and ${
+    pruned === 1 ? "was" : "were"} cleared`);
+}
 
 /* Register the service worker so the app opens offline and still updates
  * itself. Only meaningful over http(s); opening the file directly from a

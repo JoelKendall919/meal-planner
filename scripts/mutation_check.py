@@ -97,6 +97,24 @@ CASES = [
         "test_fill_reaches_the_protein_top_up_on_a_fully_planned_day",
     ),
     (
+        "the load path stops pruning stale ids",
+        "pruned = prunePlan(S.plan);",
+        "pruned = 0;",
+        "test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist",
+    ),
+    (
+        "the pruned plan is never written back",
+        "if (pruned) save();",
+        "if (false) save();",
+        "test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist",
+    ),
+    (
+        "pruning leaves emptied days behind",
+        "if (!Object.keys(day).length) delete plan[date];",
+        "",
+        "test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist",
+    ),
+    (
         "fillPool drops its empty-pool fallback",
         "return scoped.length ? scoped : all;",
         "return scoped;",
