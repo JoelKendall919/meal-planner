@@ -6,6 +6,10 @@
 <meta name="theme-color" content="#111111">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Meals">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
 <title>Meal Planner</title>
 <style>
 :root{
@@ -489,6 +493,34 @@ document.addEventListener("submit", e => {
 });
 
 render();
+
+/* Register the service worker so the app opens offline and still updates
+ * itself. Only meaningful over http(s); opening the file directly from a
+ * phone's storage skips this and simply runs without offline caching. */
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  let reloading = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    // Fires when a new version takes over. Reload once so the running page
+    // matches the code now in charge; the guard avoids a reload loop.
+    if (reloading) return;
+    reloading = true;
+    location.reload();
+  });
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").then(
+      reg => {
+        reg.addEventListener("updatefound", () => {
+          const fresh = reg.installing;
+          if (!fresh || !navigator.serviceWorker.controller) return;
+          fresh.addEventListener("statechange", () => {
+            if (fresh.state === "installed") toast("Updating to the latest version...");
+          });
+        });
+      },
+      () => {}  // refused (private mode or unsupported): the app still works
+    );
+  });
+}
 </script>
 </body>
 </html>

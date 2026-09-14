@@ -41,3 +41,6 @@ nutrition: ## Print the full nutrition report (legacy fixed-week plan)
 clean: ## Remove build output and caches
 	rm -rf dist .pytest_cache .ruff_cache
 	find . -name __pycache__ -not -path "./.venv/*" -exec rm -rf {} + 2>/dev/null || true
+
+icons: ## Regenerate the app icons from assets/icon.svg (requires Google Chrome)
+	$(PY) scripts/mkicons.py

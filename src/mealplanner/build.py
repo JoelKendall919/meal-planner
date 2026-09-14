@@ -10,17 +10,25 @@ so the result works offline and from a ``file://`` URL on a phone.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import shutil
 from dataclasses import asdict
 from pathlib import Path
 
 from .catalogue import all_tags, load_foods, load_recipes
 
 ROOT = Path(__file__).resolve().parents[2]
-TEMPLATE = Path(__file__).parent / "templates" / "app.html"
-SHOPPING_JS = Path(__file__).parent / "templates" / "shopping.js"
+TEMPLATES = Path(__file__).parent / "templates"
+ASSETS = ROOT / "assets"
+TEMPLATE = TEMPLATES / "app.html"
+SHOPPING_JS = TEMPLATES / "shopping.js"
+SW = TEMPLATES / "sw.js"
+MANIFEST = TEMPLATES / "manifest.webmanifest"
+ICONS = ("icon-192.png", "icon-512.png", "apple-touch-icon.png")
 DATA_PLACEHOLDER = "__DATA__"
 JS_PLACEHOLDER = "/* __SHOPPING_JS__ */"
+VERSION_PLACEHOLDER = "__VERSION__"
 
 # Daily targets each planned day is scored against.
 TARGETS = {"kcal": 1750, "protein": 180}
@@ -65,6 +73,27 @@ def build(out: Path | None = None) -> Path:
         json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8"
     )
 
+    # The service worker's cache name is tied to the content it serves, so a
+    # deploy that changes nothing leaves the user's cache alone, and one that
+    # changes anything retires it completely. sw.js and the manifest are part of
+    # the hash: changing only the worker must still invalidate the old cache.
+    sw = SW.read_text(encoding="utf-8")
+    if VERSION_PLACEHOLDER not in sw:
+        raise RuntimeError(f"{VERSION_PLACEHOLDER} placeholder missing from {SW}")
+    manifest = MANIFEST.read_text(encoding="utf-8")
+    digest = hashlib.sha256()
+    for part in (html, sw, manifest):
+        digest.update(part.encode("utf-8"))
+    version = digest.hexdigest()[:12]
+    (out / "sw.js").write_text(sw.replace(VERSION_PLACEHOLDER, version), encoding="utf-8")
+
+    (out / MANIFEST.name).write_text(manifest, encoding="utf-8")
+    missing = [name for name in ICONS if not (ASSETS / name).exists()]
+    if missing:
+        raise RuntimeError(f"missing icons {missing}; run scripts/mkicons.py")
+    for name in ICONS:
+        shutil.copy(ASSETS / name, out / name)
+
     slots: dict[str, int] = {}
     for recipe in data["recipes"]:
         slots[recipe["slot"]] = slots.get(recipe["slot"], 0) + 1
@@ -72,7 +101,7 @@ def build(out: Path | None = None) -> Path:
     print(
         f"built {out / 'index.html'} "
         f"({len(data['recipes'])} recipes: {breakdown}; "
-        f"{len(data['foods'])} foods; {len(html) // 1024} KB)"
+        f"{len(data['foods'])} foods; {len(html) // 1024} KB; version {version})"
     )
     return out
 

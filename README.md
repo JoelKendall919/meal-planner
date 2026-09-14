@@ -80,10 +80,39 @@ Rules the tests enforce:
 ## The web app
 
 `dist/index.html` is a single self-contained file with no external requests, so it
-works fully offline and can be copied straight to a phone. Three tabs — Plan,
-Recipes and Shopping — with the week and the ticked shopping list stored in
-`localStorage`. It degrades gracefully if storage is blocked, which happens when a
-downloaded file is opened from some Android file managers.
+works fully offline. Three tabs — Plan, Recipes and Shopping — with the week and
+the ticked shopping list stored in `localStorage`.
+
+### Putting it on a phone home screen
+
+Open https://joelkendall919.github.io/meal-planner/ in Chrome on Android, then
+**⋮ → Add to Home screen** (on iOS, Safari's Share → Add to Home Screen). It
+installs as a standalone app with its own icon and no browser chrome.
+
+A service worker caches the app on first visit, so it opens instantly and works
+in the shop with no signal. Each visit still fetches the current page first and
+only falls back to the cache when offline, so **changes pushed to this repository
+appear the next time the app is opened** — there is nothing to reinstall.
+
+The cache is named after a hash of the built page, the worker and the manifest.
+An unchanged deploy leaves the cache alone; any change retires it and the app
+reloads itself onto the new version. `tests/test_pwa.py` covers both.
+
+### Changing the icon
+
+Edit `assets/icon.svg`, then regenerate the PNGs and commit them:
+
+```sh
+.venv/bin/python scripts/mkicons.py
+```
+
+The PNGs are committed so CI never needs a browser.
+
+### Verifying the service worker by hand
+
+Headless Chrome will not exit while a service worker is active, so
+`scripts/probe_server.py` serves `dist/` and logs whatever the page reports to
+`/probe?msg=...`. Start it, point a browser at it, and read `/tmp/probe.log`.
 
 The shopping logic exists twice, in Python and JavaScript, because the app has to
 recalculate as you tap. `tests/test_shopping_parity.py` runs both over randomised

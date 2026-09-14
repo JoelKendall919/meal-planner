@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Full-bleed background so the icon survives Android's maskable crop.
+       All detail sits within the central 80% safe zone (x and y from 52 to 460). -->
+  <rect width="512" height="512" fill="#111111"/>
+  <g stroke="#ffffff" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- plate -->
+    <circle cx="256" cy="256" r="82"/>
+    <circle cx="256" cy="256" r="54" stroke-width="9" opacity="0.5"/>
+    <!-- fork: outer tines, centre tine, then handle -->
+    <path d="M108 158 V202 a24 24 0 0 0 24 24 a24 24 0 0 0 24 -24 V158"/>
+    <path d="M132 158 V202"/>
+    <path d="M132 226 V354"/>
+    <!-- knife: blade then handle -->
+    <path d="M374 158 a28 42 0 0 1 0 82 h-2 V158 Z" fill="#ffffff" stroke-width="11"/>
+    <path d="M373 240 V354"/>
+  </g>
+</svg>
