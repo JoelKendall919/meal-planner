@@ -21,6 +21,7 @@ BANDS = {
     "breakfast": (250, 550, 20),
     "lunch": (350, 700, 30),
     "dinner": (400, 800, 33),
+    "snack": (90, 280, 12),
 }
 
 REQUIRED = {"id", "name", "slot", "source", "servings", "ingredients", "steps", "tags"}

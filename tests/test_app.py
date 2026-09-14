@@ -16,6 +16,7 @@ import pytest
 
 from mealplanner.build import build, payload
 from mealplanner.catalogue import (
+    MAIN_SLOTS,
     PROTEIN_TAG_G,
     QUICK_MINUTES,
     SLOTS,
@@ -33,7 +34,12 @@ BANDS = {
     "breakfast": (250, 550, 20),
     "lunch": (350, 700, 30),
     "dinner": (400, 800, 33),
+    # Snacks exist to buy protein cheaply in calories, so the band is tight.
+    "snack": (90, 280, 12),
 }
+
+# Snacks are a top-up rather than a meal, so the slot sizes differ.
+MIN_PER_SLOT = {"breakfast": 25, "lunch": 25, "dinner": 25, "snack": 15}
 
 
 @pytest.fixture(scope="module")
@@ -52,7 +58,8 @@ def test_catalogue_is_complete(recipes):
         by_slot[r.slot] = by_slot.get(r.slot, 0) + 1
     assert set(by_slot) == set(SLOTS)
     for slot in SLOTS:
-        assert by_slot[slot] == 25, f"{slot} has {by_slot[slot]} recipes, expected 25"
+        least = MIN_PER_SLOT[slot]
+        assert by_slot[slot] >= least, f"{slot} has {by_slot[slot]} recipes, expected {least}+"
 
 
 def test_recipe_ids_are_unique(recipes):
@@ -173,7 +180,7 @@ def test_build_produces_a_self_contained_site(tmp_path):
     assert "<link rel=stylesheet" not in html and 'rel="stylesheet"' not in html
 
     data = json.loads((out / "catalogue.json").read_text(encoding="utf-8"))
-    assert len(data["recipes"]) == 75
+    assert len(data["recipes"]) >= sum(MIN_PER_SLOT.values())
     assert data["targets"]["kcal"] > 0
     assert "high-protein" in data["tags"]
 
@@ -202,13 +209,27 @@ def test_targets_are_achievable_from_the_catalogue(recipes):
 
     from mealplanner.build import TARGETS
 
-    pools = [[r for r in recipes if r.slot == slot] for slot in SLOTS]
+    pools = [[r for r in recipes if r.slot == slot] for slot in MAIN_SLOTS]
+    snacks = [r for r in recipes if r.slot == "snack"]
     hits = 0
+    total = 0
     for combo in product(*pools):
-        totals = {k: sum(r.macros[k] for r in combo) for k in TARGETS}
-        if totals["kcal"] <= TARGETS["kcal"] and totals["protein"] >= TARGETS["protein"]:
+        total += 1
+        kcal = sum(r.macros["kcal"] for r in combo)
+        protein = sum(r.macros["protein"] for r in combo)
+        if kcal > TARGETS["kcal"]:
+            continue
+        # A day may be topped up with one snack, which is how the planner fills.
+        best = max(
+            (
+                protein + s.macros["protein"]
+                for s in snacks
+                if kcal + s.macros["kcal"] <= TARGETS["kcal"]
+            ),
+            default=protein,
+        )
+        if best >= TARGETS["protein"]:
             hits += 1
-    total = len(pools[0]) * len(pools[1]) * len(pools[2])
     share = hits / total
     assert share >= 0.05, (
         f"only {hits} of {total} day combinations ({share:.1%}) meet the "
@@ -248,7 +269,7 @@ def test_fill_budgets_a_whole_day(tmp_path):
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     line = next(ln for ln in html.splitlines() if ln.startswith("const SLOT_SHARE"))
     shares = [float(part) for part in re.findall(r":\s*([0-9.]+)", line)]
-    assert len(shares) == len(SLOTS)
+    assert len(shares) == len(MAIN_SLOTS), "the budget must cover every main meal"
     assert abs(sum(shares) - 1.0) < 1e-9, f"slot shares add up to {sum(shares)}"
 
 
@@ -256,3 +277,29 @@ def test_stored_plans_from_the_previous_version_are_migrated(tmp_path):
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     assert 'KEY = "mealplanner.v3"' in html
     assert "mealplanner.v2" in html, "old saved plans would be silently dropped"
+
+
+def test_snacks_are_worth_eating_for_the_protein(recipes):
+    """Snacks exist only to buy protein cheaply in calories.
+
+    A snack that is not protein-dense spends calories the day cannot spare, so
+    this fixes the ratio rather than the absolute figures.
+    """
+    snacks = [r for r in recipes if r.slot == "snack"]
+    assert len(snacks) >= 15
+    for r in snacks:
+        ratio = r.macros["protein"] / r.macros["kcal"] * 100
+        assert ratio >= 8, (
+            f"{r.id} gives {ratio:.1f} g protein per 100 kcal, too little to be a top-up"
+        )
+
+
+def test_a_day_can_reach_the_protein_goal_within_the_calorie_goal(recipes):
+    """The snack top-up has to actually close the gap it exists to close."""
+    from mealplanner.build import TARGETS
+
+    def best(slot, key):
+        return max(r.macros[key] for r in recipes if r.slot == slot)
+
+    mains_protein = sum(best(slot, "protein") for slot in MAIN_SLOTS)
+    assert mains_protein + best("snack", "protein") >= TARGETS["protein"]

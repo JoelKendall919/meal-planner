@@ -692,5 +692,165 @@
     "Loosen the peanut butter with the soy sauce, lime juice and 3 tbsp hot water.",
     "Toss the noodles and sauce through the pan, then top with spring onion and chilli."
   ]
+ },
+ {
+  "id": "chicken-sweet-potato-tenderstem-tray",
+  "name": "Chicken, Sweet Potato And Tenderstem Tray",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["one-pan"],
+  "ingredients": [
+    {"food": "chicken breast raw", "grams": 200, "display": "1 large chicken breast (200 g)"},
+    {"food": "sweet potato raw", "grams": 250, "display": "1 large sweet potato (250 g), in wedges"},
+    {"food": "tenderstem", "grams": 100, "display": "1 pack (100 g) tenderstem broccoli"},
+    {"food": "greek yoghurt 0%", "grams": 60, "display": "3 tbsp (60 g) fat-free Greek yoghurt"},
+    {"food": "olive oil", "grams": 8, "display": "1 1/2 tsp olive oil"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"},
+    {"food": "lemon juice", "grams": 10, "display": "2 tsp lemon juice"},
+    {"food": "spices", "grams": 5, "display": "1 tsp smoked paprika and black pepper"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan. Toss the sweet potato wedges with half the oil and roast for 15 minutes.",
+    "Rub the chicken with the rest of the oil and the paprika and add it to the tray.",
+    "Roast for 12 minutes, adding the tenderstem for the last 8 minutes.",
+    "Stir the garlic and lemon juice into the yoghurt and spoon over to serve."
+  ]
+ },
+ {
+  "id": "cod-lentil-tomato-stew",
+  "name": "Cod And Lentil Tomato Stew",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": ["one-pan", "batch"],
+  "ingredients": [
+    {"food": "cod raw", "grams": 250, "display": "2 cod fillets (250 g)"},
+    {"food": "green lentils cooked", "grams": 200, "display": "1 pouch (200 g) cooked green lentils"},
+    {"food": "chopped tomatoes", "grams": 200, "display": "1/2 a tin (200 g) chopped tomatoes"},
+    {"food": "onion", "grams": 60, "display": "1/2 an onion, diced"},
+    {"food": "spinach", "grams": 60, "display": "2 handfuls (60 g) spinach"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, sliced"},
+    {"food": "olive oil", "grams": 8, "display": "1 1/2 tsp olive oil"},
+    {"food": "lemon juice", "grams": 10, "display": "2 tsp lemon juice"},
+    {"food": "spices", "grams": 5, "display": "1 tsp smoked paprika"}
+  ],
+  "steps": [
+    "Soften the onion and garlic in the oil for 5 minutes, then stir in the paprika.",
+    "Add the tomatoes and lentils and simmer for 8 minutes.",
+    "Sit the cod on top, cover and cook for 8 minutes until the fish flakes.",
+    "Stir the spinach through the sauce and finish with the lemon juice."
+  ]
+ },
+ {
+  "id": "turkey-mince-bolognese-wholewheat",
+  "name": "Turkey Bolognese With Wholewheat Pasta",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["batch"],
+  "ingredients": [
+    {"food": "turkey mince 5% raw", "grams": 200, "display": "200 g 5% fat turkey mince"},
+    {"food": "wholewheat pasta dry", "grams": 75, "display": "75 g dried wholewheat spaghetti"},
+    {"food": "passata", "grams": 200, "display": "1/2 a bottle (200 g) passata"},
+    {"food": "mushrooms", "grams": 80, "display": "4 chestnut mushrooms (80 g), chopped"},
+    {"food": "onion", "grams": 60, "display": "1/2 an onion, diced"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"},
+    {"food": "olive oil", "grams": 6, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 5, "display": "1 tsp dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Brown the turkey mince in the oil over a high heat, breaking it up as it cooks.",
+    "Add the onion, garlic and mushrooms and cook for 5 minutes.",
+    "Pour in the passata with the oregano and simmer for 15 minutes.",
+    "Boil the pasta until al dente, drain and stir through the sauce."
+  ]
+ },
+ {
+  "id": "tofu-edamame-rice-stir-fry",
+  "name": "Tofu And Edamame Rice Stir-Fry",
+  "slot": "dinner",
+  "source": {"name": "Tesco Real Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 20,
+  "tags": ["vegetarian", "one-pan"],
+  "ingredients": [
+    {"food": "tofu firm", "grams": 225, "display": "a little over 1/2 a block (225 g) firm tofu, cubed"},
+    {"food": "edamame frozen", "grams": 150, "display": "1 1/4 cups (150 g) frozen edamame beans"},
+    {"food": "basmati rice dry", "grams": 45, "display": "45 g dried basmati rice"},
+    {"food": "tenderstem", "grams": 100, "display": "1 pack (100 g) tenderstem broccoli"},
+    {"food": "red pepper", "grams": 80, "display": "1/2 a red pepper (80 g), sliced"},
+    {"food": "soy sauce", "grams": 20, "display": "1 1/2 tbsp soy sauce"},
+    {"food": "sesame oil", "grams": 3, "display": "3/4 tsp sesame oil"},
+    {"food": "root ginger", "grams": 5, "display": "1 tsp grated ginger"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"}
+  ],
+  "steps": [
+    "Cook the rice according to the packet and keep warm.",
+    "Press the tofu dry and fry in the sesame oil over a high heat until browned on all sides.",
+    "Add the ginger, garlic, pepper, tenderstem and edamame and stir-fry for 5 minutes.",
+    "Splash in the soy sauce with 2 tbsp water and serve over the rice."
+  ]
+ },
+ {
+  "id": "lentil-mozzarella-courgette-bake",
+  "name": "Lentil And Mozzarella Courgette Bake",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 15,
+  "cook_min": 35,
+  "tags": ["vegetarian", "one-pan", "batch"],
+  "ingredients": [
+    {"food": "red lentils dry", "grams": 90, "display": "90 g dried red lentils"},
+    {"food": "mozzarella light", "grams": 80, "display": "2/3 of a ball (80 g) light mozzarella, torn"},
+    {"food": "cottage cheese", "grams": 80, "display": "3 tbsp (80 g) cottage cheese"},
+    {"food": "passata", "grams": 200, "display": "1/2 a bottle (200 g) passata"},
+    {"food": "courgette", "grams": 120, "display": "1/2 a courgette (120 g), sliced"},
+    {"food": "onion", "grams": 50, "display": "1/2 an onion, diced"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 4, "display": "1 tsp dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Simmer the lentils in 350 ml water for 15 minutes until soft, then drain any excess.",
+    "Soften the onion, garlic and courgette in the oil for 6 minutes.",
+    "Stir in the passata, oregano and lentils and tip into a small baking dish.",
+    "Dot with the cottage cheese, scatter over the mozzarella and bake at 200C fan for 15 minutes."
+  ]
+ },
+ {
+  "id": "harissa-chicken-butter-bean-stew",
+  "name": "Harissa Chicken And Butter Bean Stew",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["one-pan", "batch"],
+  "ingredients": [
+    {"food": "chicken thigh skinless raw", "grams": 200, "display": "3 skinless chicken thighs (200 g)"},
+    {"food": "butter beans drained", "grams": 200, "display": "1 tin (200 g drained) butter beans"},
+    {"food": "passata", "grams": 150, "display": "1/3 of a bottle (150 g) passata"},
+    {"food": "harissa", "grams": 20, "display": "1 tbsp harissa paste"},
+    {"food": "onion", "grams": 60, "display": "1/2 an onion, sliced"},
+    {"food": "spinach", "grams": 60, "display": "2 handfuls (60 g) spinach"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, sliced"},
+    {"food": "olive oil", "grams": 6, "display": "1 tsp olive oil"},
+    {"food": "lemon juice", "grams": 10, "display": "2 tsp lemon juice"}
+  ],
+  "steps": [
+    "Brown the chicken thighs in the oil for 4 minutes a side, then lift out.",
+    "Soften the onion and garlic for 5 minutes and stir in the harissa.",
+    "Add the passata, butter beans and 100 ml water and return the chicken.",
+    "Simmer for 18 minutes, stir in the spinach and finish with the lemon juice."
+  ]
  }
 ]

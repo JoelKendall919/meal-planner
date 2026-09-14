@@ -1,6 +1,6 @@
 # Meal Planner
 
-A catalogue of 75 recipes with a weekly planner and automatic shopping lists,
+A catalogue of 107 recipes with a calendar planner and editable shopping lists,
 built as a single offline-capable web page.
 
 **Live site:** https://joelkendall919.github.io/meal-planner/
@@ -27,7 +27,7 @@ the tests gate deployment.
 | Path | Purpose |
 | --- | --- |
 | `data/foods.json` | 143 foods: nutrition per 100 g, shopping group, pack size, aisle |
-| `data/recipes-*.json` | The recipe catalogue, 25 per meal slot |
+| `data/recipes-*.json` | The recipe catalogue: 25 breakfasts, 31 lunches, 31 dinners, 20 snacks |
 | `scripts/build_foods.py` | Generates `foods.json` — **edit this, not the JSON** |
 | `scripts/validate_recipes.py` | Checks a recipe file before it is committed |
 | `src/mealplanner/catalogue.py` | Loads foods and recipes, computes macros and derived tags |
@@ -123,3 +123,22 @@ selections and the whole catalogue, so the two cannot drift apart.
 This repository is public so that GitHub Pages can serve it on a free plan.
 Personal measurements are deliberately excluded: `private/` and any `.xlsx` files
 are ignored by Git.
+
+## Goals have to be reachable
+
+Daily goals default to 1750 kcal, 150 g protein, 50 g fat, 160 g carbs, and the
+app lets you change them. The defaults are not chosen by feel: an earlier
+version shipped a 180 g protein goal inherited from a hand-built week, and no
+combination of the catalogue at the time could reach it inside 1750 kcal — the
+best possible day was 168 g, in 1 of 14,159 combinations. Every day would have
+read as a failure.
+
+`test_targets_are_achievable_from_the_catalogue` now brute-forces every
+breakfast/lunch/dinner combination, allows for one snack, and fails if the
+shipped goals are met by fewer than 5% of possible days.
+
+Snacks exist for this reason. They are a protein top-up rather than a fourth
+meal: "fill empty slots" plans the three main meals against the calorie goal,
+then adds a snack only when the day is short on protein and has calories spare.
+Filling a month currently averages 1700 kcal and 145 g protein per day, with no
+day going over the calorie goal.

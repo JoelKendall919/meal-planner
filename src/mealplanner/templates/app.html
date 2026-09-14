@@ -115,6 +115,8 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .mcell .dots{display:flex;gap:2.5px}
 .mcell .dots i{width:5px;height:5px;border-radius:50%;background:#dcdcd8;display:block}
 .mcell .dots i.on{background:var(--accent)}
+.tile.faint{opacity:.62}
+.slotname em{font-style:normal;font-weight:400;opacity:.55;font-size:11px}
 .mcell .kc{font-size:9.5px;color:var(--mut);line-height:1}
 
 /* --- recipes --- */
@@ -209,8 +211,12 @@ const DATA = __DATA__;
 "use strict";
 
 /* ===== constants and data ================================================ */
-const SLOTS = ["breakfast", "lunch", "dinner"];
-const SLOT_ABBR = { breakfast: "B", lunch: "L", dinner: "D" };
+// The three meals of a day, plus an optional snack. A snack is a protein
+// top-up, not a fourth meal: the main-meal catalogue cannot reach a useful
+// protein figure inside the calorie goal on its own.
+const MAIN_SLOTS = ["breakfast", "lunch", "dinner"];
+const SLOTS = MAIN_SLOTS.concat("snack");
+const SLOT_ABBR = { breakfast: "B", lunch: "L", dinner: "D", snack: "S" };
 const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = ["January","February","March","April","May","June",
                 "July","August","September","October","November","December"];
@@ -457,16 +463,19 @@ function dayTiles(date){
   return SLOTS.map(slot => {
     const id = (S.plan[date] || {})[slot];
     const r = id ? BY_ID[id] : null;
-    return `<div class="tile">
-      <div class="slotname">${slot}</div>
-      <div class="mealname ${r ? "" : "empty"}">${r ? esc(r.name) : "Nothing chosen"}</div>
+    const optional = slot === "snack";
+    return `<div class="tile${optional && !r ? " faint" : ""}">
+      <div class="slotname">${slot}${optional ? ` <em>optional</em>` : ""}</div>
+      <div class="mealname ${r ? "" : "empty"}">${
+        r ? esc(r.name) : optional ? "No snack needed" : "Nothing chosen"}</div>
       ${r ? `<div class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein
               &middot; ${r.macros.fat} g fat &middot; ${r.macros.carbs} g carbs</div>` : ""}
       <div class="bar">
         ${r ? `<button class="sec" data-open="${r.id}">View recipe</button>
                <button class="sec" data-pick="${date}|${slot}">Change</button>
                <button class="sec danger" data-unset="${date}|${slot}">Remove</button>`
-            : `<button class="sec pri" data-pick="${date}|${slot}">Choose a meal</button>`}
+            : `<button class="sec${optional ? "" : " pri"}" data-pick="${date}|${slot}">${
+                 optional ? "Add a snack" : "Choose a meal"}</button>`}
       </div></div>`;
   }).join("");
 }
@@ -505,7 +514,7 @@ function monthGrid(a, b){
       return `<button class="mcell ${inMonth ? "" : "out"} ${date === today ? "today" : ""}"
         data-day="${date}">
         <span class="dn">${parseISO(date).getDate()}</span>
-        <span class="dots">${SLOTS.map(s =>
+        <span class="dots">${MAIN_SLOTS.map(s =>
           `<i class="${day[s] ? "on" : ""}"></i>`).join("")}</span>
         <span class="kc">${t.kcal || ""}</span>
       </button>`;
@@ -907,23 +916,47 @@ function unsetMeal(date, slot){
 }
 
 const FILL_TOLERANCE = 120;
+const FILL_LEVEL_KCAL = 40;
 const SLOT_SHARE = { breakfast: 0.25, lunch: 0.35, dinner: 0.40 };
+
+/** Median of a list of numbers, used to judge what a typical meal looks like. */
+function median(xs){
+  if (!xs.length) return 0;
+  const s = xs.slice().sort((a, b) => a - b);
+  const m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+
+/** Whether the main meals can typically carry the protein goal on their own. */
+function snackReserve(){
+  const snacks = RECIPES.filter(r => r.slot === "snack");
+  if (!snacks.length) return 0;
+  const typical = MAIN_SLOTS.reduce((n, slot) =>
+    n + median(RECIPES.filter(r => r.slot === slot).map(r => r.macros.protein)), 0);
+  if (S.goals.protein <= typical) return 0;
+  return median(snacks.map(r => r.macros.kcal));
+}
 
 function fillRange(){
   const [a, b] = range();
   const dates = daysBetween(a, b);
+  // Only the main meals count as empty. A snack is a top-up, so leaving one out
+  // is not a gap to be filled.
   const empty = dates.reduce((n, d) =>
-    n + SLOTS.filter(s => !(S.plan[d] || {})[s]).length, 0);
+    n + MAIN_SLOTS.filter(s => !(S.plan[d] || {})[s]).length, 0);
   if (!empty){ toast("Nothing empty to fill in this view"); return; }
   if (empty > 21 && !confirm(`Fill ${empty} empty meal slots across ${dates.length} days?`)) return;
 
   const used = new Set(idsIn(a, b));
+  // Hold back roughly a snack's worth of calories when the protein goal is out of
+  // reach of main meals alone, so there is room to top the day up afterwards.
+  const reserve = snackReserve();
   dates.forEach(date => {
-    const open = SLOTS.filter(s => !(S.plan[date] || {})[s]);
+    const open = MAIN_SLOTS.filter(s => !(S.plan[date] || {})[s]);
     if (!open.length) return;
     // Spend what is left of the day's calorie goal across the slots still open,
     // so filling a day lands near your target instead of wherever chance falls.
-    let budget = Math.max(0, S.goals.kcal - totalsOn(date).kcal);
+    let budget = Math.max(0, S.goals.kcal - reserve - totalsOn(date).kcal);
     let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);
 
     open.forEach((slot, i) => {
@@ -946,15 +979,46 @@ function fillRange(){
       // close the gap on your goal rather than widen it.
       const width = Math.max(2, 6 - 2 * i);
       const shortlist = ranked.slice(0, Math.min(width, ranked.length));
-      const pick = shortlist[Math.floor(Math.random() * shortlist.length)];
+      // Among fits that are equally good on calories, take the most protein. The
+      // window is deliberately tight: leaning on protein across a wide calorie
+      // spread drags the day well under its calorie goal.
+      const bestGap = Math.abs(shortlist[0].macros.kcal - target);
+      const level = shortlist.filter(r =>
+        Math.abs(r.macros.kcal - target) <= bestGap + FILL_LEVEL_KCAL);
+      level.sort((x, y) => y.macros.protein - x.macros.protein);
+      const pick = level[Math.floor(Math.random() * Math.min(2, level.length))];
       setMeal(date, slot, pick.id);
       used.add(pick.id);
       budget = Math.max(0, budget - pick.macros.kcal);
       share -= SLOT_SHARE[slot];
     });
+    topUpProtein(date, used);
   });
   render();
   toast(`Filled ${empty} slot${empty === 1 ? "" : "s"}`);
+}
+
+/** Add a snack only when the day is short on protein and has calories spare. */
+function topUpProtein(date, used){
+  if ((S.plan[date] || {}).snack) return;
+  const day = totalsOn(date);
+  const short = S.goals.protein - day.protein;
+  if (short <= 0) return;
+  const headroom = S.goals.kcal - day.kcal;
+  const fits = RECIPES.filter(r => r.slot === "snack" && r.macros.kcal <= headroom);
+  if (!fits.length) return;
+  // Close as much of the protein gap as possible without going over on calories,
+  // preferring the lighter snack when two are equally good.
+  fits.sort((x, y) =>
+    Math.min(y.macros.protein, short) - Math.min(x.macros.protein, short)
+    || x.macros.kcal - y.macros.kcal);
+  const best = fits.filter(r =>
+    Math.min(r.macros.protein, short) === Math.min(fits[0].macros.protein, short));
+  const fresh = best.filter(r => !used.has(r.id));
+  const from = fresh.length ? fresh : best;
+  const pick = from[Math.floor(Math.random() * from.length)];
+  setMeal(date, "snack", pick.id);
+  used.add(pick.id);
 }
 
 function clearRange(){

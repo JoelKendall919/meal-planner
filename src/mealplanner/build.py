@@ -31,12 +31,13 @@ JS_PLACEHOLDER = "/* __SHOPPING_JS__ */"
 VERSION_PLACEHOLDER = "__VERSION__"
 
 # Default daily goals. The user can change these in the app; these are only the
-# starting values. They must be reachable from the catalogue: the original plan's
-# 180 g protein came from a hand-built week and no combination of these 75 recipes
-# can reach it under 1750 kcal (the best is 168 g, in 1 of 14,159 combinations).
-# These figures are the median of days landing at 1650-1750 kcal with >=130 g
-# protein, so a well-chosen day meets them. See test_targets_are_achievable.
-TARGETS = {"kcal": 1750, "protein": 130, "fat": 55, "carbs": 170}
+# starting values. They must be reachable from the catalogue, which is what the
+# feasibility test enforces: an earlier 180 g protein goal was carried over from a
+# hand-built week and no combination of the then-75 recipes could reach it under
+# 1750 kcal. After adding 12 high-protein mains and 20 protein snacks, 150 g is
+# met by roughly 40% of days. These figures are the median of days landing at
+# 1650-1750 kcal with at least 150 g protein.
+TARGETS = {"kcal": 1750, "protein": 150, "fat": 50, "carbs": 160}
 
 # Tag filters are ordered by usefulness rather than alphabetically.
 TAG_ORDER = ["high-protein", "quick", "vegetarian", "no-cook", "packable", "batch", "one-pan"]

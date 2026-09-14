@@ -1,0 +1,877 @@
+[
+ {
+  "id": "whey-berry-shake",
+  "name": "Whey And Berry Shake",
+  "slot": "snack",
+  "source": {
+   "name": "MyProtein",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "whey",
+    "grams": 30,
+    "display": "1 scoop (30 g) vanilla whey"
+   },
+   {
+    "food": "milk skimmed",
+    "grams": 200,
+    "display": "200 ml skimmed milk"
+   },
+   {
+    "food": "berries frozen",
+    "grams": 80,
+    "display": "80 g frozen mixed berries"
+   }
+  ],
+  "steps": [
+   "Put the milk, whey and berries in a blender or shaker bottle.",
+   "Blend or shake for 30 seconds until smooth.",
+   "Pour into a glass and drink straight away."
+  ]
+ },
+ {
+  "id": "greek-yoghurt-protein-pot",
+  "name": "Greek Yoghurt Protein Pot",
+  "slot": "snack",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 170,
+    "display": "170 g pot of fat-free Greek yoghurt"
+   },
+   {
+    "food": "whey",
+    "grams": 15,
+    "display": "1/2 scoop (15 g) vanilla whey"
+   },
+   {
+    "food": "raspberries",
+    "grams": 60,
+    "display": "60 g raspberries (a small handful)"
+   }
+  ],
+  "steps": [
+   "Stir the whey into the yoghurt a spoonful at a time until smooth.",
+   "Top with the raspberries.",
+   "Chill until needed, or eat straight away."
+  ]
+ },
+ {
+  "id": "quark-honey-cinnamon-pot",
+  "name": "Quark With Honey And Cinnamon",
+  "slot": "snack",
+  "source": {
+   "name": "Sainsbury's Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "quark",
+    "grams": 200,
+    "display": "200 g quark (about 3/4 of a 250 g tub)"
+   },
+   {
+    "food": "honey",
+    "grams": 10,
+    "display": "2 tsp honey"
+   },
+   {
+    "food": "spices",
+    "grams": 2,
+    "display": "1/2 tsp ground cinnamon"
+   }
+  ],
+  "steps": [
+   "Beat the quark with the cinnamon until loose.",
+   "Swirl the honey through.",
+   "Serve chilled."
+  ]
+ },
+ {
+  "id": "cottage-cheese-chilli-tomato-pot",
+  "name": "Cottage Cheese With Chilli And Tomato",
+  "slot": "snack",
+  "source": {
+   "name": "Tesco Real Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "cottage cheese",
+    "grams": 200,
+    "display": "200 g cottage cheese (2/3 of a 300 g tub)"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 100,
+    "display": "10 cherry tomatoes, halved"
+   },
+   {
+    "food": "spring onion",
+    "grams": 15,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "chilli",
+    "grams": 5,
+    "display": "1/3 red chilli, finely chopped"
+   }
+  ],
+  "steps": [
+   "Spoon the cottage cheese into a bowl or lidded pot.",
+   "Scatter over the tomatoes, spring onion and chilli.",
+   "Season with black pepper and serve."
+  ]
+ },
+ {
+  "id": "skyr-strawberry-pot",
+  "name": "Skyr With Strawberries",
+  "slot": "snack",
+  "source": {
+   "name": "Waitrose",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "skyr",
+    "grams": 200,
+    "display": "200 g skyr"
+   },
+   {
+    "food": "strawberries",
+    "grams": 100,
+    "display": "100 g strawberries, sliced"
+   },
+   {
+    "food": "mixed seeds",
+    "grams": 5,
+    "display": "1 tsp mixed seeds"
+   }
+  ],
+  "steps": [
+   "Spoon the skyr into a bowl.",
+   "Add the strawberries and scatter the seeds over."
+  ]
+ },
+ {
+  "id": "tuna-cucumber-boats",
+  "name": "Tuna Cucumber Boats",
+  "slot": "snack",
+  "source": {
+   "name": "Tesco Real Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 7,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "tuna spring water drained",
+    "grams": 100,
+    "display": "1 tin (drained 100 g) tuna in spring water"
+   },
+   {
+    "food": "light mayo",
+    "grams": 12,
+    "display": "2 tsp light mayonnaise"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   },
+   {
+    "food": "cucumber",
+    "grams": 120,
+    "display": "1/3 cucumber (120 g)"
+   },
+   {
+    "food": "spring onion",
+    "grams": 10,
+    "display": "1/2 spring onion, sliced"
+   }
+  ],
+  "steps": [
+   "Halve the cucumber lengthways and scoop out the seeds to make two boats.",
+   "Mix the tuna with the mayonnaise, lemon juice and spring onion.",
+   "Spoon the tuna into the cucumber halves and season with black pepper."
+  ]
+ },
+ {
+  "id": "prawn-cocktail-cups",
+  "name": "Prawn Cocktail Cups",
+  "slot": "snack",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "prawns cooked",
+    "grams": 125,
+    "display": "125 g cooked cold-water prawns"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 40,
+    "display": "2 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "tomato puree",
+    "grams": 8,
+    "display": "1 heaped tsp tomato puree"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 40,
+    "display": "1 handful little gem leaves, left whole"
+   }
+  ],
+  "steps": [
+   "Mix the yoghurt, tomato puree and lemon juice with a pinch of black pepper.",
+   "Fold the prawns through the dressing.",
+   "Spoon into the lettuce leaves and serve."
+  ]
+ },
+ {
+  "id": "smoked-salmon-cucumber-rolls",
+  "name": "Smoked Salmon Cucumber Rolls",
+  "slot": "snack",
+  "source": {
+   "name": "Delicious Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "smoked salmon",
+    "grams": 70,
+    "display": "70 g smoked salmon slices"
+   },
+   {
+    "food": "cream cheese light",
+    "grams": 30,
+    "display": "2 tbsp light cream cheese"
+   },
+   {
+    "food": "cucumber",
+    "grams": 80,
+    "display": "1/4 cucumber (80 g)"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Peel the cucumber into long ribbons with a vegetable peeler.",
+   "Mix the cream cheese with the lemon juice and black pepper.",
+   "Spread a little over each salmon slice, lay a cucumber ribbon on top and roll up."
+  ]
+ },
+ {
+  "id": "ham-and-egg-muffin-pots",
+  "name": "Ham And Egg Muffin Pots",
+  "slot": "snack",
+  "source": {
+   "name": "Good Housekeeping",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 18,
+  "tags": [
+   "packable",
+   "batch"
+  ],
+  "ingredients": [
+   {
+    "food": "egg",
+    "grams": 60,
+    "display": "1 medium egg"
+   },
+   {
+    "food": "egg white",
+    "grams": 66,
+    "display": "2 egg whites (66 g)"
+   },
+   {
+    "food": "ham slices",
+    "grams": 45,
+    "display": "2 slices (45 g) lean ham, chopped"
+   },
+   {
+    "food": "spinach",
+    "grams": 30,
+    "display": "1 handful spinach, chopped"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 180C fan and line two holes of a muffin tin.",
+   "Beat the egg and egg whites, then stir in the ham and spinach.",
+   "Pour into the tin and bake for 18 minutes until set.",
+   "Eat warm, or chill and take cold."
+  ]
+ },
+ {
+  "id": "tuna-cottage-cheese-dip",
+  "name": "Tuna And Cottage Cheese Dip",
+  "slot": "snack",
+  "source": {
+   "name": "Tesco Real Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "tuna spring water drained",
+    "grams": 80,
+    "display": "80 g tuna in spring water, drained"
+   },
+   {
+    "food": "cottage cheese",
+    "grams": 70,
+    "display": "3 tbsp (70 g) cottage cheese"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   },
+   {
+    "food": "carrot",
+    "grams": 70,
+    "display": "1 carrot, cut into sticks"
+   },
+   {
+    "food": "celery",
+    "grams": 60,
+    "display": "2 celery sticks, cut into batons"
+   }
+  ],
+  "steps": [
+   "Mash the tuna into the cottage cheese with the lemon juice and black pepper.",
+   "Spoon into a pot and serve with the carrot and celery sticks."
+  ]
+ },
+ {
+  "id": "harissa-chicken-skewers",
+  "name": "Harissa Chicken Skewers",
+  "slot": "snack",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 10,
+  "tags": [
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "chicken breast raw",
+    "grams": 110,
+    "display": "1 small chicken breast (110 g), cubed"
+   },
+   {
+    "food": "harissa",
+    "grams": 12,
+    "display": "2 tsp harissa paste"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Toss the chicken with the harissa and lemon juice.",
+   "Thread onto two skewers.",
+   "Grill for 10 minutes, turning once, until cooked through."
+  ]
+ },
+ {
+  "id": "soy-chilli-edamame",
+  "name": "Soy And Chilli Edamame",
+  "slot": "snack",
+  "source": {
+   "name": "Waitrose",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 2,
+  "cook_min": 5,
+  "tags": [
+   "vegetarian",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "edamame frozen",
+    "grams": 150,
+    "display": "150 g frozen edamame beans"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 10,
+    "display": "2 tsp soy sauce"
+   },
+   {
+    "food": "chilli",
+    "grams": 5,
+    "display": "1/3 red chilli, finely chopped"
+   },
+   {
+    "food": "lime juice",
+    "grams": 5,
+    "display": "1 tsp lime juice"
+   }
+  ],
+  "steps": [
+   "Boil the edamame for 4 minutes, then drain.",
+   "Toss with the soy sauce, chilli and lime juice.",
+   "Serve warm or cold."
+  ]
+ },
+ {
+  "id": "chocolate-whey-mousse",
+  "name": "Chocolate Whey Mousse",
+  "slot": "snack",
+  "source": {
+   "name": "MyProtein",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "whey",
+    "grams": 25,
+    "display": "1 scoop (25 g) chocolate whey"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 130,
+    "display": "130 g fat-free Greek yoghurt"
+   },
+   {
+    "food": "milk skimmed",
+    "grams": 30,
+    "display": "2 tbsp skimmed milk"
+   },
+   {
+    "food": "dark choc 70",
+    "grams": 5,
+    "display": "5 g dark chocolate, grated"
+   }
+  ],
+  "steps": [
+   "Whisk the whey into the yoghurt with the milk until thick and smooth.",
+   "Spoon into a glass and chill for 10 minutes.",
+   "Top with the grated chocolate."
+  ]
+ },
+ {
+  "id": "peanut-protein-yoghurt",
+  "name": "Peanut Butter Protein Yoghurt",
+  "slot": "snack",
+  "source": {
+   "name": "MyProtein",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 150,
+    "display": "150 g fat-free Greek yoghurt"
+   },
+   {
+    "food": "whey",
+    "grams": 10,
+    "display": "1/3 scoop (10 g) vanilla whey"
+   },
+   {
+    "food": "peanut butter",
+    "grams": 12,
+    "display": "2 tsp peanut butter"
+   }
+  ],
+  "steps": [
+   "Stir the whey into the yoghurt until smooth.",
+   "Loosen the peanut butter with a teaspoon of warm water.",
+   "Ripple it through the yoghurt."
+  ]
+ },
+ {
+  "id": "ham-and-mustard-roll-ups",
+  "name": "Ham And Mustard Roll-Ups",
+  "slot": "snack",
+  "source": {
+   "name": "Good Housekeeping",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "ham slices",
+    "grams": 90,
+    "display": "4 slices (90 g) lean ham"
+   },
+   {
+    "food": "cream cheese light",
+    "grams": 30,
+    "display": "2 tbsp light cream cheese"
+   },
+   {
+    "food": "dijon mustard",
+    "grams": 5,
+    "display": "1 tsp Dijon mustard"
+   },
+   {
+    "food": "spring onion",
+    "grams": 15,
+    "display": "1 spring onion, cut into strips"
+   }
+  ],
+  "steps": [
+   "Mix the cream cheese with the mustard.",
+   "Spread over the ham slices and lay the spring onion strips along one edge.",
+   "Roll each slice up and slice in half."
+  ]
+ },
+ {
+  "id": "mozzarella-tomato-plate",
+  "name": "Light Mozzarella And Tomato Plate",
+  "slot": "snack",
+  "source": {
+   "name": "Delicious Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook"
+  ],
+  "ingredients": [
+   {
+    "food": "mozzarella light",
+    "grams": 65,
+    "display": "65 g light mozzarella, torn"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 150,
+    "display": "15 cherry tomatoes, halved"
+   },
+   {
+    "food": "rocket",
+    "grams": 20,
+    "display": "1 handful rocket"
+   },
+   {
+    "food": "balsamic vinegar",
+    "grams": 5,
+    "display": "1 tsp balsamic vinegar"
+   }
+  ],
+  "steps": [
+   "Arrange the rocket and tomatoes on a plate.",
+   "Tear the mozzarella over the top.",
+   "Drizzle with the balsamic vinegar and season with black pepper."
+  ]
+ },
+ {
+  "id": "skyr-dip-with-crudites",
+  "name": "Skyr Dip With Crudites",
+  "slot": "snack",
+  "source": {
+   "name": "Sainsbury's Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "skyr",
+    "grams": 150,
+    "display": "150 g skyr"
+   },
+   {
+    "food": "dijon mustard",
+    "grams": 5,
+    "display": "1 tsp Dijon mustard"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   },
+   {
+    "food": "garlic",
+    "grams": 3,
+    "display": "1/2 small garlic clove, crushed"
+   },
+   {
+    "food": "carrot",
+    "grams": 80,
+    "display": "1 carrot, cut into sticks"
+   },
+   {
+    "food": "red pepper",
+    "grams": 80,
+    "display": "1/2 red pepper, cut into strips"
+   }
+  ],
+  "steps": [
+   "Stir the mustard, lemon juice and garlic into the skyr and season.",
+   "Serve with the carrot and pepper for dipping."
+  ]
+ },
+ {
+  "id": "mackerel-quark-pate",
+  "name": "Mackerel And Quark Pate",
+  "slot": "snack",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "packable"
+  ],
+  "ingredients": [
+   {
+    "food": "mackerel tinned drained",
+    "grams": 50,
+    "display": "1/2 tin (50 g) mackerel, drained"
+   },
+   {
+    "food": "quark",
+    "grams": 110,
+    "display": "110 g quark"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 8,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "cucumber",
+    "grams": 80,
+    "display": "1/4 cucumber, cut into rounds"
+   }
+  ],
+  "steps": [
+   "Mash the mackerel with the quark and lemon juice until fairly smooth.",
+   "Season with black pepper.",
+   "Serve with the cucumber rounds for scooping."
+  ]
+ },
+ {
+  "id": "whey-oat-protein-balls",
+  "name": "Whey And Oat Protein Balls",
+  "slot": "snack",
+  "source": {
+   "name": "MyProtein",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "packable",
+   "batch"
+  ],
+  "ingredients": [
+   {
+    "food": "whey",
+    "grams": 20,
+    "display": "2/3 scoop (20 g) vanilla whey"
+   },
+   {
+    "food": "oats",
+    "grams": 15,
+    "display": "1 1/2 tbsp (15 g) porridge oats"
+   },
+   {
+    "food": "peanut butter",
+    "grams": 8,
+    "display": "1 1/2 tsp peanut butter"
+   },
+   {
+    "food": "honey",
+    "grams": 5,
+    "display": "1 tsp honey"
+   },
+   {
+    "food": "milk skimmed",
+    "grams": 15,
+    "display": "1 tbsp skimmed milk"
+   }
+  ],
+  "steps": [
+   "Mix the whey, oats, peanut butter and honey in a bowl.",
+   "Add the milk and work into a stiff paste.",
+   "Roll into three balls and chill for 20 minutes.",
+   "Scale the quantities up to make a batch; they keep for 5 days in the fridge."
+  ]
+ },
+ {
+  "id": "sesame-tofu-bites",
+  "name": "Sesame Baked Tofu Bites",
+  "slot": "snack",
+  "source": {
+   "name": "Tesco Real Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 20,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "one-pan"
+  ],
+  "ingredients": [
+   {
+    "food": "tofu firm",
+    "grams": 110,
+    "display": "110 g firm tofu, cubed"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 10,
+    "display": "2 tsp soy sauce"
+   },
+   {
+    "food": "sesame seeds",
+    "grams": 2,
+    "display": "3/4 tsp sesame seeds"
+   },
+   {
+    "food": "spices",
+    "grams": 2,
+    "display": "1/2 tsp garlic granules"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   }
+  ],
+  "steps": [
+   "Heat the oven to 200C fan.",
+   "Toss the tofu with the soy sauce and garlic granules.",
+   "Spread on a lined tray, scatter with sesame seeds and bake for 20 minutes, turning once.",
+   "Scatter the spring onion over before serving."
+  ]
+ }
+]

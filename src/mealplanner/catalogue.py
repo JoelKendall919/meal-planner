@@ -16,13 +16,18 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
-SLOTS = ("breakfast", "lunch", "dinner")
+# The three meals that make up a day, plus an optional snack. Snacks are a
+# protein top-up rather than a fourth meal: the catalogue of main meals cannot
+# reach a useful protein figure inside 1750 kcal on its own, so the planner adds
+# a snack only when a day is short on protein and has calories to spare.
+MAIN_SLOTS = ("breakfast", "lunch", "dinner")
+SLOTS = (*MAIN_SLOTS, "snack")
 
 # Tags that describe a measurable property are derived from the recipe data rather
 # than trusted from the source file. Hand-written labels drift: an early batch
 # tagged 14 recipes "high-protein" that were nowhere near the threshold.
 PROTEIN_TAG_G = 30
-QUICK_MINUTES = {"breakfast": 10, "lunch": 15, "dinner": 25}
+QUICK_MINUTES = {"breakfast": 10, "lunch": 15, "dinner": 25, "snack": 10}
 DERIVED_TAGS = {"high-protein", "quick"}
 
 
