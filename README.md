@@ -9,6 +9,11 @@ Pick meals for any day of the week and the shopping list builds itself, merging
 ingredients you would buy as one product — red and yellow peppers become one
 entry, and chicken thigh spread across three meals becomes "3 thighs".
 
+A list does not have to come from the plan: **Blank list** starts an empty one
+you fill in yourself, and it claims no dates because there is no week behind it.
+**Clear** empties a list without deleting it, so you can keep adding to the same
+list. Both ask before throwing away anything you would miss.
+
 ## Portions, and why they do not reach the shopping list
 
 A planned slot is always **one portion**. The portions stepper on a recipe is a

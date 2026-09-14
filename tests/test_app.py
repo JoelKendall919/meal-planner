@@ -847,3 +847,44 @@ def test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist(tmp_path):
 
     # Silently deleting planned meals needs saying.
     assert "no longer in the catalogue and" in html, "the user is not told their plan changed"
+
+
+def test_the_shopping_list_can_be_emptied_and_started_blank(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+
+    # A list you build yourself has no days behind it, so it claims none.
+    blank = js_block(html, "function blankList(){")
+    assert "from: null, to: null" in blank, "a blank list still claims a date range"
+    assert "if (!S.shopping) S.shopping = blankList();" in html, (
+        "adding an item with no list creates one dated today"
+    )
+
+    # Both routes are offered where there is no list yet.
+    shop = js_block(html, "function viewShop(){")
+    assert 'data-newlist="1"' in shop and 'data-blank="1"' in shop, (
+        "the empty shopping screen does not offer both ways to start"
+    )
+    assert 'data-clearitems="1"' in shop, "there is no clear button on the list"
+    # A null span must not reach the date formatter.
+    assert "const span = sh.from" in shop, "the subtitle would format a null date"
+    assert '"Your own list"' in shop, "a list with no days has nothing to say for itself"
+
+    for hook in ("[data-blank]", "[data-clearitems]"):
+        assert hook in html, f"{hook} is not in the click selector"
+
+    # Destructive actions ask, and a no-op explains itself instead of asking.
+    clear_prompt = (
+        'if (!confirm(`Remove all ${n} item${n === 1 ? "" : "s"} from the list?`)) return;'
+    )
+    assert clear_prompt in html, "clearing the list does not ask first"
+    assert 'toast("The list is already empty"); return;' in html, (
+        "clearing an empty list asks a pointless question"
+    )
+    # The whole guard, not a fragment: "&& !confirm(" is still a substring of
+    # "&& false && !confirm(", so a gutted check would keep passing.
+    assert (
+        "if (S.shopping && S.shopping.items.length\n      && !confirm(`Replace the current list?"
+    ) in html, "starting a blank list would silently discard one that has items on it"
+    # Emptying a list leaves it usable rather than deleting it outright.
+    assert "S.shopping.items = [];" in html, "clearing does not empty the items"
+    assert "S.shopping.from = null;" in html, "an emptied list still claims its old days"

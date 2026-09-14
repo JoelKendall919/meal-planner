@@ -595,6 +595,87 @@ function testChatterRemoved(){
   S.plan = {};
 }
 
+/* Emptying a list, and starting one with nothing on it. */
+function testShoppingClearAndBlank(){
+  const toastText = () => document.getElementById("toast").textContent;
+  const items = () => (S.shopping ? S.shopping.items.length : -1);
+
+  // A list built from a planned week, so there is something real to clear.
+  S.plan = {}; S.view = "week"; S.cursor = "2026-09-16"; tab = "plan"; render();
+  document.querySelector("[data-fill]").click();
+  S.shopping = null; tab = "shop"; render();
+
+  ok("the empty screen offers both routes",
+    !!document.querySelector("[data-newlist]") && !!document.querySelector("[data-blank]"),
+    "a starting option is missing");
+
+  // Blank from the empty screen.
+  document.querySelector("[data-blank]").click();
+  ok("a blank list is created", items() === 0, items() + " items");
+  ok("a blank list claims no dates", !S.shopping.from && !S.shopping.to,
+    S.shopping.from + " - " + S.shopping.to);
+  ok("the header says whose list it is",
+    document.querySelector(".card .sub").textContent.startsWith("Your own list"),
+    document.querySelector(".card .sub").textContent);
+
+  // Build a real list from the plan.
+  const [a, b] = range();
+  createList(a, b, true);
+  tab = "shop"; render();
+  const built = items();
+  ok("a list from the plan has items", built > 0, built + " items");
+  ok("a list from the plan states its days", !!S.shopping.from,
+    document.querySelector(".card .sub").textContent);
+
+  // Clear, declined.
+  confirms = []; confirmAnswer = false;
+  document.querySelector("[data-clearitems]").click();
+  ok("clearing asks first", confirms.length === 1, confirms.join(" / "));
+  ok("declining keeps every item", items() === built, items() + " of " + built);
+
+  // Clear, accepted.
+  confirmAnswer = true;
+  document.querySelector("[data-clearitems]").click();
+  ok("clearing empties the list", items() === 0, items() + " items");
+  ok("the emptied list stops claiming those days", !S.shopping.from, String(S.shopping.from));
+  ok("the list itself still exists to add to", !!S.shopping, "the list was deleted entirely");
+  ok("clearing is reported", /Removed \d+ items?/.test(toastText()), toastText());
+
+  // Clearing nothing says so rather than asking a pointless question.
+  confirms = [];
+  document.querySelector("[data-clearitems]").click();
+  ok("clearing an empty list asks nothing", confirms.length === 0, confirms.join(" / "));
+  ok("...and says why", toastText() === "The list is already empty", toastText());
+
+  // A blank list must not silently discard a list with things on it.
+  createList(a, b, true); tab = "shop"; render();
+  confirms = []; confirmAnswer = false;
+  document.querySelector("[data-newlist]").click();
+  document.querySelector("[data-blank]").click();
+  ok("replacing a full list asks first", confirms.length === 1, confirms.join(" / "));
+  ok("declining keeps the list", items() > 0, items() + " items");
+  closeSheet();
+
+  // The point of a blank list: you can put things on it.
+  S.shopping = null; tab = "shop"; render();
+  document.querySelector("[data-blank]").click();
+  const add = txt => {
+    document.getElementById("addi").value = txt;
+    document.getElementById("addf").dispatchEvent(
+      new Event("submit", { bubbles: true, cancelable: true }));
+  };
+  add("Washing up liquid");
+  add("Bin bags");
+  ok("items can be added to a blank list", items() === 2, items() + " items");
+  ok("added items keep their names",
+    S.shopping.items.map(i => i.name).join(", ") === "Washing up liquid, Bin bags",
+    S.shopping.items.map(i => i.name).join(", "));
+  ok("they survive a re-render", (render(), document.body.textContent.includes("Bin bags")),
+    "the item vanished from the page");
+
+  S.shopping = null; S.plan = {}; S.view = "day"; tab = "plan"; render();
+}
+
 try { testCatLabels(); } catch (e){ out.push("FAIL  catLabels threw: " + e.message); }
 try { testControls(); } catch (e){ out.push("FAIL  controls threw: " + e.message); }
 try { testPortions(); } catch (e){ out.push("FAIL  portions threw: " + e.message); }
@@ -608,6 +689,7 @@ try { testMultiFilter(); } catch (e){ out.push("FAIL  multiFilter threw: " + e.m
 try { testRecipeMeta(); } catch (e){ out.push("FAIL  recipeMeta threw: " + e.message); }
 try { testFillTopsUpAPlannedDay(); } catch (e){ out.push("FAIL  fillTopUp threw: " + e.message); }
 try { testChatterRemoved(); } catch (e){ out.push("FAIL  chatterRemoved threw: " + e.message); }
+try { testShoppingClearAndBlank(); } catch (e){ out.push("FAIL  shoppingClear threw: " + e.message); }
 
 const pre = document.createElement("pre");
 pre.id = "drv";

@@ -938,27 +938,39 @@ function generateList(from, to, includeStaples){
   return { from, to, created: new Date().toISOString(), items };
 }
 
+/* A list with no days behind it: everything on it was put there by hand. */
+function blankList(){
+  return { from: null, to: null, created: new Date().toISOString(), items: [] };
+}
+
 function viewShop(){
   if (!S.shopping){
     return `<div class="card"><div class="empty-state">
-        No shopping list yet.<br>Create one from the days you want to shop for.
+        No shopping list yet.<br>Build one from the days you want to shop for, or start empty.
       </div>
-      <div class="bar"><button class="pri" data-newlist="1" style="width:100%">Create a shopping list</button></div>
+      <div class="bar">
+        <button class="pri" data-newlist="1" style="flex:1">Create from the plan</button>
+        <button class="sec" data-blank="1" style="flex:1">Blank list</button>
+      </div>
     </div>`;
   }
 
   const sh = S.shopping;
   const left = sh.items.filter(i => !i.ticked).length;
-  const span = sh.from === sh.to ? fmtDate(sh.from) : `${fmtShort(sh.from)} - ${fmtShort(sh.to)}`;
+  // A blank list has no dates to describe, so it says what it is instead.
+  const span = sh.from
+    ? (sh.from === sh.to ? fmtDate(sh.from) : `${fmtShort(sh.from)} - ${fmtShort(sh.to)}`)
+    : null;
 
   let html = `<div class="card"><div class="hd"><div>
       <h2>Shopping list</h2>
-      <div class="sub">For ${esc(span)} &middot; ${sh.items.length} item${
-        sh.items.length === 1 ? "" : "s"}, ${left} left</div>
+      <div class="sub">${span ? `For ${esc(span)}` : "Your own list"} &middot; ${
+        sh.items.length} item${sh.items.length === 1 ? "" : "s"}, ${left} left</div>
     </div></div>
     <div class="bar tight">
       <button class="sec" data-newlist="1">Start over</button>
       <button class="sec" data-untick="1">Clear ticks</button>
+      <button class="sec danger" data-clearitems="1">Clear</button>
       <button class="sec" data-copy="1">Copy</button>
     </div></div>`;
 
@@ -1018,6 +1030,8 @@ function newListSheet(){
           <button class="sec" data-gen="${startOfWeek(today)}|${addDays(startOfWeek(today), 6)}">This week</button>
           <button class="sec" data-gen="${addDays(startOfWeek(today), 7)}|${addDays(startOfWeek(today), 13)}">Next week</button>
         </div>
+        <div class="bar"><button class="sec" data-blank="1" style="width:100%">
+          Blank list &mdash; add everything yourself</button></div>
         ${S.view !== "day" ? `<div class="bar"><button class="sec" data-gen="${a}|${b}">
           Current view (${esc(rangeLabel())})</button></div>` : ""}
       </div>
@@ -1479,6 +1493,7 @@ document.addEventListener("click", e => {
     "[data-fill],[data-clear],[data-clearday],[data-copyprev],[data-fslot]," +
     "[data-newlist],[data-gen]," +
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
+    "[data-blank],[data-clearitems]," +
     "[data-addsnack],[data-portions],[data-scope],[data-ftag]");
   if (!t) return;
   const d = t.dataset;
@@ -1564,6 +1579,28 @@ document.addEventListener("click", e => {
 
   /* shopping */
   if (d.newlist){ newListSheet(); return; }
+  if (d.blank){
+    // Replacing a list that still has things on it is worth a question.
+    if (S.shopping && S.shopping.items.length
+      && !confirm(`Replace the current list? ${S.shopping.items.length} item${
+        S.shopping.items.length === 1 ? "" : "s"} will be lost.`)) return;
+    S.shopping = blankList();
+    save(); closeSheet(); render();
+    toast("Blank list ready");
+    return;
+  }
+  if (d.clearitems){
+    if (!S.shopping || !S.shopping.items.length){ toast("The list is already empty"); return; }
+    const n = S.shopping.items.length;
+    if (!confirm(`Remove all ${n} item${n === 1 ? "" : "s"} from the list?`)) return;
+    // Nothing from the plan survives, so the list stops claiming those days.
+    S.shopping.items = [];
+    S.shopping.from = null;
+    S.shopping.to = null;
+    save(); render();
+    toast(`Removed ${n} item${n === 1 ? "" : "s"}`);
+    return;
+  }
   if (d.gen){ const [from, to] = d.gen.split("|"); createList(from, to, true); return; }
   if (d.tick){
     const item = S.shopping.items.find(i => i.id === d.tick);
@@ -1632,7 +1669,8 @@ document.addEventListener("submit", e => {
     const input = document.getElementById("addi");
     const value = input.value.trim();
     if (!value) return;
-    if (!S.shopping) S.shopping = { from: todayISO(), to: todayISO(), created: new Date().toISOString(), items: [] };
+    // Typing an item with no list yet starts your own, not one claiming today.
+    if (!S.shopping) S.shopping = blankList();
     S.shopping.items.push({
       id: newItemId(), name: value, qty: "", aisle: "other",
       aisleLabel: "Added by you", note: "", ticked: false, manual: true,

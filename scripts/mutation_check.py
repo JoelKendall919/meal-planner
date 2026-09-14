@@ -115,6 +115,36 @@ CASES = [
         "test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist",
     ),
     (
+        "clearing the list no longer asks first",
+        'if (!confirm(`Remove all ${n} item${n === 1 ? "" : "s"} from the list?`)) return;',
+        "",
+        "test_the_shopping_list_can_be_emptied_and_started_blank",
+    ),
+    (
+        "a blank list silently discards one with items on it",
+        "&& !confirm(`Replace the current list?",
+        "&& false && !confirm(`Replace the current list?",
+        "test_the_shopping_list_can_be_emptied_and_started_blank",
+    ),
+    (
+        "a blank list goes back to claiming today",
+        "from: null, to: null",
+        "from: todayISO(), to: todayISO()",
+        "test_the_shopping_list_can_be_emptied_and_started_blank",
+    ),
+    (
+        "an emptied list keeps claiming its old days",
+        "S.shopping.from = null;",
+        "",
+        "test_the_shopping_list_can_be_emptied_and_started_blank",
+    ),
+    (
+        "the blank option is dropped from the empty screen",
+        'data-blank="1" style="flex:1"',
+        'data-xblank="1" style="flex:1"',
+        "test_the_shopping_list_can_be_emptied_and_started_blank",
+    ),
+    (
         "fillPool drops its empty-pool fallback",
         "return scoped.length ? scoped : all;",
         "return scoped;",
