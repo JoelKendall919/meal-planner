@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from fitnessplan import nutrition as n
+from mealplanner import nutrition as n
 
 # Published figures for plan v7. Changing a recipe should force these to be
 # reviewed deliberately rather than drifting unnoticed.

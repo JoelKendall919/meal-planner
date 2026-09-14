@@ -1,0 +1,557 @@
+[
+ {
+  "id": "skyr-blueberry-seed-bowl",
+  "name": "Skyr, Blueberry and Seed Bowl",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "skyr", "grams": 200, "display": "200 g plain skyr"},
+    {"food": "blueberries", "grams": 80, "display": "80 g blueberries"},
+    {"food": "mixed seeds", "grams": 10, "display": "1 tbsp mixed seeds"},
+    {"food": "honey", "grams": 10, "display": "1 tsp honey"}
+  ],
+  "steps": [
+    "Spoon the skyr into a bowl and level the surface.",
+    "Scatter over the blueberries and mixed seeds.",
+    "Trickle the honey across the top and serve immediately."
+  ]
+ },
+ {
+  "id": "cottage-cheese-tomato-toast",
+  "name": "Cottage Cheese and Tomato Toast",
+  "slot": "breakfast",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 3,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "wholemeal bread", "grams": 40, "display": "1 slice wholemeal bread"},
+    {"food": "cottage cheese", "grams": 180, "display": "180 g cottage cheese"},
+    {"food": "cherry tomatoes", "grams": 80, "display": "80 g cherry tomatoes, halved"},
+    {"food": "spices", "grams": 1, "display": "pinch of black pepper and dried oregano"}
+  ],
+  "steps": [
+    "Toast the bread until firm and golden.",
+    "Spread the cottage cheese thickly over the toast.",
+    "Top with the halved tomatoes and season with pepper and oregano."
+  ]
+ },
+ {
+  "id": "quark-apple-walnut-pot",
+  "name": "Quark, Apple and Walnut Pot",
+  "slot": "breakfast",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "quark", "grams": 250, "display": "250 g quark"},
+    {"food": "apple", "grams": 150, "display": "1 apple, diced"},
+    {"food": "walnuts", "grams": 8, "display": "1 tsp chopped walnuts"},
+    {"food": "honey", "grams": 5, "display": "1 tsp honey"},
+    {"food": "spices", "grams": 1, "display": "pinch of ground cinnamon"}
+  ],
+  "steps": [
+    "Stir the cinnamon and honey through the quark.",
+    "Fold in half the diced apple.",
+    "Top with the remaining apple and the chopped walnuts."
+  ]
+ },
+ {
+  "id": "smoked-salmon-cucumber-plate",
+  "name": "Smoked Salmon and Cucumber Plate",
+  "slot": "breakfast",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": ["no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "smoked salmon", "grams": 100, "display": "100 g smoked salmon"},
+    {"food": "cream cheese light", "grams": 40, "display": "2 tbsp light cream cheese"},
+    {"food": "cucumber", "grams": 100, "display": "1/3 cucumber, sliced"},
+    {"food": "wholemeal bread", "grams": 40, "display": "1 slice wholemeal bread"},
+    {"food": "lemon juice", "grams": 5, "display": "squeeze of lemon juice"}
+  ],
+  "steps": [
+    "Spread the cream cheese over the bread and cut it into fingers.",
+    "Arrange the smoked salmon and cucumber slices alongside.",
+    "Finish with lemon juice and a grind of black pepper."
+  ]
+ },
+ {
+  "id": "egg-white-spinach-omelette",
+  "name": "Egg White and Spinach Omelette",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 6,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "egg white", "grams": 200, "display": "200 g liquid egg white"},
+    {"food": "egg", "grams": 60, "display": "1 whole egg"},
+    {"food": "spinach", "grams": 60, "display": "2 large handfuls spinach"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"},
+    {"food": "cherry tomatoes", "grams": 80, "display": "80 g cherry tomatoes, halved"}
+  ],
+  "steps": [
+    "Beat the egg white with the whole egg and season.",
+    "Wilt the spinach in the oiled pan over a medium heat, then pour in the eggs.",
+    "Cook until the base is set, fold in half and slide onto a plate.",
+    "Serve with the halved tomatoes."
+  ]
+ },
+ {
+  "id": "berry-protein-shake",
+  "name": "Berry Protein Shake",
+  "slot": "breakfast",
+  "source": {"name": "Men's Health UK", "url": null},
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "whey", "grams": 30, "display": "1 scoop (30 g) vanilla whey protein"},
+    {"food": "milk skimmed", "grams": 250, "display": "250 ml skimmed milk"},
+    {"food": "berries frozen", "grams": 100, "display": "100 g frozen mixed berries"},
+    {"food": "banana", "grams": 60, "display": "1/2 banana"}
+  ],
+  "steps": [
+    "Put the milk into the blender first, then add the whey, berries and banana.",
+    "Blend for about 30 seconds until smooth.",
+    "Pour into a tall glass and drink straight away."
+  ]
+ },
+ {
+  "id": "overnight-oats-berries",
+  "name": "Berry Overnight Oats",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "make-ahead", "high-protein"],
+  "ingredients": [
+    {"food": "oats", "grams": 50, "display": "50 g porridge oats"},
+    {"food": "skyr", "grams": 150, "display": "150 g plain skyr"},
+    {"food": "milk skimmed", "grams": 100, "display": "100 ml skimmed milk"},
+    {"food": "berries frozen", "grams": 80, "display": "80 g frozen mixed berries"},
+    {"food": "chia seeds", "grams": 8, "display": "1 tsp chia seeds"}
+  ],
+  "steps": [
+    "Mix the oats, skyr, milk and chia seeds in a jar or tub.",
+    "Stir in the frozen berries, cover and refrigerate overnight.",
+    "Stir once more before eating; loosen with extra milk if it is too thick."
+  ]
+ },
+ {
+  "id": "scrambled-eggs-on-toast",
+  "name": "Scrambled Eggs on Toast",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 2,
+  "cook_min": 6,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "egg", "grams": 180, "display": "3 large eggs"},
+    {"food": "wholemeal bread", "grams": 40, "display": "1 slice wholemeal bread"},
+    {"food": "butter", "grams": 5, "display": "1 tsp butter"},
+    {"food": "milk semi", "grams": 15, "display": "1 tbsp semi-skimmed milk"}
+  ],
+  "steps": [
+    "Beat the eggs with the milk and a little salt and pepper.",
+    "Melt the butter in a non-stick pan over a low heat and add the eggs.",
+    "Stir slowly until the curds are soft and barely set.",
+    "Spoon onto the toasted bread and serve."
+  ]
+ },
+ {
+  "id": "greek-yoghurt-mango-almond-bowl",
+  "name": "Greek Yoghurt with Mango and Almonds",
+  "slot": "breakfast",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "greek yoghurt 0%", "grams": 250, "display": "250 g 0% Greek yoghurt"},
+    {"food": "mango", "grams": 120, "display": "120 g mango, diced"},
+    {"food": "flaked almonds", "grams": 15, "display": "1 tbsp flaked almonds"},
+    {"food": "honey", "grams": 10, "display": "1 tsp honey"}
+  ],
+  "steps": [
+    "Spoon the yoghurt into a wide bowl.",
+    "Pile the diced mango on one side and scatter over the flaked almonds.",
+    "Drizzle with honey and serve."
+  ]
+ },
+ {
+  "id": "mushroom-spinach-omelette",
+  "name": "Mushroom and Spinach Omelette",
+  "slot": "breakfast",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 6,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "egg", "grams": 180, "display": "3 large eggs"},
+    {"food": "mushrooms", "grams": 80, "display": "80 g mushrooms, sliced"},
+    {"food": "spinach", "grams": 50, "display": "1 large handful spinach"},
+    {"food": "olive oil", "grams": 7, "display": "1/2 tbsp olive oil"},
+    {"food": "parmesan", "grams": 10, "display": "10 g grated parmesan"}
+  ],
+  "steps": [
+    "Fry the mushrooms in the oil over a high heat until browned, then add the spinach to wilt.",
+    "Pour in the beaten, seasoned eggs and reduce the heat.",
+    "Cook until almost set, scatter over the parmesan, then fold and serve."
+  ]
+ },
+ {
+  "id": "bacon-medallion-sandwich",
+  "name": "Bacon Medallion Sandwich",
+  "slot": "breakfast",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 2,
+  "cook_min": 8,
+  "tags": ["quick", "high-protein"],
+  "ingredients": [
+    {"food": "bacon medallions raw", "grams": 110, "display": "4 bacon medallions"},
+    {"food": "wholemeal bread", "grams": 80, "display": "2 slices wholemeal bread"},
+    {"food": "light mayo", "grams": 10, "display": "2 tsp light mayonnaise"},
+    {"food": "tomato", "grams": 50, "display": "1/2 tomato, sliced"}
+  ],
+  "steps": [
+    "Grill the bacon medallions for 3-4 minutes each side until crisp at the edges.",
+    "Spread the mayonnaise over one slice of bread.",
+    "Layer on the bacon and tomato, close the sandwich and cut in half."
+  ]
+ },
+ {
+  "id": "banana-peanut-protein-smoothie",
+  "name": "Banana and Peanut Butter Protein Smoothie",
+  "slot": "breakfast",
+  "source": {"name": "Men's Health UK", "url": null},
+  "servings": 1,
+  "prep_min": 3,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "whey", "grams": 30, "display": "1 scoop (30 g) whey protein"},
+    {"food": "banana", "grams": 120, "display": "1 banana"},
+    {"food": "peanut butter", "grams": 15, "display": "1 tbsp peanut butter"},
+    {"food": "milk skimmed", "grams": 200, "display": "200 ml skimmed milk"}
+  ],
+  "steps": [
+    "Add the milk, banana, peanut butter and whey to a blender.",
+    "Blend until completely smooth, about 30 seconds.",
+    "Pour into a glass and serve cold."
+  ]
+ },
+ {
+  "id": "cottage-cheese-oat-pancakes",
+  "name": "Cottage Cheese and Oat Pancakes",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 8,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "oats", "grams": 40, "display": "40 g porridge oats"},
+    {"food": "cottage cheese", "grams": 100, "display": "100 g cottage cheese"},
+    {"food": "egg", "grams": 60, "display": "1 egg"},
+    {"food": "egg white", "grams": 33, "display": "1 egg white"},
+    {"food": "raspberries", "grams": 60, "display": "60 g raspberries"},
+    {"food": "sunflower oil", "grams": 2, "display": "a little sunflower oil for the pan"}
+  ],
+  "steps": [
+    "Blend the oats, cottage cheese, egg and egg white to a smooth batter.",
+    "Heat a lightly oiled non-stick pan and drop in small rounds of batter.",
+    "Cook for about 2 minutes each side until set and golden.",
+    "Stack the pancakes and top with the raspberries."
+  ]
+ },
+ {
+  "id": "smoked-salmon-cream-cheese-bagel",
+  "name": "Smoked Salmon and Cream Cheese Bagel",
+  "slot": "breakfast",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 3,
+  "tags": ["quick", "high-protein"],
+  "ingredients": [
+    {"food": "bagel", "grams": 85, "display": "1 bagel, halved"},
+    {"food": "cream cheese light", "grams": 40, "display": "2 tbsp light cream cheese"},
+    {"food": "smoked salmon", "grams": 100, "display": "100 g smoked salmon"},
+    {"food": "rocket", "grams": 10, "display": "small handful rocket"},
+    {"food": "lemon juice", "grams": 5, "display": "squeeze of lemon juice"}
+  ],
+  "steps": [
+    "Toast the bagel halves until lightly coloured.",
+    "Spread both cut sides with the cream cheese.",
+    "Layer on the smoked salmon and rocket, add lemon juice and black pepper, then close."
+  ]
+ },
+ {
+  "id": "breakfast-burrito-wrap",
+  "name": "Egg and Black Bean Breakfast Burrito",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 7,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "tortilla wrap", "grams": 62, "display": "1 large tortilla wrap"},
+    {"food": "egg", "grams": 120, "display": "2 eggs"},
+    {"food": "black beans drained", "grams": 50, "display": "50 g black beans, drained"},
+    {"food": "salsa", "grams": 40, "display": "2 tbsp tomato salsa"},
+    {"food": "cheddar grated", "grams": 10, "display": "10 g grated cheddar"},
+    {"food": "spices", "grams": 1, "display": "pinch of smoked paprika"}
+  ],
+  "steps": [
+    "Warm the beans with the paprika in a small pan.",
+    "Scramble the seasoned eggs softly in a non-stick pan.",
+    "Warm the wrap briefly, then fill with the eggs, beans, salsa and cheese.",
+    "Fold in the sides, roll up tightly and cut in half."
+  ]
+ },
+ {
+  "id": "single-pan-shakshuka",
+  "name": "One-Pan Shakshuka",
+  "slot": "breakfast",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 15,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "egg", "grams": 120, "display": "2 eggs"},
+    {"food": "chopped tomatoes", "grams": 200, "display": "1/2 tin chopped tomatoes"},
+    {"food": "red pepper", "grams": 80, "display": "1/2 red pepper, sliced"},
+    {"food": "onion", "grams": 50, "display": "1/3 onion, sliced"},
+    {"food": "olive oil", "grams": 7, "display": "1/2 tbsp olive oil"},
+    {"food": "feta", "grams": 30, "display": "30 g feta, crumbled"},
+    {"food": "spices", "grams": 2, "display": "1 tsp cumin and smoked paprika"}
+  ],
+  "steps": [
+    "Soften the onion and pepper in the oil for 5 minutes, then stir in the spices.",
+    "Add the tomatoes and simmer for 6-8 minutes until thickened.",
+    "Make two hollows, crack in the eggs, cover and cook until the whites are firm.",
+    "Crumble over the feta and serve from the pan."
+  ]
+ },
+ {
+  "id": "protein-porridge-banana",
+  "name": "Protein Porridge with Banana",
+  "slot": "breakfast",
+  "source": {"name": "Men's Health UK", "url": null},
+  "servings": 1,
+  "prep_min": 2,
+  "cook_min": 6,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "oats", "grams": 50, "display": "50 g porridge oats"},
+    {"food": "milk skimmed", "grams": 200, "display": "200 ml skimmed milk"},
+    {"food": "whey", "grams": 25, "display": "3/4 scoop (25 g) vanilla whey protein"},
+    {"food": "banana", "grams": 100, "display": "1 small banana, sliced"}
+  ],
+  "steps": [
+    "Simmer the oats with the milk, stirring, for about 5 minutes until creamy.",
+    "Take the pan off the heat and let it cool for a minute, then beat in the whey.",
+    "Top with the sliced banana and serve."
+  ]
+ },
+ {
+  "id": "beans-on-toast-with-egg",
+  "name": "Baked Beans on Toast with a Poached Egg",
+  "slot": "breakfast",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 2,
+  "cook_min": 8,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "baked beans", "grams": 200, "display": "1/2 tin baked beans"},
+    {"food": "wholemeal bread", "grams": 80, "display": "2 slices wholemeal bread"},
+    {"food": "egg", "grams": 60, "display": "1 egg"}
+  ],
+  "steps": [
+    "Heat the beans gently in a small pan and toast the bread.",
+    "Poach the egg in barely simmering water for about 3 minutes.",
+    "Spoon the beans over the toast, top with the egg and season with black pepper."
+  ]
+ },
+ {
+  "id": "halloumi-egg-pitta",
+  "name": "Halloumi and Egg Pitta",
+  "slot": "breakfast",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 8,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "pitta wholemeal", "grams": 65, "display": "1 wholemeal pitta"},
+    {"food": "halloumi", "grams": 60, "display": "60 g halloumi, sliced"},
+    {"food": "egg", "grams": 60, "display": "1 egg"},
+    {"food": "tomato", "grams": 50, "display": "1/2 tomato, sliced"},
+    {"food": "rocket", "grams": 10, "display": "small handful rocket"}
+  ],
+  "steps": [
+    "Dry-fry the halloumi slices for 2 minutes each side until golden.",
+    "Fry the egg in the same pan until the white is set.",
+    "Warm the pitta, split it open and fill with the halloumi, egg, tomato and rocket."
+  ]
+ },
+ {
+  "id": "tofu-scramble-sourdough",
+  "name": "Turmeric Tofu Scramble on Sourdough",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 8,
+  "tags": ["vegetarian", "vegan", "high-protein"],
+  "ingredients": [
+    {"food": "tofu firm", "grams": 180, "display": "180 g firm tofu, drained"},
+    {"food": "sourdough", "grams": 50, "display": "1 slice sourdough"},
+    {"food": "spinach", "grams": 60, "display": "2 handfuls spinach"},
+    {"food": "spring onion", "grams": 20, "display": "1 spring onion, sliced"},
+    {"food": "rapeseed oil", "grams": 5, "display": "1 tsp rapeseed oil"},
+    {"food": "spices", "grams": 2, "display": "1/2 tsp turmeric and a pinch of cumin"}
+  ],
+  "steps": [
+    "Crumble the tofu into a bowl and toss with the spices and a little salt.",
+    "Fry the spring onion in the oil for 1 minute, add the tofu and cook for 4-5 minutes.",
+    "Stir through the spinach until wilted.",
+    "Pile onto the toasted sourdough and serve."
+  ]
+ },
+ {
+  "id": "lighter-full-english",
+  "name": "Lighter Full English",
+  "slot": "breakfast",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 12,
+  "tags": ["high-protein"],
+  "ingredients": [
+    {"food": "bacon medallions raw", "grams": 90, "display": "3 bacon medallions"},
+    {"food": "egg", "grams": 120, "display": "2 eggs"},
+    {"food": "baked beans", "grams": 150, "display": "150 g baked beans"},
+    {"food": "mushrooms", "grams": 80, "display": "80 g mushrooms, halved"},
+    {"food": "tomato", "grams": 80, "display": "1 tomato, halved"},
+    {"food": "wholemeal bread", "grams": 40, "display": "1 slice wholemeal bread"}
+  ],
+  "steps": [
+    "Grill the bacon, mushrooms and tomato halves for 8-10 minutes, turning once.",
+    "Warm the beans in a small pan and toast the bread.",
+    "Fry or poach the eggs to your liking.",
+    "Plate everything together and season with black pepper."
+  ]
+ },
+ {
+  "id": "avocado-egg-sourdough",
+  "name": "Smashed Avocado and Egg on Sourdough",
+  "slot": "breakfast",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 5,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "sourdough", "grams": 80, "display": "2 slices sourdough"},
+    {"food": "avocado", "grams": 80, "display": "1/2 avocado"},
+    {"food": "egg", "grams": 120, "display": "2 eggs"},
+    {"food": "lemon juice", "grams": 5, "display": "squeeze of lemon juice"},
+    {"food": "chilli", "grams": 5, "display": "1/2 red chilli, finely sliced"}
+  ],
+  "steps": [
+    "Toast the sourdough and poach the eggs for about 3 minutes.",
+    "Mash the avocado with the lemon juice, salt and pepper.",
+    "Spread the avocado over the toast, set an egg on each slice and scatter with chilli."
+  ]
+ },
+ {
+  "id": "peanut-banana-bagel-skyr",
+  "name": "Peanut Butter and Banana Bagel with Skyr",
+  "slot": "breakfast",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 4,
+  "cook_min": 3,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "bagel", "grams": 85, "display": "1 bagel, halved"},
+    {"food": "peanut butter", "grams": 20, "display": "1 heaped tbsp peanut butter"},
+    {"food": "banana", "grams": 100, "display": "1 small banana, sliced"},
+    {"food": "skyr", "grams": 100, "display": "100 g plain skyr"}
+  ],
+  "steps": [
+    "Toast the bagel halves.",
+    "Spread with the peanut butter while still warm and lay the banana slices on top.",
+    "Serve with the skyr in a small pot alongside."
+  ]
+ },
+ {
+  "id": "chorizo-egg-potato-hash",
+  "name": "Chorizo, Pepper and Egg Hash",
+  "slot": "breakfast",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 6,
+  "cook_min": 15,
+  "tags": ["high-protein", "weekend"],
+  "ingredients": [
+    {"food": "new potatoes", "grams": 180, "display": "180 g cooked new potatoes, halved"},
+    {"food": "chorizo", "grams": 30, "display": "30 g chorizo, diced"},
+    {"food": "egg", "grams": 120, "display": "2 eggs"},
+    {"food": "red pepper", "grams": 80, "display": "1/2 red pepper, diced"},
+    {"food": "onion", "grams": 40, "display": "1/4 onion, diced"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"}
+  ],
+  "steps": [
+    "Fry the chorizo in the oil until its fat runs, then add the onion and pepper.",
+    "Add the potatoes and cook for 8-10 minutes until crisp and browned.",
+    "Make two gaps, crack in the eggs, cover and cook until the whites set.",
+    "Season and serve directly from the pan."
+  ]
+ },
+ {
+  "id": "peanut-chocolate-overnight-oats",
+  "name": "Peanut and Dark Chocolate Overnight Oats",
+  "slot": "breakfast",
+  "source": {"name": "Men's Health UK", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": ["vegetarian", "no-cook", "quick", "make-ahead", "high-protein"],
+  "ingredients": [
+    {"food": "oats", "grams": 50, "display": "50 g porridge oats"},
+    {"food": "skyr", "grams": 150, "display": "150 g plain skyr"},
+    {"food": "milk skimmed", "grams": 120, "display": "120 ml skimmed milk"},
+    {"food": "peanut butter", "grams": 15, "display": "1 tbsp peanut butter"},
+    {"food": "dark choc 70", "grams": 10, "display": "10 g dark chocolate, chopped"},
+    {"food": "chia seeds", "grams": 8, "display": "1 tsp chia seeds"}
+  ],
+  "steps": [
+    "Combine the oats, skyr, milk and chia seeds in a jar.",
+    "Ripple the peanut butter through the mixture, cover and chill overnight.",
+    "Scatter the chopped chocolate over just before eating."
+  ]
+ }
+]

@@ -39,7 +39,7 @@ jobs:
         run: pytest
 
       - name: Build site
-        run: python -m fitnessplan.build
+        run: python -m mealplanner.build
 
       - uses: actions/configure-pages@v5
 

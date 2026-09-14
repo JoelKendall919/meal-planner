@@ -1,37 +1,47 @@
-# Fitness Plan
+# Meal Planner
 
-A weekly meal and training plan, built as a static offline-capable web app.
-
-The plan is built around roughly 1750 kcal a day with a high protein target, and
-five training sessions a week (running, cycling, and dumbbell-only weights). It is
-deliberately cardio-led, with one dedicated lifting day.
+A catalogue of 75 recipes with a weekly planner and automatic shopping lists,
+built as a single offline-capable web page.
 
 **Live site:** https://joelkendall919.github.io/fitness-plan/
 
+Pick meals for any day of the week and the shopping list builds itself, merging
+ingredients you would buy as one product — red and yellow peppers become one
+entry, and chicken thigh spread across three meals becomes "3 thighs".
+
 ## Why this is a repository and not a document
 
-Every calorie and protein figure in the plan is **computed from raw ingredient
-weights**, never estimated. An early draft overstated protein by about 46 g per day
-because recipes were eyeballed. The nutrition model is now the single source of
-truth, and the test suite fails if the published documents drift away from it.
+Every calorie and protein figure is **computed from raw ingredient weights**,
+never estimated. An early draft overstated protein by about 46 g a day because
+recipes were eyeballed. Later, a batch of recipes arrived with 14 of 25 labelled
+"high-protein" that were nowhere near the threshold.
 
-The tests also gate deployment, so figures that disagree with the model cannot
-reach the live site.
+So nothing descriptive is trusted if it can be derived instead. Macros are
+computed from `data/foods.json`, and the `high-protein` and `quick` tags are
+recalculated at load time rather than read from the recipe files. The test suite
+fails if a tag, a macro figure, or an ingredient key disagrees with the data, and
+the tests gate deployment.
 
 ## Layout
 
 | Path | Purpose |
 | --- | --- |
-| `content/meal-plan.md` | The meal plan: targets, week table, recipes, shopping lists |
-| `content/training-plan.md` | The training plan |
-| `src/fitnessplan/nutrition.py` | Nutrition model — foods, recipes, days. Source of truth for all figures |
-| `src/fitnessplan/prices.py` | Estimated UK grocery prices and shelf lives |
-| `src/fitnessplan/parse.py` | Parses the meal plan markdown into structured data |
-| `src/fitnessplan/build.py` | Builds the static site into `dist/` |
-| `src/fitnessplan/templates/app.html` | The web app shell; plan data is inlined at build time |
-| `scripts/mkpdf.py` | Renders the documents to PDF via headless Chrome |
-| `scripts/build_log.py` | Generates the weight and training log spreadsheet |
-| `tests/` | Nutrition invariants and document-drift guards |
+| `data/foods.json` | 143 foods: nutrition per 100 g, shopping group, pack size, aisle |
+| `data/recipes-*.json` | The recipe catalogue, 25 per meal slot |
+| `scripts/build_foods.py` | Generates `foods.json` — **edit this, not the JSON** |
+| `scripts/validate_recipes.py` | Checks a recipe file before it is committed |
+| `src/mealplanner/catalogue.py` | Loads foods and recipes, computes macros and derived tags |
+| `src/mealplanner/shopping.py` | Turns selected recipes into a merged shopping list |
+| `src/mealplanner/templates/shopping.js` | The same logic in JS, for the live app |
+| `src/mealplanner/build.py` | Inlines the catalogue into a single-file site in `dist/` |
+| `tests/` | Catalogue invariants, build guards, and JS/Python parity |
+
+### Legacy
+
+`content/legacy-meal-plan.md`, `src/mealplanner/nutrition.py`, `parse.py` and
+`prices.py` are the original fixed seven-day plan with costings. The catalogue
+replaced it, but it is kept so its figures stay verifiable —
+`tests/test_legacy_plan.py` still checks it against the model.
 
 ## Getting started
 
@@ -48,38 +58,39 @@ Run `make help` to list every target.
 
 Open the folder and accept the recommended extensions. The Python interpreter,
 pytest integration, and Ruff formatting are preconfigured in `.vscode/`.
-Build and test tasks are on <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> and the
-Test Explorer respectively.
 
-## Changing the plan
+## Adding a recipe
 
-Recipes live in `src/fitnessplan/nutrition.py`. **Do not hand-edit the figures in
-the markdown.** After changing a recipe:
+Add an entry to the relevant `data/recipes-*.json`, then:
 
 ```sh
-make nutrition   # review the recalculated figures
-make test        # confirm the documents still agree with the model
+.venv/bin/python scripts/validate_recipes.py data/recipes-dinner.json
+make test
 ```
 
-If the tests report drift, update the figures in `content/meal-plan.md` to match
-the model output, then rebuild.
+Rules the tests enforce:
 
-### Known tolerance
-
-The model rounds each meal before summing, while the documents were generated
-from an unrounded sum. That produces a consistent difference of at most 1 kcal or
-1 g of protein per day. Tests allow ±2; anything larger is a real error.
+- Every `food` key must exist in `data/foods.json`. Add new foods to
+  `scripts/build_foods.py` and regenerate.
+- **Never write `kcal`, `protein` or `macros` into a recipe file.** They are derived.
+- Do not set `high-protein` or `quick` tags by hand; they are recalculated.
+- Credit a source by name. Leave `url` as `null` rather than guessing one, and
+  write the method steps yourself — published recipe prose is copyrighted.
 
 ## The web app
 
 `dist/index.html` is a single self-contained file with no external requests, so it
-works fully offline. It has four tabs — Today, Week, Shopping, and My list — and
-stores the working shopping list in `localStorage`. It degrades gracefully if
-storage is unavailable, which happens when a downloaded file is opened from some
-Android file managers.
+works fully offline and can be copied straight to a phone. Three tabs — Plan,
+Recipes and Shopping — with the week and the ticked shopping list stored in
+`localStorage`. It degrades gracefully if storage is blocked, which happens when a
+downloaded file is opened from some Android file managers.
+
+The shopping logic exists twice, in Python and JavaScript, because the app has to
+recalculate as you tap. `tests/test_shopping_parity.py` runs both over randomised
+selections and the whole catalogue, so the two cannot drift apart.
 
 ## Privacy
 
 This repository is public so that GitHub Pages can serve it on a free plan.
 Personal measurements are deliberately excluded: `private/` and any `.xlsx` files
-are ignored by Git. Keep logged weights out of `content/`.
+are ignored by Git.

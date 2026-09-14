@@ -1,4 +1,7 @@
-"""Tests that the published documents and the built site agree with the model.
+"""Tests that the archived fixed-week plan still agrees with the model.
+
+The catalogue app superseded this document; it is kept so the original figures
+stay verifiable. ``test_app.py`` covers the current planner.
 
 The plan's documents state calorie and protein figures explicitly. These tests
 exist because those figures were once hand-written and drifted badly from the
@@ -7,17 +10,15 @@ underlying recipes. Every published number must trace back to ``nutrition.py``.
 
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 import pytest
 
-from fitnessplan import nutrition as n
-from fitnessplan.build import build
-from fitnessplan.parse import ParseError, parse
+from mealplanner import nutrition as n
+from mealplanner.parse import ParseError, parse
 
 ROOT = Path(__file__).resolve().parents[1]
-MEAL_PLAN = ROOT / "content" / "meal-plan.md"
+MEAL_PLAN = ROOT / "content" / "legacy-meal-plan.md"
 
 # The model rounds each meal before summing; the documents were generated from an
 # unrounded sum. That accounts for a consistent +/-1. Anything larger is a real bug.
@@ -37,7 +38,6 @@ def by_code() -> dict[str, tuple[float, float, float]]:
 
 def test_documents_exist():
     assert MEAL_PLAN.exists()
-    assert (ROOT / "content" / "training-plan.md").exists()
 
 
 def test_meal_plan_structure_intact(plan):
@@ -142,20 +142,3 @@ def test_long_life_items_are_not_on_weekly_lists(plan):
         if "weeks" in i
     ]
     assert not offenders, f"long-life items on a weekly list: {offenders}"
-
-
-# --- build -------------------------------------------------------------------
-
-
-def test_build_produces_a_self_contained_site(tmp_path):
-    out = build(MEAL_PLAN, tmp_path)
-    html = (out / "index.html").read_text(encoding="utf-8")
-
-    assert "__DATA__" not in html, "template placeholder was not substituted"
-    assert '"days"' in html, "plan data was not inlined"
-    assert "<script" in html and "src=" not in html.split("<script")[1][:200], (
-        "the app must stay offline-capable with no external script sources"
-    )
-
-    data = json.loads((out / "plan.json").read_text(encoding="utf-8"))
-    assert len(data["days"]) == 7

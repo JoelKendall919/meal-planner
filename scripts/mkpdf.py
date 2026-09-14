@@ -37,6 +37,8 @@ def find_chrome() -> str:
         "Could not find Google Chrome or Chromium, which is required to render PDFs.\n"
         "Install Chrome, or set one of: " + ", ".join(CHROME_CANDIDATES)
     )
+
+
 CSS = """
 @page { size: A4; margin: 16mm 14mm 14mm 14mm; }
 * { box-sizing: border-box; }

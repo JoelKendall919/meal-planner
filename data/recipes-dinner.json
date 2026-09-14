@@ -1,0 +1,696 @@
+[
+ {
+  "id": "cod-cherry-tomato-traybake",
+  "name": "Baked Cod with Cherry Tomatoes and New Potatoes",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["high-protein", "traybake"],
+  "ingredients": [
+    {"food": "cod raw", "grams": 220, "display": "1 large cod fillet (about 220 g)"},
+    {"food": "new potatoes", "grams": 200, "display": "200 g new potatoes, halved"},
+    {"food": "cherry tomatoes", "grams": 120, "display": "120 g cherry tomatoes"},
+    {"food": "olive oil", "grams": 10, "display": "2 tsp olive oil"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, sliced"},
+    {"food": "lemon juice", "grams": 10, "display": "juice of half a lemon"},
+    {"food": "spices", "grams": 2, "display": "pinch of dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan. Toss the halved potatoes with half the oil and roast for 20 minutes.",
+    "Add the tomatoes and garlic to the tray and shake to coat in the pan juices.",
+    "Sit the cod on top, brush with the remaining oil and season with the oregano and pepper.",
+    "Return to the oven for 10 to 12 minutes, until the fish flakes cleanly.",
+    "Squeeze over the lemon juice and serve straight from the tray."
+  ]
+ },
+ {
+  "id": "prawn-tenderstem-noodle-stir-fry",
+  "name": "Prawn and Tenderstem Noodle Stir-Fry",
+  "slot": "dinner",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 10,
+  "tags": ["quick", "high-protein", "stir-fry"],
+  "ingredients": [
+    {"food": "prawns cooked", "grams": 180, "display": "180 g cooked king prawns"},
+    {"food": "noodles wholewheat dry", "grams": 50, "display": "50 g wholewheat noodles"},
+    {"food": "tenderstem", "grams": 100, "display": "100 g tenderstem broccoli"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, sliced"},
+    {"food": "spring onion", "grams": 20, "display": "1 spring onion, sliced"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "root ginger", "grams": 8, "display": "small piece of ginger, grated"},
+    {"food": "sesame oil", "grams": 5, "display": "1 tsp sesame oil"},
+    {"food": "soy sauce", "grams": 15, "display": "1 tbsp soy sauce"}
+  ],
+  "steps": [
+    "Boil the noodles until just tender, then drain and rinse under cold water.",
+    "Heat the sesame oil in a wok over a high heat and fry the tenderstem and pepper for 3 minutes.",
+    "Add the garlic and ginger and stir for 30 seconds until fragrant.",
+    "Tip in the prawns, noodles and soy sauce and toss for 2 minutes to heat through.",
+    "Scatter over the spring onion and serve."
+  ]
+ },
+ {
+  "id": "chicken-greek-style-salad",
+  "name": "Griddled Chicken Greek-Style Salad",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 12,
+  "tags": ["quick", "high-protein", "salad"],
+  "ingredients": [
+    {"food": "chicken breast raw", "grams": 200, "display": "1 large chicken breast (about 200 g)"},
+    {"food": "feta", "grams": 40, "display": "40 g feta, crumbled"},
+    {"food": "salad leaves", "grams": 60, "display": "60 g salad leaves"},
+    {"food": "cucumber", "grams": 100, "display": "a third of a cucumber, chopped"},
+    {"food": "cherry tomatoes", "grams": 120, "display": "120 g cherry tomatoes, halved"},
+    {"food": "red onion", "grams": 30, "display": "a quarter of a red onion, finely sliced"},
+    {"food": "olive oil", "grams": 10, "display": "2 tsp olive oil"},
+    {"food": "lemon juice", "grams": 10, "display": "juice of half a lemon"},
+    {"food": "spices", "grams": 2, "display": "pinch of dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Flatten the chicken breast slightly, rub with half the oil and season with the oregano and pepper.",
+    "Griddle over a medium-high heat for 5 to 6 minutes a side, until cooked through, then rest for 3 minutes.",
+    "Combine the leaves, cucumber, tomatoes and onion in a bowl.",
+    "Whisk the remaining oil with the lemon juice and toss through the salad.",
+    "Slice the chicken, lay it over the salad and finish with the crumbled feta."
+  ]
+ },
+ {
+  "id": "quorn-bolognese-wholewheat-pasta",
+  "name": "Quorn Bolognese with Wholewheat Pasta",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": ["vegetarian", "batch", "high-protein", "pasta"],
+  "ingredients": [
+    {"food": "quorn mince", "grams": 150, "display": "150 g Quorn mince"},
+    {"food": "wholewheat pasta dry", "grams": 45, "display": "45 g wholewheat spaghetti"},
+    {"food": "passata", "grams": 150, "display": "150 g passata"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, finely chopped"},
+    {"food": "carrot", "grams": 60, "display": "1 small carrot, finely diced"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "olive oil", "grams": 4, "display": "1 tsp olive oil"},
+    {"food": "parmesan", "grams": 10, "display": "10 g parmesan, grated"},
+    {"food": "spices", "grams": 2, "display": "pinch of dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Soften the onion and carrot in the oil over a medium heat for 8 minutes.",
+    "Stir in the garlic and Quorn mince and fry for 3 minutes.",
+    "Pour in the passata with a splash of water, season, and simmer for 15 minutes.",
+    "Cook the pasta until al dente and drain, saving a little cooking water.",
+    "Toss the pasta through the sauce, loosening with the reserved water, and top with parmesan.",
+    "Double the sauce quantities if you want a portion for tomorrow's lunch."
+  ]
+ },
+ {
+  "id": "haddock-leek-chowder",
+  "name": "Haddock, Leek and Sweetcorn Chowder",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": ["high-protein", "soup"],
+  "ingredients": [
+    {"food": "haddock raw", "grams": 200, "display": "1 haddock fillet (about 200 g), cubed"},
+    {"food": "new potatoes", "grams": 150, "display": "150 g new potatoes, diced"},
+    {"food": "leek", "grams": 80, "display": "1 small leek, sliced"},
+    {"food": "milk semi", "grams": 150, "display": "150 ml semi-skimmed milk"},
+    {"food": "sweetcorn", "grams": 60, "display": "60 g tinned sweetcorn, drained"},
+    {"food": "butter", "grams": 5, "display": "1 tsp butter"},
+    {"food": "stock cube", "grams": 4, "display": "half a fish or vegetable stock cube"},
+    {"food": "spices", "grams": 1, "display": "pinch of black pepper"}
+  ],
+  "steps": [
+    "Melt the butter in a saucepan and sweat the leek for 5 minutes without colouring.",
+    "Add the potatoes, stock cube and 200 ml water, then simmer for 12 minutes until tender.",
+    "Pour in the milk and bring to a gentle simmer.",
+    "Add the haddock and sweetcorn and poach for 5 minutes, until the fish is opaque.",
+    "Season with pepper and serve in a deep bowl."
+  ]
+ },
+ {
+  "id": "tofu-spinach-curry",
+  "name": "Tofu and Spinach Curry",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 20,
+  "tags": ["vegetarian", "high-protein", "curry"],
+  "ingredients": [
+    {"food": "tofu firm", "grams": 175, "display": "175 g firm tofu, cubed"},
+    {"food": "spinach", "grams": 100, "display": "100 g spinach"},
+    {"food": "curry paste", "grams": 25, "display": "1 tbsp curry paste"},
+    {"food": "chopped tomatoes", "grams": 150, "display": "half a tin of chopped tomatoes"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, sliced"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "rapeseed oil", "grams": 5, "display": "1 tsp rapeseed oil"},
+    {"food": "greek yoghurt 0%", "grams": 60, "display": "60 g fat-free Greek yoghurt"}
+  ],
+  "steps": [
+    "Press the tofu between kitchen paper, then fry the cubes in the oil until golden on all sides. Set aside.",
+    "Soften the onion in the same pan for 5 minutes, then add the garlic and curry paste and fry for 1 minute.",
+    "Pour in the chopped tomatoes with a splash of water and simmer for 8 minutes.",
+    "Return the tofu to the pan and wilt in the spinach.",
+    "Take off the heat, stir through the yoghurt and serve."
+  ]
+ },
+ {
+  "id": "turkey-chilli-rice",
+  "name": "Turkey Chilli with Rice",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["batch", "high-protein", "chilli"],
+  "ingredients": [
+    {"food": "turkey mince 5% raw", "grams": 140, "display": "140 g 5% turkey mince"},
+    {"food": "kidney beans drained", "grams": 100, "display": "100 g kidney beans, drained"},
+    {"food": "chopped tomatoes", "grams": 200, "display": "half a tin of chopped tomatoes"},
+    {"food": "basmati rice dry", "grams": 30, "display": "30 g basmati rice"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, diced"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "rapeseed oil", "grams": 4, "display": "1 tsp rapeseed oil"},
+    {"food": "spices", "grams": 3, "display": "1 tsp chilli powder, cumin and smoked paprika"}
+  ],
+  "steps": [
+    "Fry the onion and pepper in the oil for 6 minutes until softened.",
+    "Add the mince and brown it over a high heat, breaking up any lumps.",
+    "Stir in the garlic and spices, then add the tomatoes and beans.",
+    "Simmer for 20 minutes, adding water if the pan looks dry.",
+    "Cook the rice, drain and serve with the chilli spooned over.",
+    "Make a triple batch of the chilli and refrigerate portions for lunches."
+  ]
+ },
+ {
+  "id": "tempeh-satay-noodles",
+  "name": "Tempeh Satay Noodles",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 15,
+  "tags": ["vegetarian", "high-protein", "stir-fry"],
+  "ingredients": [
+    {"food": "tempeh", "grams": 140, "display": "140 g tempeh, sliced"},
+    {"food": "noodles wholewheat dry", "grams": 45, "display": "45 g wholewheat noodles"},
+    {"food": "peanut butter", "grams": 15, "display": "1 tbsp peanut butter"},
+    {"food": "broccoli", "grams": 100, "display": "100 g broccoli florets"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, sliced"},
+    {"food": "soy sauce", "grams": 15, "display": "1 tbsp soy sauce"},
+    {"food": "lime juice", "grams": 10, "display": "juice of half a lime"},
+    {"food": "sesame oil", "grams": 5, "display": "1 tsp sesame oil"},
+    {"food": "spring onion", "grams": 20, "display": "1 spring onion, sliced"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"}
+  ],
+  "steps": [
+    "Cook the noodles, then drain and set aside.",
+    "Fry the tempeh in the sesame oil over a medium-high heat until browned on both sides.",
+    "Add the broccoli, pepper and garlic and stir-fry for 4 minutes.",
+    "Whisk the peanut butter with the soy sauce, lime juice and 3 tbsp hot water to make a loose sauce.",
+    "Toss the noodles and sauce through the pan, then finish with the spring onion."
+  ]
+ },
+ {
+  "id": "black-bean-shakshuka",
+  "name": "Black Bean Shakshuka",
+  "slot": "dinner",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 20,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "egg", "grams": 180, "display": "3 eggs"},
+    {"food": "black beans drained", "grams": 120, "display": "120 g black beans, drained"},
+    {"food": "chopped tomatoes", "grams": 200, "display": "half a tin of chopped tomatoes"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, diced"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "olive oil", "grams": 7, "display": "1 tsp olive oil"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, sliced"},
+    {"food": "spices", "grams": 3, "display": "1 tsp smoked paprika and ground cumin"}
+  ],
+  "steps": [
+    "Fry the onion and pepper in the oil for 6 minutes in a small frying pan.",
+    "Stir in the garlic and spices and cook for 1 minute.",
+    "Add the tomatoes and beans and simmer for 6 minutes until thickened.",
+    "Make three wells in the sauce and crack in the eggs.",
+    "Cover and cook gently for 5 to 6 minutes, until the whites are set and the yolks still soft."
+  ]
+ },
+ {
+  "id": "salmon-teriyaki-rice",
+  "name": "Teriyaki Salmon with Rice and Tenderstem",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 20,
+  "tags": ["quick", "high-protein", "fish"],
+  "ingredients": [
+    {"food": "salmon raw", "grams": 130, "display": "1 salmon fillet (about 130 g)"},
+    {"food": "basmati rice dry", "grams": 60, "display": "60 g basmati rice"},
+    {"food": "tenderstem", "grams": 100, "display": "100 g tenderstem broccoli"},
+    {"food": "soy sauce", "grams": 15, "display": "1 tbsp soy sauce"},
+    {"food": "honey", "grams": 10, "display": "2 tsp honey"},
+    {"food": "root ginger", "grams": 5, "display": "small piece of ginger, grated"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"},
+    {"food": "sesame seeds", "grams": 5, "display": "1 tsp sesame seeds"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan. Mix the soy sauce, honey, ginger and garlic into a glaze.",
+    "Put the rice on to cook.",
+    "Sit the salmon in a lined tray, spoon over half the glaze and bake for 12 to 14 minutes.",
+    "Steam the tenderstem for 4 minutes until just tender.",
+    "Serve the salmon on the rice, spoon over the remaining glaze and scatter with sesame seeds."
+  ]
+ },
+ {
+  "id": "red-lentil-dhal-rice",
+  "name": "Red Lentil Dhal with Rice",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["vegetarian", "batch", "high-protein", "curry"],
+  "ingredients": [
+    {"food": "red lentils dry", "grams": 90, "display": "90 g red lentils, rinsed"},
+    {"food": "coconut milk light", "grams": 80, "display": "80 ml light coconut milk"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "curry paste", "grams": 25, "display": "1 tbsp curry paste"},
+    {"food": "spinach", "grams": 80, "display": "80 g spinach"},
+    {"food": "greek yoghurt 0%", "grams": 80, "display": "80 g fat-free Greek yoghurt"},
+    {"food": "basmati rice dry", "grams": 30, "display": "30 g basmati rice"}
+  ],
+  "steps": [
+    "Soften the onion in a dry non-stick pan with a splash of water for 5 minutes.",
+    "Add the garlic and curry paste and cook for 1 minute.",
+    "Stir in the lentils and 350 ml water, then simmer for 20 minutes until collapsed and thick.",
+    "Pour in the coconut milk and wilt the spinach through.",
+    "Cook the rice and serve the dhal alongside, topped with the yoghurt.",
+    "The dhal keeps for three days and reheats well for lunch."
+  ]
+ },
+ {
+  "id": "chicken-fajita-wrap",
+  "name": "Chicken Fajita Wrap",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 12,
+  "tags": ["quick", "high-protein"],
+  "ingredients": [
+    {"food": "chicken breast raw", "grams": 180, "display": "1 chicken breast (about 180 g), sliced"},
+    {"food": "tortilla wrap", "grams": 60, "display": "1 large tortilla wrap"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, sliced"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, sliced"},
+    {"food": "salsa", "grams": 40, "display": "2 tbsp tomato salsa"},
+    {"food": "rapeseed oil", "grams": 7, "display": "2 tsp rapeseed oil"},
+    {"food": "spices", "grams": 3, "display": "1 tsp fajita spice mix"},
+    {"food": "greek yoghurt 0%", "grams": 40, "display": "40 g fat-free Greek yoghurt"},
+    {"food": "lime juice", "grams": 5, "display": "squeeze of lime juice"}
+  ],
+  "steps": [
+    "Toss the chicken with the spices and half the oil.",
+    "Fry the pepper and onion in the remaining oil over a high heat for 4 minutes until charred at the edges.",
+    "Add the chicken and cook for a further 6 minutes, until cooked through.",
+    "Warm the wrap briefly in a dry pan.",
+    "Fill with the chicken and vegetables, add the salsa, yoghurt and lime juice, then roll and serve."
+  ]
+ },
+ {
+  "id": "egg-edamame-fried-rice",
+  "name": "Egg and Edamame Fried Rice",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 15,
+  "tags": ["vegetarian", "quick", "high-protein"],
+  "ingredients": [
+    {"food": "egg", "grams": 120, "display": "2 eggs, beaten"},
+    {"food": "egg white", "grams": 60, "display": "2 egg whites"},
+    {"food": "edamame frozen", "grams": 100, "display": "100 g frozen edamame beans"},
+    {"food": "basmati rice dry", "grams": 40, "display": "40 g basmati rice"},
+    {"food": "peas frozen", "grams": 60, "display": "60 g frozen peas"},
+    {"food": "spring onion", "grams": 25, "display": "1 spring onion, sliced"},
+    {"food": "soy sauce", "grams": 15, "display": "1 tbsp soy sauce"},
+    {"food": "sesame oil", "grams": 5, "display": "1 tsp sesame oil"},
+    {"food": "garlic", "grams": 5, "display": "1 garlic clove, crushed"}
+  ],
+  "steps": [
+    "Cook the rice, then spread it out to cool and dry slightly.",
+    "Heat the sesame oil in a wok and scramble the beaten egg and egg whites until just set. Remove.",
+    "Fry the edamame, peas and garlic over a high heat for 3 minutes.",
+    "Add the rice and soy sauce and stir-fry for 2 minutes until piping hot.",
+    "Fold the egg back in, scatter with spring onion and serve."
+  ]
+ },
+ {
+  "id": "sweet-potato-cottage-cheese-beans",
+  "name": "Baked Sweet Potato with Cottage Cheese and Black Beans",
+  "slot": "dinner",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 45,
+  "tags": ["vegetarian", "high-protein"],
+  "ingredients": [
+    {"food": "sweet potato raw", "grams": 280, "display": "1 large sweet potato (about 280 g)"},
+    {"food": "cottage cheese", "grams": 150, "display": "150 g cottage cheese"},
+    {"food": "black beans drained", "grams": 200, "display": "200 g black beans, drained"},
+    {"food": "salsa", "grams": 40, "display": "2 tbsp tomato salsa"},
+    {"food": "spinach", "grams": 50, "display": "50 g spinach"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 2, "display": "half a tsp smoked paprika"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan. Prick the sweet potato and bake for 45 minutes until soft.",
+    "Warm the beans in the oil with the paprika for 4 minutes, crushing a few against the pan.",
+    "Stir the spinach through the beans until wilted.",
+    "Split the potato open and spoon in the bean mixture.",
+    "Top with the cottage cheese and salsa and serve."
+  ]
+ },
+ {
+  "id": "chicken-tikka-masala",
+  "name": "Chicken Tikka Masala with Rice",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["batch", "high-protein", "curry"],
+  "ingredients": [
+    {"food": "chicken thigh skinless raw", "grams": 200, "display": "200 g skinless chicken thighs, cubed"},
+    {"food": "curry paste", "grams": 30, "display": "1.5 tbsp tikka curry paste"},
+    {"food": "chopped tomatoes", "grams": 150, "display": "half a tin of chopped tomatoes"},
+    {"food": "greek yoghurt 5%", "grams": 60, "display": "60 g Greek yoghurt"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "basmati rice dry", "grams": 55, "display": "55 g basmati rice"},
+    {"food": "rapeseed oil", "grams": 5, "display": "1 tsp rapeseed oil"}
+  ],
+  "steps": [
+    "Coat the chicken in half the curry paste and leave for 10 minutes while you prepare everything else.",
+    "Fry the onion in the oil for 6 minutes, then add the garlic and remaining paste.",
+    "Add the chicken and sear for 4 minutes, turning to colour all sides.",
+    "Pour in the tomatoes and 100 ml water and simmer for 15 minutes.",
+    "Cook the rice. Take the curry off the heat, stir in the yoghurt and serve with the rice.",
+    "Cook double the curry and keep a portion for lunch the next day."
+  ]
+ },
+ {
+  "id": "halloumi-chickpea-traybake",
+  "name": "Harissa Halloumi and Chickpea Traybake",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["vegetarian", "high-protein", "traybake"],
+  "ingredients": [
+    {"food": "halloumi", "grams": 80, "display": "80 g halloumi, sliced"},
+    {"food": "chickpeas drained", "grams": 200, "display": "200 g chickpeas, drained"},
+    {"food": "red pepper", "grams": 160, "display": "1 red pepper, cut into chunks"},
+    {"food": "courgette", "grams": 150, "display": "1 small courgette, sliced"},
+    {"food": "red onion", "grams": 80, "display": "half a red onion, cut into wedges"},
+    {"food": "olive oil", "grams": 7, "display": "1 tsp olive oil"},
+    {"food": "harissa", "grams": 20, "display": "1 tbsp harissa paste"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan.",
+    "Toss the pepper, courgette, onion and chickpeas with the oil and harissa in a roasting tray.",
+    "Roast for 20 minutes, shaking the tray once.",
+    "Lay the halloumi over the vegetables and roast for a further 10 minutes until golden.",
+    "Serve straight from the tray."
+  ]
+ },
+ {
+  "id": "mushroom-pea-risotto",
+  "name": "Mushroom and Pea Risotto",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["vegetarian", "high-protein", "risotto"],
+  "ingredients": [
+    {"food": "basmati rice dry", "grams": 70, "display": "70 g rice"},
+    {"food": "mushrooms", "grams": 150, "display": "150 g chestnut mushrooms, sliced"},
+    {"food": "peas frozen", "grams": 100, "display": "100 g frozen peas"},
+    {"food": "parmesan", "grams": 25, "display": "25 g parmesan, grated"},
+    {"food": "quark", "grams": 100, "display": "100 g quark"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, finely chopped"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "olive oil", "grams": 7, "display": "1 tsp olive oil"},
+    {"food": "stock cube", "grams": 5, "display": "half a vegetable stock cube"}
+  ],
+  "steps": [
+    "Fry the mushrooms in half the oil over a high heat until browned, then set aside.",
+    "Soften the onion and garlic in the remaining oil for 6 minutes.",
+    "Add the rice and stir for 1 minute, then add the stock cube dissolved in 400 ml hot water, a ladle at a time, stirring until absorbed.",
+    "After about 20 minutes, when the rice is tender, stir in the peas and mushrooms and cook for 3 minutes.",
+    "Take off the heat and beat in the quark and parmesan until creamy. Season and serve."
+  ]
+ },
+ {
+  "id": "veggie-chilli-quinoa",
+  "name": "Black Bean Chilli with Quinoa",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["vegetarian", "batch", "high-protein", "chilli"],
+  "ingredients": [
+    {"food": "quinoa dry", "grams": 50, "display": "50 g quinoa"},
+    {"food": "black beans drained", "grams": 180, "display": "180 g black beans, drained"},
+    {"food": "kidney beans drained", "grams": 60, "display": "60 g kidney beans, drained"},
+    {"food": "chopped tomatoes", "grams": 200, "display": "half a tin of chopped tomatoes"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, diced"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "cheddar grated", "grams": 30, "display": "30 g grated cheddar"},
+    {"food": "olive oil", "grams": 6, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 3, "display": "1 tsp chilli powder, cumin and smoked paprika"}
+  ],
+  "steps": [
+    "Fry the onion and pepper in the oil for 6 minutes.",
+    "Add the spices and cook for 1 minute until fragrant.",
+    "Tip in both tins of beans and the tomatoes and simmer for 20 minutes, mashing a few beans to thicken.",
+    "Cook the quinoa in plenty of water for 15 minutes, then drain.",
+    "Serve the chilli over the quinoa with the cheddar scattered on top.",
+    "The chilli freezes well and makes a strong next-day lunch."
+  ]
+ },
+ {
+  "id": "pork-loin-mustard-mash",
+  "name": "Pork Loin with Mustard Mash and Green Beans",
+  "slot": "dinner",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": ["high-protein"],
+  "ingredients": [
+    {"food": "pork loin raw", "grams": 200, "display": "1 pork loin steak (about 200 g)"},
+    {"food": "new potatoes", "grams": 220, "display": "220 g new potatoes"},
+    {"food": "milk semi", "grams": 40, "display": "40 ml semi-skimmed milk"},
+    {"food": "dijon mustard", "grams": 10, "display": "2 tsp Dijon mustard"},
+    {"food": "green beans", "grams": 100, "display": "100 g green beans"},
+    {"food": "butter", "grams": 5, "display": "1 tsp butter"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 1, "display": "pinch of black pepper"}
+  ],
+  "steps": [
+    "Boil the potatoes for 15 minutes until tender.",
+    "Season the pork and fry in the oil over a medium-high heat for 5 minutes a side, then rest for 5 minutes.",
+    "Steam the green beans for 4 minutes.",
+    "Crush the drained potatoes with the milk, butter and mustard and season with pepper.",
+    "Slice the pork and serve with the mash and beans, spooning over any resting juices."
+  ]
+ },
+ {
+  "id": "roast-chicken-thigh-traybake",
+  "name": "Roast Chicken Thigh and Vegetable Traybake",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 40,
+  "tags": ["batch", "high-protein", "traybake", "roast"],
+  "ingredients": [
+    {"food": "chicken thigh skinless raw", "grams": 220, "display": "3 skinless chicken thighs (about 220 g)"},
+    {"food": "new potatoes", "grams": 200, "display": "200 g new potatoes, halved"},
+    {"food": "mixed roast veg", "grams": 150, "display": "150 g mixed roasting vegetables"},
+    {"food": "olive oil", "grams": 10, "display": "2 tsp olive oil"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, unpeeled"},
+    {"food": "lemon juice", "grams": 10, "display": "juice of half a lemon"},
+    {"food": "spices", "grams": 3, "display": "1 tsp dried thyme and black pepper"}
+  ],
+  "steps": [
+    "Heat the oven to 200C fan.",
+    "Toss the potatoes and vegetables with the oil, garlic and half the seasoning, then roast for 15 minutes.",
+    "Season the chicken thighs, sit them on top and roast for a further 25 minutes.",
+    "Check the chicken is cooked through and the potatoes are crisp at the edges.",
+    "Squeeze over the lemon juice before serving.",
+    "Roast a second tray at the same time for tomorrow's lunch."
+  ]
+ },
+ {
+  "id": "tuna-pasta-bake",
+  "name": "Tuna and Sweetcorn Pasta Bake",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": ["batch", "high-protein", "pasta"],
+  "ingredients": [
+    {"food": "tuna spring water drained", "grams": 160, "display": "2 tins of tuna in spring water, drained"},
+    {"food": "wholewheat pasta dry", "grams": 75, "display": "75 g wholewheat pasta"},
+    {"food": "passata", "grams": 150, "display": "150 g passata"},
+    {"food": "sweetcorn", "grams": 80, "display": "80 g tinned sweetcorn, drained"},
+    {"food": "cheddar grated", "grams": 30, "display": "30 g grated cheddar"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "milk semi", "grams": 60, "display": "60 ml semi-skimmed milk"},
+    {"food": "olive oil", "grams": 5, "display": "1 tsp olive oil"},
+    {"food": "spices", "grams": 2, "display": "pinch of dried oregano and black pepper"}
+  ],
+  "steps": [
+    "Heat the oven to 190C fan and cook the pasta two minutes short of the packet time.",
+    "Soften the onion in the oil for 6 minutes, then add the passata, milk and oregano and simmer for 5 minutes.",
+    "Stir the drained pasta, tuna and sweetcorn into the sauce and season.",
+    "Tip into an ovenproof dish and scatter over the cheddar.",
+    "Bake for 15 minutes until bubbling and browned on top.",
+    "Double the quantities and bake in a larger dish for leftovers."
+  ]
+ },
+ {
+  "id": "sirloin-new-potatoes-mushrooms",
+  "name": "Pan-Fried Sirloin with New Potatoes and Mushrooms",
+  "slot": "dinner",
+  "source": {"name": "Good Housekeeping", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": ["high-protein", "weekend"],
+  "ingredients": [
+    {"food": "sirloin raw trimmed", "grams": 180, "display": "1 sirloin steak (about 180 g), trimmed"},
+    {"food": "new potatoes", "grams": 300, "display": "300 g new potatoes, halved"},
+    {"food": "tenderstem", "grams": 100, "display": "100 g tenderstem broccoli"},
+    {"food": "mushrooms", "grams": 80, "display": "80 g mushrooms, halved"},
+    {"food": "olive oil", "grams": 12, "display": "1 tbsp olive oil"},
+    {"food": "butter", "grams": 5, "display": "1 tsp butter"},
+    {"food": "dijon mustard", "grams": 8, "display": "1 tsp Dijon mustard"},
+    {"food": "spices", "grams": 2, "display": "pinch of sea salt and black pepper"}
+  ],
+  "steps": [
+    "Boil the potatoes for 15 minutes, drain, then toss with half the oil and crush lightly.",
+    "Season the steak and fry in the remaining oil over a high heat for 2 to 3 minutes a side for medium-rare.",
+    "Add the butter to the pan for the last minute and baste the steak, then rest it for 5 minutes.",
+    "Fry the mushrooms in the same pan until browned.",
+    "Steam the tenderstem for 4 minutes and serve everything with the mustard alongside."
+  ]
+ },
+ {
+  "id": "salmon-lemon-spinach-pasta",
+  "name": "Salmon, Lemon and Spinach Pasta",
+  "slot": "dinner",
+  "source": {"name": "Olive Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 20,
+  "tags": ["quick", "high-protein", "pasta", "fish"],
+  "ingredients": [
+    {"food": "salmon raw", "grams": 130, "display": "1 salmon fillet (about 130 g)"},
+    {"food": "pasta dry", "grams": 75, "display": "75 g pasta"},
+    {"food": "spinach", "grams": 100, "display": "100 g spinach"},
+    {"food": "cream cheese light", "grams": 50, "display": "50 g light cream cheese"},
+    {"food": "lemon juice", "grams": 15, "display": "juice of half a lemon"},
+    {"food": "garlic", "grams": 10, "display": "2 garlic cloves, crushed"},
+    {"food": "olive oil", "grams": 7, "display": "1 tsp olive oil"},
+    {"food": "parmesan", "grams": 10, "display": "10 g parmesan, grated"},
+    {"food": "spices", "grams": 1, "display": "pinch of black pepper"}
+  ],
+  "steps": [
+    "Cook the pasta, reserving a cup of the cooking water before draining.",
+    "Fry the salmon in the oil for 4 minutes a side, then flake it into large pieces and discard the skin.",
+    "Add the garlic to the pan for 30 seconds, then stir in the cream cheese and a splash of pasta water.",
+    "Wilt the spinach into the sauce and add the lemon juice.",
+    "Toss through the pasta and salmon, loosen with more pasta water, and finish with parmesan and pepper."
+  ]
+ },
+ {
+  "id": "beef-cottage-pie",
+  "name": "Lean Beef Cottage Pie",
+  "slot": "dinner",
+  "source": {"name": "BBC Good Food", "url": null},
+  "servings": 1,
+  "prep_min": 15,
+  "cook_min": 45,
+  "tags": ["batch", "high-protein", "weekend"],
+  "ingredients": [
+    {"food": "beef mince 5% raw", "grams": 175, "display": "175 g 5% beef mince"},
+    {"food": "baking potato baked", "grams": 300, "display": "300 g potatoes, peeled and cut into chunks"},
+    {"food": "carrot", "grams": 80, "display": "1 carrot, diced"},
+    {"food": "onion", "grams": 60, "display": "half a small onion, chopped"},
+    {"food": "passata", "grams": 120, "display": "120 g passata"},
+    {"food": "peas frozen", "grams": 80, "display": "80 g frozen peas"},
+    {"food": "milk semi", "grams": 40, "display": "40 ml semi-skimmed milk"},
+    {"food": "butter", "grams": 6, "display": "1 tsp butter"},
+    {"food": "stock cube", "grams": 4, "display": "half a beef stock cube"}
+  ],
+  "steps": [
+    "Brown the mince in a dry pan over a high heat, then add the onion and carrot and cook for 8 minutes.",
+    "Stir in the passata, stock cube and 150 ml water and simmer for 20 minutes until thick.",
+    "Boil the potatoes for 18 minutes, drain, then mash with the milk and butter.",
+    "Stir the peas into the mince and transfer to an ovenproof dish.",
+    "Spread the mash on top, rough up the surface with a fork and bake at 200C fan for 20 minutes until golden.",
+    "Build two or three portions at once and refrigerate or freeze the extras."
+  ]
+ },
+ {
+  "id": "tofu-peanut-noodles",
+  "name": "Crispy Tofu Peanut Noodles",
+  "slot": "dinner",
+  "source": {"name": "Delicious Magazine", "url": null},
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 15,
+  "tags": ["vegetarian", "quick", "high-protein", "stir-fry"],
+  "ingredients": [
+    {"food": "tofu firm", "grams": 200, "display": "200 g firm tofu, cubed"},
+    {"food": "noodles wholewheat dry", "grams": 50, "display": "50 g wholewheat noodles"},
+    {"food": "peanut butter", "grams": 15, "display": "1 tbsp peanut butter"},
+    {"food": "broccoli", "grams": 100, "display": "100 g broccoli florets"},
+    {"food": "red pepper", "grams": 80, "display": "half a red pepper, sliced"},
+    {"food": "soy sauce", "grams": 15, "display": "1 tbsp soy sauce"},
+    {"food": "sesame oil", "grams": 5, "display": "1 tsp sesame oil"},
+    {"food": "lime juice", "grams": 10, "display": "juice of half a lime"},
+    {"food": "spring onion", "grams": 20, "display": "1 spring onion, sliced"},
+    {"food": "chilli", "grams": 10, "display": "half a red chilli, sliced"}
+  ],
+  "steps": [
+    "Press the tofu dry, then fry in the sesame oil over a high heat until crisp on all sides.",
+    "Cook the noodles and drain.",
+    "Add the broccoli and pepper to the pan and stir-fry for 4 minutes.",
+    "Loosen the peanut butter with the soy sauce, lime juice and 3 tbsp hot water.",
+    "Toss the noodles and sauce through the pan, then top with spring onion and chilli."
+  ]
+ }
+]

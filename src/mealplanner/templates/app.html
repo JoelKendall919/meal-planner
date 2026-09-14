@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Meal Planner</title>
+<style>
+:root{
+  --bg:#f6f6f4; --card:#fff; --ink:#141414; --mut:#6b6b6b; --line:#e3e3df;
+  --accent:#111; --good:#1a7f37; --warn:#9a6700; --bad:#b42318;
+  --pad:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:calc(64px + var(--pad))}
+header{position:sticky;top:0;z-index:20;background:var(--accent);color:#fff;
+  padding:14px 16px 12px;display:flex;align-items:baseline;gap:10px}
+header h1{font-size:17px;margin:0;font-weight:600;letter-spacing:-.2px}
+header .sub{font-size:12px;opacity:.7;margin-left:auto;color:#fff}
+main{padding:12px 12px 24px;max-width:780px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:14px;margin-bottom:12px}
+.card h2{font-size:15px;margin:0 0 2px;font-weight:600}
+.sub{font-size:12.5px;color:var(--mut)}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
+button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--line);
+  background:#fff;color:var(--ink);padding:9px 12px}
+button:active{transform:translateY(1px)}
+.sec{padding:6px 10px;font-size:13px}
+.bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:#fff;
+  border-top:1px solid var(--line);padding-bottom:var(--pad)}
+nav button{flex:1;border:0;border-radius:0;background:none;padding:11px 4px 9px;
+  font-size:11px;color:var(--mut);display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button .ic{font-size:17px;line-height:1}
+nav button.on{color:var(--ink);font-weight:600;box-shadow:inset 0 -2.5px 0 var(--accent)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:6px 11px;border-radius:999px;border:1px solid var(--line);
+  background:#fff;font-size:13px}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+input[type=search],input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);
+  border-radius:9px;font:inherit;background:#fff}
+.rlist{list-style:none;margin:0;padding:0}
+.rlist li{border-bottom:1px solid var(--line)}
+.rlist li:last-child{border-bottom:0}
+.ritem{display:flex;align-items:center;gap:10px;padding:11px 2px;width:100%;
+  background:none;border:0;text-align:left}
+.ritem .nm{flex:1;min-width:0}
+.ritem .nm b{display:block;font-weight:600;font-size:14.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ritem .nm small{color:var(--mut);font-size:12px}
+.kc{text-align:right;font-size:12px;color:var(--mut);white-space:nowrap}
+.kc b{display:block;color:var(--ink);font-size:14px}
+.tag{display:inline-block;font-size:10.5px;padding:1.5px 6px;border-radius:5px;
+  background:#efefec;color:#555;margin-right:4px}
+.tag.veg{background:#e6f4ea;color:#1a7f37}
+.day{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:10px;overflow:hidden}
+.day>h3{margin:0;padding:10px 13px;font-size:13.5px;background:#fafaf8;
+  border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.slot{display:flex;align-items:center;gap:10px;padding:9px 13px;border-bottom:1px solid var(--line);
+  width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left;border-radius:0}
+.day .slot:last-of-type{border-bottom:0}
+.slot .lbl{font-size:11px;color:var(--mut);width:64px;flex:none;
+  text-transform:uppercase;letter-spacing:.4px}
+.slot .val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.slot .val.empty{color:#a8a8a8}
+.tot{font-size:12px;font-weight:600}
+.tot.ok{color:var(--good)} .tot.hi{color:var(--bad)} .tot.lo{color:var(--warn)}
+.sheet{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.4);display:flex;align-items:flex-end}
+.sheet .inner{background:var(--bg);width:100%;max-height:88vh;border-radius:16px 16px 0 0;
+  display:flex;flex-direction:column;padding-bottom:var(--pad)}
+.sheet header{border-radius:16px 16px 0 0}
+.sheet .body{overflow:auto;padding:12px}
+.x{background:none;border:0;color:#fff;font-size:20px;padding:0 4px;line-height:1}
+.ing{list-style:none;margin:8px 0 0;padding:0}
+.ing li{padding:5px 0;border-bottom:1px dashed var(--line);font-size:14px;display:flex;gap:8px}
+.ing li:last-child{border-bottom:0}
+.ing .g{margin-left:auto;color:var(--mut);font-size:12.5px;white-space:nowrap}
+ol.steps{margin:8px 0 0;padding-left:18px}
+ol.steps li{margin:6px 0}
+.macros{display:flex;gap:6px;margin:10px 0 0}
+.macro{flex:1;background:#fafaf8;border:1px solid var(--line);border-radius:9px;
+  padding:7px 4px;text-align:center}
+.macro b{display:block;font-size:15px}
+.macro span{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.3px}
+.it{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.it:last-child{border-bottom:0}
+.it.done .itxt{text-decoration:line-through;color:#a8a8a8}
+.itxt{flex:1;min-width:0}
+.itxt small{display:block;color:var(--mut);font-size:11.5px}
+.ck{width:21px;height:21px;border-radius:6px;border:1.5px solid #c4c4c0;background:#fff;
+  flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;padding:0}
+.ck.on{background:var(--good);border-color:var(--good)}
+.aisle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--mut);margin:14px 0 2px}
+.aisle:first-child{margin-top:0}
+.empty-state{text-align:center;color:var(--mut);padding:34px 16px;font-size:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(74px + var(--pad));
+  background:#222;color:#fff;padding:9px 15px;border-radius:999px;font-size:13px;z-index:60;
+  opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+.src{font-size:11.5px;color:var(--mut);margin-top:10px;font-style:italic}
+.add{display:flex;gap:8px;margin-top:10px}
+.warnbar{background:#fff4e5;border:1px solid #f0d8b0;color:#7a4b00;font-size:12.5px;
+  padding:9px 12px;border-radius:9px;margin-bottom:12px}
+</style>
+</head>
+<body>
+<header><h1>Meal Planner</h1><span class="sub" id="hsub"></span></header>
+<main id="view"></main>
+<nav>
+  <button data-tab="plan" class="on"><span class="ic">&#128197;</span>Plan</button>
+  <button data-tab="recipes"><span class="ic">&#127859;</span>Recipes</button>
+  <button data-tab="shop"><span class="ic">&#128722;</span>Shopping</button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = __DATA__;
+</script>
+<script>
+/* __SHOPPING_JS__ */
+</script>
+<script>
+"use strict";
+const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const SLOTS = ["breakfast","lunch","dinner"];
+const KEY = "mealplanner.v2";
+
+let STORE_OK = true;
+try { localStorage.setItem(KEY + ".probe", "1"); localStorage.removeItem(KEY + ".probe"); }
+catch (e) { STORE_OK = false; }
+
+const blank = () => ({ plan:{}, ticked:{}, extras:[], staples:true });
+let S = blank();
+try {
+  const raw = STORE_OK ? localStorage.getItem(KEY) : null;
+  if (raw) S = Object.assign(blank(), JSON.parse(raw));
+} catch (e) { S = blank(); }
+
+function save(){
+  if (!STORE_OK) return;
+  try { localStorage.setItem(KEY, JSON.stringify(S)); }
+  catch (e) { STORE_OK = false; toast("Storage blocked - changes won't be saved"); }
+}
+
+const RECIPES = DATA.recipes;
+const FOODS = DATA.foods;
+const BY_ID = {}; RECIPES.forEach(r => { BY_ID[r.id] = r; });
+const TARGETS = DATA.targets;
+const STAPLE_AISLES = new Set(["cupboard"]);
+
+let tab = "plan";
+const filter = { slot:null, tag:null, q:"" };
+let sheet = null;
+
+const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c =>
+  ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
+
+let toastT;
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg; el.classList.add("on");
+  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("on"), 1900);
+}
+
+function dayMeals(day){
+  const d = S.plan[day] || {};
+  return SLOTS.map(s => (d[s] ? BY_ID[d[s]] : null)).filter(Boolean);
+}
+function dayTotals(day){
+  return dayMeals(day).reduce((a, r) => ({
+    kcal: a.kcal + r.macros.kcal, protein: a.protein + r.macros.protein
+  }), { kcal:0, protein:0 });
+}
+function plannedIds(){
+  const out = [];
+  DAYS.forEach(d => SLOTS.forEach(s => {
+    const id = (S.plan[d] || {})[s];
+    if (id && BY_ID[id]) out.push(id);
+  }));
+  return out;
+}
+function totalsClass(kcal, full){
+  if (!full) return "";
+  if (kcal > TARGETS.kcal + 150) return "hi";
+  if (kcal < TARGETS.kcal - 150) return "lo";
+  return "ok";
+}
+
+function viewPlan(){
+  const ids = plannedIds();
+  let html = `<div class="card"><div class="hd"><div>
+      <h2>Your week</h2><div class="sub">${ids.length} of 21 meals chosen &middot; aiming for
+      ${TARGETS.kcal} kcal and ${TARGETS.protein} g protein a day</div>
+    </div></div>
+    <div class="bar">
+      <button class="sec" data-fill="1">Fill empty slots</button>
+      <button class="sec" data-clear="1">Clear week</button>
+    </div></div>`;
+
+  html += DAYS.map(day => {
+    const t = dayTotals(day);
+    const full = dayMeals(day).length === SLOTS.length;
+    return `<div class="day">
+      <h3><span>${day}</span>
+        <span class="tot ${totalsClass(t.kcal, full)}">${
+          t.kcal ? t.kcal + " kcal &middot; " + t.protein + " g" : "&mdash;"}</span></h3>
+      ${SLOTS.map(slot => {
+        const id = (S.plan[day] || {})[slot];
+        const r = id ? BY_ID[id] : null;
+        return `<button class="slot" data-pick="${day}|${slot}">
+          <span class="lbl">${slot}</span>
+          <span class="val ${r ? "" : "empty"}">${r ? esc(r.name) : "Tap to choose"}</span>
+          ${r ? `<span class="kc"><b>${r.macros.kcal}</b>${r.macros.protein} g</span>` : ""}
+        </button>`;
+      }).join("")}
+    </div>`;
+  }).join("");
+  return html;
+}
+
+function recipeRow(r, action){
+  const veg = r.tags.includes("vegetarian");
+  const rest = r.tags.filter(t => t !== "vegetarian").slice(0, 2);
+  return `<li><button class="ritem" data-${action}="${r.id}">
+    <span class="nm"><b>${esc(r.name)}</b>
+      <small>${veg ? '<span class="tag veg">veg</span>' : ""}${
+        rest.map(t => `<span class="tag">${esc(t)}</span>`).join("")
+      }${r.total_min ? esc(r.total_min) + " min" : ""}</small></span>
+    <span class="kc"><b>${r.macros.kcal}</b>${r.macros.protein} g</span>
+  </button></li>`;
+}
+
+function applyFilter(list){
+  const q = filter.q.trim().toLowerCase();
+  return list.filter(r => {
+    if (filter.slot && r.slot !== filter.slot) return false;
+    if (filter.tag && !r.tags.includes(filter.tag)) return false;
+    if (q){
+      const hay = (r.name + " " + r.tags.join(" ") + " " +
+        r.ingredients.map(i => i.display).join(" ")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function viewRecipes(){
+  const list = applyFilter(RECIPES);
+  return `<div class="card">
+    <input type="search" id="q" placeholder="Search recipes or ingredients..." value="${esc(filter.q)}">
+    <div class="chips" style="margin-top:9px">
+      ${SLOTS.map(s =>
+        `<button class="chip ${filter.slot === s ? "on" : ""}" data-slot="${s}">${s}</button>`).join("")}
+      ${DATA.tags.map(t =>
+        `<button class="chip ${filter.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}
+    </div>
+    <div class="sub">${list.length} recipe${list.length === 1 ? "" : "s"}</div>
+  </div>
+  <div class="card"><ul class="rlist">${
+    list.length ? list.map(r => recipeRow(r, "open")).join("")
+                : `<li><div class="empty-state">Nothing matches those filters.</div></li>`
+  }</ul></div>`;
+}
+
+function viewShop(){
+  const ids = plannedIds();
+  if (!ids.length){
+    return `<div class="card"><div class="empty-state">
+      Choose some meals on the Plan tab and your shopping list will build itself.
+    </div></div>`;
+  }
+  const all = buildShoppingList(RECIPES, FOODS, ids);
+  const staples = all.filter(l => STAPLE_AISLES.has(l.aisle)).length;
+  const lines = S.staples ? all : all.filter(l => !STAPLE_AISLES.has(l.aisle));
+  const merged = lines.filter(l => l.merged).length;
+
+  let html = `<div class="card"><div class="hd"><div>
+      <h2>Shopping list</h2>
+      <div class="sub">${lines.length} item${lines.length === 1 ? "" : "s"} from ${ids.length} meal${
+        ids.length === 1 ? "" : "s"}${merged ? ` &middot; ${merged} combined` : ""}</div>
+    </div></div>
+    <div class="bar">
+      <button class="sec" data-staples="1">${S.staples ? "Hide" : "Show"} cupboard staples${
+        staples ? ` (${staples})` : ""}</button>
+      <button class="sec" data-untick="1">Clear ticks</button>
+      <button class="sec" data-copy="1">Copy list</button>
+    </div></div>`;
+
+  let aisle = null;
+  let body = "";
+  lines.forEach(l => {
+    if (l.aisle !== aisle){
+      aisle = l.aisle;
+      body += `<div class="aisle">${esc(l.aisle_label)}</div>`;
+    }
+    const on = !!S.ticked[l.group];
+    const from = l.merged
+      ? l.components.map(c => c.food).join(" + ")
+      : Array.from(new Set(l.components[0].recipes.map(id => BY_ID[id] ? BY_ID[id].name : id)))
+          .slice(0, 2).join(", ");
+    body += `<div class="it ${on ? "done" : ""}">
+      <button class="ck ${on ? "on" : ""}" data-tick="${esc(l.group)}">${on ? "&#10003;" : ""}</button>
+      <div class="itxt"><b>${esc(l.group)}</b> &mdash; ${esc(l.quantity)}
+        <small>${esc(from)}</small></div>
+    </div>`;
+  });
+
+  S.extras.forEach((x, i) => {
+    const on = !!S.ticked["x:" + x];
+    body += `<div class="it ${on ? "done" : ""}">
+      <button class="ck ${on ? "on" : ""}" data-tick="x:${esc(x)}">${on ? "&#10003;" : ""}</button>
+      <div class="itxt"><b>${esc(x)}</b><small>added by you</small></div>
+      <button class="sec" data-rmx="${i}">Remove</button></div>`;
+  });
+
+  html += `<div class="card">${body}
+    <form class="add" id="addf">
+      <input type="text" id="addi" placeholder="Add an item..." autocomplete="off">
+      <button class="sec" type="submit">Add</button>
+    </form></div>`;
+  return html;
+}
+
+function render(){
+  const warn = STORE_OK ? "" :
+    `<div class="warnbar">This browser is blocking local storage, so your plan won't be
+     remembered after you close the page. Opening the file from a normal folder usually fixes it.</div>`;
+  document.getElementById("view").innerHTML = warn + (
+    tab === "plan" ? viewPlan() : tab === "recipes" ? viewRecipes() : viewShop());
+  document.querySelectorAll("nav button").forEach(b =>
+    b.classList.toggle("on", b.dataset.tab === tab));
+  const n = plannedIds().length;
+  document.getElementById("hsub").textContent =
+    n ? `${n}/21 planned` : `${RECIPES.length} recipes`;
+  if (tab === "recipes"){
+    const q = document.getElementById("q");
+    if (q){
+      q.oninput = e => {
+        const pos = e.target.selectionStart;
+        filter.q = e.target.value;
+        render();
+        const q2 = document.getElementById("q");
+        if (q2){ q2.focus(); q2.setSelectionRange(pos, pos); }
+      };
+    }
+  }
+}
+
+function openSheet(html){
+  closeSheet();
+  sheet = document.createElement("div");
+  sheet.className = "sheet";
+  sheet.innerHTML = `<div class="inner">${html}</div>`;
+  sheet.addEventListener("click", e => { if (e.target === sheet) closeSheet(); });
+  document.body.appendChild(sheet);
+}
+function closeSheet(){ if (sheet){ sheet.remove(); sheet = null; } }
+
+function pickSheet(day, slot){
+  const list = RECIPES.filter(r => r.slot === slot);
+  const current = (S.plan[day] || {})[slot];
+  openSheet(`<header><h1>${day} &middot; ${slot}</h1>
+      <button class="x" data-close="1">&times;</button></header>
+    <div class="body">
+      ${current ? `<div class="card"><button class="sec" data-unset="${day}|${slot}">Remove this meal</button></div>` : ""}
+      <div class="card"><ul class="rlist">${list.map(r => recipeRow(r, "set")).join("")}</ul></div>
+    </div>`);
+  sheet.dataset.day = day;
+  sheet.dataset.slot = slot;
+}
+
+function recipeSheet(id){
+  const r = BY_ID[id];
+  if (!r) return;
+  const src = r.source && r.source.name
+    ? `<div class="src">Inspired by ${esc(r.source.name)}. Quantities and method written for this planner.</div>`
+    : "";
+  openSheet(`<header><h1>${esc(r.name)}</h1><button class="x" data-close="1">&times;</button></header>
+    <div class="body"><div class="card">
+      <div class="sub">${esc(r.slot)}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
+        r.tags.length ? ` &middot; ${r.tags.map(esc).join(", ")}` : ""}</div>
+      <div class="macros">
+        <div class="macro"><b>${r.macros.kcal}</b><span>kcal</span></div>
+        <div class="macro"><b>${r.macros.protein}</b><span>protein</span></div>
+        <div class="macro"><b>${r.macros.carbs}</b><span>carbs</span></div>
+        <div class="macro"><b>${r.macros.fat}</b><span>fat</span></div>
+      </div>
+      <h2 style="margin-top:14px">Ingredients</h2>
+      <ul class="ing">${r.ingredients.map(i =>
+        `<li><span>${esc(i.display)}</span><span class="g">${i.grams} g</span></li>`).join("")}</ul>
+      <h2 style="margin-top:14px">Method</h2>
+      <ol class="steps">${r.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
+      ${src}
+    </div></div>`);
+}
+
+function setMeal(day, slot, id){
+  if (!S.plan[day]) S.plan[day] = {};
+  S.plan[day][slot] = id;
+  save();
+}
+
+function fillWeek(){
+  let added = 0;
+  DAYS.forEach(day => SLOTS.forEach(slot => {
+    if ((S.plan[day] || {})[slot]) return;
+    const pool = RECIPES.filter(r => r.slot === slot);
+    if (!pool.length) return;
+    const used = new Set(plannedIds());
+    const fresh = pool.filter(r => !used.has(r.id));
+    const from = fresh.length ? fresh : pool;
+    setMeal(day, slot, from[Math.floor(Math.random() * from.length)].id);
+    added++;
+  }));
+  toast(added ? `Filled ${added} slot${added === 1 ? "" : "s"}` : "Week is already full");
+  render();
+}
+
+function copyList(){
+  const ids = plannedIds();
+  const all = buildShoppingList(RECIPES, FOODS, ids)
+    .filter(l => S.staples || !STAPLE_AISLES.has(l.aisle));
+  const text = all.map(l => `- ${l.group} - ${l.quantity}`)
+    .concat(S.extras.map(x => `- ${x}`)).join("\n");
+  const done = () => toast("List copied");
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, () => toast("Could not copy"));
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) { toast("Could not copy"); }
+    ta.remove();
+  }
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-tab],[data-pick],[data-set],[data-open],[data-close]," +
+    "[data-unset],[data-tick],[data-rmx],[data-staples],[data-untick],[data-fill]," +
+    "[data-clear],[data-slot],[data-tag],[data-copy]");
+  if (!t) return;
+  const d = t.dataset;
+
+  if (d.tab){ tab = d.tab; render(); return; }
+  if (d.close){ closeSheet(); return; }
+  if (d.pick){ const [day, slot] = d.pick.split("|"); pickSheet(day, slot); return; }
+  if (d.set){
+    const day = sheet.dataset.day, slot = sheet.dataset.slot;
+    setMeal(day, slot, d.set);
+    closeSheet(); render();
+    toast(`${BY_ID[d.set].name} added to ${day}`);
+    return;
+  }
+  if (d.unset){
+    const [day, slot] = d.unset.split("|");
+    if (S.plan[day]) delete S.plan[day][slot];
+    save(); closeSheet(); render();
+    return;
+  }
+  if (d.open){ recipeSheet(d.open); return; }
+  if (d.slot){ filter.slot = filter.slot === d.slot ? null : d.slot; render(); return; }
+  if (d.tag){ filter.tag = filter.tag === d.tag ? null : d.tag; render(); return; }
+  if (d.tick){ S.ticked[d.tick] = !S.ticked[d.tick]; save(); render(); return; }
+  if (d.rmx){ S.extras.splice(Number(d.rmx), 1); save(); render(); return; }
+  if (d.staples){ S.staples = !S.staples; save(); render(); return; }
+  if (d.untick){ S.ticked = {}; save(); render(); toast("Ticks cleared"); return; }
+  if (d.fill){ fillWeek(); return; }
+  if (d.copy){ copyList(); return; }
+  if (d.clear){
+    if (confirm("Clear every meal from the week?")){ S.plan = {}; save(); render(); }
+    return;
+  }
+});
+
+document.addEventListener("submit", e => {
+  if (e.target.id !== "addf") return;
+  e.preventDefault();
+  const input = document.getElementById("addi");
+  const v = input.value.trim();
+  if (!v) return;
+  if (S.extras.some(x => x.toLowerCase() === v.toLowerCase())){ toast("Already on the list"); return; }
+  S.extras.push(v); save(); render();
+});
+
+render();
+</script>
+</body>
+</html>

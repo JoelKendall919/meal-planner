@@ -13,7 +13,7 @@ venv: ## Create the virtualenv and install dependencies
 	$(PIP) install -q -e .
 
 build: ## Build the static site into dist/
-	$(PY) -m fitnessplan.build
+	$(PY) -m mealplanner.build
 
 test: ## Run the test suite
 	$(PY) -m pytest
@@ -32,8 +32,11 @@ serve: build ## Build then serve the site at http://localhost:8000
 pdf: ## Regenerate the PDF documents (requires Google Chrome)
 	$(PY) scripts/mkpdf.py
 
-nutrition: ## Print the full nutrition report
-	$(PY) -m fitnessplan.nutrition
+validate: ## Validate the recipe catalogue against the food database
+	$(PY) scripts/validate_recipes.py data/recipes-breakfast.json data/recipes-lunch.json data/recipes-dinner.json
+
+nutrition: ## Print the full nutrition report (legacy fixed-week plan)
+	$(PY) -m mealplanner.nutrition
 
 clean: ## Remove build output and caches
 	rm -rf dist .pytest_cache .ruff_cache

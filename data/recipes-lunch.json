@@ -1,0 +1,1615 @@
+[
+ {
+  "id": "prawn-cocktail-salad",
+  "name": "Prawn Cocktail Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "quick",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "prawns cooked",
+    "grams": 150,
+    "display": "150 g cooked cold-water prawns"
+   },
+   {
+    "food": "light mayo",
+    "grams": 25,
+    "display": "1 tbsp light mayonnaise"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 60,
+    "display": "3 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "tomato puree",
+    "grams": 10,
+    "display": "2 tsp tomato puree"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 60,
+    "display": "2 handfuls little gem or mixed salad leaves, shredded"
+   },
+   {
+    "food": "cucumber",
+    "grams": 80,
+    "display": "1/3 cucumber, diced"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 80,
+    "display": "8 cherry tomatoes, halved"
+   },
+   {
+    "food": "wholemeal bread",
+    "grams": 40,
+    "display": "1 slice wholemeal bread"
+   }
+  ],
+  "steps": [
+   "Stir the mayonnaise, yoghurt, tomato puree and lemon juice together with a pinch of black pepper.",
+   "Fold the prawns through the dressing.",
+   "Pile the leaves, cucumber and tomatoes into a bowl or lidded box and spoon the prawns on top.",
+   "Serve with the bread alongside."
+  ]
+ },
+ {
+  "id": "chicken-noodle-soup",
+  "name": "Chicken And Noodle Soup",
+  "slot": "lunch",
+  "source": {
+   "name": "NHS Better Health",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 20,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "chicken breast raw",
+    "grams": 130,
+    "display": "1 small chicken breast (about 130 g)"
+   },
+   {
+    "food": "noodles wholewheat dry",
+    "grams": 50,
+    "display": "50 g dried wholewheat noodles"
+   },
+   {
+    "food": "carrot",
+    "grams": 60,
+    "display": "1 carrot, sliced"
+   },
+   {
+    "food": "leek",
+    "grams": 60,
+    "display": "1/2 leek, sliced"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "stock cube",
+    "grams": 6,
+    "display": "1 chicken stock cube, made up with 500 ml water"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 10,
+    "display": "2 tsp soy sauce"
+   },
+   {
+    "food": "root ginger",
+    "grams": 5,
+    "display": "1 tsp grated ginger"
+   },
+   {
+    "food": "garlic",
+    "grams": 5,
+    "display": "1 garlic clove, crushed"
+   }
+  ],
+  "steps": [
+   "Bring the stock to a simmer with the ginger and garlic.",
+   "Add the chicken breast whole and poach gently for 12 minutes, then lift out and shred.",
+   "Add the carrot, leek and noodles to the stock and simmer for 5 minutes until tender.",
+   "Return the chicken, season with soy sauce and scatter with spring onion."
+  ]
+ },
+ {
+  "id": "smoked-salmon-bagel",
+  "name": "Smoked Salmon And Cream Cheese Bagel",
+  "slot": "lunch",
+  "source": {
+   "name": "Delicious Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "quick",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "bagel",
+    "grams": 85,
+    "display": "1 bagel, split"
+   },
+   {
+    "food": "smoked salmon",
+    "grams": 80,
+    "display": "80 g smoked salmon"
+   },
+   {
+    "food": "cream cheese light",
+    "grams": 50,
+    "display": "2 tbsp light cream cheese"
+   },
+   {
+    "food": "cucumber",
+    "grams": 40,
+    "display": "5 cm cucumber, thinly sliced"
+   },
+   {
+    "food": "rocket",
+    "grams": 15,
+    "display": "small handful rocket"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Spread both bagel halves with the cream cheese and grind over black pepper.",
+   "Layer on the cucumber, rocket and smoked salmon.",
+   "Squeeze over the lemon juice and close the bagel."
+  ]
+ },
+ {
+  "id": "tuna-jacket-potato",
+  "name": "Tuna Jacket Potato",
+  "slot": "lunch",
+  "source": {
+   "name": "NHS Better Health",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 55,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "baking potato baked",
+    "grams": 250,
+    "display": "1 baking potato (about 250 g)"
+   },
+   {
+    "food": "tuna spring water drained",
+    "grams": 120,
+    "display": "1 large tin tuna in spring water, drained"
+   },
+   {
+    "food": "light mayo",
+    "grams": 15,
+    "display": "1 tbsp light mayonnaise"
+   },
+   {
+    "food": "spring onion",
+    "grams": 15,
+    "display": "1 spring onion, finely sliced"
+   },
+   {
+    "food": "sweetcorn",
+    "grams": 40,
+    "display": "2 tbsp tinned sweetcorn, drained"
+   }
+  ],
+  "steps": [
+   "Prick the potato and bake at 200C for 50-60 minutes until the skin is crisp.",
+   "Mix the tuna with the mayonnaise, sweetcorn and spring onion, and season.",
+   "Split the potato open and fill with the tuna mixture."
+  ]
+ },
+ {
+  "id": "greek-butterbean-salad",
+  "name": "Greek-Style Butter Bean Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "Olive Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "quick",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "butter beans drained",
+    "grams": 180,
+    "display": "180 g tinned butter beans, drained and rinsed"
+   },
+   {
+    "food": "feta",
+    "grams": 50,
+    "display": "50 g feta, cubed"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 100,
+    "display": "4 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "cucumber",
+    "grams": 100,
+    "display": "1/3 cucumber, chunked"
+   },
+   {
+    "food": "tomato",
+    "grams": 100,
+    "display": "1 large tomato, cut into wedges"
+   },
+   {
+    "food": "red onion",
+    "grams": 25,
+    "display": "1/6 red onion, thinly sliced"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "spices",
+    "grams": 1,
+    "display": "pinch dried oregano"
+   }
+  ],
+  "steps": [
+   "Whisk the yoghurt with the lemon juice, oregano and black pepper to make a dressing.",
+   "Combine the butter beans, cucumber, tomato and red onion in a bowl.",
+   "Spoon over the dressing and top with the feta."
+  ]
+ },
+ {
+  "id": "cottage-cheese-chickpea-bowl",
+  "name": "Cottage Cheese And Chickpea Bowl",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "quick",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "cottage cheese",
+    "grams": 250,
+    "display": "1 tub cottage cheese (250 g)"
+   },
+   {
+    "food": "chickpeas drained",
+    "grams": 100,
+    "display": "100 g tinned chickpeas, drained"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 100,
+    "display": "10 cherry tomatoes, halved"
+   },
+   {
+    "food": "cucumber",
+    "grams": 80,
+    "display": "1/3 cucumber, diced"
+   },
+   {
+    "food": "rocket",
+    "grams": 20,
+    "display": "handful rocket"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "mixed seeds",
+    "grams": 5,
+    "display": "1 tsp mixed seeds"
+   },
+   {
+    "food": "spices",
+    "grams": 1,
+    "display": "pinch smoked paprika"
+   }
+  ],
+  "steps": [
+   "Toss the chickpeas with the lemon juice, paprika and black pepper.",
+   "Layer the rocket, cucumber and tomatoes into a bowl or lunch box.",
+   "Add the cottage cheese and dressed chickpeas, then scatter with seeds."
+  ]
+ },
+ {
+  "id": "spiced-red-lentil-soup",
+  "name": "Spiced Red Lentil Soup With Yoghurt",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "red lentils dry",
+    "grams": 75,
+    "display": "75 g dried red lentils, rinsed"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 120,
+    "display": "5 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "carrot",
+    "grams": 80,
+    "display": "1 large carrot, diced"
+   },
+   {
+    "food": "onion",
+    "grams": 60,
+    "display": "1/2 small onion, chopped"
+   },
+   {
+    "food": "garlic",
+    "grams": 5,
+    "display": "1 garlic clove, crushed"
+   },
+   {
+    "food": "stock cube",
+    "grams": 5,
+    "display": "1 vegetable stock cube, made up with 500 ml water"
+   },
+   {
+    "food": "spices",
+    "grams": 3,
+    "display": "1 tsp ground cumin and 1/2 tsp turmeric"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Soften the onion, carrot and garlic in a splash of water for 5 minutes.",
+   "Stir in the spices, then add the lentils and stock.",
+   "Simmer for 20 minutes until the lentils collapse, then blend or mash to a rough puree.",
+   "Finish with lemon juice and swirl the yoghurt through before serving."
+  ]
+ },
+ {
+  "id": "chicken-caesar-style-salad",
+  "name": "Chicken Caesar-Style Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 15,
+  "tags": [
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "chicken breast raw",
+    "grams": 160,
+    "display": "1 chicken breast (about 160 g)"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 80,
+    "display": "2 little gem lettuces, chopped"
+   },
+   {
+    "food": "sourdough",
+    "grams": 40,
+    "display": "1 small slice sourdough, torn into croutons"
+   },
+   {
+    "food": "parmesan",
+    "grams": 15,
+    "display": "15 g parmesan, finely grated"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 60,
+    "display": "3 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "light mayo",
+    "grams": 15,
+    "display": "1 tbsp light mayonnaise"
+   },
+   {
+    "food": "dijon mustard",
+    "grams": 5,
+    "display": "1 tsp Dijon mustard"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "olive oil",
+    "grams": 5,
+    "display": "1 tsp olive oil"
+   }
+  ],
+  "steps": [
+   "Toss the bread with the oil and bake at 200C for 8 minutes until crisp.",
+   "Season the chicken and griddle for 6 minutes each side until cooked through, then slice.",
+   "Beat the yoghurt, mayonnaise, mustard, lemon juice and half the parmesan into a dressing.",
+   "Coat the leaves in the dressing, add the chicken and croutons and finish with the rest of the parmesan."
+  ]
+ },
+ {
+  "id": "turkey-larb-rice-bowl",
+  "name": "Thai-Style Turkey Larb Rice Bowl",
+  "slot": "lunch",
+  "source": {
+   "name": "Olive Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 15,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "turkey mince 5% raw",
+    "grams": 150,
+    "display": "150 g 5% fat turkey mince"
+   },
+   {
+    "food": "basmati rice dry",
+    "grams": 50,
+    "display": "50 g dried basmati rice"
+   },
+   {
+    "food": "lime juice",
+    "grams": 15,
+    "display": "1 tbsp lime juice"
+   },
+   {
+    "food": "fish sauce",
+    "grams": 10,
+    "display": "2 tsp fish sauce"
+   },
+   {
+    "food": "chilli",
+    "grams": 5,
+    "display": "1/2 red chilli, finely chopped"
+   },
+   {
+    "food": "spring onion",
+    "grams": 25,
+    "display": "2 spring onions, sliced"
+   },
+   {
+    "food": "cucumber",
+    "grams": 80,
+    "display": "1/3 cucumber, sliced"
+   },
+   {
+    "food": "carrot",
+    "grams": 50,
+    "display": "1/2 carrot, shredded"
+   },
+   {
+    "food": "sesame oil",
+    "grams": 5,
+    "display": "1 tsp sesame oil"
+   }
+  ],
+  "steps": [
+   "Cook the rice according to the packet and set aside.",
+   "Fry the turkey mince in the sesame oil over high heat for 6-8 minutes, breaking it up, until browned and cooked through.",
+   "Take off the heat and stir in the lime juice, fish sauce, chilli and spring onion.",
+   "Serve over the rice with the cucumber and carrot alongside."
+  ]
+ },
+ {
+  "id": "mackerel-pate-sourdough",
+  "name": "Smoked Mackerel Pate On Sourdough",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 0,
+  "tags": [
+   "no-cook",
+   "quick",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "mackerel tinned drained",
+    "grams": 110,
+    "display": "1 tin mackerel fillets, drained"
+   },
+   {
+    "food": "quark",
+    "grams": 80,
+    "display": "3 tbsp quark"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "sourdough",
+    "grams": 80,
+    "display": "2 slices sourdough"
+   },
+   {
+    "food": "rocket",
+    "grams": 25,
+    "display": "handful rocket"
+   },
+   {
+    "food": "spices",
+    "grams": 1,
+    "display": "pinch cracked black pepper"
+   }
+  ],
+  "steps": [
+   "Flake the mackerel into a bowl, removing any bones.",
+   "Mash with the quark, lemon juice and pepper until spreadable but still textured.",
+   "Toast the sourdough, spread with the pate and top with rocket."
+  ]
+ },
+ {
+  "id": "tofu-edamame-noodle-salad",
+  "name": "Sesame Tofu And Edamame Noodle Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 12,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "tofu firm",
+    "grams": 150,
+    "display": "150 g firm tofu, cubed"
+   },
+   {
+    "food": "edamame frozen",
+    "grams": 70,
+    "display": "70 g frozen edamame beans"
+   },
+   {
+    "food": "noodles wholewheat dry",
+    "grams": 30,
+    "display": "30 g dried wholewheat noodles"
+   },
+   {
+    "food": "cucumber",
+    "grams": 60,
+    "display": "1/4 cucumber, shredded"
+   },
+   {
+    "food": "carrot",
+    "grams": 40,
+    "display": "1/2 carrot, shredded"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 15,
+    "display": "1 tbsp soy sauce"
+   },
+   {
+    "food": "sesame oil",
+    "grams": 4,
+    "display": "1 tsp sesame oil"
+   },
+   {
+    "food": "rice wine vinegar",
+    "grams": 10,
+    "display": "2 tsp rice wine vinegar"
+   },
+   {
+    "food": "sesame seeds",
+    "grams": 4,
+    "display": "1 tsp sesame seeds"
+   }
+  ],
+  "steps": [
+   "Cook the noodles and edamame together for 4 minutes, then drain and cool under the tap.",
+   "Pan-fry the tofu in the sesame oil until golden on all sides.",
+   "Whisk the soy sauce and vinegar together.",
+   "Toss the noodles, edamame, cucumber, carrot and spring onion in the dressing, top with tofu and sesame seeds."
+  ]
+ },
+ {
+  "id": "pea-spinach-frittata",
+  "name": "Pea, Potato And Spinach Frittata",
+  "slot": "lunch",
+  "source": {
+   "name": "NHS Better Health",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 20,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "egg",
+    "grams": 120,
+    "display": "2 medium eggs"
+   },
+   {
+    "food": "egg white",
+    "grams": 150,
+    "display": "5 egg whites"
+   },
+   {
+    "food": "new potatoes",
+    "grams": 90,
+    "display": "90 g new potatoes, cooked and sliced"
+   },
+   {
+    "food": "peas frozen",
+    "grams": 80,
+    "display": "80 g frozen peas"
+   },
+   {
+    "food": "spinach",
+    "grams": 60,
+    "display": "2 large handfuls spinach"
+   },
+   {
+    "food": "feta",
+    "grams": 30,
+    "display": "30 g feta, crumbled"
+   },
+   {
+    "food": "olive oil",
+    "grams": 4,
+    "display": "1 tsp olive oil"
+   }
+  ],
+  "steps": [
+   "Boil the potatoes until tender, drain and slice.",
+   "Heat the oil in a small non-stick pan and wilt the spinach with the peas for 2 minutes, then add the potatoes.",
+   "Beat the eggs and egg whites with black pepper, pour into the pan and scatter over the feta.",
+   "Cook on a low heat for 8 minutes, then finish under a hot grill until set. Cool and slice; eat warm or cold."
+  ]
+ },
+ {
+  "id": "lentil-feta-salad",
+  "name": "Lentil, Feta And Tomato Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "Delicious Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 0,
+  "tags": [
+   "vegetarian",
+   "no-cook",
+   "quick",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "green lentils cooked",
+    "grams": 250,
+    "display": "1 pouch cooked green lentils (250 g)"
+   },
+   {
+    "food": "feta",
+    "grams": 50,
+    "display": "50 g feta, crumbled"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 40,
+    "display": "handful salad leaves"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 80,
+    "display": "8 cherry tomatoes, halved"
+   },
+   {
+    "food": "cucumber",
+    "grams": 60,
+    "display": "1/4 cucumber, diced"
+   },
+   {
+    "food": "red onion",
+    "grams": 25,
+    "display": "1/6 red onion, finely sliced"
+   },
+   {
+    "food": "olive oil",
+    "grams": 6,
+    "display": "1 tsp olive oil"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Tip the lentils into a bowl and dress with the oil, lemon juice and black pepper.",
+   "Stir through the tomatoes, cucumber and red onion.",
+   "Serve on the salad leaves with the feta crumbled over."
+  ]
+ },
+ {
+  "id": "tuna-pasta-salad",
+  "name": "Tuna And Sweetcorn Pasta Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 12,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "wholewheat pasta dry",
+    "grams": 80,
+    "display": "80 g dried wholewheat pasta"
+   },
+   {
+    "food": "tuna spring water drained",
+    "grams": 120,
+    "display": "1 large tin tuna in spring water, drained"
+   },
+   {
+    "food": "light mayo",
+    "grams": 20,
+    "display": "1 tbsp light mayonnaise"
+   },
+   {
+    "food": "sweetcorn",
+    "grams": 60,
+    "display": "3 tbsp tinned sweetcorn, drained"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 60,
+    "display": "6 cherry tomatoes, halved"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 5,
+    "display": "1 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Boil the pasta until al dente, then drain and cool under cold water.",
+   "Mix the tuna with the mayonnaise, lemon juice and black pepper.",
+   "Fold the pasta, sweetcorn, tomatoes and spring onion through the tuna and chill until needed."
+  ]
+ },
+ {
+  "id": "prawn-egg-fried-rice",
+  "name": "Prawn And Egg Fried Rice",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 15,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "prawns cooked",
+    "grams": 130,
+    "display": "130 g cooked prawns"
+   },
+   {
+    "food": "egg",
+    "grams": 60,
+    "display": "1 medium egg, beaten"
+   },
+   {
+    "food": "basmati rice dry",
+    "grams": 60,
+    "display": "60 g dried basmati rice, cooked and cooled"
+   },
+   {
+    "food": "peas frozen",
+    "grams": 60,
+    "display": "60 g frozen peas"
+   },
+   {
+    "food": "carrot",
+    "grams": 40,
+    "display": "1/2 carrot, finely diced"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 15,
+    "display": "1 tbsp soy sauce"
+   },
+   {
+    "food": "sesame oil",
+    "grams": 6,
+    "display": "1 heaped tsp sesame oil"
+   },
+   {
+    "food": "garlic",
+    "grams": 5,
+    "display": "1 garlic clove, crushed"
+   }
+  ],
+  "steps": [
+   "Heat the sesame oil in a wok and fry the carrot and garlic for 2 minutes.",
+   "Add the cold rice and peas and stir-fry over high heat for 3 minutes.",
+   "Push the rice aside, pour in the egg and scramble briefly, then mix through.",
+   "Add the prawns and soy sauce, heat for 2 minutes and finish with spring onion."
+  ]
+ },
+ {
+  "id": "spanish-potato-omelette",
+  "name": "Spanish-Style Potato Omelette",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "egg",
+    "grams": 180,
+    "display": "3 medium eggs"
+   },
+   {
+    "food": "egg white",
+    "grams": 60,
+    "display": "2 egg whites"
+   },
+   {
+    "food": "new potatoes",
+    "grams": 200,
+    "display": "200 g new potatoes, thinly sliced"
+   },
+   {
+    "food": "onion",
+    "grams": 60,
+    "display": "1/2 small onion, thinly sliced"
+   },
+   {
+    "food": "spinach",
+    "grams": 50,
+    "display": "large handful spinach"
+   },
+   {
+    "food": "olive oil",
+    "grams": 8,
+    "display": "2 tsp olive oil"
+   },
+   {
+    "food": "spices",
+    "grams": 2,
+    "display": "1/2 tsp smoked paprika"
+   }
+  ],
+  "steps": [
+   "Boil the potato slices for 6 minutes until just tender, then drain.",
+   "Soften the onion in the oil in a small non-stick pan, add the potatoes and paprika.",
+   "Wilt in the spinach, then pour over the beaten eggs and whites.",
+   "Cook on a low heat for 8 minutes, then finish under the grill until set. Cool before slicing."
+  ]
+ },
+ {
+  "id": "chicken-avocado-wrap",
+  "name": "Chicken And Avocado Wrap",
+  "slot": "lunch",
+  "source": {
+   "name": "NHS Better Health",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 12,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "tortilla wrap",
+    "grams": 62,
+    "display": "1 large tortilla wrap"
+   },
+   {
+    "food": "chicken breast raw",
+    "grams": 160,
+    "display": "1 chicken breast (about 160 g)"
+   },
+   {
+    "food": "avocado",
+    "grams": 80,
+    "display": "1/2 avocado, sliced"
+   },
+   {
+    "food": "cheddar grated",
+    "grams": 20,
+    "display": "20 g grated cheddar"
+   },
+   {
+    "food": "salsa",
+    "grams": 30,
+    "display": "2 tbsp tomato salsa"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 30,
+    "display": "handful salad leaves"
+   },
+   {
+    "food": "lime juice",
+    "grams": 5,
+    "display": "1 tsp lime juice"
+   }
+  ],
+  "steps": [
+   "Season the chicken and pan-fry for 6 minutes each side until cooked through, then slice.",
+   "Mash the avocado with the lime juice and spread over the wrap.",
+   "Add the salad leaves, chicken, salsa and cheddar.",
+   "Roll up tightly, tucking in the ends, and cut in half."
+  ]
+ },
+ {
+  "id": "quorn-chilli-rice-bowl",
+  "name": "Quorn Chilli Rice Bowl",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "quorn mince",
+    "grams": 150,
+    "display": "150 g Quorn mince"
+   },
+   {
+    "food": "kidney beans drained",
+    "grams": 120,
+    "display": "120 g tinned kidney beans, drained"
+   },
+   {
+    "food": "chopped tomatoes",
+    "grams": 150,
+    "display": "1/2 tin chopped tomatoes"
+   },
+   {
+    "food": "onion",
+    "grams": 60,
+    "display": "1/2 small onion, diced"
+   },
+   {
+    "food": "red pepper",
+    "grams": 80,
+    "display": "1/2 red pepper, diced"
+   },
+   {
+    "food": "basmati rice dry",
+    "grams": 45,
+    "display": "45 g dried basmati rice"
+   },
+   {
+    "food": "olive oil",
+    "grams": 5,
+    "display": "1 tsp olive oil"
+   },
+   {
+    "food": "tomato puree",
+    "grams": 15,
+    "display": "1 tbsp tomato puree"
+   },
+   {
+    "food": "spices",
+    "grams": 3,
+    "display": "1 tsp chilli powder and 1 tsp ground cumin"
+   },
+   {
+    "food": "stock cube",
+    "grams": 4,
+    "display": "1/2 vegetable stock cube"
+   }
+  ],
+  "steps": [
+   "Cook the rice according to the packet.",
+   "Fry the onion and pepper in the oil for 5 minutes, then stir in the spices and tomato puree.",
+   "Add the Quorn mince, chopped tomatoes, beans, crumbled stock cube and a splash of water.",
+   "Simmer for 15 minutes until thick, then serve over the rice."
+  ]
+ },
+ {
+  "id": "black-bean-quesadilla",
+  "name": "Black Bean And Cheese Quesadilla",
+  "slot": "lunch",
+  "source": {
+   "name": "Olive Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 8,
+  "cook_min": 10,
+  "tags": [
+   "vegetarian",
+   "quick",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "tortilla wrap",
+    "grams": 62,
+    "display": "1 large tortilla wrap"
+   },
+   {
+    "food": "black beans drained",
+    "grams": 150,
+    "display": "150 g tinned black beans, drained"
+   },
+   {
+    "food": "cheddar grated",
+    "grams": 45,
+    "display": "45 g grated cheddar"
+   },
+   {
+    "food": "red pepper",
+    "grams": 60,
+    "display": "1/3 red pepper, finely diced"
+   },
+   {
+    "food": "spring onion",
+    "grams": 20,
+    "display": "1 spring onion, sliced"
+   },
+   {
+    "food": "salsa",
+    "grams": 30,
+    "display": "2 tbsp tomato salsa"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 40,
+    "display": "2 tbsp fat-free Greek yoghurt"
+   },
+   {
+    "food": "spices",
+    "grams": 2,
+    "display": "1/2 tsp ground cumin"
+   }
+  ],
+  "steps": [
+   "Mash half the black beans with the cumin, then stir in the rest with the pepper and spring onion.",
+   "Spread the mixture over one half of the wrap, scatter with cheddar and fold over.",
+   "Dry-fry in a hot pan for 2-3 minutes each side until crisp and the cheese has melted.",
+   "Cut into wedges and serve with the salsa and yoghurt."
+  ]
+ },
+ {
+  "id": "halloumi-couscous-mezze",
+  "name": "Halloumi And Couscous Mezze Plate",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 10,
+  "tags": [
+   "vegetarian",
+   "quick",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "halloumi",
+    "grams": 75,
+    "display": "75 g halloumi, sliced"
+   },
+   {
+    "food": "couscous dry",
+    "grams": 50,
+    "display": "50 g dried couscous"
+   },
+   {
+    "food": "chickpeas drained",
+    "grams": 80,
+    "display": "80 g tinned chickpeas, drained"
+   },
+   {
+    "food": "red pepper",
+    "grams": 80,
+    "display": "1/2 red pepper, diced"
+   },
+   {
+    "food": "cucumber",
+    "grams": 60,
+    "display": "1/4 cucumber, diced"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   },
+   {
+    "food": "olive oil",
+    "grams": 3,
+    "display": "1/2 tsp olive oil"
+   },
+   {
+    "food": "spices",
+    "grams": 2,
+    "display": "1/2 tsp ground coriander"
+   },
+   {
+    "food": "stock cube",
+    "grams": 3,
+    "display": "1/2 vegetable stock cube"
+   }
+  ],
+  "steps": [
+   "Pour 75 ml boiling stock over the couscous, cover and leave for 5 minutes, then fork through.",
+   "Dry-fry the halloumi for 1-2 minutes each side until golden.",
+   "Toss the chickpeas, pepper and cucumber with the lemon juice, oil and coriander.",
+   "Plate the couscous, spoon over the salad and lay the halloumi on top."
+  ]
+ },
+ {
+  "id": "tempeh-mushroom-rice-bowl",
+  "name": "Tempeh And Mushroom Rice Bowl",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "tempeh",
+    "grams": 120,
+    "display": "120 g tempeh, cubed"
+   },
+   {
+    "food": "brown rice dry",
+    "grams": 70,
+    "display": "70 g dried brown rice"
+   },
+   {
+    "food": "mushrooms",
+    "grams": 100,
+    "display": "100 g chestnut mushrooms, sliced"
+   },
+   {
+    "food": "tenderstem",
+    "grams": 80,
+    "display": "80 g tenderstem broccoli"
+   },
+   {
+    "food": "soy sauce",
+    "grams": 15,
+    "display": "1 tbsp soy sauce"
+   },
+   {
+    "food": "sesame oil",
+    "grams": 6,
+    "display": "1 heaped tsp sesame oil"
+   },
+   {
+    "food": "garlic",
+    "grams": 5,
+    "display": "1 garlic clove, crushed"
+   },
+   {
+    "food": "root ginger",
+    "grams": 5,
+    "display": "1 tsp grated ginger"
+   },
+   {
+    "food": "sesame seeds",
+    "grams": 5,
+    "display": "1 tsp sesame seeds"
+   }
+  ],
+  "steps": [
+   "Cook the brown rice for 25 minutes, adding the tenderstem for the final 3 minutes.",
+   "Fry the tempeh in the sesame oil until browned on all sides.",
+   "Add the mushrooms, garlic and ginger and cook for 4 minutes.",
+   "Pour in the soy sauce, toss, and serve over the rice with sesame seeds."
+  ]
+ },
+ {
+  "id": "salmon-nicoise-salad",
+  "name": "Salmon Nicoise-Style Salad",
+  "slot": "lunch",
+  "source": {
+   "name": "Delicious Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 20,
+  "tags": [
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "salmon raw",
+    "grams": 130,
+    "display": "1 salmon fillet (about 130 g)"
+   },
+   {
+    "food": "new potatoes",
+    "grams": 200,
+    "display": "200 g new potatoes, halved"
+   },
+   {
+    "food": "green beans",
+    "grams": 90,
+    "display": "90 g green beans, trimmed"
+   },
+   {
+    "food": "egg",
+    "grams": 60,
+    "display": "1 medium egg"
+   },
+   {
+    "food": "salad leaves",
+    "grams": 40,
+    "display": "handful salad leaves"
+   },
+   {
+    "food": "cherry tomatoes",
+    "grams": 80,
+    "display": "8 cherry tomatoes, halved"
+   },
+   {
+    "food": "olive oil",
+    "grams": 8,
+    "display": "2 tsp olive oil"
+   },
+   {
+    "food": "dijon mustard",
+    "grams": 5,
+    "display": "1 tsp Dijon mustard"
+   },
+   {
+    "food": "lemon juice",
+    "grams": 10,
+    "display": "2 tsp lemon juice"
+   }
+  ],
+  "steps": [
+   "Boil the potatoes for 15 minutes, adding the beans for the last 3 minutes, then drain.",
+   "Boil the egg for 7 minutes, cool, peel and halve.",
+   "Bake the salmon at 190C for 14 minutes, then flake into large pieces.",
+   "Whisk the oil, mustard and lemon juice, then toss with the potatoes, beans, tomatoes and leaves.",
+   "Top with the salmon and egg."
+  ]
+ },
+ {
+  "id": "jacket-potato-beans-cheddar",
+  "name": "Jacket Potato With Baked Beans And Cheddar",
+  "slot": "lunch",
+  "source": {
+   "name": "NHS Better Health",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 5,
+  "cook_min": 55,
+  "tags": [
+   "vegetarian",
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "baking potato baked",
+    "grams": 280,
+    "display": "1 large baking potato (about 280 g)"
+   },
+   {
+    "food": "baked beans",
+    "grams": 200,
+    "display": "1/2 large tin baked beans"
+   },
+   {
+    "food": "cheddar grated",
+    "grams": 55,
+    "display": "55 g grated cheddar"
+   },
+   {
+    "food": "spring onion",
+    "grams": 15,
+    "display": "1 spring onion, sliced"
+   }
+  ],
+  "steps": [
+   "Prick the potato, rub with salt and bake at 200C for 55 minutes until crisp.",
+   "Heat the beans in a pan or microwave.",
+   "Split the potato, spoon over the beans and scatter with cheddar and spring onion."
+  ]
+ },
+ {
+  "id": "beef-chilli-rice-bowl",
+  "name": "Beef Chilli Rice Bowl",
+  "slot": "lunch",
+  "source": {
+   "name": "BBC Good Food",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 30,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "beef mince 5% raw",
+    "grams": 125,
+    "display": "125 g 5% fat beef mince"
+   },
+   {
+    "food": "kidney beans drained",
+    "grams": 100,
+    "display": "100 g tinned kidney beans, drained"
+   },
+   {
+    "food": "chopped tomatoes",
+    "grams": 150,
+    "display": "1/2 tin chopped tomatoes"
+   },
+   {
+    "food": "onion",
+    "grams": 60,
+    "display": "1/2 small onion, diced"
+   },
+   {
+    "food": "red pepper",
+    "grams": 80,
+    "display": "1/2 red pepper, diced"
+   },
+   {
+    "food": "brown rice dry",
+    "grams": 60,
+    "display": "60 g dried brown rice"
+   },
+   {
+    "food": "olive oil",
+    "grams": 5,
+    "display": "1 tsp olive oil"
+   },
+   {
+    "food": "tomato puree",
+    "grams": 15,
+    "display": "1 tbsp tomato puree"
+   },
+   {
+    "food": "spices",
+    "grams": 3,
+    "display": "1 tsp smoked paprika and 1 tsp chilli powder"
+   },
+   {
+    "food": "stock cube",
+    "grams": 4,
+    "display": "1/2 beef stock cube"
+   }
+  ],
+  "steps": [
+   "Cook the rice for 25 minutes and drain.",
+   "Brown the mince in the oil, then add the onion and pepper and cook for 5 minutes.",
+   "Stir in the spices and tomato puree, then add the tomatoes, beans, stock cube and 100 ml water.",
+   "Simmer for 20 minutes until thick and serve over the rice. Keeps well for reheating."
+  ]
+ },
+ {
+  "id": "harissa-chicken-couscous",
+  "name": "Harissa Chicken Couscous",
+  "slot": "lunch",
+  "source": {
+   "name": "Olive Magazine",
+   "url": null
+  },
+  "servings": 1,
+  "prep_min": 10,
+  "cook_min": 25,
+  "tags": [
+   "packable",
+   "high-protein"
+  ],
+  "ingredients": [
+   {
+    "food": "chicken breast raw",
+    "grams": 170,
+    "display": "1 chicken breast (about 170 g)"
+   },
+   {
+    "food": "couscous dry",
+    "grams": 65,
+    "display": "65 g dried couscous"
+   },
+   {
+    "food": "harissa",
+    "grams": 25,
+    "display": "1 tbsp harissa paste"
+   },
+   {
+    "food": "chickpeas drained",
+    "grams": 80,
+    "display": "80 g tinned chickpeas, drained"
+   },
+   {
+    "food": "red pepper",
+    "grams": 80,
+    "display": "1/2 red pepper, sliced"
+   },
+   {
+    "food": "courgette",
+    "grams": 80,
+    "display": "1/2 courgette, sliced"
+   },
+   {
+    "food": "olive oil",
+    "grams": 6,
+    "display": "1 heaped tsp olive oil"
+   },
+   {
+    "food": "stock cube",
+    "grams": 4,
+    "display": "1/2 chicken stock cube"
+   },
+   {
+    "food": "greek yoghurt 0%",
+    "grams": 40,
+    "display": "2 tbsp fat-free Greek yoghurt"
+   }
+  ],
+  "steps": [
+   "Coat the chicken in the harissa and roast at 200C for 22 minutes with the pepper and courgette tossed in the oil.",
+   "Pour 100 ml boiling stock over the couscous, cover for 5 minutes and fork through the chickpeas.",
+   "Slice the chicken and pile it with the roast vegetables onto the couscous.",
+   "Finish with the yoghurt."
+  ]
+ }
+]

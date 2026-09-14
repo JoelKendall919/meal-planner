@@ -5,7 +5,7 @@
       "name": "Build site",
       "type": "debugpy",
       "request": "launch",
-      "module": "fitnessplan.build",
+      "module": "mealplanner.build",
       "console": "integratedTerminal",
       "justMyCode": false
     },
@@ -13,7 +13,7 @@
       "name": "Nutrition report",
       "type": "debugpy",
       "request": "launch",
-      "module": "fitnessplan.nutrition",
+      "module": "mealplanner.nutrition",
       "console": "integratedTerminal",
       "justMyCode": false
     }

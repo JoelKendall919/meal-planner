@@ -36,11 +36,14 @@ jobs:
       - name: Test
         run: pytest
 
+      - name: Validate recipe catalogue
+        run: python scripts/validate_recipes.py data/recipes-breakfast.json data/recipes-lunch.json data/recipes-dinner.json
+
       - name: Nutrition report
-        run: python -m fitnessplan.nutrition
+        run: python -m mealplanner.nutrition
 
       - name: Build site
-        run: python -m fitnessplan.build
+        run: python -m mealplanner.build
 
       - name: Upload site
         uses: actions/upload-artifact@v4

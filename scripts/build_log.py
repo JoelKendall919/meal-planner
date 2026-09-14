@@ -1,19 +1,21 @@
+import argparse
 import datetime as dt
+import pathlib
+
 from openpyxl import Workbook
-from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.chart import BarChart, LineChart, Reference, Series
+from openpyxl.formatting.rule import CellIsRule, ColorScaleRule
+from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.datavalidation import DataValidation
-from openpyxl.chart import LineChart, BarChart, Reference, Series
-from openpyxl.formatting.rule import CellIsRule, ColorScaleRule
-
-import argparse
-import pathlib
 
 # The generated workbook holds personal measurements, so it is written to
 # private/ which is excluded from version control.
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 _ap = argparse.ArgumentParser(description="Generate the weight and training log workbook.")
-_ap.add_argument("--out", type=pathlib.Path, default=ROOT / "private" / "weight-and-training-log.xlsx")
+_ap.add_argument(
+    "--out", type=pathlib.Path, default=ROOT / "private" / "weight-and-training-log.xlsx"
+)
 OUT = str(_ap.parse_args().out)
 pathlib.Path(OUT).parent.mkdir(parents=True, exist_ok=True)
 
