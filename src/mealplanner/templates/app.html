@@ -16,7 +16,21 @@
   --bg:#f6f6f4; --card:#fff; --ink:#141414; --mut:#6b6b6b; --line:#e3e3df;
   --accent:#111; --good:#1a7f37; --warn:#9a6700; --bad:#b42318;
   --pad:env(safe-area-inset-bottom,0px);
+  /* One colour per macro, used everywhere that macro appears so a figure is
+     recognisable before you have read its label. */
+  --m-kcal:#b45309; --m-protein:#1d4ed8; --m-fat:#a21caf; --m-carbs:#0f766e;
+  --m-kcal-bg:#fdf3e7; --m-protein-bg:#eef2ff; --m-fat-bg:#fbf0fb; --m-carbs-bg:#ecf8f6;
 }
+.k-kcal{color:var(--m-kcal)} .k-protein{color:var(--m-protein)}
+.k-fat{color:var(--m-fat)} .k-carbs{color:var(--m-carbs)}
+/* A dot carries the macro's colour where the text itself must stay readable. */
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;
+  vertical-align:middle;flex:none}
+.dot.k-kcal{background:var(--m-kcal)} .dot.k-protein{background:var(--m-protein)}
+.dot.k-fat{background:var(--m-fat)} .dot.k-carbs{background:var(--m-carbs)}
+/* How a figure is tracking against its goal. Independent of the macro colour:
+   these say how you are doing, the macro colours say what you are looking at. */
+.s-good{color:var(--good)} .s-warn{color:var(--warn)} .s-bad{color:var(--bad)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{margin:0;background:var(--bg);color:var(--ink);
   font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -71,12 +85,20 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
   text-align:center}
 .macro b{display:block;font-size:16px;line-height:1.2}
 .macro .of{font-size:10.5px;color:var(--mut)}
-.macro span.nm{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.3px;
-  display:block;margin-bottom:3px}
-.prog{height:4px;border-radius:3px;background:#e7e7e3;margin-top:5px;overflow:hidden}
-.prog i{display:block;height:100%;background:var(--good);border-radius:3px}
-.prog i.over{background:var(--bad)}
-.prog i.under{background:var(--warn)}
+.macro span.nm{font-size:10px;text-transform:uppercase;letter-spacing:.3px;
+  display:block;margin-bottom:3px;font-weight:600}
+.macro.k-kcal{background:var(--m-kcal-bg);border-color:#f0ddc4}
+.macro.k-protein{background:var(--m-protein-bg);border-color:#d5dcfa}
+.macro.k-fat{background:var(--m-fat-bg);border-color:#efd9ef}
+.macro.k-carbs{background:var(--m-carbs-bg);border-color:#cfe8e3}
+/* Macro figures shown inline, under a meal name or on a recipe row. */
+.mline{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:12px;color:var(--mut)}
+.stat{display:inline-flex;align-items:center;white-space:nowrap}
+.stat small{font-size:11.5px;margin-left:2px}
+.portions{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;
+  color:var(--mut)}
+.portions b{font-size:16px;color:var(--ink);min-width:18px;text-align:center}
+.portions .step{padding:4px 11px;font-size:15px;line-height:1.1}
 
 /* --- plan: day view (large tiles) --- */
 .tile{border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px;
@@ -127,12 +149,13 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .rlist{list-style:none;margin:0;padding:0}
 .rlist li{border-bottom:1px solid var(--line)}
 .rlist li:last-child{border-bottom:0}
-.ritem{display:flex;align-items:center;gap:10px;padding:11px 2px;width:100%;
+.ritem{display:flex;align-items:flex-start;gap:10px;padding:11px 2px;width:100%;
   background:none;border:0;text-align:left}
 .ritem .nm{flex:1;min-width:0}
 .ritem .nm b{display:block;font-weight:600;font-size:14.5px;overflow:hidden;
   text-overflow:ellipsis;white-space:nowrap}
 .ritem .nm small{color:var(--mut);font-size:12px}
+.ritem .mline{margin-top:4px}
 .kc{text-align:right;font-size:12px;color:var(--mut);white-space:nowrap}
 .kc b{display:block;color:var(--ink);font-size:14px}
 .tag{display:inline-block;font-size:10.5px;padding:1.5px 6px;border-radius:5px;
@@ -180,6 +203,14 @@ ol.steps li{margin:6px 0}
 .nrow .barwrap{flex:1}
 .nrow .fig{width:96px;text-align:right;font-size:12px;color:var(--mut);white-space:nowrap}
 .nrow .fig b{color:var(--ink)}
+/* The one bar that stays: the Nutrients page exists to compare against goals.
+   Scoped to .barwrap so it cannot leak back into the macro cards, where an
+   inline span with a percentage width rendered as a block over the figures. */
+.barwrap .prog{display:block;height:6px;border-radius:3px;background:#e7e7e3;
+  overflow:hidden}
+.barwrap .prog i{display:block;height:100%;border-radius:3px;background:var(--good)}
+.barwrap .prog i.s-warn{background:var(--warn)}
+.barwrap .prog i.s-bad{background:var(--bad)}
 .dlist{list-style:none;margin:0;padding:0;font-size:13px}
 .dlist li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;
   border-bottom:1px solid var(--line)}
@@ -225,11 +256,16 @@ const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = ["January","February","March","April","May","June",
                 "July","August","September","October","November","December"];
 const MACROS = [
-  { key: "kcal", label: "Calories", unit: "" },
-  { key: "protein", label: "Protein", unit: "g" },
-  { key: "fat", label: "Fat", unit: "g" },
-  { key: "carbs", label: "Carbs", unit: "g" },
+  // `dir` is how the goal should be read. Calories, fat and carbs are budgets you
+  // stay under. Protein is a floor you are trying to reach, so the same "x of y"
+  // reads the opposite way and has to be coloured the opposite way.
+  { key: "kcal", label: "Calories", unit: "", dir: "budget" },
+  { key: "protein", label: "Protein", unit: "g", dir: "target" },
+  { key: "fat", label: "Fat", unit: "g", dir: "budget" },
+  { key: "carbs", label: "Carbs", unit: "g", dir: "budget" },
 ];
+const MACRO_BY_KEY = {};
+MACROS.forEach(m => { MACRO_BY_KEY[m.key] = m; });
 const KEY = "mealplanner.v3";
 const OLD_KEY = "mealplanner.v2";
 
@@ -346,6 +382,37 @@ function save(){
 
 let tab = "plan";
 const filter = { slot: null, tag: null, q: "" };
+// The plan's meal picker keeps its own filters so browsing for a Tuesday lunch
+// never disturbs whatever you had set up on the Recipes tab.
+let pickFilter = { slot: null, tag: null, q: "" };
+
+/** Recipes matching a filter set, used by both the Recipes tab and the picker. */
+function filterRecipes(f){
+  const q = f.q.trim().toLowerCase();
+  return RECIPES.filter(r => {
+    if (f.slot && r.slot !== f.slot) return false;
+    if (f.tag && !r.tags.includes(f.tag)) return false;
+    if (q){
+      const hay = (r.name + " " + r.tags.join(" ") + " " +
+        r.ingredients.map(i => i.display).join(" ")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+/** The search box and filter chips. `ns` namespaces the hooks so the picker's
+ *  copy and the Recipes tab's copy can coexist without fighting each other. */
+function filterControls(f, ns){
+  return `<input type="search" id="q-${ns}" data-search="${ns}"
+      placeholder="Search recipes or ingredients..." value="${esc(f.q)}">
+    <div class="chips" style="margin-top:9px">
+      ${SLOTS.map(s =>
+        `<button class="chip ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${s}</button>`).join("")}
+      ${DATA.tags.map(t =>
+        `<button class="chip ${f.tag === t ? "on" : ""}" data-tag="${ns}|${esc(t)}">${esc(t)}</button>`).join("")}
+    </div>`;
+}
 let sheet = null;
 
 /* ===== helpers =========================================================== */
@@ -427,15 +494,43 @@ function segmented(){
     <div class="bar tight" style="margin-top:8px"><button class="sec" data-today="1">Today</button></div>`;
 }
 
+/** How a figure is tracking against its goal, as a CSS class.
+ *
+ * A budget (calories, fat, carbs) is comfortable while there is room left, gets
+ * a warning as it fills, and turns bad once it is exceeded. A target (protein)
+ * is the mirror image: bad while you are well short, good once you arrive.
+ * Going over a protein goal is not a problem, so it stays good.
+ */
+function statusClass(value, goal, dir){
+  if (!goal) return "";
+  const pct = value / goal;
+  if (dir === "target") return pct >= 0.95 ? "s-good" : pct >= 0.8 ? "s-warn" : "s-bad";
+  return pct > 1.02 ? "s-bad" : pct >= 0.9 ? "s-warn" : "s-good";
+}
+
+/** A single "42 g of 150 g" figure, coloured by how it is tracking. */
+function macroStat(key, value, goal){
+  const m = MACRO_BY_KEY[key];
+  const cls = statusClass(value, goal, m.dir);
+  return `<span class="stat"><i class="dot k-${key}"></i>${
+    value}${m.unit}<small class="${cls}"> / ${goal}${m.unit}</small></span>`;
+}
+
 function macroCards(values, goals, caption){
   return `<div class="macros">${MACROS.map(m => {
     const v = values[m.key], g = goals[m.key] || 0;
-    const pct = g ? Math.min(Math.round((v / g) * 100), 100) : 0;
-    const cls = !g ? "" : v > g * 1.05 ? "over" : v < g * 0.9 ? "under" : "";
-    return `<div class="macro"><span class="nm">${m.label}</span>
-      <b>${v}${m.unit}</b><span class="of">of ${g}${m.unit}</span>
-      <span class="prog"><i class="${cls}" style="width:${pct}%"></i></span></div>`;
+    const cls = statusClass(v, g, m.dir);
+    return `<div class="macro k-${m.key}"><span class="nm k-${m.key}">${m.label}</span>
+      <b class="${cls}">${v}${m.unit}</b>${
+      g ? `<span class="of ${cls}">of ${g}${m.unit}</span>` : ""}</div>`;
   }).join("")}</div>${caption ? `<div class="sub" style="margin-top:8px">${esc(caption)}</div>` : ""}`;
+}
+
+/** The compact macro line under a meal name. Colour identifies each figure. */
+function macroLine(macros){
+  return `<span class="mline">${MACROS.map(m =>
+    `<span class="stat"><i class="dot k-${m.key}"></i>${macros[m.key]}${
+      m.unit || " kcal"}</span>`).join("")}</span>`;
 }
 
 /* ===== plan ============================================================== */
@@ -472,8 +567,7 @@ function dayTiles(date){
       <div class="slotname">${slot}${optional ? ` <em>optional</em>` : ""}</div>
       <div class="mealname ${r ? "" : "empty"}">${
         r ? esc(r.name) : optional ? "No snack needed" : "Nothing chosen"}</div>
-      ${r ? `<div class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein
-              &middot; ${r.macros.fat} g fat &middot; ${r.macros.carbs} g carbs</div>` : ""}
+      ${r ? `<div class="sub">${macroLine(r.macros)}</div>` : ""}
       <div class="bar">
         ${r ? `<button class="sec" data-open="${r.id}">View recipe</button>
                <button class="sec" data-pick="${date}|${slot}">Change</button>
@@ -497,7 +591,7 @@ function weekGrid(a, b){
         return `<button class="mini" data-slot-tap="${date}|${slot}">
           <span class="lbl">${SLOT_ABBR[slot]}</span>
           <span class="val ${r ? "" : "empty"}">${r ? esc(r.name) : "&mdash;"}</span>
-          <span class="n">${r ? r.macros.kcal : ""}</span>
+          <span class="n k-kcal">${r ? r.macros.kcal : ""}</span>
         </button>`;
       }).join("")}
     </div>`;
@@ -535,31 +629,15 @@ function recipeRow(r, action){
     <span class="nm"><b>${esc(r.name)}</b>
       <small>${veg ? '<span class="tag veg">veg</span>' : ""}${
         rest.map(t => `<span class="tag">${esc(t)}</span>`).join("")
-      }${r.total_min ? esc(r.total_min) + " min" : ""}</small></span>
-    <span class="kc"><b>${r.macros.kcal}</b>${r.macros.protein} g</span>
+      }${r.total_min ? esc(r.total_min) + " min" : ""}</small>
+      ${macroLine(r.macros)}</span>
   </button></li>`;
 }
 
 function viewRecipes(){
-  const q = filter.q.trim().toLowerCase();
-  const list = RECIPES.filter(r => {
-    if (filter.slot && r.slot !== filter.slot) return false;
-    if (filter.tag && !r.tags.includes(filter.tag)) return false;
-    if (q){
-      const hay = (r.name + " " + r.tags.join(" ") + " " +
-        r.ingredients.map(i => i.display).join(" ")).toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
-    return true;
-  });
+  const list = filterRecipes(filter);
   return `<div class="card">
-    <input type="search" id="q" placeholder="Search recipes or ingredients..." value="${esc(filter.q)}">
-    <div class="chips" style="margin-top:9px">
-      ${SLOTS.map(s =>
-        `<button class="chip ${filter.slot === s ? "on" : ""}" data-fslot="${s}">${s}</button>`).join("")}
-      ${DATA.tags.map(t =>
-        `<button class="chip ${filter.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}
-    </div>
+    ${filterControls(filter, "tab")}
     <div class="sub">${list.length} recipe${list.length === 1 ? "" : "s"}</div>
   </div>
   <div class="card"><ul class="rlist">${
@@ -611,7 +689,7 @@ function snackCard(date){
       </div></div>
       <div class="snk">
         <div class="snkmain"><b>${esc(r.name)}</b>
-          <span class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein</span></div>
+          <span class="sub">${macroLine(r.macros)}</span></div>
         <div class="bar tight">
           <button class="sec" data-open="${r.id}">Recipe</button>
           <button class="sec" data-pick="${date}|snack">Swap</button>
@@ -636,10 +714,10 @@ function snackCard(date){
     </div></div>
     ${opts.map(o => `<div class="snk">
       <div class="snkmain"><b>${esc(o.recipe.name)}</b>
-        <span class="sub">+${o.recipe.macros.kcal} kcal &middot;
-          +${o.recipe.macros.protein} g protein</span>
-        <span class="sub after">Day becomes ${o.after.kcal} kcal &middot;
-          ${o.after.protein} g P &middot; ${o.after.fat} g F &middot; ${o.after.carbs} g C</span>
+        <span class="sub"><span class="stat"><i class="dot k-kcal"></i>+${
+          o.recipe.macros.kcal} kcal</span> <span class="stat"><i class="dot k-protein"></i>+${
+          o.recipe.macros.protein} g</span></span>
+        <span class="sub after">Day becomes ${macroLine(o.after)}</span>
       </div>
       <div class="bar tight">
         <button class="sec" data-open="${o.recipe.id}">Recipe</button>
@@ -669,11 +747,11 @@ function viewNutrients(){
     const v = values[m.key], g = S.goals[m.key] || 0;
     const pct = g ? Math.min(Math.round((v / g) * 100), 100) : 0;
     const diff = v - g;
-    const cls = !g ? "" : v > g * 1.05 ? "over" : v < g * 0.9 ? "under" : "";
+    const cls = statusClass(v, g, m.dir);
     return `<div class="nrow">
-      <span class="nm">${m.label}</span>
+      <span class="nm k-${m.key}"><i class="dot k-${m.key}"></i>${m.label}</span>
       <span class="barwrap"><span class="prog"><i class="${cls}" style="width:${pct}%"></i></span></span>
-      <span class="fig"><b>${v}${m.unit}</b> / ${g}${m.unit}
+      <span class="fig"><b class="${cls}">${v}${m.unit}</b> / ${g}${m.unit}
         <br>${diff === 0 ? "on target" : (diff > 0 ? "+" : "") + diff + m.unit}</span>
     </div>`;
   }).join("");
@@ -702,8 +780,8 @@ function viewNutrients(){
       daysBetween(a, b).filter(d => mealsOn(d).length).map(d => {
         const t = totalsOn(d);
         return `<li><span>${esc(fmtDate(d))}</span>
-          <span class="sub">${t.kcal} kcal &middot; ${t.protein} g P &middot;
-            ${t.fat} g F &middot; ${t.carbs} g C</span></li>`;
+          <span class="sub mline">${MACROS.map(m =>
+            macroStat(m.key, t[m.key], S.goals[m.key])).join("")}</span></li>`;
       }).join("")}</ul></div>`;
   }
 
@@ -712,7 +790,8 @@ function viewNutrients(){
       <div class="sub">Used across the app to score your days.</div>
     </div></div>
     <form id="goalf">
-      ${MACROS.map(m => `<label class="fld"><span>${m.label}${m.unit ? " (" + m.unit + ")" : ""}</span>
+      ${MACROS.map(m => `<label class="fld"><span class="k-${m.key}"><i class="dot k-${m.key}"></i>${
+        m.label}${m.unit ? " (" + m.unit + ")" : ""}</span>
         <input type="number" inputmode="numeric" min="0" max="20000"
           name="${m.key}" value="${S.goals[m.key]}"></label>`).join("")}
       <div class="bar tight">
@@ -919,18 +998,14 @@ function render(){
       : planned ? `${planned} day${planned === 1 ? "" : "s"} planned`
                 : `${RECIPES.length} recipes`;
 
-  if (tab === "recipes"){
-    const q = document.getElementById("q");
-    if (q){
-      q.oninput = e => {
-        const pos = e.target.selectionStart;
-        filter.q = e.target.value;
-        render();
-        const q2 = document.getElementById("q");
-        if (q2){ q2.focus(); q2.setSelectionRange(pos, pos); }
-      };
-    }
-  }
+}
+
+/** Keep the caret where the user left it after a search re-render. */
+function restoreSearch(id, pos){
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.focus({ preventScroll: true });
+  el.setSelectionRange(pos, pos);
 }
 
 /* ===== sheets ============================================================ */
@@ -944,8 +1019,12 @@ function openSheet(html){
 }
 function closeSheet(){ if (sheet){ sheet.remove(); sheet = null; } }
 
-function pickSheet(date, slot){
-  const list = RECIPES.filter(r => r.slot === slot);
+function pickSheet(date, slot, keep){
+  // Opening the picker preselects the slot you tapped, so you land on the meals
+  // that belong there. Clearing the chip widens it to the whole catalogue, which
+  // is what you want when a lunch recipe would do fine as a dinner.
+  if (!keep) pickFilter = { slot: slot, tag: null, q: "" };
+  const list = filterRecipes(pickFilter);
   const current = (S.plan[date] || {})[slot];
   openSheet(`<header><h1>${esc(fmtDate(date))} &middot; ${slot}</h1>
       <button class="x" data-close="1">&times;</button></header>
@@ -954,7 +1033,14 @@ function pickSheet(date, slot){
           <button class="sec" data-open="${current}">View recipe</button>
           <button class="sec danger" data-unset="${date}|${slot}">Remove</button>
         </div></div>` : ""}
-      <div class="card"><ul class="rlist">${list.map(r => recipeRow(r, "set")).join("")}</ul></div>
+      <div class="card">
+        ${filterControls(pickFilter, "pick")}
+        <div class="sub">${list.length} recipe${list.length === 1 ? "" : "s"}</div>
+      </div>
+      <div class="card"><ul class="rlist">${
+        list.length ? list.map(r => recipeRow(r, "set")).join("")
+                    : `<li><div class="empty-state">Nothing matches those filters.</div></li>`
+      }</ul></div>
     </div>`);
   sheet.dataset.date = date;
   sheet.dataset.slot = slot;
@@ -979,9 +1065,19 @@ function slotSheet(date, slot){
     </div></div>`);
 }
 
-function recipeSheet(id){
+/** Round a scaled weight the way a kitchen scale would show it. */
+function scaleGrams(grams, n){
+  const v = grams * n;
+  return v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
+}
+
+function recipeSheet(id, portions){
   const r = BY_ID[id];
   if (!r) return;
+  // Portions scale the shopping and cooking quantities only. A planned slot is
+  // always one portion, so the macros below stay per portion and the shopping
+  // list keeps following the plan rather than this number.
+  const n = Math.min(Math.max(Math.round(portions || 1), 1), 8);
   const src = r.source && r.source.name
     ? `<div class="src">Inspired by ${esc(r.source.name)}. Quantities and method written for this planner.</div>`
     : "";
@@ -990,12 +1086,25 @@ function recipeSheet(id){
       <div class="sub">${esc(r.slot)}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
         r.tags.length ? ` &middot; ${r.tags.map(esc).join(", ")}` : ""}</div>
       <div class="macros" style="margin-top:10px">
-        ${MACROS.map(m => `<div class="macro"><span class="nm">${m.label}</span>
+        ${MACROS.map(m => `<div class="macro k-${m.key}"><span class="nm k-${m.key}">${m.label}</span>
           <b>${r.macros[m.key]}${m.unit}</b></div>`).join("")}
       </div>
+      <div class="sub" style="margin-top:6px">Per portion.</div>
+      <div class="portions">
+        <span>Make</span>
+        <button class="step" data-portions="${r.id}|${n - 1}" ${n <= 1 ? "disabled" : ""}>&minus;</button>
+        <b>${n}</b>
+        <button class="step" data-portions="${r.id}|${n + 1}" ${n >= 8 ? "disabled" : ""}>+</button>
+        <span>portion${n === 1 ? "" : "s"}</span>
+      </div>
+      ${n > 1 ? `<div class="sub">Quantities below make ${n} portions &mdash; ${
+        r.macros.kcal * n} kcal and ${r.macros.protein * n} g protein in total. Cook once and
+        the extra portions cover another slot; plan this meal on each day you eat it so the
+        shopping list buys enough.</div>` : ""}
       <h2 style="margin-top:14px">Ingredients</h2>
       <ul class="ing">${r.ingredients.map(i =>
-        `<li><span>${esc(i.display)}</span><span class="g">${i.grams} g</span></li>`).join("")}</ul>
+        `<li><span>${n > 1 ? `${n} &times; ` : ""}${esc(i.display)}</span>
+          <span class="g">${scaleGrams(i.grams, n)} g</span></li>`).join("")}</ul>
       <h2 style="margin-top:14px">Method</h2>
       <ol class="steps">${r.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
       ${src}
@@ -1138,7 +1247,7 @@ document.addEventListener("click", e => {
     "[data-pick],[data-slot-tap],[data-set],[data-open],[data-close],[data-unset]," +
     "[data-fill],[data-clear],[data-fslot],[data-tag],[data-newlist],[data-gen]," +
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
-    "[data-addsnack]");
+    "[data-addsnack],[data-portions]");
   if (!t) return;
   const d = t.dataset;
 
@@ -1174,6 +1283,11 @@ document.addEventListener("click", e => {
     return;
   }
   if (d.open){ recipeSheet(d.open); return; }
+  if (d.portions){
+    const [rid, n] = d.portions.split("|");
+    recipeSheet(rid, Number(n));
+    return;
+  }
   if (d.addsnack){
     const [date, id] = d.addsnack.split("|");
     setMeal(date, "snack", id);
@@ -1184,9 +1298,24 @@ document.addEventListener("click", e => {
   if (d.fill){ fillRange(); return; }
   if (d.clear){ clearRange(); return; }
 
-  /* recipe filters */
-  if (d.fslot){ filter.slot = filter.slot === d.fslot ? null : d.fslot; render(); return; }
-  if (d.tag){ filter.tag = filter.tag === d.tag ? null : d.tag; render(); return; }
+  /* recipe filters, shared by the Recipes tab and the plan's meal picker */
+  if (d.fslot){
+    const [ns, slot] = d.fslot.split("|");
+    const f = ns === "pick" ? pickFilter : filter;
+    f.slot = f.slot === slot ? null : slot;
+    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    else render();
+    return;
+  }
+  if (d.tag){
+    const i = d.tag.indexOf("|");
+    const ns = d.tag.slice(0, i), tag = d.tag.slice(i + 1);
+    const f = ns === "pick" ? pickFilter : filter;
+    f.tag = f.tag === tag ? null : tag;
+    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    else render();
+    return;
+  }
 
   /* shopping */
   if (d.newlist){ newListSheet(); return; }
@@ -1219,6 +1348,21 @@ document.addEventListener("click", e => {
     save(); render(); toast("Goals reset to defaults");
     return;
   }
+});
+
+// One listener covers both search boxes: the Recipes tab and the plan's picker.
+document.addEventListener("input", e => {
+  const ns = e.target.dataset && e.target.dataset.search;
+  if (!ns) return;
+  const pos = e.target.selectionStart;
+  if (ns === "pick"){
+    pickFilter.q = e.target.value;
+    pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+  } else {
+    filter.q = e.target.value;
+    render();
+  }
+  restoreSearch("q-" + ns, pos);
 });
 
 document.addEventListener("submit", e => {

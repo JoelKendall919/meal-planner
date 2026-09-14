@@ -313,3 +313,101 @@ def test_nutrients_page_can_close_the_protein_gap(tmp_path):
     assert "Day becomes" in html, "the effect on the day is not shown"
     # Suggestions must be filtered by the calories left, not merely sorted.
     assert "r.macros.kcal <= headroom" in html, "snacks are not limited to spare calories"
+
+
+def test_the_plan_picker_works_like_the_recipes_tab(tmp_path):
+    """Choosing a meal should offer the same search and filters as browsing.
+
+    The picker and the Recipes tab share one filter implementation so the two
+    cannot drift apart. They keep separate filter state, though: browsing for a
+    Tuesday lunch must not silently rewrite what the Recipes tab was showing.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function filterRecipes" in html, "the filter logic is not shared"
+    assert "function filterControls" in html, "the search and chips are not shared"
+    assert html.count("filterControls(") >= 3, "one of the two surfaces is not using it"
+    assert "let pickFilter" in html, "the picker has no filter state of its own"
+    # The slot you tapped is preselected, so you land on meals that belong there.
+    assert "pickFilter = { slot: slot" in html, "the picker does not preselect the slot"
+    assert 'data-search="${ns}"' in html, "the search boxes are not namespaced"
+
+
+def test_recipe_rows_show_every_macro(tmp_path):
+    """A row you pick a meal from has to show what the meal costs you.
+
+    Scoped to `recipeRow` on purpose: `macroLine` is used on several surfaces,
+    so asserting it appears *somewhere* passed even with the recipe row stripped.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function macroLine" in html
+    row = html[html.index("function recipeRow"):html.index("function viewRecipes")]
+    assert "macroLine(r.macros)" in row, "recipe rows show no macro line"
+    assert "MACROS.map" in html[html.index("function macroLine"):], (
+        "the macro line is not generated from MACROS, so it can fall out of step"
+    )
+
+
+def test_portions_scale_the_recipe_but_not_the_shopping_list(tmp_path):
+    """Portions are a cooking aid.
+
+    The shopping list is built from the plan, and a planned slot is always one
+    portion. If the portions control fed into the list as well, cooking two and
+    planning it on two days would buy four portions of ingredients.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function scaleGrams" in html, "there is no portion scaling"
+    assert "data-portions=" in html, "the portions stepper has no handler hook"
+    assert "scaleGrams(i.grams, n)" in html, "ingredients do not scale"
+    # buildShoppingList is driven by recipe ids from the plan and nothing else,
+    # so there is no route from the portions control into the shop.
+    shopping = Path("src/mealplanner/templates/shopping.js").read_text(encoding="utf-8")
+    assert "portions" not in shopping, "the shopping list knows about portions"
+
+
+def test_each_macro_has_a_colour_and_a_direction(tmp_path):
+    """Colour carries meaning twice over, and the two must not be confused.
+
+    Each macro has a fixed identity colour so a figure is recognisable before
+    you read its label. Separately, a figure is scored against its goal. Those
+    are different axes: `k-*` classes say what you are looking at, `s-*` classes
+    say how you are doing.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    for key in ("kcal", "protein", "fat", "carbs"):
+        assert f"--m-{key}:" in html, f"{key} has no colour token"
+        assert f".k-{key}{{color:var(--m-{key})}}" in html, f"{key} has no colour class"
+    assert "function statusClass" in html, "nothing scores a figure against its goal"
+    for cls in ("s-good", "s-warn", "s-bad"):
+        assert f".{cls}{{color:var(" in html, f"{cls} has no colour"
+
+
+def test_protein_is_scored_as_a_target_and_the_rest_as_budgets(tmp_path):
+    """Protein is a floor, not a ceiling.
+
+    Scoring it like calories would paint an empty day green and a day that hit
+    its goal red, which is exactly backwards.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    block = html[html.index("const MACROS = ["):html.index("const MACRO_BY_KEY")]
+    targets = re.findall(r'key: "(\w+)".*?dir: "target"', block)
+    budgets = re.findall(r'key: "(\w+)".*?dir: "budget"', block)
+    assert targets == ["protein"], f"expected only protein to be a target, got {targets}"
+    assert sorted(budgets) == ["carbs", "fat", "kcal"], f"unexpected budgets: {budgets}"
+    assert 'dir === "target"' in html, "statusClass ignores the direction"
+
+
+def test_the_plan_page_has_no_progress_bars(tmp_path):
+    """The bars rendered as blocks across the figures, so they were removed.
+
+    `.prog` was an inline span given a height and a percentage-width child. An
+    inline box ignores height, so the child resolved against the wrong box and
+    painted over the numbers. The one surviving bar is on the Nutrients page,
+    whose whole job is comparing against goals, and it is scoped to `.barwrap`
+    so it cannot leak back into the macro cards.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function macroCards" in html
+    cards = html[html.index("function macroCards"):html.index("function macroLine")]
+    assert "prog" not in cards, "the macro cards still render a progress bar"
+    assert ".barwrap .prog{display:block" in html, "the nutrients bar is not a block"
+    assert re.search(r"(?<!barwrap )\.prog\{", html) is None, "an unscoped .prog remains"

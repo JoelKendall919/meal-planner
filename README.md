@@ -9,6 +9,26 @@ Pick meals for any day of the week and the shopping list builds itself, merging
 ingredients you would buy as one product — red and yellow peppers become one
 entry, and chicken thigh spread across three meals becomes "3 thighs".
 
+## Portions, and why they do not reach the shopping list
+
+A planned slot is always **one portion**. The portions stepper on a recipe is a
+cooking aid: it scales the ingredient quantities so you can cook two at once and
+take the second to work, but it deliberately does not feed into the shopping
+list. The list is built from the plan alone, so plan a meal on both days you eat
+it and the ingredients are counted twice. Were the stepper to scale the list as
+well, cooking two and planning two would buy four portions' worth.
+
+## Reading the colours
+
+Colour carries two separate meanings, and they are kept on separate axes:
+
+- **Which macro** — calories, protein, fat and carbs each have a fixed colour
+  (`k-*` classes), so a figure is recognisable before you read its label.
+- **How you are doing** — `s-good`, `s-warn` and `s-bad` score a figure against
+  its goal. Calories, fat and carbs are *budgets*: green with room left, amber
+  as they fill, red once exceeded. Protein is a *target* and scores the opposite
+  way, because a day with barely any protein is not a green day.
+
 ## Why this is a repository and not a document
 
 Every calorie and protein figure is **computed from raw ingredient weights**,
