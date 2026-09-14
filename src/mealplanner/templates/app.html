@@ -635,8 +635,8 @@ function viewPlan(){
     </div>
     <div class="facet">
       <span class="flab">Fill with</span>
-      ${SCOPES.map(sc => `<button class="tag${S.scope === sc.id ? " on" : ""}" `
-        + `data-scope="${sc.id === null ? "" : sc.id}">${sc.label}</button>`).join("")}
+      <div class="chips">${SCOPES.map(sc => `<button class="chip${S.scope === sc.id ? " on" : ""}" `
+        + `data-scope="${sc.id === null ? "" : sc.id}">${sc.label}</button>`).join("")}</div>
     </div>
     </div>`;
 

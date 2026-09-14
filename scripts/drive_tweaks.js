@@ -376,6 +376,62 @@ function testCopyPrevious(){
     JSON.stringify(S.plan["2026-03-02"]));
 }
 
+/* The "Fill with" scope buttons: they must show which one is chosen, and the
+   choice must actually steer what fill picks. The original bug was invisible
+   selection -- the state changed correctly but nothing on screen moved. */
+function testFillScope(){
+  tab = "plan"; S.view = "day"; S.cursor = "2026-02-17"; S.scope = null;
+  S.plan = {}; render();
+
+  const btns = () => [...document.querySelectorAll("[data-scope]")];
+  ok("the fill scopes are rendered", btns().length === 3, btns().length + " buttons");
+
+  const lit = () => btns().filter(b => b.classList.contains("on")).map(b => b.textContent);
+  ok("exactly one scope is lit by default", lit().length === 1 && lit()[0] === "Anything",
+    lit().join(","));
+
+  // A visibly distinct selected state, computed rather than assumed from CSS text.
+  const onBtn = btns().find(b => b.classList.contains("on"));
+  const offBtn = btns().find(b => !b.classList.contains("on"));
+  const bg = el => getComputedStyle(el).backgroundColor;
+  ok("the selected scope looks different from the others", bg(onBtn) !== bg(offBtn),
+    "on=" + bg(onBtn) + " off=" + bg(offBtn));
+
+  const hp = btns().find(b => b.textContent === "High protein");
+  hp.click();
+  ok("clicking a scope selects it", S.scope === "high-protein", String(S.scope));
+  ok("the newly selected scope is the lit one",
+    lit().length === 1 && lit()[0] === "High protein", lit().join(","));
+
+  // Re-querying after render: the old nodes are gone.
+  btns().find(b => b.textContent === "Anything").click();
+  ok("the empty-valued 'Anything' button works", S.scope === null, String(S.scope));
+  ok("'Anything' is lit again", lit()[0] === "Anything", lit().join(","));
+
+  // The choice has to reach the filling itself.
+  S.scope = "high-protein"; render();
+  S.plan = {}; document.querySelector("[data-fill]").click();
+  const day = S.plan[S.cursor] || {};
+  const filled = SLOTS.map(s => [s, BY_ID[day[s]]]).filter(([, r]) => r);
+  ok("filling with a scope fills the day", filled.length === 4, filled.length + " slots");
+  // Judge each slot against the pool fill was actually allowed to draw from,
+  // so the documented "scope would leave nothing" fallback is not read as a bug.
+  // Snack is excluded on purpose: it is not filled by fillRange at all, but by
+  // topUpProtein, which closes the day's protein gap and ignores the scope.
+  const wrong = filled.filter(([slot, r]) =>
+    MAIN_SLOTS.includes(slot) && !fillPool(slot).some(p => p.id === r.id));
+  ok("a scoped fill picks only from that slot's scoped pool", wrong.length === 0,
+    wrong.map(([slot, r]) => slot + "=" + r.name).join(", "));
+  const snack = filled.find(([slot]) => slot === "snack");
+  ok("the snack is a protein top-up, chosen for protein rather than the scope",
+    !snack || snack[1].macros.protein > 0, snack ? snack[1].name : "no snack");
+  ok("scoping changes what lands in the day",
+    filled.filter(([slot, r]) => r.tags.includes("high-protein")).length >= 3,
+    filled.map(([slot, r]) => slot + "=" + r.name + (r.tags.includes("high-protein") ? "*" : "")).join(", "));
+
+  S.scope = null; S.plan = {}; render();
+}
+
 try { testCatLabels(); } catch (e){ out.push("FAIL  catLabels threw: " + e.message); }
 try { testControls(); } catch (e){ out.push("FAIL  controls threw: " + e.message); }
 try { testPortions(); } catch (e){ out.push("FAIL  portions threw: " + e.message); }
@@ -384,6 +440,7 @@ try { testClearDay(); } catch (e){ out.push("FAIL  clearDay threw: " + e.message
 try { testNutrients(); } catch (e){ out.push("FAIL  nutrients threw: " + e.message); }
 try { testFilterRules(); } catch (e){ out.push("FAIL  filterRules threw: " + e.message); }
 try { testCopyPrevious(); } catch (e){ out.push("FAIL  copyPrevious threw: " + e.message); }
+try { testFillScope(); } catch (e){ out.push("FAIL  fillScope threw: " + e.message); }
 
 const pre = document.createElement("pre");
 pre.id = "drv";

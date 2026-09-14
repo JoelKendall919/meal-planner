@@ -721,3 +721,37 @@ def test_the_plan_can_copy_the_previous_period(tmp_path):
     assert "const busy = pairs.filter" in copy, "nothing counts what would be replaced"
     # The copy has to be independent of its source.
     assert "Object.assign({}, S.plan[from])" in copy, "the copy aliases the original"
+
+
+def test_every_toggleable_control_has_a_visible_selected_state(tmp_path):
+    """A control that toggles must look different once it is on.
+
+    The "Fill with" buttons once reused `.tag`, the read-only badge style from
+    recipe cards, which has no `.on` rule. Selecting a scope worked and fill
+    honoured it, but nothing on screen changed, so the buttons read as dead.
+    Any class that gets `" on"` appended needs a matching `.on` rule.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    css = html[html.index("<style>") : html.index("</style>")]
+
+    # Classes written as `class="x${cond ? " on" : ""}"`, i.e. ones that toggle.
+    toggling = set(re.findall(r'class="([a-z-]+)[^"]*\$\{[^}]*" on"', html))
+    assert toggling, "no toggleable controls found -- the pattern must have changed"
+    for cls in toggling:
+        assert re.search(rf"\.{re.escape(cls)}[a-z.-]*\.on\b", css), (
+            f".{cls} toggles an 'on' class but no .{cls}...on CSS rule styles it, "
+            f"so selecting it would not be visible"
+        )
+
+
+def test_the_fill_scope_buttons_are_live_and_honoured(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    # "Anything" is data-scope="", which is falsy, so a truthiness check on the
+    # dataset value would make that one button silently do nothing.
+    assert 'if ("scope" in d){ S.scope = d.scope || null;' in html, (
+        "the scope handler would skip the empty-string 'Anything' button"
+    )
+    assert "[data-scope]" in html, "the scope buttons are not in the click selector"
+    pool = js_block(html, "function fillPool(slot){")
+    assert "r.tags.includes(S.scope)" in pool, "fill ignores the chosen scope"
+    assert "scoped.length ? scoped : all" in pool, "a narrow scope could leave slots unfilled"
