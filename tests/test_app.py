@@ -303,3 +303,13 @@ def test_a_day_can_reach_the_protein_goal_within_the_calorie_goal(recipes):
 
     mains_protein = sum(best(slot, "protein") for slot in MAIN_SLOTS)
     assert mains_protein + best("snack", "protein") >= TARGETS["protein"]
+
+
+def test_nutrients_page_can_close_the_protein_gap(tmp_path):
+    """The snack picker is the point of the nutrients page, not decoration."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function snackOptions" in html
+    assert "data-addsnack=" in html, "snacks cannot be added from the nutrients page"
+    assert "Day becomes" in html, "the effect on the day is not shown"
+    # Suggestions must be filtered by the calories left, not merely sorted.
+    assert "r.macros.kcal <= headroom" in html, "snacks are not limited to spare calories"

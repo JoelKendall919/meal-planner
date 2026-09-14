@@ -116,6 +116,10 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .mcell .dots i{width:5px;height:5px;border-radius:50%;background:#dcdcd8;display:block}
 .mcell .dots i.on{background:var(--accent)}
 .tile.faint{opacity:.62}
+.snk{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line)}
+.snk .snkmain{flex:1 1 190px;display:flex;flex-direction:column;gap:2px}
+.snk .sub.after{opacity:.75;font-size:11px}
+.dlist li button{margin-left:auto}
 .slotname em{font-style:normal;font-weight:400;opacity:.55;font-size:11px}
 .mcell .kc{font-size:9.5px;color:var(--mut);line-height:1}
 
@@ -565,6 +569,85 @@ function viewRecipes(){
 }
 
 /* ===== nutrients ========================================================= */
+/** Snacks ranked by how much of the day's protein gap they close.
+ *
+ * A snack is only worth eating here if it buys protein without spending
+ * calories the day cannot spare, so anything that would push the day over its
+ * calorie goal is dropped rather than shown and quietly ignored.
+ */
+function snackOptions(date, limit){
+  const day = totalsOn(date);
+  const gap = Math.max(0, S.goals.protein - day.protein);
+  const headroom = Math.max(0, S.goals.kcal - day.kcal);
+  return RECIPES
+    .filter(r => r.slot === "snack" && r.macros.kcal <= headroom)
+    .map(r => ({
+      recipe: r,
+      closes: gap ? Math.min(r.macros.protein, gap) : 0,
+      after: {
+        kcal: day.kcal + r.macros.kcal,
+        protein: day.protein + r.macros.protein,
+        fat: day.fat + r.macros.fat,
+        carbs: day.carbs + r.macros.carbs,
+      },
+    }))
+    .sort((x, y) => y.closes - x.closes
+      || x.recipe.macros.kcal - y.recipe.macros.kcal)
+    .slice(0, limit);
+}
+
+/** The Nutrients page's snack picker: what a snack would do to this day. */
+function snackCard(date){
+  if (!mealsOn(date).length) return "";
+  const current = (S.plan[date] || {}).snack;
+  const day = totalsOn(date);
+  const gap = S.goals.protein - day.protein;
+
+  if (current){
+    const r = BY_ID[current];
+    return `<div class="card"><div class="hd"><div>
+        <h2>Snack</h2>
+        <div class="sub">Already counted in the figures above.</div>
+      </div></div>
+      <div class="snk">
+        <div class="snkmain"><b>${esc(r.name)}</b>
+          <span class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein</span></div>
+        <div class="bar tight">
+          <button class="sec" data-open="${r.id}">Recipe</button>
+          <button class="sec" data-pick="${date}|snack">Swap</button>
+          <button class="sec danger" data-unset="${date}|snack">Remove</button>
+        </div>
+      </div></div>`;
+  }
+
+  const opts = snackOptions(date, 4);
+  const lead = gap > 0
+    ? `${gap} g short on protein. These fit the calories you have left.`
+    : `Protein goal met. These still fit the calories you have left.`;
+  if (!opts.length){
+    return `<div class="card"><div class="hd"><div><h2>Add a snack</h2>
+      <div class="sub">${gap > 0
+        ? `${gap} g short on protein, but no snack fits the calories left today.`
+        : "No calories left today."}</div></div></div></div>`;
+  }
+
+  return `<div class="card"><div class="hd"><div>
+      <h2>Add a snack</h2><div class="sub">${lead}</div>
+    </div></div>
+    ${opts.map(o => `<div class="snk">
+      <div class="snkmain"><b>${esc(o.recipe.name)}</b>
+        <span class="sub">+${o.recipe.macros.kcal} kcal &middot;
+          +${o.recipe.macros.protein} g protein</span>
+        <span class="sub after">Day becomes ${o.after.kcal} kcal &middot;
+          ${o.after.protein} g P &middot; ${o.after.fat} g F &middot; ${o.after.carbs} g C</span>
+      </div>
+      <div class="bar tight">
+        <button class="sec" data-open="${o.recipe.id}">Recipe</button>
+        <button class="sec pri" data-addsnack="${date}|${o.recipe.id}">Add</button>
+      </div>
+    </div>`).join("")}</div>`;
+}
+
 function viewNutrients(){
   const [a, b] = range();
   const s = summarise(a, b);
@@ -595,6 +678,24 @@ function viewNutrients(){
     </div>`;
   }).join("");
   html += `</div>`;
+
+  if (isDay) html += snackCard(S.cursor);
+
+  if (!isDay && s.days){
+    const short = daysBetween(a, b)
+      .filter(d => mealsOn(d).length && totalsOn(d).protein < S.goals.protein)
+      .map(d => ({ date: d, by: S.goals.protein - totalsOn(d).protein }));
+    if (short.length){
+      html += `<div class="card"><div class="hd"><div>
+        <h2>Short on protein</h2>
+        <div class="sub">${short.length} of ${s.days} planned day${
+          s.days === 1 ? "" : "s"}. Open one to add a snack.</div>
+      </div></div><ul class="dlist">${short.map(x =>
+        `<li><span>${esc(fmtDate(x.date))}</span>
+          <span class="sub">${x.by} g short</span>
+          <button class="sec" data-day="${x.date}">Open</button></li>`).join("")}</ul></div>`;
+    }
+  }
 
   if (!isDay && s.days){
     html += `<div class="card"><h2>By day</h2><ul class="dlist">${
@@ -1036,7 +1137,8 @@ document.addEventListener("click", e => {
   const t = e.target.closest("[data-tab],[data-view],[data-step],[data-today],[data-day]," +
     "[data-pick],[data-slot-tap],[data-set],[data-open],[data-close],[data-unset]," +
     "[data-fill],[data-clear],[data-fslot],[data-tag],[data-newlist],[data-gen]," +
-    "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]");
+    "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
+    "[data-addsnack]");
   if (!t) return;
   const d = t.dataset;
 
@@ -1072,6 +1174,13 @@ document.addEventListener("click", e => {
     return;
   }
   if (d.open){ recipeSheet(d.open); return; }
+  if (d.addsnack){
+    const [date, id] = d.addsnack.split("|");
+    setMeal(date, "snack", id);
+    render();
+    toast(`${BY_ID[id].name} added to ${fmtDate(date)}`);
+    return;
+  }
   if (d.fill){ fillRange(); return; }
   if (d.clear){ clearRange(); return; }
 
