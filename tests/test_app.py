@@ -16,10 +16,13 @@ import pytest
 
 from mealplanner.build import build, payload
 from mealplanner.catalogue import (
+    LIGHT_MAX,
     MAIN_SLOTS,
+    PLAUSIBLE_KCAL,
     PROTEIN_TAG_G,
     QUICK_MINUTES,
     SLOTS,
+    SNACK_PROTEIN_PER_100KCAL,
     load_foods,
     load_recipes,
 )
@@ -28,18 +31,16 @@ from mealplanner.shopping import build_list
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 
-# Per-slot sanity bands. These are deliberately wider than the authoring brief:
-# they catch a decimal-point error, not a recipe that is 20 kcal off target.
-BANDS = {
-    "breakfast": (250, 550, 20),
-    "lunch": (350, 700, 30),
-    "dinner": (400, 800, 33),
-    # Snacks exist to buy protein cheaply in calories, so the band is tight.
-    "snack": (90, 280, 12),
-}
+# Plausibility ranges only. These catch a decimal-point slip or ounces entered as
+# grams -- they are not diet targets. The previous version of this table was a
+# cutting brief in disguise: it required 20 g of protein at breakfast and capped
+# dinner at 800 kcal, which made toast and marmalade, any soup, fish and chips
+# and almost every ordinary snack illegal recipes.
+BANDS = PLAUSIBLE_KCAL
 
-# Snacks are a top-up rather than a meal, so the slot sizes differ.
-MIN_PER_SLOT = {"breakfast": 25, "lunch": 25, "dinner": 25, "snack": 15}
+# The catalogue has to be deep enough that a month of planning does not repeat.
+# Counts are per slot and a multi-slot recipe counts towards each of its slots.
+MIN_PER_SLOT = {"breakfast": 25, "lunch": 25, "dinner": 25, "snack": 25}
 
 
 @pytest.fixture(scope="module")
@@ -55,7 +56,8 @@ def recipes(foods):
 def test_catalogue_is_complete(recipes):
     by_slot: dict[str, int] = {}
     for r in recipes:
-        by_slot[r.slot] = by_slot.get(r.slot, 0) + 1
+        for slot in r.slots:
+            by_slot[slot] = by_slot.get(slot, 0) + 1
     assert set(by_slot) == set(SLOTS)
     for slot in SLOTS:
         least = MIN_PER_SLOT[slot]
@@ -92,7 +94,7 @@ def test_no_invented_source_urls(recipes):
 
 def test_macros_are_computed_not_stored(recipes):
     """Source files must not carry macro figures that could drift from the food data."""
-    for path in DATA.glob("recipes-*.json"):
+    for path in (DATA / "recipes").glob("*.json"):
         for raw in json.loads(path.read_text(encoding="utf-8")):
             overlap = {"kcal", "protein", "fat", "carbs", "macros"} & set(raw)
             assert not overlap, f"{raw['id']} stores {overlap}; macros must be derived"
@@ -116,10 +118,21 @@ def test_macros_match_the_food_data(recipes, foods):
 
 
 def test_recipes_sit_in_sensible_bands(recipes):
+    """Plausibility, not diet fitness.
+
+    A recipe is judged against the most generous of its slots, so a dish that
+    works as both lunch and dinner only has to be plausible as one of them.
+    """
     for r in recipes:
-        lo, hi, min_protein = BANDS[r.slot]
-        assert lo <= r.macros["kcal"] <= hi, f"{r.id} is {r.macros['kcal']} kcal"
-        assert r.macros["protein"] >= min_protein, f"{r.id} has {r.macros['protein']} g protein"
+        lo = min(BANDS[s][0] for s in r.slots)
+        hi = max(BANDS[s][1] for s in r.slots)
+        assert lo <= r.macros["kcal"] <= hi, (
+            f"{r.id} is {r.macros['kcal']} kcal, implausible for {'/'.join(r.slots)}"
+        )
+        floor = 4 * r.macros["protein"] + 9 * r.macros["fat"]
+        assert floor <= r.macros["kcal"] + 30, (
+            f"{r.id}: protein and fat alone give {floor} kcal but it totals {r.macros['kcal']}"
+        )
 
 
 def test_derived_tags_agree_with_the_numbers(recipes):
@@ -130,9 +143,14 @@ def test_derived_tags_agree_with_the_numbers(recipes):
             f"{r.id} is tagged high-protein={high} at {r.macros['protein']} g"
         )
         quick = "quick" in r.tags
-        limit = QUICK_MINUTES[r.slot]
+        limit = max(QUICK_MINUTES[s] for s in r.slots)
         assert quick == (0 < r.total_min <= limit), (
             f"{r.id} is tagged quick={quick} at {r.total_min} min (limit {limit})"
+        )
+        light = "light" in r.tags
+        ceiling = max(LIGHT_MAX[s] for s in r.slots)
+        assert light == (r.macros["kcal"] <= ceiling), (
+            f"{r.id} is tagged light={light} at {r.macros['kcal']} kcal (ceiling {ceiling})"
         )
 
 
@@ -148,7 +166,7 @@ def test_vegetarian_tag_has_no_meat_or_fish(recipes, foods):
 def test_there_is_enough_variety_to_plan_a_week(recipes):
     """A week needs 7 of each slot without repeating, and some meat-free options."""
     for slot in SLOTS:
-        pool = [r for r in recipes if r.slot == slot]
+        pool = [r for r in recipes if slot in r.slots]
         assert len(pool) >= 7
         veg = [r for r in pool if "vegetarian" in r.tags]
         assert len(veg) >= 5, f"only {len(veg)} vegetarian {slot} options"
@@ -188,7 +206,17 @@ def test_build_produces_a_self_contained_site(tmp_path):
 def test_payload_recipes_carry_what_the_app_renders():
     data = payload()
     for r in data["recipes"]:
-        for field in ("id", "name", "slot", "tags", "ingredients", "steps", "macros", "total_min"):
+        for field in (
+            "id",
+            "name",
+            "slots",
+            "category",
+            "tags",
+            "ingredients",
+            "steps",
+            "macros",
+            "total_min",
+        ):
             assert field in r, f"{r.get('id')} payload is missing {field}"
         for key in ("kcal", "protein", "fat", "carbs"):
             assert key in r["macros"]
@@ -204,21 +232,34 @@ def test_targets_are_achievable_from_the_catalogue(recipes):
     the earlier hand-built week (180 g protein), which no combination of these
     recipes can reach under the calorie cap. A goal you cannot hit is worse than
     no goal, because every day reads as a failure.
+
+    The catalogue is now a general cookbook, so this measures the *scoped* pool.
+    Chasing protein across everything from cereal to sticky toffee pudding is not
+    a workflow anyone has; the planner offers a high-protein scope for exactly
+    this, and that scope is what has to be feasible. The unscoped case is covered
+    by ``test_a_typical_planned_day_is_not_diluted_by_the_general_catalogue``.
     """
     from itertools import product
 
     from mealplanner.build import TARGETS
 
-    pools = [[r for r in recipes if r.slot == slot] for slot in MAIN_SLOTS]
-    snacks = [r for r in recipes if r.slot == "snack"]
+    pool = [r for r in recipes if "high-protein" in r.tags]
+    pools = [[r for r in pool if slot in r.slots] for slot in MAIN_SLOTS]
+    assert all(pools), "the high-protein scope must cover every main slot"
+    snacks = [r for r in recipes if "snack" in r.slots]
     hits = 0
-    total = 0
+    # Counted over days that fit the calorie budget, not over every combination.
+    # Dividing by all combinations conflates two different failures: a day rejected
+    # for being 2400 kcal is not a day that missed its protein goal, and padding the
+    # catalogue with large recipes would deflate this score without anything
+    # actually getting worse for the user.
+    eligible = 0
     for combo in product(*pools):
-        total += 1
         kcal = sum(r.macros["kcal"] for r in combo)
         protein = sum(r.macros["protein"] for r in combo)
         if kcal > TARGETS["kcal"]:
             continue
+        eligible += 1
         # A day may be topped up with one snack, which is how the planner fills.
         best = max(
             (
@@ -230,10 +271,13 @@ def test_targets_are_achievable_from_the_catalogue(recipes):
         )
         if best >= TARGETS["protein"]:
             hits += 1
-    share = hits / total
-    assert share >= 0.05, (
-        f"only {hits} of {total} day combinations ({share:.1%}) meet the "
-        f"{TARGETS['protein']} g protein goal within {TARGETS['kcal']} kcal"
+    assert eligible >= 500, f"only {eligible} scoped days fit the calorie budget"
+    share = hits / eligible
+    # 15%: often enough that the goal is reachable by choosing rather than by luck.
+    # The catalogue currently sits at about 33%, so this has real headroom.
+    assert share >= 0.15, (
+        f"only {hits} of {eligible} calorie-legal high-protein days ({share:.1%}) "
+        f"meet the {TARGETS['protein']} g protein goal within {TARGETS['kcal']} kcal"
     )
 
 
@@ -279,18 +323,44 @@ def test_stored_plans_from_the_previous_version_are_migrated(tmp_path):
     assert "mealplanner.v2" in html, "old saved plans would be silently dropped"
 
 
-def test_snacks_are_worth_eating_for_the_protein(recipes):
-    """Snacks exist only to buy protein cheaply in calories.
+def test_enough_snacks_are_protein_dense_to_top_a_day_up(recipes):
+    """The catalogue must keep enough protein-dense snacks to serve a cut.
 
-    A snack that is not protein-dense spends calories the day cannot spare, so
-    this fixes the ratio rather than the absolute figures.
+    This used to assert that *every* snack carried 8 g of protein per 100 kcal,
+    which is why an apple, a packet of crisps and a chocolate digestive could not
+    exist in the catalogue at all. Ordinary snacks are now allowed, so the rule
+    moves from every snack to a supply check on the protein-dense ones, and the
+    ratio itself becomes the derived ``protein-snack`` tag.
     """
-    snacks = [r for r in recipes if r.slot == "snack"]
-    assert len(snacks) >= 15
-    for r in snacks:
+    snacks = [r for r in recipes if "snack" in r.slots]
+    assert len(snacks) >= 25
+
+    dense = [r for r in snacks if "protein-snack" in r.tags]
+    # Six rather than eight: retiring the diet-only catalogue took the protein-dense
+    # snacks from 20 to 7, which is a real and accepted loss of depth. Six is the
+    # floor that still lets a week be planned without eating the same thing daily.
+    assert len(dense) >= 6, (
+        f"only {len(dense)} protein-dense snacks; the planner cannot top up a short day"
+    )
+    # A count alone is a weak guard: six trivial 3 g snacks would satisfy it while
+    # being useless. What the planner actually needs is a top-up that closes a real
+    # gap, so require several that do so without spending the day's calories.
+    useful = [r for r in dense if r.macros["protein"] >= 15 and r.macros["kcal"] <= 300]
+    assert len(useful) >= 3, (
+        f"only {len(useful)} snacks add 15 g protein for under 300 kcal; "
+        "a top-up cannot meaningfully close the protein gap"
+    )
+    for r in dense:
         ratio = r.macros["protein"] / r.macros["kcal"] * 100
-        assert ratio >= 8, (
-            f"{r.id} gives {ratio:.1f} g protein per 100 kcal, too little to be a top-up"
+        assert ratio >= SNACK_PROTEIN_PER_100KCAL, (
+            f"{r.id} is tagged protein-snack at {ratio:.1f} g per 100 kcal"
+        )
+    for r in snacks:
+        if "protein-snack" in r.tags:
+            continue
+        ratio = r.macros["protein"] / r.macros["kcal"] * 100 if r.macros["kcal"] else 0
+        assert ratio < SNACK_PROTEIN_PER_100KCAL, (
+            f"{r.id} hits {ratio:.1f} g per 100 kcal but is not tagged protein-snack"
         )
 
 
@@ -299,7 +369,7 @@ def test_a_day_can_reach_the_protein_goal_within_the_calorie_goal(recipes):
     from mealplanner.build import TARGETS
 
     def best(slot, key):
-        return max(r.macros[key] for r in recipes if r.slot == slot)
+        return max(r.macros[key] for r in recipes if slot in r.slots)
 
     mains_protein = sum(best(slot, "protein") for slot in MAIN_SLOTS)
     assert mains_protein + best("snack", "protein") >= TARGETS["protein"]
@@ -411,3 +481,89 @@ def test_the_plan_page_has_no_progress_bars(tmp_path):
     assert "prog" not in cards, "the macro cards still render a progress bar"
     assert ".barwrap .prog{display:block" in html, "the nutrients bar is not a block"
     assert re.search(r"(?<!barwrap )\.prog\{", html) is None, "an unscoped .prog remains"
+
+
+def test_a_typical_planned_day_is_not_diluted_by_the_general_catalogue(recipes):
+    """A median day must stay edible, not just a best-case day.
+
+    ``test_targets_are_achievable_from_the_catalogue`` is a *ceiling* test: it asks
+    whether some combination can reach the goal. That question keeps answering yes
+    while the catalogue quietly rots around it, because one heroic combination is
+    enough to satisfy it.
+
+    Opening the catalogue to everyday cooking made that blind spot dangerous. The
+    pool now contains recipes that will happily fill 1750 kcal with very little
+    protein, so the planner can produce a day that passes every calorie check and
+    is still a bad day. This measures the *median* instead, which is what a user
+    actually gets when they let the planner choose.
+    """
+    import random
+    from statistics import median
+
+    from mealplanner.build import TARGETS
+
+    pools = [[r for r in recipes if slot in r.slots] for slot in MAIN_SLOTS]
+    rng = random.Random(20240607)
+    days = []
+    for _ in range(4000):
+        combo = [rng.choice(pool) for pool in pools]
+        kcal = sum(r.macros["kcal"] for r in combo)
+        if not 0.75 * TARGETS["kcal"] <= kcal <= TARGETS["kcal"]:
+            continue
+        days.append(sum(r.macros["protein"] for r in combo))
+
+    assert len(days) >= 200, "too few sampled days landed in the calorie window"
+    typical = median(days)
+    # Not the 140 g goal: an unscoped day is chosen from the whole cookbook and is
+    # not trying to hit it. This is a floor on how far a random-but-calorie-correct
+    # day may fall, so that adding puddings and white-bread sandwiches in bulk
+    # cannot quietly drag the everyday experience down without failing a test.
+    assert typical >= 70, (
+        f"the median calorie-correct day carries only {typical:.0f} g protein; "
+        "the catalogue has been diluted to the point the planner gives bad days"
+    )
+
+
+def test_the_fill_scope_narrows_what_the_planner_draws_from(tmp_path):
+    """Filling a day must be able to target part of the catalogue.
+
+    Opening the catalogue up to everyday cooking created a trap: ``fillRange``
+    optimises for calories and only breaks protein ties, so drawing from cereal,
+    sandwiches and puddings alike will cheerfully produce a day that hits 1750
+    kcal with half the protein. The scope is what makes a cut plannable again,
+    and it is load-bearing rather than cosmetic -- across the whole catalogue only
+    0.5% of calorie-legal days reach 150 g protein, against 11.7% when scoped.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+
+    assert "function fillPool(" in html, "fill has no scoped pool"
+    # The call site specifically: matching "fillPool(slot)" alone also matches the
+    # function's own definition, so it would pass with fillRange never calling it.
+    assert "const pool = fillPool(slot);" in html, "fillRange does not draw from the scoped pool"
+    for scope in ("high-protein", "light"):
+        assert f'"{scope}"' in html, f"the {scope} scope is not offered"
+    assert "data-scope" in html, "the scope has no control in the plan page"
+    # "Anything" is data-scope="", so a truthiness test would silently ignore it.
+    # Assert the guard itself, not the phrase: the comment beside it in app.html
+    # contains the same words and was quietly satisfying this on its own.
+    assert 'if ("scope" in d){' in html, "the reset-to-anything scope button is dead"
+    # A scope that matched nothing must not leave the day unfilled.
+    assert "scoped.length ? scoped : all" in html, "an empty scope has no fallback"
+
+
+def test_the_scope_actually_changes_which_recipes_qualify(recipes):
+    """The scope must be a real narrowing, not a label on the same pool."""
+    for slot in MAIN_SLOTS:
+        everything = [r for r in recipes if slot in r.slots]
+        scoped = [r for r in everything if "high-protein" in r.tags]
+        assert scoped, f"nothing high-protein for {slot}"
+        assert len(scoped) < len(everything), (
+            f"the high-protein scope for {slot} is the whole catalogue, so it "
+            "narrows nothing and the plan it produces is no better"
+        )
+        lean = sum(r.macros["protein"] for r in scoped) / len(scoped)
+        wide = sum(r.macros["protein"] for r in everything) / len(everything)
+        assert lean > wide + 5, (
+            f"scoped {slot} averages {lean:.0f} g protein against {wide:.0f} g "
+            "unscoped; the scope is not buying anything"
+        )

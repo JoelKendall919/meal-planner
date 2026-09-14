@@ -62,6 +62,10 @@ nav button .ic{font-size:17px;line-height:1}
 nav button.on{color:var(--ink);font-weight:600;box-shadow:inset 0 -2.5px 0 var(--accent)}
 .chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
+.facet{display:flex;align-items:center;gap:8px;margin-top:6px}
+.facet .flab{flex:0 0 46px;font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+  color:var(--mut);padding-bottom:6px}
+.facet .chips{flex:1 1 auto;min-width:0}
 .chip{white-space:nowrap;padding:6px 11px;border-radius:999px;border:1px solid var(--line);
   background:#fff;font-size:13px}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
@@ -161,6 +165,7 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .tag{display:inline-block;font-size:10.5px;padding:1.5px 6px;border-radius:5px;
   background:#efefec;color:#555;margin-right:4px}
 .tag.veg{background:#e6f4ea;color:#1a7f37}
+.tag.cat{background:#eef1f6;color:#4a5568}
 
 /* --- sheets --- */
 .sheet{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.4);display:flex;align-items:flex-end}
@@ -332,6 +337,10 @@ function blank(){
     goals: Object.assign({}, DATA.targets),
     view: "week",                   // day | week | month
     cursor: todayISO(),
+    // Which part of the catalogue "fill empty slots" is allowed to draw from.
+    // The catalogue is a general cookbook, so filling from all of it happily
+    // hits the calorie goal while leaving protein far short. null means anything.
+    scope: null,                    // null | "high-protein" | "light"
     shopping: null,                 // { from, to, created, items: [...] }
   };
 }
@@ -381,20 +390,37 @@ function save(){
 }
 
 let tab = "plan";
-const filter = { slot: null, tag: null, q: "" };
+const filter = { slot: null, cat: null, tag: null, q: "" };
 // The plan's meal picker keeps its own filters so browsing for a Tuesday lunch
 // never disturbs whatever you had set up on the Recipes tab.
-let pickFilter = { slot: null, tag: null, q: "" };
+let pickFilter = { slot: null, cat: null, tag: null, q: "" };
+
+// Readable names for the controlled category vocabulary. The vocabulary is
+// closed, so these are written out rather than derived from the slug.
+const CAT_LABEL = {
+  "cereal-and-cold": "Cereal & cold", "toast-and-bakery": "Toast & bakery",
+  "eggs": "Eggs", "cooked-breakfast": "Cooked breakfast",
+  "sandwiches": "Sandwiches", "jacket-potatoes": "Jacket potatoes",
+  "soups": "Soups", "salads": "Salads", "bakery-and-picky": "Bakery & picky",
+  "british-classics": "Classics", "roasts": "Roasts",
+  "pasta-and-italian": "Pasta & Italian", "curries": "Curries",
+  "asian": "Asian", "fish": "Fish", "traybakes-and-quick": "Traybakes",
+  "fruit-and-veg": "Fruit & veg", "dairy-and-protein": "Dairy & protein",
+  "bread-and-baked": "Bread & baked", "savoury-treats": "Savoury treats",
+  "sweet-treats": "Sweet treats",
+};
+const catLabel = c => CAT_LABEL[c] || c;
 
 /** Recipes matching a filter set, used by both the Recipes tab and the picker. */
 function filterRecipes(f){
   const q = f.q.trim().toLowerCase();
   return RECIPES.filter(r => {
-    if (f.slot && r.slot !== f.slot) return false;
+    if (f.slot && !r.slots.includes(f.slot)) return false;
+    if (f.cat && r.category !== f.cat) return false;
     if (f.tag && !r.tags.includes(f.tag)) return false;
     if (q){
-      const hay = (r.name + " " + r.tags.join(" ") + " " +
-        r.ingredients.map(i => i.display).join(" ")).toLowerCase();
+      const hay = (r.name + " " + r.tags.join(" ") + " " + catLabel(r.category) + " " +
+        r.cuisine + " " + r.ingredients.map(i => i.display).join(" ")).toLowerCase();
       if (!hay.includes(q)) return false;
     }
     return true;
@@ -402,16 +428,26 @@ function filterRecipes(f){
 }
 
 /** The search box and filter chips. `ns` namespaces the hooks so the picker's
- *  copy and the Recipes tab's copy can coexist without fighting each other. */
+ *  copy and the Recipes tab's copy can coexist without fighting each other.
+ *
+ *  Filters are grouped into facets rather than one flat strip: a single strip
+ *  of every tag was already ~20 chips and does not survive a larger catalogue.
+ *  The Type row only offers categories that exist within the chosen meal, so
+ *  picking breakfast does not leave "Roasts" on screen. */
 function filterControls(f, ns){
+  const cats = [...new Set(RECIPES
+    .filter(r => !f.slot || r.slots.includes(f.slot))
+    .map(r => r.category))].sort((a, b) => catLabel(a).localeCompare(catLabel(b)));
+  const row = (label, chips) =>
+    `<div class="facet"><span class="flab">${label}</span><div class="chips">${chips}</div></div>`;
   return `<input type="search" id="q-${ns}" data-search="${ns}"
       placeholder="Search recipes or ingredients..." value="${esc(f.q)}">
-    <div class="chips" style="margin-top:9px">
-      ${SLOTS.map(s =>
-        `<button class="chip ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${s}</button>`).join("")}
-      ${DATA.tags.map(t =>
-        `<button class="chip ${f.tag === t ? "on" : ""}" data-tag="${ns}|${esc(t)}">${esc(t)}</button>`).join("")}
-    </div>`;
+    ${row("Meal", SLOTS.map(s =>
+      `<button class="chip ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${s}</button>`).join(""))}
+    ${row("Type", cats.map(c =>
+      `<button class="chip ${f.cat === c ? "on" : ""}" data-fcat="${ns}|${esc(c)}">${esc(catLabel(c))}</button>`).join(""))}
+    ${row("Filter", DATA.tags.map(t =>
+      `<button class="chip ${f.tag === t ? "on" : ""}" data-tag="${ns}|${esc(t)}">${esc(t)}</button>`).join(""))}`;
 }
 let sheet = null;
 
@@ -550,6 +586,11 @@ function viewPlan(){
     <div class="card"><div class="bar tight">
       <button class="sec" data-fill="1">Fill empty slots</button>
       <button class="sec danger" data-clear="1">Clear ${S.view}</button>
+    </div>
+    <div class="facet">
+      <span class="flab">Fill with</span>
+      ${SCOPES.map(sc => `<button class="tag${S.scope === sc.id ? " on" : ""}" `
+        + `data-scope="${sc.id === null ? "" : sc.id}">${sc.label}</button>`).join("")}
     </div></div>`;
 
   if (isDay) html += dayTiles(S.cursor);
@@ -627,7 +668,8 @@ function recipeRow(r, action){
   const rest = r.tags.filter(t => t !== "vegetarian").slice(0, 2);
   return `<li><button class="ritem" data-${action}="${r.id}">
     <span class="nm"><b>${esc(r.name)}</b>
-      <small>${veg ? '<span class="tag veg">veg</span>' : ""}${
+      <small><span class="tag cat">${esc(catLabel(r.category))}</span>${
+        veg ? '<span class="tag veg">veg</span>' : ""}${
         rest.map(t => `<span class="tag">${esc(t)}</span>`).join("")
       }${r.total_min ? esc(r.total_min) + " min" : ""}</small>
       ${macroLine(r.macros)}</span>
@@ -658,7 +700,7 @@ function snackOptions(date, limit){
   const gap = Math.max(0, S.goals.protein - day.protein);
   const headroom = Math.max(0, S.goals.kcal - day.kcal);
   return RECIPES
-    .filter(r => r.slot === "snack" && r.macros.kcal <= headroom)
+    .filter(r => r.slots.includes("snack") && r.macros.kcal <= headroom)
     .map(r => ({
       recipe: r,
       closes: gap ? Math.min(r.macros.protein, gap) : 0,
@@ -1023,7 +1065,7 @@ function pickSheet(date, slot, keep){
   // Opening the picker preselects the slot you tapped, so you land on the meals
   // that belong there. Clearing the chip widens it to the whole catalogue, which
   // is what you want when a lunch recipe would do fine as a dinner.
-  if (!keep) pickFilter = { slot: slot, tag: null, q: "" };
+  if (!keep) pickFilter = { slot: slot, cat: null, tag: null, q: "" };
   const list = filterRecipes(pickFilter);
   const current = (S.plan[date] || {})[slot];
   openSheet(`<header><h1>${esc(fmtDate(date))} &middot; ${slot}</h1>
@@ -1083,7 +1125,7 @@ function recipeSheet(id, portions){
     : "";
   openSheet(`<header><h1>${esc(r.name)}</h1><button class="x" data-close="1">&times;</button></header>
     <div class="body"><div class="card">
-      <div class="sub">${esc(r.slot)}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
+      <div class="sub">${esc(r.slots.join(" &middot; "))}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
         r.tags.length ? ` &middot; ${r.tags.map(esc).join(", ")}` : ""}</div>
       <div class="macros" style="margin-top:10px">
         ${MACROS.map(m => `<div class="macro k-${m.key}"><span class="nm k-${m.key}">${m.label}</span>
@@ -1139,12 +1181,28 @@ function median(xs){
 
 /** Whether the main meals can typically carry the protein goal on their own. */
 function snackReserve(){
-  const snacks = RECIPES.filter(r => r.slot === "snack");
+  const snacks = RECIPES.filter(r => r.slots.includes("snack"));
   if (!snacks.length) return 0;
   const typical = MAIN_SLOTS.reduce((n, slot) =>
-    n + median(RECIPES.filter(r => r.slot === slot).map(r => r.macros.protein)), 0);
+    n + median(RECIPES.filter(r => r.slots.includes(slot)).map(r => r.macros.protein)), 0);
   if (S.goals.protein <= typical) return 0;
   return median(snacks.map(r => r.macros.kcal));
+}
+
+const SCOPES = [
+  { id: null, label: "Anything" },
+  { id: "high-protein", label: "High protein" },
+  { id: "light", label: "Light" },
+];
+
+/* Recipes "fill empty slots" may choose from for a slot, honouring the scope.
+ * Falls back to the whole slot when a scope would leave nothing to pick, so a
+ * narrow scope can never leave a day half-filled with no explanation. */
+function fillPool(slot){
+  const all = RECIPES.filter(r => r.slots.includes(slot));
+  if (!S.scope) return all;
+  const scoped = all.filter(r => r.tags.includes(S.scope));
+  return scoped.length ? scoped : all;
 }
 
 function fillRange(){
@@ -1170,7 +1228,7 @@ function fillRange(){
     let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);
 
     open.forEach((slot, i) => {
-      const pool = RECIPES.filter(r => r.slot === slot);
+      const pool = fillPool(slot);
       if (!pool.length) return;
       const target = share > 0 ? budget * (SLOT_SHARE[slot] / share) : 0;
       const fresh = pool.filter(r => !used.has(r.id));
@@ -1215,7 +1273,7 @@ function topUpProtein(date, used){
   const short = S.goals.protein - day.protein;
   if (short <= 0) return;
   const headroom = S.goals.kcal - day.kcal;
-  const fits = RECIPES.filter(r => r.slot === "snack" && r.macros.kcal <= headroom);
+  const fits = RECIPES.filter(r => r.slots.includes("snack") && r.macros.kcal <= headroom);
   if (!fits.length) return;
   // Close as much of the protein gap as possible without going over on calories,
   // preferring the lighter snack when two are equally good.
@@ -1245,9 +1303,9 @@ function clearRange(){
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-tab],[data-view],[data-step],[data-today],[data-day]," +
     "[data-pick],[data-slot-tap],[data-set],[data-open],[data-close],[data-unset]," +
-    "[data-fill],[data-clear],[data-fslot],[data-tag],[data-newlist],[data-gen]," +
+    "[data-fill],[data-clear],[data-fslot],[data-fcat],[data-tag],[data-newlist],[data-gen]," +
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
-    "[data-addsnack],[data-portions]");
+    "[data-addsnack],[data-portions],[data-scope]");
   if (!t) return;
   const d = t.dataset;
 
@@ -1295,6 +1353,9 @@ document.addEventListener("click", e => {
     toast(`${BY_ID[id].name} added to ${fmtDate(date)}`);
     return;
   }
+  // "scope" in d rather than d.scope: "Anything" is data-scope="", which is
+  // falsy, so a truthiness check would make that button silently do nothing.
+  if ("scope" in d){ S.scope = d.scope || null; save(); render(); return; }
   if (d.fill){ fillRange(); return; }
   if (d.clear){ clearRange(); return; }
 
@@ -1303,6 +1364,20 @@ document.addEventListener("click", e => {
     const [ns, slot] = d.fslot.split("|");
     const f = ns === "pick" ? pickFilter : filter;
     f.slot = f.slot === slot ? null : slot;
+    // The Type row is scoped to the chosen meal, so a category that no longer
+    // applies would otherwise stay selected and silently show nothing.
+    if (f.cat && !RECIPES.some(r => r.category === f.cat && (!f.slot || r.slots.includes(f.slot)))){
+      f.cat = null;
+    }
+    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    else render();
+    return;
+  }
+  if (d.fcat){
+    const i = d.fcat.indexOf("|");
+    const ns = d.fcat.slice(0, i), cat = d.fcat.slice(i + 1);
+    const f = ns === "pick" ? pickFilter : filter;
+    f.cat = f.cat === cat ? null : cat;
     if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
     else render();
     return;

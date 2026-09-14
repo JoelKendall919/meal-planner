@@ -1,0 +1,606 @@
+[
+  {
+    "id": "bacon-and-egg-butty",
+    "name": "Bacon and egg butty",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 8,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "crusty white roll",
+        "grams": 60,
+        "display": "1 soft white roll"
+      },
+      {
+        "food": "back bacon raw",
+        "grams": 50,
+        "display": "2 rashers back bacon"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "1 tsp butter"
+      },
+      {
+        "food": "rapeseed oil",
+        "grams": 5,
+        "display": "1 tsp rapeseed oil"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 12,
+        "display": "1 tbsp brown sauce"
+      }
+    ],
+    "steps": [
+      "Fry the bacon in the oil over a medium-high heat until crisp at the edges, then push it to one side of the pan.",
+      "Crack the egg into the bacon fat and fry until the white is set but the yolk still runny.",
+      "Split and butter the roll, layer in the bacon then the egg, add brown sauce and press the lid on."
+    ]
+  },
+  {
+    "id": "bacon-sandwich",
+    "name": "Bacon sandwich",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 8,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "back bacon raw",
+        "grams": 75,
+        "display": "3 rashers back bacon"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "2 tsp butter"
+      },
+      {
+        "food": "tomato ketchup",
+        "grams": 15,
+        "display": "1 tbsp ketchup"
+      }
+    ],
+    "steps": [
+      "Grill or fry the bacon over a medium-high heat for 3-4 minutes a side until the fat has crisped at the edges.",
+      "Butter the bread right to the crusts, lay the bacon on one slice, overlapping the rashers so every bite has some.",
+      "Add the ketchup, close the sandwich, press down and cut in half."
+    ]
+  },
+  {
+    "id": "beans-on-toast",
+    "name": "Beans on toast",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian",
+      "kid-friendly",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "baked beans",
+        "grams": 220,
+        "display": "1/2 large tin baked beans"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices of white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for the toast"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 25,
+        "display": "25 g cheddar, grated"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 4,
+        "display": "a shake of Worcestershire sauce"
+      }
+    ],
+    "steps": [
+      "Warm the beans gently in a small pan with the Worcestershire sauce and a good grind of black pepper - boiling them hard splits the sauce.",
+      "Toast the bread and butter it while hot so the butter soaks in.",
+      "Tip the beans over the toast and scatter the cheese on top so it melts in the heat."
+    ]
+  },
+  {
+    "id": "cheese-on-toast",
+    "name": "Cheese on toast",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 60,
+        "display": "60g grated mature cheddar"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "1 tsp butter"
+      },
+      {
+        "food": "english mustard",
+        "grams": 3,
+        "display": "1/2 tsp English mustard"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 5,
+        "display": "a few dashes of Worcestershire sauce"
+      }
+    ],
+    "steps": [
+      "Heat the grill to high and toast the bread lightly on one side only.",
+      "Turn the slices over, butter the untoasted side and spread thinly with mustard.",
+      "Pile the cheese right to the edges, splash over the Worcestershire sauce and grill for 3-4 minutes until bubbling and blistered in patches."
+    ]
+  },
+  {
+    "id": "full-english-breakfast",
+    "name": "Full English breakfast",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 20,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 114,
+        "display": "2 pork sausages"
+      },
+      {
+        "food": "back bacon raw",
+        "grams": 50,
+        "display": "2 rashers back bacon"
+      },
+      {
+        "food": "black pudding",
+        "grams": 30,
+        "display": "1 slice black pudding"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "baked beans",
+        "grams": 200,
+        "display": "half a tin of baked beans"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 60,
+        "display": "60g mushrooms, halved"
+      },
+      {
+        "food": "tomato",
+        "grams": 80,
+        "display": "1 tomato, halved"
+      },
+      {
+        "food": "hash browns frozen",
+        "grams": 50,
+        "display": "1 frozen hash brown"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 6,
+        "display": "1 tsp oil"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 220C and put the hash brown on a tray to bake for 18-20 minutes, turning once, until deep golden and crisp.",
+      "Start the sausages in a large frying pan over a medium-low heat with the oil and turn them every few minutes; they need about 15 minutes.",
+      "After 5 minutes add the bacon, mushrooms and the tomato halves cut-side down. Warm the beans in a small pan.",
+      "Add the black pudding for the last 4 minutes a side, then fry the egg in the pan fat until the white is just set.",
+      "Plate everything up with the beans in a corner and serve with toast or brown sauce."
+    ]
+  },
+  {
+    "id": "garlic-mushrooms-on-toast",
+    "name": "Garlic mushrooms on toast",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 8,
+    "tags": [
+      "vegetarian",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "mushrooms",
+        "grams": 250,
+        "display": "250g chestnut mushrooms, sliced"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "a generous knob of butter"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 fat cloves garlic, crushed"
+      },
+      {
+        "food": "double cream",
+        "grams": 25,
+        "display": "2 tbsp double cream"
+      },
+      {
+        "food": "sourdough",
+        "grams": 80,
+        "display": "2 slices sourdough"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "a small handful of parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Get a frying pan properly hot, add the butter and the mushrooms and fry hard for 5-6 minutes without stirring too much, until browned and the liquid has gone.",
+      "Add the garlic and cook for 1 minute, then stir in the cream and let it bubble into a glossy sauce. Season well.",
+      "Toast the sourdough, spoon the mushrooms over with all the pan juices and scatter with parsley."
+    ]
+  },
+  {
+    "id": "grilled-kippers",
+    "name": "Grilled kippers",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 8,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "kipper",
+        "grams": 150,
+        "display": "1 kipper fillet"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "2 tsp butter"
+      },
+      {
+        "food": "wholemeal bread",
+        "grams": 45,
+        "display": "1 slice wholemeal bread"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 8,
+        "display": "half a lemon, to squeeze"
+      }
+    ],
+    "steps": [
+      "Heat the grill to medium-high and line the tray with foil, which saves scrubbing later.",
+      "Sit the kipper skin-side down, dot with half the butter and grill for 5-6 minutes without turning, until the flesh is hot and glossy.",
+      "Toast and butter the bread. Serve the kipper with a good squeeze of lemon and plenty of black pepper."
+    ]
+  },
+  {
+    "id": "kedgeree",
+    "name": "Kedgeree",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic Anglo-Indian home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 25,
+    "tags": [
+      "one-pan",
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "smoked haddock raw",
+        "grams": 150,
+        "display": "1 undyed smoked haddock fillet"
+      },
+      {
+        "food": "basmati rice dry",
+        "grams": 75,
+        "display": "75g basmati rice"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, finely chopped"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "curry powder",
+        "grams": 6,
+        "display": "2 tsp mild curry powder"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 60,
+        "display": "60g frozen peas"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "a small handful of parsley, chopped"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 10,
+        "display": "half a lemon, to squeeze"
+      }
+    ],
+    "steps": [
+      "Poach the haddock in barely simmering water for 5 minutes, lift out and flake into large pieces, discarding skin and bones. Keep the poaching water.",
+      "Boil the egg for 7 minutes, cool under the tap and peel. Cook the rice in the reserved poaching water for 10 minutes, adding the peas for the last 2, then drain.",
+      "Soften the onion in the butter for 6-8 minutes, stir in the curry powder and fry for a minute until fragrant.",
+      "Fold the rice, peas and flaked haddock through the onion, warm through gently, then top with the quartered egg, parsley and lemon."
+    ]
+  },
+  {
+    "id": "potato-farls-with-bacon",
+    "name": "Potato farls with bacon",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "irish",
+    "source": {
+      "name": "Traditional Ulster home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 20,
+    "tags": [
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250g floury potatoes"
+      },
+      {
+        "food": "plain flour",
+        "grams": 40,
+        "display": "40g plain flour"
+      },
+      {
+        "food": "butter",
+        "grams": 18,
+        "display": "18g butter"
+      },
+      {
+        "food": "back bacon raw",
+        "grams": 50,
+        "display": "2 rashers back bacon"
+      },
+      {
+        "food": "rapeseed oil",
+        "grams": 5,
+        "display": "1 tsp rapeseed oil"
+      }
+    ],
+    "steps": [
+      "Boil the peeled potatoes until tender, drain well and mash with half the butter and plenty of salt. Let the steam die off.",
+      "Work the flour into the warm mash to a soft dough, roll out to about 1cm on a floured surface and cut into four triangles.",
+      "Fry the farls in the rest of the butter for 3-4 minutes a side until crisp and browned.",
+      "Fry the bacon in the oil until crisp and serve on top of the hot farls."
+    ]
+  },
+  {
+    "id": "sausage-sandwich",
+    "name": "Sausage sandwich",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 15,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 114,
+        "display": "2 pork sausages"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "2 tsp butter"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 15,
+        "display": "1 tbsp brown sauce"
+      }
+    ],
+    "steps": [
+      "Fry the sausages gently for about 15 minutes, turning often, until browned all over and cooked through.",
+      "Split each sausage lengthways so they lie flat, which stops them rolling out of the sandwich.",
+      "Butter the bread, lay the sausages on, add brown sauce and close the sandwich."
+    ]
+  },
+  {
+    "id": "scotch-pancakes-with-berries",
+    "name": "Scotch pancakes with berries",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "cooked-breakfast",
+    "cuisine": "british",
+    "source": {
+      "name": "Traditional Scottish home baking"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 10,
+    "tags": [
+      "vegetarian",
+      "kid-friendly",
+      "batch",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "self raising flour",
+        "grams": 80,
+        "display": "80g self-raising flour"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "milk semi",
+        "grams": 120,
+        "display": "120ml semi-skimmed milk"
+      },
+      {
+        "food": "sugar",
+        "grams": 15,
+        "display": "1 tbsp caster sugar"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "butter, for the pan"
+      },
+      {
+        "food": "berries frozen",
+        "grams": 80,
+        "display": "80g mixed berries"
+      },
+      {
+        "food": "maple syrup",
+        "grams": 20,
+        "display": "1 tbsp maple syrup"
+      }
+    ],
+    "steps": [
+      "Whisk the flour, sugar and a pinch of salt with the egg and milk to a thick, smooth, droppable batter and rest it for 5 minutes.",
+      "Heat a heavy frying pan over a medium heat and wipe with a little butter. Drop in tablespoons of batter, spaced apart.",
+      "Cook for 1-2 minutes until bubbles rise and burst on the surface, then flip and give them another minute until risen and golden.",
+      "Warm the berries in a small pan for 2 minutes, spoon over the stacked pancakes and finish with maple syrup."
+    ]
+  }
+]

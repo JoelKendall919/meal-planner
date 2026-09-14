@@ -1,0 +1,507 @@
+[
+  {
+    "id": "avocado-and-poached-egg-on-toast",
+    "name": "Avocado and poached egg on toast",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Modern British cafe cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 5,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "sourdough",
+        "grams": 90,
+        "display": "2 slices sourdough"
+      },
+      {
+        "food": "avocado",
+        "grams": 80,
+        "display": "1 small ripe avocado"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      },
+      {
+        "food": "chilli",
+        "grams": 5,
+        "display": "a few slices of red chilli"
+      }
+    ],
+    "steps": [
+      "Scoop the avocado into a bowl, mash roughly with the lemon juice, salt and pepper, keeping some texture.",
+      "Poach the eggs in barely simmering water for 3 minutes while the sourdough toasts.",
+      "Spread the avocado thickly over the toast, sit a drained egg on each slice and finish with the chilli and a grind of pepper."
+    ]
+  },
+  {
+    "id": "boiled-eggs-with-toast-soldiers",
+    "name": "Boiled eggs with toast soldiers",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "2 tsp butter"
+      }
+    ],
+    "steps": [
+      "Lower the eggs into boiling water on a spoon and set a timer for 6 minutes for a runny yolk, 7 for jammy.",
+      "Toast the bread, butter it and cut into thick fingers.",
+      "Sit the eggs in egg cups, slice the tops off and season the yolks before dipping."
+    ]
+  },
+  {
+    "id": "cheese-and-mushroom-omelette",
+    "name": "Cheese and mushroom omelette",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 4,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 180,
+        "display": "3 large eggs"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 90,
+        "display": "90g chestnut mushrooms, sliced"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 40,
+        "display": "40g grated cheddar"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      }
+    ],
+    "steps": [
+      "Fry the mushrooms in half the butter over a high heat until browned and any liquid has cooked off, then tip onto a plate.",
+      "Beat the eggs with salt and pepper. Melt the rest of the butter in the pan over a medium heat and pour in the eggs.",
+      "Draw the setting edges into the middle, tilting the pan so raw egg runs out. When just set on top, scatter the mushrooms and cheese over one half.",
+      "Fold the omelette over the filling, leave for 30 seconds to melt the cheese, then slide onto a plate."
+    ]
+  },
+  {
+    "id": "eggs-benedict",
+    "name": "Eggs Benedict",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic brunch cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 10,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "english muffin",
+        "grams": 67,
+        "display": "1 white English muffin, split"
+      },
+      {
+        "food": "egg",
+        "grams": 140,
+        "display": "2 eggs to poach, plus 1 yolk for the sauce"
+      },
+      {
+        "food": "ham slices",
+        "grams": 60,
+        "display": "2 thick slices of ham"
+      },
+      {
+        "food": "butter",
+        "grams": 35,
+        "display": "35g butter, melted"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon juice"
+      }
+    ],
+    "steps": [
+      "Whisk the egg yolk with the lemon juice in a bowl over barely simmering water, then trickle in the warm melted butter, whisking, until the hollandaise thickens. Season and keep warm off the heat.",
+      "Poach the two eggs in barely simmering water for 3 minutes, then lift out and drain on kitchen paper.",
+      "Toast the muffin halves and warm the ham briefly in a dry pan.",
+      "Sit the ham on the muffin halves, top each with a poached egg and spoon over the hollandaise."
+    ]
+  },
+  {
+    "id": "eggy-bread",
+    "name": "Eggy bread",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian",
+      "kid-friendly",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "milk semi",
+        "grams": 30,
+        "display": "2 tbsp milk"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "ground cinnamon",
+        "grams": 1,
+        "display": "a pinch of cinnamon"
+      }
+    ],
+    "steps": [
+      "Beat the eggs with the milk, cinnamon and a pinch of salt in a wide shallow dish.",
+      "Soak each slice of bread for about 20 seconds a side until saturated but not falling apart.",
+      "Fry in foaming butter over a medium heat for 2-3 minutes a side until golden and puffed. Serve hot, cut into triangles."
+    ]
+  },
+  {
+    "id": "fried-egg-on-toast",
+    "name": "Fried egg on toast",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 4,
+    "tags": [
+      "vegetarian",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "rapeseed oil",
+        "grams": 6,
+        "display": "1 tsp rapeseed oil"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "1 tsp butter"
+      }
+    ],
+    "steps": [
+      "Heat the oil in a non-stick frying pan over a medium heat and crack in the eggs.",
+      "Fry for 2-3 minutes, spooning the hot oil over the whites, until the whites are set and the edges are lacy.",
+      "Toast and butter the bread, slide the eggs on top and season with salt and pepper."
+    ]
+  },
+  {
+    "id": "poached-eggs-on-toast",
+    "name": "Poached eggs on toast",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 5,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "2 tsp butter"
+      }
+    ],
+    "steps": [
+      "Bring a deep pan of water to a bare simmer and add a splash of vinegar. Crack each egg into a cup first.",
+      "Stir the water into a slow whirlpool, slide the eggs in and poach for 3 minutes for a runny yolk.",
+      "Toast and butter the bread. Lift the eggs out with a slotted spoon, drain on kitchen paper and sit them on the toast with salt and pepper."
+    ]
+  },
+  {
+    "id": "scrambled-eggs-on-toast",
+    "name": "Scrambled eggs on toast",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 6,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "milk semi",
+        "grams": 20,
+        "display": "1 tbsp milk"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      }
+    ],
+    "steps": [
+      "Beat the eggs with the milk and a good pinch of salt. Put the bread on to toast.",
+      "Melt the butter in a non-stick pan over a low heat, pour in the eggs and leave for 20 seconds before stirring.",
+      "Keep folding the eggs slowly, pulling the set curds to the middle. Take the pan off the heat while they still look slightly underdone and pile onto the toast."
+    ]
+  },
+  {
+    "id": "shakshuka",
+    "name": "Shakshuka",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "eggs",
+    "cuisine": "middle-eastern",
+    "source": {
+      "name": "Middle Eastern home cooking"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 20,
+    "tags": [
+      "vegetarian",
+      "one-pan",
+      "spicy"
+    ],
+    "ingredients": [
+      {
+        "food": "chopped tomatoes",
+        "grams": 250,
+        "display": "250g chopped tomatoes"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "red pepper",
+        "grams": 80,
+        "display": "1 small red pepper, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, sliced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 cloves garlic, sliced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "ground cumin",
+        "grams": 3,
+        "display": "1 tsp ground cumin"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 2,
+        "display": "1 tsp smoked paprika"
+      },
+      {
+        "food": "harissa",
+        "grams": 15,
+        "display": "1 tbsp harissa"
+      },
+      {
+        "food": "sourdough",
+        "grams": 60,
+        "display": "1 thick slice sourdough"
+      }
+    ],
+    "steps": [
+      "Soften the onion and pepper in the olive oil in a small frying pan for 8 minutes, then add the garlic, cumin, paprika and harissa and fry for a minute.",
+      "Tip in the tomatoes, season and simmer for 8-10 minutes until thick enough to hold a channel when you drag a spoon through.",
+      "Make two wells, crack in the eggs, cover the pan and cook for 4-5 minutes until the whites are set and the yolks still runny.",
+      "Serve straight from the pan with the sourdough for mopping."
+    ]
+  },
+  {
+    "id": "smoked-salmon-and-scrambled-eggs",
+    "name": "Smoked salmon and scrambled eggs",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "eggs",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic brunch cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 6,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "smoked salmon",
+        "grams": 60,
+        "display": "60g smoked salmon"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "milk semi",
+        "grams": 20,
+        "display": "1 tbsp milk"
+      },
+      {
+        "food": "sourdough",
+        "grams": 50,
+        "display": "1 slice sourdough"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      }
+    ],
+    "steps": [
+      "Beat the eggs with the milk and pepper. Go easy on the salt, the salmon brings plenty.",
+      "Scramble slowly in the butter over a low heat, stirring constantly, and take them off while still glossy and soft.",
+      "Pile onto the toasted sourdough, drape the smoked salmon over and finish with lemon and black pepper."
+    ]
+  }
+]

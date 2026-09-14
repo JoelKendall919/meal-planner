@@ -1,0 +1,284 @@
+[
+  {
+    "id": "apple",
+    "name": "Apple",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "apple",
+        "grams": 150,
+        "display": "1 medium apple (about 150 g)"
+      }
+    ],
+    "steps": [
+      "Rinse under the tap and eat whole, core and all left behind.",
+      "Keeps for weeks in the fridge drawer; slice and squeeze a little lemon over if you want to pack it cut up without it browning."
+    ]
+  },
+  {
+    "id": "banana",
+    "name": "Banana",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "banana",
+        "grams": 118,
+        "display": "1 medium banana (118 g peeled)"
+      }
+    ],
+    "steps": [
+      "Peel and eat; one medium banana is the portion.",
+      "Keep in the fruit bowl, not the fridge, and split off from the bunch as you go so the rest stays green longer."
+    ]
+  },
+  {
+    "id": "carrot-sticks-with-hummus",
+    "name": "Carrot sticks with hummus",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "carrot",
+        "grams": 90,
+        "display": "2 medium carrots, cut into sticks"
+      },
+      {
+        "food": "hummus reduced fat",
+        "grams": 50,
+        "display": "50 g reduced fat hummus"
+      }
+    ],
+    "steps": [
+      "Peel the carrots and cut into finger-length sticks.",
+      "Spoon the hummus into a small pot rather than dipping into the tub; both keep in the fridge for a couple of days if you prep a few portions at once."
+    ]
+  },
+  {
+    "id": "cherry-tomatoes-and-cheese",
+    "name": "Cherry tomatoes and cheese",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "cherry tomatoes",
+        "grams": 100,
+        "display": "100 g cherry tomatoes"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 30,
+        "display": "30 g cheddar, cubed"
+      }
+    ],
+    "steps": [
+      "Rinse the tomatoes and cut the cheddar into rough cubes.",
+      "Keep the tomatoes out of the fridge for flavour and the cheese in it; combine only when you are ready to eat."
+    ]
+  },
+  {
+    "id": "cucumber-and-pepper-with-tzatziki",
+    "name": "Cucumber and pepper with tzatziki",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "cucumber",
+        "grams": 80,
+        "display": "1/3 cucumber, cut into batons"
+      },
+      {
+        "food": "red pepper",
+        "grams": 70,
+        "display": "1/2 red pepper, sliced"
+      },
+      {
+        "food": "tzatziki",
+        "grams": 50,
+        "display": "50 g tzatziki"
+      }
+    ],
+    "steps": [
+      "Cut the cucumber into batons and slice the pepper into strips.",
+      "Keep the tzatziki in a separate pot until you eat, or the veg sits in liquid and goes limp by lunchtime."
+    ]
+  },
+  {
+    "id": "grapes",
+    "name": "Grapes",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "grapes",
+        "grams": 100,
+        "display": "1 small bunch of grapes (100 g)"
+      }
+    ],
+    "steps": [
+      "Snip a small bunch off the main stalk rather than grazing from the punnet, and rinse before eating.",
+      "Best straight from the fridge; they also freeze well on a tray for a cold summer snack."
+    ]
+  },
+  {
+    "id": "handful-of-berries",
+    "name": "Handful of berries",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "blueberries",
+        "grams": 60,
+        "display": "60 g blueberries"
+      },
+      {
+        "food": "strawberries",
+        "grams": 60,
+        "display": "60 g strawberries, hulled"
+      }
+    ],
+    "steps": [
+      "Rinse the berries and hull the strawberries, halving any big ones.",
+      "Eat within a couple of days of buying; wash only what you are about to eat, as wet berries spoil fast."
+    ]
+  },
+  {
+    "id": "satsuma",
+    "name": "Satsuma",
+    "slots": [
+      "snack"
+    ],
+    "category": "fruit-and-veg",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "satsuma",
+        "grams": 75,
+        "display": "1 satsuma (about 75 g peeled)"
+      }
+    ],
+    "steps": [
+      "Peel and pull into segments; one satsuma is a small snack, so have two if you want more.",
+      "Store the net bag somewhere cool and airy and use within a week, as they go soft quickly in a warm kitchen."
+    ]
+  }
+]

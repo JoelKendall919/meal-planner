@@ -1,0 +1,317 @@
+[
+  {
+    "id": "cereal-bar",
+    "name": "Cereal bar",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "cereal bar",
+        "grams": 35,
+        "display": "1 cereal bar (35 g)"
+      }
+    ],
+    "steps": [
+      "Unwrap and eat; one bar is the portion.",
+      "Small and sweet rather than filling, so pair it with a satsuma or a yoghurt if it is standing in for a missed meal."
+    ]
+  },
+  {
+    "id": "cheese-and-crackers",
+    "name": "Cheese and crackers",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "cream crackers",
+        "grams": 28,
+        "display": "4 cream crackers"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 30,
+        "display": "30 g cheddar, sliced"
+      }
+    ],
+    "steps": [
+      "Cut four thin slices of cheddar, one per cracker, rather than hacking off a wedge.",
+      "A little chutney or a few grapes alongside makes it feel like a proper plate instead of a raid on the cheese drawer."
+    ]
+  },
+  {
+    "id": "flapjack",
+    "name": "Flapjack",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "flapjack",
+        "grams": 60,
+        "display": "1 flapjack (60 g)"
+      }
+    ],
+    "steps": [
+      "One shop-bought flapjack is the portion; if it came from a big traybake, cut a 60 g square.",
+      "Keeps in an airtight tin for several days and is sturdy enough for a coat pocket on a long walk."
+    ]
+  },
+  {
+    "id": "hot-cross-bun",
+    "name": "Hot cross bun",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 3,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "hot cross bun",
+        "grams": 60,
+        "display": "1 hot cross bun, halved"
+      },
+      {
+        "food": "butter",
+        "grams": 7,
+        "display": "a scraping of butter (7 g)"
+      }
+    ],
+    "steps": [
+      "Halve and toast cut side up, watching it closely as the sugar in the cross burns easily.",
+      "Butter while hot; a pack of six freezes well and toasts straight from frozen."
+    ]
+  },
+  {
+    "id": "malt-loaf-with-butter",
+    "name": "Malt loaf with butter",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "malt loaf",
+        "grams": 40,
+        "display": "1 thick slice of malt loaf (40 g)"
+      },
+      {
+        "food": "butter",
+        "grams": 7,
+        "display": "a thin spread of butter (7 g)"
+      }
+    ],
+    "steps": [
+      "Cut a thick slice off the block and spread thinly with butter.",
+      "Wrap the cut end back in its foil; it stays sticky and moist for a fortnight and travels well in a rucksack."
+    ]
+  },
+  {
+    "id": "oatcakes-with-cheese",
+    "name": "Oatcakes with cheese",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "oatcakes",
+        "grams": 26,
+        "display": "2 oatcakes"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 30,
+        "display": "30 g cheddar, sliced"
+      }
+    ],
+    "steps": [
+      "Slice the cheese thinly and lay it over the oatcakes.",
+      "Count out two oatcakes and put the sleeve away first; grazing from an open pack is how a snack becomes half a box."
+    ]
+  },
+  {
+    "id": "peanut-butter-on-toast",
+    "name": "Peanut butter on toast",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 3,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "peanut butter",
+        "grams": 20,
+        "display": "1 heaped tsp peanut butter (20 g)"
+      }
+    ],
+    "steps": [
+      "Toast the bread and spread the peanut butter on while it is still warm so it melts in.",
+      "Sliced banana on top makes it more of a proper breakfast; one slice instead of two is the lighter snack version."
+    ]
+  },
+  {
+    "id": "rice-cakes-with-peanut-butter",
+    "name": "Rice cakes with peanut butter",
+    "slots": [
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "rice cakes",
+        "grams": 18,
+        "display": "2 rice cakes"
+      },
+      {
+        "food": "peanut butter",
+        "grams": 20,
+        "display": "1 heaped tsp peanut butter (20 g)"
+      }
+    ],
+    "steps": [
+      "Spread the peanut butter over the rice cakes, pressing gently so they do not snap.",
+      "Spread just before eating, or they go soft; sliced banana on top turns it into something more filling."
+    ]
+  },
+  {
+    "id": "scone-with-jam",
+    "name": "Scone with jam",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "bread-and-baked",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "scone",
+        "grams": 65,
+        "display": "1 plain scone"
+      },
+      {
+        "food": "strawberry jam",
+        "grams": 20,
+        "display": "1 tsp strawberry jam (20 g)"
+      }
+    ],
+    "steps": [
+      "Split the scone and spread both halves with jam.",
+      "Best on the day it is baked; a day-old one is much better warmed through in the oven for a few minutes first."
+    ]
+  }
+]

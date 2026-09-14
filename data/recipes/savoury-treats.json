@@ -1,0 +1,196 @@
+[
+  {
+    "id": "crisps",
+    "name": "Crisps",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "crisps",
+        "grams": 25,
+        "display": "1 standard bag of crisps (25 g)"
+      }
+    ],
+    "steps": [
+      "Open a single 25 g bag; that is the portion, and ready salted keeps it vegan.",
+      "If you only have a sharing bag, tip a handful into a bowl and clip the bag shut before you start eating."
+    ]
+  },
+  {
+    "id": "mixed-nuts",
+    "name": "Mixed nuts",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "mixed nuts",
+        "grams": 30,
+        "display": "a small handful of mixed nuts (30 g)"
+      }
+    ],
+    "steps": [
+      "Portion 30 g into a pot or a hand rather than eating from the bag, which is very easy to empty.",
+      "Store somewhere cool and dark; nuts pick up other smells and turn rancid if they sit open for months."
+    ]
+  },
+  {
+    "id": "olives",
+    "name": "Olives",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "mediterranean",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "olives green in brine",
+        "grams": 40,
+        "display": "40 g green olives, drained"
+      }
+    ],
+    "steps": [
+      "Drain a small bowlful from the jar and keep a dish handy for the stones.",
+      "Leave the rest submerged in their brine in the fridge and they will keep for weeks after opening."
+    ]
+  },
+  {
+    "id": "pork-scratchings",
+    "name": "Pork scratchings",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "pork scratchings",
+        "grams": 25,
+        "display": "1 small bag of pork scratchings (25 g)"
+      }
+    ],
+    "steps": [
+      "Eat from a small single bag; they are very salty and rich, so one bag goes a long way.",
+      "Check for hard pieces if you have dodgy teeth, and have a glass of water alongside."
+    ]
+  },
+  {
+    "id": "salted-peanuts",
+    "name": "Salted peanuts",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "salted peanuts",
+        "grams": 30,
+        "display": "a small handful of salted peanuts (30 g)"
+      }
+    ],
+    "steps": [
+      "Shake a small handful into a bowl and put the jar away; 30 g is about as much as fills a cupped palm.",
+      "Keep the lid on tight, as they go soft and stale within days once opened."
+    ]
+  },
+  {
+    "id": "salted-popcorn",
+    "name": "Salted popcorn",
+    "slots": [
+      "snack"
+    ],
+    "category": "savoury-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 4,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "popcorn kernels",
+        "grams": 20,
+        "display": "20 g popcorn kernels"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 3,
+        "display": "1 tsp sunflower oil"
+      }
+    ],
+    "steps": [
+      "Heat the oil in a lidded pan, add the kernels, cover and shake now and then until the popping slows to a few seconds apart.",
+      "Tip out straight away and salt lightly; 20 g of kernels fills a large bowl, so it looks far more generous than it is."
+    ]
+  }
+]

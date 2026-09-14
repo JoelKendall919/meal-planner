@@ -1,0 +1,516 @@
+[
+  {
+    "id": "chicken-and-bacon-pasta-salad",
+    "name": "Chicken and bacon pasta salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "salads",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 75,
+        "display": "75 g pasta shapes"
+      },
+      {
+        "food": "cooked chicken slices",
+        "grams": 110,
+        "display": "110 g cooked chicken, torn"
+      },
+      {
+        "food": "back bacon raw",
+        "grams": 50,
+        "display": "2 rashers back bacon"
+      },
+      {
+        "food": "light mayo",
+        "grams": 35,
+        "display": "2 tbsp light mayonnaise"
+      },
+      {
+        "food": "greek yoghurt 0%",
+        "grams": 30,
+        "display": "1 tbsp fat-free Greek yoghurt"
+      },
+      {
+        "food": "sweetcorn",
+        "grams": 70,
+        "display": "1/2 small tin sweetcorn, drained"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 70,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 30,
+        "display": "a handful of salad leaves"
+      }
+    ],
+    "steps": [
+      "Cook the pasta, drain and cool under the tap so the dressing does not split when it goes on.",
+      "Grill the bacon until crisp, then snip into pieces with scissors.",
+      "Stir the mayonnaise and yoghurt together with plenty of black pepper and coat the pasta in it.",
+      "Fold through the chicken, bacon, sweetcorn, tomatoes and spring onion and serve on the leaves."
+    ]
+  },
+  {
+    "id": "chicken-caesar-salad",
+    "name": "Chicken Caesar salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "salads",
+    "cuisine": "american",
+    "source": {
+      "name": "Modern bistro cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 15,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "chicken breast raw",
+        "grams": 150,
+        "display": "1 chicken breast"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 90,
+        "display": "2 little gem lettuces, leaves separated"
+      },
+      {
+        "food": "white bread",
+        "grams": 40,
+        "display": "1 thick slice bread, cubed for croutons"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "light mayo",
+        "grams": 30,
+        "display": "2 tbsp light mayonnaise"
+      },
+      {
+        "food": "greek yoghurt 0%",
+        "grams": 25,
+        "display": "1 tbsp fat-free Greek yoghurt"
+      },
+      {
+        "food": "anchovies in oil drained",
+        "grams": 8,
+        "display": "2 anchovy fillets, mashed"
+      },
+      {
+        "food": "parmesan",
+        "grams": 15,
+        "display": "15 g Parmesan, finely grated"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 5,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 8,
+        "display": "2 tsp lemon juice"
+      },
+      {
+        "food": "garlic",
+        "grams": 3,
+        "display": "1 small clove garlic, crushed"
+      }
+    ],
+    "steps": [
+      "Season the chicken, fry in half the oil for 6 minutes a side until cooked through, then rest and slice thickly.",
+      "Toss the bread cubes in the remaining oil and bake or fry until golden and crisp.",
+      "Whisk the mayonnaise, yoghurt, anchovies, mustard, garlic, lemon juice and most of the Parmesan into a pourable dressing.",
+      "Toss the leaves in the dressing, top with the chicken and croutons and finish with the last of the Parmesan."
+    ]
+  },
+  {
+    "id": "couscous-salad-with-roasted-veg",
+    "name": "Couscous salad with roasted veg",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "salads",
+    "cuisine": "mediterranean",
+    "source": {
+      "name": "Mediterranean vegetarian cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "make-ahead",
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "couscous dry",
+        "grams": 70,
+        "display": "70 g couscous"
+      },
+      {
+        "food": "mixed roast veg",
+        "grams": 220,
+        "display": "220 g pepper, red onion and courgette, chopped"
+      },
+      {
+        "food": "chickpeas drained",
+        "grams": 70,
+        "display": "1/3 tin chickpeas, drained"
+      },
+      {
+        "food": "olive oil",
+        "grams": 14,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "stock cube",
+        "grams": 4,
+        "display": "1/2 vegetable stock cube in 90 ml boiling water"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 10,
+        "display": "juice of 1/2 lemon"
+      },
+      {
+        "food": "feta",
+        "grams": 30,
+        "display": "30 g feta, crumbled"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 8,
+        "display": "a small handful of parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Toss the vegetables with two thirds of the oil and seasoning and roast at 200C for 25 minutes until softened and charred at the edges.",
+      "Put the couscous in a bowl, pour over the hot stock, cover and leave for 8 minutes, then fluff up with a fork.",
+      "Fold the roasted veg, chickpeas, lemon juice, remaining oil and parsley through the couscous while still warm.",
+      "Crumble the feta over and serve warm, or chill and pack for lunch the next day."
+    ]
+  },
+  {
+    "id": "greek-salad-with-feta",
+    "name": "Greek salad with feta",
+    "slots": [
+      "lunch"
+    ],
+    "category": "salads",
+    "cuisine": "greek",
+    "source": {
+      "name": "Greek taverna cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "feta",
+        "grams": 80,
+        "display": "80 g feta, in thick slabs"
+      },
+      {
+        "food": "tomato",
+        "grams": 160,
+        "display": "2 ripe tomatoes, in wedges"
+      },
+      {
+        "food": "cucumber",
+        "grams": 120,
+        "display": "1/3 cucumber, in half moons"
+      },
+      {
+        "food": "red onion",
+        "grams": 35,
+        "display": "1/4 red onion, thinly sliced"
+      },
+      {
+        "food": "olives green in brine",
+        "grams": 30,
+        "display": "10 olives"
+      },
+      {
+        "food": "olive oil",
+        "grams": 14,
+        "display": "1 tbsp extra virgin olive oil"
+      },
+      {
+        "food": "dried oregano",
+        "grams": 1,
+        "display": "1/2 tsp dried oregano"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 8,
+        "display": "squeeze of lemon"
+      },
+      {
+        "food": "pitta wholemeal",
+        "grams": 60,
+        "display": "1 wholemeal pitta, warmed"
+      }
+    ],
+    "steps": [
+      "Put the tomato wedges, cucumber and onion in a bowl, season with salt and toss so the tomatoes start to release their juice.",
+      "Add the olives, spoon over the oil and lemon and turn everything once.",
+      "Lay the feta on top in slabs rather than crumbling it, and dust with the oregano.",
+      "Serve with warm pitta to mop up the juices at the bottom of the bowl."
+    ]
+  },
+  {
+    "id": "pesto-chicken-pasta-salad",
+    "name": "Pesto chicken pasta salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "salads",
+    "cuisine": "italian",
+    "source": {
+      "name": "Everyday Italian home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 75,
+        "display": "75 g pasta shapes"
+      },
+      {
+        "food": "chicken breast raw",
+        "grams": 130,
+        "display": "1 chicken breast"
+      },
+      {
+        "food": "pesto",
+        "grams": 30,
+        "display": "2 tbsp green pesto"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 90,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "rocket",
+        "grams": 25,
+        "display": "a handful of rocket"
+      },
+      {
+        "food": "olive oil",
+        "grams": 5,
+        "display": "1 tsp olive oil"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 6,
+        "display": "squeeze of lemon"
+      },
+      {
+        "food": "parmesan",
+        "grams": 10,
+        "display": "10 g Parmesan, grated"
+      }
+    ],
+    "steps": [
+      "Cook the pasta in well-salted water, drain and rinse briefly under cold water so it does not overcook.",
+      "Season and fry the chicken in the oil for 6 minutes a side, rest for 5 minutes, then slice.",
+      "Loosen the pesto with the lemon juice and a spoonful of the pasta water and toss through the cool pasta.",
+      "Fold in the tomatoes and rocket, top with the sliced chicken and grate the Parmesan over."
+    ]
+  },
+  {
+    "id": "potato-salad-with-egg",
+    "name": "Potato salad with egg",
+    "slots": [
+      "lunch"
+    ],
+    "category": "salads",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "new potatoes",
+        "grams": 250,
+        "display": "250 g new potatoes, halved"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "light mayo",
+        "grams": 40,
+        "display": "2 tbsp light mayonnaise"
+      },
+      {
+        "food": "greek yoghurt 5%",
+        "grams": 30,
+        "display": "1 tbsp Greek yoghurt"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 5,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "spring onion",
+        "grams": 20,
+        "display": "2 spring onions, sliced"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "1 tbsp chopped parsley"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes in salted water for 14 minutes until tender, then drain and leave to steam dry for a minute.",
+      "Boil the eggs for 8 minutes, cool under cold water, peel and quarter.",
+      "Mix the mayonnaise, yoghurt and mustard and stir through the potatoes while they are still warm so they drink up the dressing.",
+      "Fold in the spring onion and parsley, top with the egg quarters and serve on the salad leaves."
+    ]
+  },
+  {
+    "id": "tuna-nicoise-salad",
+    "name": "Tuna niçoise salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "salads",
+    "cuisine": "french",
+    "source": {
+      "name": "French bistro classics"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 15,
+    "tags": [
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "tuna spring water drained",
+        "grams": 110,
+        "display": "1 tin tuna in spring water, drained"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 160,
+        "display": "160 g new potatoes, halved"
+      },
+      {
+        "food": "green beans",
+        "grams": 80,
+        "display": "a handful of green beans, trimmed"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 90,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "olives green in brine",
+        "grams": 25,
+        "display": "8 olives"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "red onion",
+        "grams": 25,
+        "display": "a few thin slices of red onion"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 5,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "apple cider vinegar",
+        "grams": 8,
+        "display": "2 tsp cider vinegar"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes for 12 minutes, adding the beans for the last 3, then drain and cool under the tap.",
+      "Boil the egg for 7 minutes for a just-set yolk, cool, peel and halve.",
+      "Shake the oil, mustard and vinegar together with seasoning to make the dressing.",
+      "Layer the leaves, potatoes, beans, tomatoes, onion and olives on a plate, flake over the tuna, add the egg and spoon the dressing over."
+    ]
+  }
+]

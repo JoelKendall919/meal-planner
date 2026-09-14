@@ -1,0 +1,329 @@
+[
+  {
+    "id": "babybel",
+    "name": "Babybel",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "babybel",
+        "grams": 20,
+        "display": "1 Babybel (20 g)"
+      }
+    ],
+    "steps": [
+      "Pull the red wax tab and peel the casing off.",
+      "Happily survives a few hours in a bag or lunchbox, which is the point of it; have it with an apple if one cheese is not enough."
+    ]
+  },
+  {
+    "id": "biltong",
+    "name": "Biltong",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "biltong",
+        "grams": 30,
+        "display": "1 small bag of biltong (30 g)"
+      }
+    ],
+    "steps": [
+      "Eat straight from the bag; a 30 g pack is one portion and is very salty, so have water with it.",
+      "Unopened bags sit in a desk drawer for weeks, which makes it a useful emergency snack away from a fridge."
+    ]
+  },
+  {
+    "id": "boiled-egg",
+    "name": "Boiled egg",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 8,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "make-ahead",
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 58,
+        "display": "1 medium egg"
+      }
+    ],
+    "steps": [
+      "Lower the egg into simmering water and cook 8 minutes for hard boiled, then cool under the cold tap.",
+      "Boil half a dozen at once; they keep in their shells in the fridge for up to a week, ready to peel and salt."
+    ]
+  },
+  {
+    "id": "cottage-cheese-on-crackers",
+    "name": "Cottage cheese on crackers",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "cottage cheese",
+        "grams": 100,
+        "display": "100 g cottage cheese"
+      },
+      {
+        "food": "cream crackers",
+        "grams": 21,
+        "display": "3 cream crackers"
+      }
+    ],
+    "steps": [
+      "Pile the cottage cheese onto the crackers and grind over black pepper.",
+      "Top just before eating, as the crackers soften within minutes; carry the two separately if you are taking it out."
+    ]
+  },
+  {
+    "id": "greek-yoghurt",
+    "name": "Greek yoghurt",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "greek yoghurt 0%",
+        "grams": 170,
+        "display": "170 g 0% Greek yoghurt (1 small pot)"
+      }
+    ],
+    "steps": [
+      "Spoon a small pot's worth into a bowl; 150-170 g is a sensible portion from a big tub.",
+      "Good plain, or stir through berries, honey or a spoon of jam if it is too sharp on its own."
+    ]
+  },
+  {
+    "id": "ham-or-chicken-slices",
+    "name": "Ham or chicken slices",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "ham slices",
+        "grams": 60,
+        "display": "3 slices of ham (60 g)"
+      }
+    ],
+    "steps": [
+      "Take three slices from the pack and roll them up; cooked chicken slices work the same way if that is what is open.",
+      "Once opened, use the pack within three days and keep it at the back of the fridge, not in the door."
+    ]
+  },
+  {
+    "id": "protein-bar",
+    "name": "Protein bar",
+    "slots": [
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "protein bar",
+        "grams": 60,
+        "display": "1 protein bar (60 g)"
+      }
+    ],
+    "steps": [
+      "Unwrap and eat; one bar is the portion.",
+      "Handy in a kit bag, though it is a sweet bar rather than a meal, so treat it as a stopgap between proper food."
+    ]
+  },
+  {
+    "id": "protein-shake",
+    "name": "Protein shake",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "whey",
+        "grams": 30,
+        "display": "1 scoop whey powder (30 g)"
+      },
+      {
+        "food": "milk semi",
+        "grams": 300,
+        "display": "300 ml semi-skimmed milk"
+      }
+    ],
+    "steps": [
+      "Put the milk in the shaker first, then the powder, and shake hard for 20 seconds so it does not clump.",
+      "Drink within the hour; made with water instead of milk it is thinner but easier to carry premeasured and mix at the gym."
+    ]
+  },
+  {
+    "id": "skyr-pot",
+    "name": "Skyr pot",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "skyr",
+        "grams": 150,
+        "display": "1 skyr pot (150 g)"
+      }
+    ],
+    "steps": [
+      "Eat straight from the pot; the single-serve size is the portion.",
+      "Thicker and tarter than yoghurt, so it holds up well in a lunch bag with an ice block for a few hours."
+    ]
+  },
+  {
+    "id": "yoghurt-with-honey",
+    "name": "Yoghurt with honey",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "dairy-and-protein",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "greek yoghurt 5%",
+        "grams": 150,
+        "display": "150 g 5% Greek yoghurt"
+      },
+      {
+        "food": "honey",
+        "grams": 15,
+        "display": "1 tsp honey (15 g)"
+      }
+    ],
+    "steps": [
+      "Spoon the yoghurt into a bowl and trickle the honey over the top.",
+      "Drizzle rather than stir in, so you taste the sweetness without needing a second spoonful."
+    ]
+  }
+]

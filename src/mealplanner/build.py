@@ -16,7 +16,7 @@ import shutil
 from dataclasses import asdict
 from pathlib import Path
 
-from .catalogue import all_tags, load_foods, load_recipes
+from .catalogue import all_categories, all_cuisines, all_tags, load_foods, load_recipes
 
 ROOT = Path(__file__).resolve().parents[2]
 TEMPLATES = Path(__file__).parent / "templates"
@@ -34,10 +34,18 @@ VERSION_PLACEHOLDER = "__VERSION__"
 # starting values. They must be reachable from the catalogue, which is what the
 # feasibility test enforces: an earlier 180 g protein goal was carried over from a
 # hand-built week and no combination of the then-75 recipes could reach it under
-# 1750 kcal. After adding 12 high-protein mains and 20 protein snacks, 150 g is
-# met by roughly 40% of days. These figures are the median of days landing at
-# 1650-1750 kcal with at least 150 g protein.
-TARGETS = {"kcal": 1750, "protein": 150, "fat": 50, "carbs": 160}
+# 1750 kcal.
+#
+# The catalogue is now a general UK cookbook rather than a cutting plan, so the
+# unscoped pool cannot serve a cut on its own: across all 182 recipes only 0.5% of
+# days reach 150 g protein under 1750 kcal, and 5.8% reach 130 g. Filtered to the
+# high-protein scope those become 11.7% and 60%. That is why the planning scope
+# exists, and why the feasibility test measures the scoped pool.
+#
+# 140 g is the honest default: 1.47 g per kg of a 95 kg goal weight, which sits in
+# the range for retaining muscle in a deficit, and reachable on 33% of scoped days
+# so the goal reads as demanding rather than impossible.
+TARGETS = {"kcal": 1750, "protein": 140, "fat": 50, "carbs": 160}
 
 # Tag filters are ordered by usefulness rather than alphabetically.
 TAG_ORDER = ["high-protein", "quick", "vegetarian", "no-cook", "packable", "batch", "one-pan"]
@@ -55,6 +63,8 @@ def payload() -> dict:
         },
         "recipes": [r.to_dict() for r in recipes],
         "tags": tags,
+        "categories": all_categories(recipes),
+        "cuisines": all_cuisines(recipes),
         "targets": TARGETS,
     }
 
@@ -102,7 +112,8 @@ def build(out: Path | None = None) -> Path:
 
     slots: dict[str, int] = {}
     for recipe in data["recipes"]:
-        slots[recipe["slot"]] = slots.get(recipe["slot"], 0) + 1
+        for slot in recipe["slots"]:
+            slots[slot] = slots.get(slot, 0) + 1
     breakdown = ", ".join(f"{n} {slot}" for slot, n in sorted(slots.items()))
     print(
         f"built {out / 'index.html'} "

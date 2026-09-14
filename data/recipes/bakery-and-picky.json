@@ -1,0 +1,583 @@
+[
+  {
+    "id": "cheese-and-onion-pasty",
+    "name": "Cheese and onion pasty",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British bakery counter favourites"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 35,
+    "tags": [
+      "vegetarian",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "shortcrust pastry",
+        "grams": 110,
+        "display": "110 g shortcrust pastry"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 120,
+        "display": "1 small potato, diced small"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1/2 onion, finely sliced"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 55,
+        "display": "55 g mature cheddar, grated"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "english mustard",
+        "grams": 4,
+        "display": "1/2 tsp English mustard"
+      },
+      {
+        "food": "egg",
+        "grams": 12,
+        "display": "1 beaten egg, for glazing"
+      }
+    ],
+    "steps": [
+      "Boil the diced potato for 6 minutes until just tender, drain well and leave to cool. Soften the onion in the butter and cool too.",
+      "Mix the potato, onion, cheese and mustard with plenty of salt and pepper - it needs seasoning hard to taste of anything.",
+      "Roll the pastry to a circle about 20 cm across, pile the filling on one half, brush the edge with egg and fold over.",
+      "Crimp the edge firmly, glaze with egg, cut a steam vent and bake at 200C for 30-35 minutes until deep golden. Rest 10 minutes before eating."
+    ]
+  },
+  {
+    "id": "cornish-pasty",
+    "name": "Cornish pasty",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British bakery counter favourites"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 30,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "cornish pasty",
+        "grams": 227,
+        "display": "1 Cornish pasty"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "tomato",
+        "grams": 80,
+        "display": "1 tomato, in wedges"
+      },
+      {
+        "food": "cucumber",
+        "grams": 50,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 20,
+        "display": "1 tbsp brown sauce"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 180C and warm the pasty on a baking tray for 25-30 minutes from chilled, until piping hot right through the middle.",
+      "Do not cover it with foil - the point of a pasty is the crisp crimped edge.",
+      "Dress the leaves, tomato and cucumber lightly and put them on the plate alongside.",
+      "Serve with brown sauce, and eat it holding the crimp like a handle."
+    ]
+  },
+  {
+    "id": "omelette-with-side-salad",
+    "name": "Omelette with side salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 8,
+    "tags": [
+      "vegetarian",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 180,
+        "display": "3 eggs"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 35,
+        "display": "35 g cheddar, grated"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 60,
+        "display": "3 mushrooms, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 80,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "cucumber",
+        "grams": 50,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 6,
+        "display": "1 tsp olive oil"
+      },
+      {
+        "food": "balsamic vinegar",
+        "grams": 5,
+        "display": "1 tsp balsamic vinegar"
+      }
+    ],
+    "steps": [
+      "Fry the mushrooms in half the butter until any water has cooked off and they are golden, then set aside.",
+      "Beat the eggs with salt and pepper, melt the rest of the butter in a non-stick pan and pour them in.",
+      "Draw the setting edges into the middle with a spatula for a minute, then let the base set while the top is still slightly loose.",
+      "Scatter the mushrooms and cheese over one half, fold, and slide onto a plate with the salad dressed in oil and balsamic."
+    ]
+  },
+  {
+    "id": "ploughmans-lunch",
+    "name": "Ploughman's lunch",
+    "slots": [
+      "lunch"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British pub classics"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "cheddar grated",
+        "grams": 70,
+        "display": "a 70 g wedge of mature cheddar"
+      },
+      {
+        "food": "crusty white roll",
+        "grams": 60,
+        "display": "1 crusty white roll"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for the bread"
+      },
+      {
+        "food": "branston pickle",
+        "grams": 30,
+        "display": "2 tbsp Branston pickle"
+      },
+      {
+        "food": "apple",
+        "grams": 100,
+        "display": "1 small apple, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "tomato",
+        "grams": 90,
+        "display": "1 large tomato, in wedges"
+      },
+      {
+        "food": "red onion",
+        "grams": 25,
+        "display": "a few rings of red onion"
+      },
+      {
+        "food": "coleslaw",
+        "grams": 50,
+        "display": "a spoonful of coleslaw"
+      }
+    ],
+    "steps": [
+      "Take the cheese out of the fridge half an hour ahead so it is not cold and waxy.",
+      "Butter the roll and put it on a big plate or board with the cheese in one piece.",
+      "Add a spoonful of pickle, the coleslaw, the apple slices and a heap of dressed leaves, tomato and onion.",
+      "Season the salad, then build each mouthful yourself - bread, cheese, pickle, apple."
+    ]
+  },
+  {
+    "id": "pork-pie-with-pickle-and-salad",
+    "name": "Pork pie with pickle and salad",
+    "slots": [
+      "lunch"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British picky plates and cold table"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 0,
+    "tags": [
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "pork pie",
+        "grams": 140,
+        "display": "1 small pork pie"
+      },
+      {
+        "food": "branston pickle",
+        "grams": 30,
+        "display": "2 tbsp Branston pickle"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a generous handful of salad leaves"
+      },
+      {
+        "food": "tomato",
+        "grams": 90,
+        "display": "1 large tomato, in wedges"
+      },
+      {
+        "food": "cucumber",
+        "grams": 70,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "red onion",
+        "grams": 20,
+        "display": "a few rings of red onion"
+      },
+      {
+        "food": "beetroot cooked",
+        "grams": 50,
+        "display": "1 cooked beetroot, sliced"
+      }
+    ],
+    "steps": [
+      "Take the pork pie out of the fridge 20 minutes before eating - fridge-cold jelly and pastry taste of very little.",
+      "Cut it into quarters and arrange on the plate with a good spoonful of pickle.",
+      "Pile the leaves, tomato, cucumber, onion and beetroot alongside and season the salad with salt and pepper.",
+      "Eat with a knife and fork, or with your fingers straight from a lunchbox."
+    ]
+  },
+  {
+    "id": "quiche-lorraine-with-salad",
+    "name": "Quiche Lorraine with salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "french",
+    "source": {
+      "name": "British picky plates and cold table"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "quiche lorraine",
+        "grams": 150,
+        "display": "a generous wedge of quiche Lorraine"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 150,
+        "display": "150 g new potatoes, halved"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 80,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "cucumber",
+        "grams": 50,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "balsamic vinegar",
+        "grams": 5,
+        "display": "1 tsp balsamic vinegar"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 4,
+        "display": "1 tbsp chopped parsley"
+      }
+    ],
+    "steps": [
+      "Boil the new potatoes for 14 minutes, drain and toss with the parsley and a little of the oil.",
+      "Warm the quiche at 170C for 12-15 minutes if you want it hot, or serve it cold - both are correct.",
+      "Dress the leaves, tomatoes and cucumber with the rest of the oil and the balsamic.",
+      "Plate the quiche with the potatoes and salad alongside."
+    ]
+  },
+  {
+    "id": "sausage-roll-with-salad",
+    "name": "Sausage roll with salad",
+    "slots": [
+      "lunch"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British bakery counter favourites"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 15,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "sausage roll",
+        "grams": 120,
+        "display": "2 bakery sausage rolls"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a generous handful of salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 80,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "cucumber",
+        "grams": 60,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 5,
+        "display": "1 tsp olive oil"
+      },
+      {
+        "food": "balsamic vinegar",
+        "grams": 5,
+        "display": "1 tsp balsamic vinegar"
+      },
+      {
+        "food": "branston pickle",
+        "grams": 20,
+        "display": "1 tbsp Branston pickle, to dip"
+      }
+    ],
+    "steps": [
+      "Heat the sausage rolls on a tray at 190C for 12-15 minutes so the pastry crisps up rather than going soft in the microwave.",
+      "Meanwhile toss the leaves, tomatoes and cucumber with the oil, vinegar and a pinch of salt.",
+      "Let the rolls sit for a couple of minutes before eating - the filling holds a lot of heat.",
+      "Serve alongside the salad with a spoonful of Branston pickle for dipping."
+    ]
+  },
+  {
+    "id": "scotch-egg-with-salad",
+    "name": "Scotch egg with salad",
+    "slots": [
+      "lunch"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British picky plates and cold table"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 0,
+    "tags": [
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "scotch egg",
+        "grams": 113,
+        "display": "1 scotch egg"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a generous handful of salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 90,
+        "display": "a handful of cherry tomatoes, halved"
+      },
+      {
+        "food": "cucumber",
+        "grams": 70,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "beetroot cooked",
+        "grams": 50,
+        "display": "1 cooked beetroot, sliced"
+      },
+      {
+        "food": "light mayo",
+        "grams": 20,
+        "display": "1 tbsp light mayonnaise"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard"
+      },
+      {
+        "food": "crusty white roll",
+        "grams": 60,
+        "display": "1 crusty white roll"
+      }
+    ],
+    "steps": [
+      "Bring the scotch egg up to room temperature and halve it lengthways so you can see the yolk.",
+      "Stir the mustard into the mayonnaise to make a quick dip.",
+      "Arrange the leaves, tomatoes, cucumber and beetroot on the plate and season them.",
+      "Serve the scotch egg with the mustard mayo and the roll and butter on the side."
+    ]
+  },
+  {
+    "id": "welsh-rarebit",
+    "name": "Welsh rarebit",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "bakery-and-picky",
+    "cuisine": "british",
+    "source": {
+      "name": "British pub classics"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 10,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "cheddar grated",
+        "grams": 90,
+        "display": "90 g mature cheddar, grated"
+      },
+      {
+        "food": "sourdough",
+        "grams": 80,
+        "display": "2 thick slices of sourdough"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "cider",
+        "grams": 25,
+        "display": "a splash of cider or ale"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 6,
+        "display": "1 tsp Worcestershire sauce"
+      },
+      {
+        "food": "egg",
+        "grams": 25,
+        "display": "1 egg yolk"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      }
+    ],
+    "steps": [
+      "Melt the butter with the cider in a small pan, add the cheese and stir over a low heat until smooth - do not let it boil.",
+      "Take it off the heat, beat in the mustard, Worcestershire sauce and egg yolk and season with pepper. Leave to cool and thicken.",
+      "Toast the sourdough on both sides, then spread the cheese mixture right to the edges so nothing burns.",
+      "Grill until blistered and browning in patches, and serve with the leaves alongside."
+    ]
+  }
+]

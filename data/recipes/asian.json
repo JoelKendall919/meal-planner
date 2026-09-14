@@ -1,0 +1,550 @@
+[
+  {
+    "id": "beef-and-black-bean-stir-fry",
+    "name": "Beef and black bean stir fry",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "chinese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 10,
+    "tags": [
+      "one-pan",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "sirloin raw trimmed",
+        "grams": 150,
+        "display": "150 g sirloin steak, sliced across the grain"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 75,
+        "display": "75 g long grain rice"
+      },
+      {
+        "food": "green pepper",
+        "grams": 90,
+        "display": "1 green pepper, cut into squares"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, cut into wedges"
+      },
+      {
+        "food": "black bean sauce",
+        "grams": 70,
+        "display": "70 g black bean stir fry sauce"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, sliced"
+      },
+      {
+        "food": "root ginger",
+        "grams": 8,
+        "display": "thumb of ginger, shredded"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 10,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, sliced"
+      }
+    ],
+    "steps": [
+      "Rinse the rice and simmer in plenty of water for 10 minutes, then drain and keep covered.",
+      "Heat a wok until smoking, add half the oil and sear the beef for 90 seconds so it browns rather than steams. Lift it out.",
+      "Add the rest of the oil with the onion and pepper and stir fry for 3 minutes, then add the garlic and ginger for 30 seconds.",
+      "Return the beef with the black bean sauce and a splash of water and bubble for 1 minute until glossy.",
+      "Scatter with spring onion and serve over the rice."
+    ]
+  },
+  {
+    "id": "chicken-chow-mein",
+    "name": "Chicken chow mein",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "chinese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 10,
+    "tags": [
+      "one-pan",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "egg noodles dry",
+        "grams": 100,
+        "display": "100 g dried egg noodles (1 nest)"
+      },
+      {
+        "food": "chicken breast raw",
+        "grams": 150,
+        "display": "1 chicken breast (about 150 g), sliced thinly"
+      },
+      {
+        "food": "beansprouts",
+        "grams": 80,
+        "display": "80 g beansprouts"
+      },
+      {
+        "food": "carrot",
+        "grams": 60,
+        "display": "1 small carrot, cut into matchsticks"
+      },
+      {
+        "food": "spring onion",
+        "grams": 25,
+        "display": "2 spring onions, cut into lengths"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "root ginger",
+        "grams": 8,
+        "display": "thumb of ginger, grated"
+      },
+      {
+        "food": "soy sauce",
+        "grams": 20,
+        "display": "1 heaped tbsp dark soy sauce"
+      },
+      {
+        "food": "oyster sauce",
+        "grams": 15,
+        "display": "1 tbsp oyster sauce"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 10,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "sesame oil",
+        "grams": 5,
+        "display": "1 tsp sesame oil"
+      }
+    ],
+    "steps": [
+      "Boil the noodles for 3 to 4 minutes until just soft, drain and rinse under cold water so they do not clump.",
+      "Get a wok very hot with the sunflower oil and stir fry the chicken for 4 minutes until browned at the edges and cooked through.",
+      "Add the carrot, garlic and ginger and toss for 1 minute, then tip in the beansprouts.",
+      "Add the drained noodles, soy sauce and oyster sauce and toss hard for 2 minutes so everything is coated and piping hot.",
+      "Finish with the sesame oil and spring onions off the heat."
+    ]
+  },
+  {
+    "id": "chicken-satay-with-rice",
+    "name": "Chicken satay with rice",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "thai",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 15,
+    "tags": [
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "chicken thigh skinless raw",
+        "grams": 170,
+        "display": "3 skinless chicken thighs (about 170 g), cut into strips"
+      },
+      {
+        "food": "satay sauce",
+        "grams": 60,
+        "display": "60 g satay sauce"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 75,
+        "display": "75 g jasmine rice"
+      },
+      {
+        "food": "cucumber",
+        "grams": 70,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "red onion",
+        "grams": 30,
+        "display": "a little red onion, sliced thinly"
+      },
+      {
+        "food": "lime juice",
+        "grams": 10,
+        "display": "juice of half a lime"
+      },
+      {
+        "food": "soy sauce",
+        "grams": 10,
+        "display": "2 tsp soy sauce"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "1.5 tsp sunflower oil"
+      },
+      {
+        "food": "spices",
+        "grams": 3,
+        "display": "1 tsp ground turmeric and coriander"
+      }
+    ],
+    "steps": [
+      "Toss the chicken with the soy sauce, spices and oil and leave for 15 minutes, or overnight if you have time.",
+      "Thread onto skewers and grill under a high heat for 10 to 12 minutes, turning once, until charred at the edges and cooked through.",
+      "Meanwhile cook the rice for 10 minutes and dress the cucumber and red onion with the lime juice.",
+      "Warm the satay sauce with a splash of water until pourable and spoon over the skewers.",
+      "Serve with the rice and the quick cucumber pickle."
+    ]
+  },
+  {
+    "id": "egg-fried-rice-with-prawns",
+    "name": "Egg fried rice with prawns",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "chinese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 10,
+    "tags": [
+      "one-pan",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "white rice dry",
+        "grams": 90,
+        "display": "90 g long grain rice, cooked and cooled"
+      },
+      {
+        "food": "prawns cooked",
+        "grams": 120,
+        "display": "120 g cooked king prawns"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs, beaten"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 60,
+        "display": "60 g frozen peas"
+      },
+      {
+        "food": "spring onion",
+        "grams": 20,
+        "display": "2 spring onions, sliced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "soy sauce",
+        "grams": 15,
+        "display": "1 tbsp light soy sauce"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 10,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "sesame oil",
+        "grams": 5,
+        "display": "1 tsp sesame oil"
+      }
+    ],
+    "steps": [
+      "Use rice cooked earlier and chilled: freshly boiled rice turns the dish sticky.",
+      "Heat the sunflower oil in a wok, pour in the eggs and stir until just set, then push them to one side.",
+      "Add the garlic and peas for 1 minute, then tip in the cold rice and break up any lumps against the side of the wok.",
+      "Stir fry for 3 minutes until the grains are hot and separate, then add the prawns and soy sauce for a further minute.",
+      "Finish with the sesame oil and spring onions."
+    ]
+  },
+  {
+    "id": "singapore-noodles",
+    "name": "Singapore noodles",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "chinese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 10,
+    "tags": [
+      "one-pan",
+      "packable",
+      "spicy"
+    ],
+    "ingredients": [
+      {
+        "food": "rice noodles dry",
+        "grams": 90,
+        "display": "90 g dried rice vermicelli"
+      },
+      {
+        "food": "prawns cooked",
+        "grams": 100,
+        "display": "100 g cooked king prawns"
+      },
+      {
+        "food": "ham slices",
+        "grams": 40,
+        "display": "2 slices of ham, shredded"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg, beaten"
+      },
+      {
+        "food": "beansprouts",
+        "grams": 70,
+        "display": "70 g beansprouts"
+      },
+      {
+        "food": "red pepper",
+        "grams": 70,
+        "display": "half a red pepper, sliced thinly"
+      },
+      {
+        "food": "spring onion",
+        "grams": 20,
+        "display": "2 spring onions, sliced"
+      },
+      {
+        "food": "curry powder",
+        "grams": 6,
+        "display": "2 tsp mild curry powder"
+      },
+      {
+        "food": "chilli",
+        "grams": 8,
+        "display": "1 red chilli, sliced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "soy sauce",
+        "grams": 15,
+        "display": "1 tbsp light soy sauce"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp sunflower oil"
+      }
+    ],
+    "steps": [
+      "Soak the vermicelli in boiling water for 4 minutes, then drain well and snip through it a couple of times.",
+      "Scramble the egg in a little of the oil in a hot wok, tip it onto a plate and set aside.",
+      "Add the rest of the oil and stir fry the pepper, garlic and chilli for 2 minutes, then add the curry powder and cook for 30 seconds until fragrant.",
+      "Add the noodles, ham, prawns, beansprouts and soy sauce and toss over a high heat for 2 minutes.",
+      "Fold the egg back through with the spring onions and serve straight away."
+    ]
+  },
+  {
+    "id": "sweet-and-sour-chicken",
+    "name": "Sweet and sour chicken",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "chinese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 15,
+    "tags": [
+      "one-pan",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "chicken breast raw",
+        "grams": 160,
+        "display": "1 large chicken breast (about 160 g), cubed"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 75,
+        "display": "75 g long grain rice"
+      },
+      {
+        "food": "pineapple",
+        "grams": 80,
+        "display": "80 g pineapple chunks"
+      },
+      {
+        "food": "red pepper",
+        "grams": 90,
+        "display": "1 red pepper, cut into squares"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "half an onion, cut into wedges"
+      },
+      {
+        "food": "tomato ketchup",
+        "grams": 30,
+        "display": "2 tbsp tomato ketchup"
+      },
+      {
+        "food": "rice wine vinegar",
+        "grams": 15,
+        "display": "1 tbsp rice wine vinegar"
+      },
+      {
+        "food": "sugar",
+        "grams": 10,
+        "display": "2 tsp sugar"
+      },
+      {
+        "food": "soy sauce",
+        "grams": 10,
+        "display": "2 tsp light soy sauce"
+      },
+      {
+        "food": "cornflour",
+        "grams": 10,
+        "display": "2 tsp cornflour"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 10,
+        "display": "2 tsp sunflower oil"
+      }
+    ],
+    "steps": [
+      "Cook the rice in simmering water for 10 minutes, then drain and cover.",
+      "Toss the chicken in half the cornflour and fry in the oil over a high heat for 5 minutes until golden.",
+      "Add the pepper and onion and stir fry for 3 minutes so they keep some bite.",
+      "Mix the ketchup, vinegar, sugar, soy sauce and remaining cornflour with 100 ml water, pour in and simmer for 2 minutes until the sauce thickens and coats.",
+      "Stir through the pineapple to warm and serve with the rice."
+    ]
+  },
+  {
+    "id": "teriyaki-salmon-with-rice",
+    "name": "Teriyaki salmon with rice",
+    "slots": [
+      "dinner"
+    ],
+    "category": "asian",
+    "cuisine": "japanese",
+    "source": {
+      "name": "Standard takeaway-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "salmon raw",
+        "grams": 150,
+        "display": "1 salmon fillet (about 150 g)"
+      },
+      {
+        "food": "teriyaki sauce",
+        "grams": 40,
+        "display": "2 tbsp teriyaki sauce"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 75,
+        "display": "75 g sushi or long grain rice"
+      },
+      {
+        "food": "tenderstem",
+        "grams": 100,
+        "display": "100 g tenderstem broccoli"
+      },
+      {
+        "food": "root ginger",
+        "grams": 6,
+        "display": "small piece of ginger, grated"
+      },
+      {
+        "food": "sesame seeds",
+        "grams": 5,
+        "display": "1 tsp sesame seeds"
+      },
+      {
+        "food": "sesame oil",
+        "grams": 5,
+        "display": "1 tsp sesame oil"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, sliced"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 200C fan. Sit the salmon on lined foil, spoon over half the teriyaki and the ginger and bake for 12 to 14 minutes.",
+      "Cook the rice for 10 minutes while the fish bakes, then drain and cover.",
+      "Steam the tenderstem for 4 minutes and toss it in the sesame oil.",
+      "Spoon the remaining teriyaki over the salmon along with the pan juices.",
+      "Serve on the rice, scattered with sesame seeds and spring onion."
+    ]
+  }
+]

@@ -1,0 +1,1026 @@
+[
+  {
+    "id": "bacon-roll",
+    "name": "Bacon roll",
+    "slots": [
+      "breakfast",
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 8,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "back bacon raw",
+        "grams": 90,
+        "display": "3 rashers back bacon"
+      },
+      {
+        "food": "crusty white roll",
+        "grams": 85,
+        "display": "1 crusty white roll"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "butter for the roll"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 15,
+        "display": "a squirt of brown sauce"
+      }
+    ],
+    "steps": [
+      "Fry the bacon in a hot dry pan for 3-4 minutes a side, until the fat has rendered and the edges are crisp.",
+      "Split the roll and butter both halves, pressing the cut side into the bacon fat in the pan for a few seconds if you like.",
+      "Pile in the bacon, add the brown sauce, close and eat straight away."
+    ]
+  },
+  {
+    "id": "blt",
+    "name": "BLT",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 8,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "streaky bacon raw",
+        "grams": 80,
+        "display": "4 rashers streaky bacon"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread, toasted"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 25,
+        "display": "1 tbsp mayonnaise"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "a little butter"
+      },
+      {
+        "food": "tomato",
+        "grams": 70,
+        "display": "1 tomato, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 25,
+        "display": "2 crisp lettuce leaves"
+      }
+    ],
+    "steps": [
+      "Fry or grill the bacon for 6-8 minutes until properly crisp, then drain on kitchen paper.",
+      "Toast the bread, butter one slice and spread the mayonnaise generously on the other.",
+      "Season the tomato slices with salt and pepper, then build the sandwich: lettuce, bacon, tomato.",
+      "Close, press down and cut in half while the bacon is still hot."
+    ]
+  },
+  {
+    "id": "cheese-and-pickle-sandwich",
+    "name": "Cheese and pickle sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 60,
+        "display": "60 g mature cheddar, thickly sliced or grated"
+      },
+      {
+        "food": "branston pickle",
+        "grams": 30,
+        "display": "1 heaped tbsp Branston pickle"
+      },
+      {
+        "food": "cucumber",
+        "grams": 40,
+        "display": "a few slices of cucumber"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 15,
+        "display": "a few lettuce leaves"
+      }
+    ],
+    "steps": [
+      "Butter both slices of bread, then spread the pickle over one of them in an even layer.",
+      "Pile the cheddar onto the pickled slice and top with cucumber and lettuce.",
+      "Close, press gently so the cheese beds in, and cut in half."
+    ]
+  },
+  {
+    "id": "cheese-toastie",
+    "name": "Cheese toastie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 4,
+    "cook_min": 8,
+    "tags": [
+      "vegetarian",
+      "kid-friendly",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 80,
+        "display": "80 g mature cheddar, grated"
+      },
+      {
+        "food": "butter",
+        "grams": 18,
+        "display": "butter for the outsides"
+      },
+      {
+        "food": "onion",
+        "grams": 25,
+        "display": "a little finely sliced onion"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 5,
+        "display": "a few dashes of Worcestershire sauce"
+      }
+    ],
+    "steps": [
+      "Mix the grated cheddar with the onion, mustard, Worcestershire sauce and plenty of black pepper.",
+      "Butter the bread on the outside faces only, then pile the cheese mixture between the unbuttered sides.",
+      "Fry in a dry pan over a medium heat for 3-4 minutes a side, pressing down with a spatula, until deep golden and the cheese has melted through.",
+      "Rest for a minute so the filling stops running, then cut in half."
+    ]
+  },
+  {
+    "id": "chicken-and-stuffing-sandwich",
+    "name": "Chicken and stuffing sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 6,
+    "cook_min": 20,
+    "tags": [
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "cooked chicken slices",
+        "grams": 110,
+        "display": "110 g cooked chicken, sliced"
+      },
+      {
+        "food": "stuffing mix dry",
+        "grams": 35,
+        "display": "35 g sage and onion stuffing mix"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 15,
+        "display": "2 tsp mayonnaise"
+      },
+      {
+        "food": "cranberry sauce",
+        "grams": 20,
+        "display": "1 tbsp cranberry sauce"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 15,
+        "display": "a few salad leaves"
+      }
+    ],
+    "steps": [
+      "Make up the stuffing with boiling water as the packet directs, shape into a small patty and bake at 190C for 20 minutes until crisp on top. Leave to cool slightly.",
+      "Butter both slices of bread and spread one with mayonnaise, the other with cranberry sauce.",
+      "Layer the chicken, then break the stuffing over it, season with black pepper and add the salad leaves.",
+      "Close the sandwich, press firmly and cut in half."
+    ]
+  },
+  {
+    "id": "chicken-caesar-wrap",
+    "name": "Chicken Caesar wrap",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "american",
+    "source": {
+      "name": "Modern deli and cafe cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 12,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "chicken breast raw",
+        "grams": 150,
+        "display": "1 chicken breast"
+      },
+      {
+        "food": "tortilla wrap",
+        "grams": 70,
+        "display": "1 large tortilla wrap"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 50,
+        "display": "a couple of handfuls of cos lettuce, shredded"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "parmesan",
+        "grams": 20,
+        "display": "20 g Parmesan, finely grated"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 8,
+        "display": "1 1/2 tsp lemon juice"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 4,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "anchovies in oil drained",
+        "grams": 6,
+        "display": "1 anchovy fillet, mashed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 5,
+        "display": "1 tsp olive oil"
+      }
+    ],
+    "steps": [
+      "Rub the chicken with the olive oil, season, and griddle or fry for 5-6 minutes a side until cooked through. Rest for 5 minutes, then slice.",
+      "Whisk the mayonnaise with the lemon juice, mustard, mashed anchovy and most of the Parmesan to make the dressing.",
+      "Toss the shredded lettuce through the dressing, then pile it down the centre of a warmed wrap with the chicken.",
+      "Scatter over the last of the Parmesan, grind on black pepper, fold in the ends and roll up tightly."
+    ]
+  },
+  {
+    "id": "chicken-salad-sandwich",
+    "name": "Chicken salad sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 6,
+    "cook_min": 0,
+    "tags": [
+      "packable",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "cooked chicken slices",
+        "grams": 110,
+        "display": "110 g cooked chicken breast, sliced"
+      },
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 20,
+        "display": "1 tbsp mayonnaise"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 25,
+        "display": "a handful of lettuce"
+      },
+      {
+        "food": "tomato",
+        "grams": 50,
+        "display": "1 small tomato, sliced"
+      },
+      {
+        "food": "cucumber",
+        "grams": 40,
+        "display": "a few slices of cucumber"
+      },
+      {
+        "food": "red onion",
+        "grams": 15,
+        "display": "a few thin rings of red onion"
+      }
+    ],
+    "steps": [
+      "Butter one slice of bread and spread the mayonnaise on the other.",
+      "Lay the chicken over the buttered slice, season with salt and pepper, then pile on the lettuce, tomato, cucumber and red onion.",
+      "Close the sandwich, press gently and cut in half."
+    ]
+  },
+  {
+    "id": "chip-butty",
+    "name": "Chip butty",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 22,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "oven chips frozen",
+        "grams": 250,
+        "display": "250 g oven chips"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices soft white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "a thick layer of butter"
+      },
+      {
+        "food": "tomato ketchup",
+        "grams": 20,
+        "display": "1 tbsp tomato ketchup"
+      }
+    ],
+    "steps": [
+      "Cook the chips at 220C for about 22 minutes, shaking the tray halfway, until golden and crisp.",
+      "Butter both slices of bread thickly - the butter needs to melt into the bread, so do it while the chips are hot.",
+      "Pile the chips onto one slice, salt them well, add the ketchup and close.",
+      "Press down firmly with the flat of your hand and cut in half."
+    ]
+  },
+  {
+    "id": "coronation-chicken-sandwich",
+    "name": "Coronation chicken sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 0,
+    "tags": [
+      "packable",
+      "no-cook",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "cooked chicken slices",
+        "grams": 100,
+        "display": "100 g cooked chicken, torn into pieces"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "natural yoghurt low fat",
+        "grams": 20,
+        "display": "1 tbsp natural yoghurt"
+      },
+      {
+        "food": "curry powder",
+        "grams": 3,
+        "display": "1 tsp mild curry powder"
+      },
+      {
+        "food": "mango chutney",
+        "grams": 20,
+        "display": "1 tbsp mango chutney"
+      },
+      {
+        "food": "raisins",
+        "grams": 15,
+        "display": "a small handful of sultanas"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 20,
+        "display": "a handful of salad leaves"
+      }
+    ],
+    "steps": [
+      "Stir the curry powder into the mayonnaise and yoghurt with the chutney, then season well - let it sit a minute so the spice loses its raw edge.",
+      "Fold in the chicken and sultanas until everything is coated.",
+      "Butter the bread, spoon in the coronation chicken, add the salad leaves and close.",
+      "Cut in half and serve, or wrap tightly for a packed lunch."
+    ]
+  },
+  {
+    "id": "egg-mayonnaise-sandwich",
+    "name": "Egg mayonnaise sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 9,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 large eggs"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, finely sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 20,
+        "display": "a handful of cress or salad leaves"
+      }
+    ],
+    "steps": [
+      "Simmer the eggs for 9 minutes, then cool under cold running water and peel.",
+      "Roughly chop the eggs and mix with the mayonnaise, spring onion and plenty of salt and black pepper - leave some texture rather than mashing smooth.",
+      "Butter the bread, spoon in the egg mayo, top with the salad leaves and close the sandwich.",
+      "Cut in half and eat while the filling is still cool."
+    ]
+  },
+  {
+    "id": "falafel-and-hummus-wrap",
+    "name": "Falafel and hummus wrap",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "middle-eastern",
+    "source": {
+      "name": "Everyday Middle Eastern street food"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 8,
+    "tags": [
+      "vegetarian",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "falafel",
+        "grams": 120,
+        "display": "5-6 falafel"
+      },
+      {
+        "food": "tortilla wrap",
+        "grams": 70,
+        "display": "1 large tortilla wrap"
+      },
+      {
+        "food": "hummus",
+        "grams": 60,
+        "display": "3 tbsp hummus"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 30,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "cucumber",
+        "grams": 40,
+        "display": "5 cm cucumber, diced"
+      },
+      {
+        "food": "tomato",
+        "grams": 50,
+        "display": "1 tomato, diced"
+      },
+      {
+        "food": "red onion",
+        "grams": 20,
+        "display": "a little sliced red onion"
+      },
+      {
+        "food": "tzatziki",
+        "grams": 30,
+        "display": "1 1/2 tbsp tzatziki"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      }
+    ],
+    "steps": [
+      "Warm the falafel in the oven or a dry pan for 6-8 minutes until hot through and crisp at the edges.",
+      "Warm the wrap for 20 seconds in the same pan so it folds without cracking.",
+      "Spread the hummus down the middle, add the salad, cucumber, tomato and red onion, then the falafel, crushing them slightly.",
+      "Spoon over the tzatziki, squeeze on the lemon, season, then fold in the ends and roll up tightly."
+    ]
+  },
+  {
+    "id": "fish-finger-sandwich",
+    "name": "Fish finger sandwich",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 15,
+    "tags": [
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "fish fingers",
+        "grams": 140,
+        "display": "5 fish fingers"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "tartare sauce",
+        "grams": 30,
+        "display": "1 1/2 tbsp tartare sauce"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 25,
+        "display": "a handful of shredded lettuce"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      }
+    ],
+    "steps": [
+      "Grill or oven-bake the fish fingers for about 15 minutes, turning once, until golden and crisp all over.",
+      "Butter both slices of bread and spread the tartare sauce over one.",
+      "Lay the fish fingers on the buttered slice in a single tight layer, squeeze over the lemon and top with the lettuce.",
+      "Close the sandwich, press down gently so it holds together and cut in half."
+    ]
+  },
+  {
+    "id": "ham-and-cheese-croque-monsieur",
+    "name": "Ham and cheese croque monsieur",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "sandwiches",
+    "cuisine": "french",
+    "source": {
+      "name": "Classic French bistro cooking"
+    },
+    "servings": 1,
+    "prep_min": 8,
+    "cook_min": 12,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "ham slices",
+        "grams": 70,
+        "display": "3 slices of good ham"
+      },
+      {
+        "food": "gruyere",
+        "grams": 70,
+        "display": "70 g Gruyere, grated"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 12,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 120,
+        "display": "120 ml whole milk"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 6,
+        "display": "1 tsp Dijon mustard"
+      }
+    ],
+    "steps": [
+      "Melt the butter in a small pan, stir in the flour and cook for a minute, then whisk in the milk a little at a time to make a thick bechamel. Stir in the mustard and season.",
+      "Spread a little bechamel on both slices of bread, fill with the ham and about a third of the cheese, and close.",
+      "Spoon the rest of the bechamel over the top of the sandwich and cover with the remaining cheese.",
+      "Grill for 5-6 minutes until the top is bubbling and browned. Eat with a knife and fork."
+    ]
+  },
+  {
+    "id": "ham-and-cheese-sandwich",
+    "name": "Ham and cheese sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "packable",
+      "no-cook",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 thick slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a good scrape of butter"
+      },
+      {
+        "food": "ham slices",
+        "grams": 70,
+        "display": "3 slices of ham"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 40,
+        "display": "40 g mature cheddar, grated"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard"
+      },
+      {
+        "food": "tomato",
+        "grams": 40,
+        "display": "1/2 tomato, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 20,
+        "display": "a handful of salad leaves"
+      }
+    ],
+    "steps": [
+      "Butter both slices of bread right to the edges, then spread the mustard thinly over one slice.",
+      "Layer on the ham, grated cheddar, tomato slices and salad leaves, seasoning the tomato with a pinch of salt and pepper.",
+      "Close the sandwich, press down firmly and cut in half on the diagonal."
+    ]
+  },
+  {
+    "id": "prawn-mayo-sandwich",
+    "name": "Prawn mayo sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 6,
+    "cook_min": 0,
+    "tags": [
+      "packable",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "prawns cooked",
+        "grams": 110,
+        "display": "110 g cooked cold-water prawns"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "tomato ketchup",
+        "grams": 10,
+        "display": "2 tsp tomato ketchup"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 25,
+        "display": "a handful of shredded iceberg"
+      }
+    ],
+    "steps": [
+      "Pat the prawns dry, then mix with the mayonnaise, ketchup, lemon juice, a pinch of salt and a good grind of black pepper.",
+      "Butter the bread and scatter the shredded lettuce over one slice.",
+      "Spoon the prawn mayo on top, close the sandwich and cut in half."
+    ]
+  },
+  {
+    "id": "tuna-mayo-and-cucumber-sandwich",
+    "name": "Tuna mayo and cucumber sandwich",
+    "slots": [
+      "lunch"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 6,
+    "cook_min": 0,
+    "tags": [
+      "packable",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "tuna spring water drained",
+        "grams": 100,
+        "display": "1 small tin of tuna, drained"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "white bread",
+        "grams": 80,
+        "display": "2 slices white bread"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "butter for spreading"
+      },
+      {
+        "food": "cucumber",
+        "grams": 50,
+        "display": "5 cm cucumber, thinly sliced"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, finely sliced"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 5,
+        "display": "a squeeze of lemon"
+      }
+    ],
+    "steps": [
+      "Drain the tuna well and flake into a bowl with the mayonnaise, spring onion, lemon juice and a good grind of black pepper.",
+      "Butter both slices of bread, spread the tuna mayo over one and lay the cucumber on top.",
+      "Close the sandwich, press down and cut in half."
+    ]
+  },
+  {
+    "id": "tuna-melt",
+    "name": "Tuna melt",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "sandwiches",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 6,
+    "cook_min": 8,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "tuna spring water drained",
+        "grams": 100,
+        "display": "1 small tin of tuna, drained"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 25,
+        "display": "1 tbsp mayonnaise"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 60,
+        "display": "60 g cheddar, grated"
+      },
+      {
+        "food": "sourdough",
+        "grams": 90,
+        "display": "2 thick slices sourdough"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "butter for the outsides"
+      },
+      {
+        "food": "spring onion",
+        "grams": 20,
+        "display": "1 spring onion, sliced"
+      },
+      {
+        "food": "sweetcorn",
+        "grams": 40,
+        "display": "2 tbsp sweetcorn"
+      }
+    ],
+    "steps": [
+      "Mix the drained tuna with the mayonnaise, spring onion, sweetcorn and black pepper.",
+      "Butter the bread on the outside faces, then layer the tuna mix and grated cheddar between the unbuttered sides.",
+      "Fry over a medium heat for 3-4 minutes a side, pressing down, until the bread is crisp and the cheese has melted into the tuna.",
+      "Leave to settle for a minute, then cut in half."
+    ]
+  }
+]

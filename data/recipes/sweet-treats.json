@@ -1,0 +1,158 @@
+[
+  {
+    "id": "chocolate-digestives",
+    "name": "Chocolate digestives",
+    "slots": [
+      "snack"
+    ],
+    "category": "sweet-treats",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "chocolate digestives",
+        "grams": 33,
+        "display": "2 chocolate digestives"
+      }
+    ],
+    "steps": [
+      "Take two out and reseal the packet; that is a normal portion with a cup of tea.",
+      "Store chocolate side up in a cool cupboard so they do not stick together in warm weather."
+    ]
+  },
+  {
+    "id": "dark-chocolate-squares",
+    "name": "Dark chocolate squares",
+    "slots": [
+      "snack"
+    ],
+    "category": "sweet-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "dark choc 70",
+        "grams": 20,
+        "display": "2 squares of 70% dark chocolate (20 g)"
+      }
+    ],
+    "steps": [
+      "Snap off two squares and fold the wrapper back over the rest of the bar.",
+      "Dark chocolate is strong enough that a couple of squares with a coffee usually does the job; check the label if you need it dairy free."
+    ]
+  },
+  {
+    "id": "ice-cream",
+    "name": "Ice cream",
+    "slots": [
+      "snack"
+    ],
+    "category": "sweet-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "vanilla ice cream",
+        "grams": 75,
+        "display": "1 scoop vanilla ice cream (75 g)"
+      }
+    ],
+    "steps": [
+      "Let the tub soften for a couple of minutes, then take one rounded scoop into a small bowl and put the tub straight back in the freezer.",
+      "A few berries or a sliced banana over the top makes one scoop feel like a proper pudding."
+    ]
+  },
+  {
+    "id": "jaffa-cakes",
+    "name": "Jaffa cakes",
+    "slots": [
+      "snack"
+    ],
+    "category": "sweet-treats",
+    "cuisine": "british",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "jaffa cakes",
+        "grams": 36,
+        "display": "3 Jaffa Cakes"
+      }
+    ],
+    "steps": [
+      "Three from the sleeve is a sensible portion; put the box away before you sit down with them.",
+      "They are light and low in fat for a biscuit, which is why the box empties so fast."
+    ]
+  },
+  {
+    "id": "mini-chocolate-bar",
+    "name": "Mini chocolate bar",
+    "slots": [
+      "snack"
+    ],
+    "category": "sweet-treats",
+    "cuisine": "other",
+    "source": {
+      "name": "Everyday snack"
+    },
+    "servings": 1,
+    "prep_min": 0,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "milk chocolate",
+        "grams": 25,
+        "display": "1 fun-size or mini milk chocolate bar (25 g)"
+      }
+    ],
+    "steps": [
+      "Have one small bar rather than breaking into a full-size one, which is nearer 45 g.",
+      "Buying the multipack of minis rather than sharing bars makes the portion decide itself."
+    ]
+  }
+]

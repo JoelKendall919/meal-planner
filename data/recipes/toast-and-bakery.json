@@ -1,0 +1,233 @@
+[
+  {
+    "id": "bagel-with-cream-cheese",
+    "name": "Bagel with cream cheese",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 3,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "bagel",
+        "grams": 85,
+        "display": "1 bagel"
+      },
+      {
+        "food": "cream cheese",
+        "grams": 45,
+        "display": "3 tbsp cream cheese"
+      },
+      {
+        "food": "cucumber",
+        "grams": 40,
+        "display": "a few slices of cucumber"
+      }
+    ],
+    "steps": [
+      "Split the bagel and toast both halves cut-side up until lightly golden.",
+      "Spread generously with cream cheese while warm and top with the cucumber slices and a grind of black pepper."
+    ]
+  },
+  {
+    "id": "croissant-with-jam",
+    "name": "Croissant with jam",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "french",
+    "source": {
+      "name": "Classic French bakery breakfast"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 4,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "croissant",
+        "grams": 60,
+        "display": "1 all-butter croissant"
+      },
+      {
+        "food": "butter",
+        "grams": 8,
+        "display": "1 tsp butter"
+      },
+      {
+        "food": "strawberry jam",
+        "grams": 25,
+        "display": "1 heaped tsp strawberry jam"
+      }
+    ],
+    "steps": [
+      "Warm the croissant in a hot oven for 3-4 minutes to crisp the layers back up.",
+      "Split it lengthways, spread with a little butter and the jam, and close it back over."
+    ]
+  },
+  {
+    "id": "crumpets-with-butter",
+    "name": "Crumpets with butter",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 4,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "crumpet",
+        "grams": 120,
+        "display": "2 crumpets"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "a generous knob of butter"
+      }
+    ],
+    "steps": [
+      "Toast the crumpets until the tops are crisp and golden and the holes have opened up.",
+      "Butter immediately and let it sink into the holes before eating. A pinch of salt on top is traditional."
+    ]
+  },
+  {
+    "id": "peanut-butter-and-banana-on-toast",
+    "name": "Peanut butter and banana on toast",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 3,
+    "tags": [
+      "vegetarian",
+      "vegan",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "peanut butter",
+        "grams": 30,
+        "display": "2 tbsp peanut butter"
+      },
+      {
+        "food": "banana",
+        "grams": 100,
+        "display": "1 small banana, sliced"
+      }
+    ],
+    "steps": [
+      "Toast the bread and spread thickly with peanut butter while warm so it softens and spreads easily.",
+      "Lay the banana slices over the top in an overlapping layer and press down lightly so they stay put."
+    ]
+  },
+  {
+    "id": "toast-with-butter-and-marmalade",
+    "name": "Toast with butter and marmalade",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 3,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "wholemeal bread",
+        "grams": 80,
+        "display": "2 slices wholemeal bread"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "2 tsp butter"
+      },
+      {
+        "food": "marmalade",
+        "grams": 25,
+        "display": "1 heaped tsp marmalade"
+      }
+    ],
+    "steps": [
+      "Toast the bread to your liking.",
+      "Butter it while still hot so the butter melts in, then spread the marmalade over the top and cut in half."
+    ]
+  },
+  {
+    "id": "toasted-teacake",
+    "name": "Toasted teacake",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "toast-and-bakery",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 1,
+    "cook_min": 4,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "teacake",
+        "grams": 65,
+        "display": "1 fruited teacake"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "2 tsp butter"
+      }
+    ],
+    "steps": [
+      "Split the teacake through the middle and toast both halves cut-side up under the grill or in a toaster.",
+      "Butter while hot so it melts into the crumb and eat straight away with a mug of tea."
+    ]
+  }
+]

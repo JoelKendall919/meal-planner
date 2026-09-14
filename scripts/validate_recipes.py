@@ -1,9 +1,13 @@
 """Validate a recipe JSON file against the food database.
 
-Usage:  python scripts/validate_recipes.py data/recipes-breakfast.json
+Usage:  python scripts/validate_recipes.py data/recipes/soups.json
 
 Checks every food key resolves, computes macros from raw ingredient weights, and
-reports anything outside the plan's targets. Exits non-zero if there are errors.
+reports anything implausible. Exits non-zero if there are errors.
+
+The kcal ranges below are plausibility checks, not diet targets. They catch a
+decimal-point slip or ounces entered as grams. A rich meal is a valid recipe:
+whether it suits a given day is the planner's job, not the catalogue's.
 """
 
 from __future__ import annotations
@@ -14,17 +18,30 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+
+from mealplanner.catalogue import (  # noqa: E402
+    CATEGORIES,
+    PLAUSIBLE_KCAL,
+    SLOTS,
+)
+
 FOODS = json.loads((ROOT / "data" / "foods.json").read_text(encoding="utf-8"))
 
-# slot: (min kcal, max kcal, min protein g)
-BANDS = {
-    "breakfast": (250, 550, 20),
-    "lunch": (350, 700, 30),
-    "dinner": (400, 800, 33),
-    "snack": (90, 280, 12),
+REQUIRED = {
+    "id",
+    "name",
+    "slots",
+    "category",
+    "source",
+    "servings",
+    "ingredients",
+    "steps",
+    "tags",
 }
 
-REQUIRED = {"id", "name", "slot", "source", "servings", "ingredients", "steps", "tags"}
+# Never authored. Macros are derived from ingredients, always.
+FORBIDDEN = {"kcal", "protein", "fat", "carbs", "macros", "slot"}
 
 
 def macros(ingredients: list[dict]) -> tuple[float, float, float]:
@@ -60,8 +77,24 @@ def validate(path: Path) -> int:
             errors.append(f"{rid}: missing fields {sorted(missing)}")
             continue
 
-        if r["slot"] not in BANDS:
-            errors.append(f"{rid}: slot must be one of {sorted(BANDS)}")
+        stored = FORBIDDEN & set(r)
+        if stored:
+            errors.append(
+                f"{rid}: must not store {sorted(stored)} -- macros are derived from ingredients"
+            )
+            continue
+
+        slots = r["slots"]
+        if not isinstance(slots, list) or not slots:
+            errors.append(f"{rid}: 'slots' must be a non-empty list, e.g. ['lunch', 'dinner']")
+            continue
+        bad_slots = [s for s in slots if s not in SLOTS]
+        if bad_slots:
+            errors.append(f"{rid}: unknown slots {bad_slots}; pick from {sorted(SLOTS)}")
+            continue
+
+        if r["category"] not in CATEGORIES:
+            errors.append(f"{rid}: category {r['category']!r} is not in the controlled vocabulary")
             continue
 
         if not isinstance(r["ingredients"], list) or not r["ingredients"]:
@@ -89,15 +122,22 @@ def validate(path: Path) -> int:
             errors.append(f"{rid}: source.name is required for provenance")
 
         kcal, protein, fat = macros(r["ingredients"])
-        lo, hi, minp = BANDS[r["slot"]]
+        # Judged against the most generous of its slots: a dish that works as
+        # both lunch and dinner only has to be plausible as one of them.
+        lo = min(PLAUSIBLE_KCAL[s][0] for s in slots)
+        hi = max(PLAUSIBLE_KCAL[s][1] for s in slots)
         if not lo <= kcal <= hi:
-            errors.append(f"{rid}: {kcal:.0f} kcal is outside the {r['slot']} band {lo}-{hi}")
-        if protein < minp:
-            errors.append(f"{rid}: {protein:.0f} g protein is below the {r['slot']} minimum {minp}")
-        if kcal and 900 * fat / kcal > 50:
-            warnings.append(f"{rid}: {900 * fat / kcal:.0f}% of calories from fat")
+            errors.append(
+                f"{rid}: {kcal:.0f} kcal is implausible for {'/'.join(slots)} "
+                f"({lo}-{hi}); check for a decimal slip"
+            )
+        if 4 * protein + 9 * fat > kcal + 30:
+            errors.append(
+                f"{rid}: protein and fat alone come to {4 * protein + 9 * fat:.0f} kcal "
+                f"but the recipe totals {kcal:.0f}; a gram weight is wrong"
+            )
 
-        rows.append((rid, r["slot"], kcal, protein, fat, "vegetarian" in r.get("tags", [])))
+        rows.append((rid, "/".join(slots), kcal, protein, fat, "vegetarian" in r.get("tags", [])))
 
     print(f"{path.name}: {len(recipes)} recipes")
     if rows:

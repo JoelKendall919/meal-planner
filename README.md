@@ -1,7 +1,7 @@
 # Meal Planner
 
-A catalogue of 197 recipes with a calendar planner and editable shopping lists,
-built as a single offline-capable web page.
+A catalogue of 182 everyday UK recipes with a calendar planner and editable
+shopping lists, built as a single offline-capable web page.
 
 **Live site:** https://joelkendall919.github.io/meal-planner/
 
@@ -29,6 +29,48 @@ Colour carries two separate meanings, and they are kept on separate axes:
   as they fill, red once exceeded. Protein is a *target* and scores the opposite
   way, because a day with barely any protein is not a green day.
 
+## A cookbook, with the diet as a lens over it
+
+This started as a cutting plan and the schema showed it: a recipe had to clear a
+protein floor and sit inside a calorie band *to exist at all*. That encoded a
+judgement as if it were a fact. An apple was not a valid snack, because 0.3 g of
+protein failed the gate, and beans on toast had to be written out twice to appear
+at both breakfast and lunch.
+
+The rules now separate the two:
+
+- **Recipe files hold facts.** Ingredients, weights, method, which meals it suits.
+- **Calorie ranges are plausibility checks, not targets.** `PLAUSIBLE_KCAL` exists
+  to catch a gram-weight slip — a 4000 kcal sandwich is a typo, not a preference.
+  It no longer decides whether a recipe deserves to exist.
+- **Diet fitness is derived and filterable.** `high-protein`, `light` and
+  `protein-snack` are computed from the numbers, so the same catalogue serves a
+  cut and an ordinary Tuesday.
+
+A recipe carries a list of `slots`, so beans on toast is written once and appears
+under both. 182 recipes fill 278 meal places, which is why lunch went from 61
+options to 97 without anyone writing 36 more recipes.
+
+## Why "fill empty slots" has a scope
+
+Opening the catalogue up has a cost worth stating plainly, because it is not
+obvious and it nearly shipped unnoticed. `fillRange` optimises for calories and
+only uses protein to break ties. Let it draw from everything — cereal, sandwiches,
+crumble — and it will hit 1750 kcal with the protein far short. Measured over a
+planned week in the browser, filling from the whole catalogue averages **102 g of
+protein**; filling from the high-protein scope averages **125 g for the same
+calories**.
+
+So the scope is load-bearing rather than a convenience. Across every calorie-legal
+day the catalogue can produce, 150 g of protein is reachable on 0.5% of them
+unscoped and 11.7% scoped. The default goal is 140 g for the same reason: it is
+1.47 g per kg of a 95 kg goal weight and lands on about a third of scoped days, so
+it reads as demanding rather than impossible.
+
+Two tests hold this line. One checks the goal is *achievable* under the scope; the
+other checks a **median** day, because an achievability test is a ceiling and will
+keep passing while typical days quietly rot beneath it.
+
 ## Why this is a repository and not a document
 
 Every calorie and protein figure is **computed from raw ingredient weights**,
@@ -37,8 +79,9 @@ recipes were eyeballed. Later, a batch of recipes arrived with 14 of 25 labelled
 "high-protein" that were nowhere near the threshold.
 
 So nothing descriptive is trusted if it can be derived instead. Macros are
-computed from `data/foods.json`, and the `high-protein` and `quick` tags are
-recalculated at load time rather than read from the recipe files. The test suite
+computed from `data/foods.json`, and the `high-protein`, `quick`, `light` and
+`protein-snack` tags are recalculated at load time rather than read from the
+recipe files. The test suite
 fails if a tag, a macro figure, or an ingredient key disagrees with the data, and
 the tests gate deployment.
 
@@ -46,8 +89,8 @@ the tests gate deployment.
 
 | Path | Purpose |
 | --- | --- |
-| `data/foods.json` | 236 foods: nutrition per 100 g, shopping group, pack size, aisle |
-| `data/recipes-*.json` | The recipe catalogue: 35 breakfasts, 61 lunches, 61 dinners, 40 snacks |
+| `data/foods.json` | 367 foods: nutrition per 100 g, shopping group, pack size, aisle |
+| `data/recipes/*.json` | The catalogue, one file per category: 182 recipes filling 45 breakfast, 97 lunch, 91 dinner and 45 snack places |
 | `scripts/build_foods.py` | Generates `foods.json` — **edit this, not the JSON** |
 | `scripts/validate_recipes.py` | Checks a recipe file before it is committed |
 | `src/mealplanner/catalogue.py` | Loads foods and recipes, computes macros and derived tags |
@@ -81,10 +124,10 @@ pytest integration, and Ruff formatting are preconfigured in `.vscode/`.
 
 ## Adding a recipe
 
-Add an entry to the relevant `data/recipes-*.json`, then:
+Add an entry to the matching file in `data/recipes/`, then:
 
 ```sh
-.venv/bin/python scripts/validate_recipes.py data/recipes-dinner.json
+.venv/bin/python scripts/validate_recipes.py data/recipes/curries.json
 make test
 ```
 
@@ -93,7 +136,10 @@ Rules the tests enforce:
 - Every `food` key must exist in `data/foods.json`. Add new foods to
   `scripts/build_foods.py` and regenerate.
 - **Never write `kcal`, `protein` or `macros` into a recipe file.** They are derived.
-- Do not set `high-protein` or `quick` tags by hand; they are recalculated.
+- Do not set `high-protein`, `quick`, `light` or `protein-snack` by hand; all
+  four are recalculated from the numbers at load time.
+- Give a recipe every `slots` value it genuinely suits. A jacket potato is lunch
+  *and* dinner, and saying so once beats writing it out twice.
 - Credit a source by name. Leave `url` as `null` rather than guessing one, and
   write the method steps yourself — published recipe prose is copyrighted.
 

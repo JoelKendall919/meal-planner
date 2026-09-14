@@ -1,0 +1,387 @@
+[
+  {
+    "id": "banana-and-oat-protein-shake",
+    "name": "Banana and oat protein shake",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "banana",
+        "grams": 120,
+        "display": "1 banana"
+      },
+      {
+        "food": "oats",
+        "grams": 40,
+        "display": "40g porridge oats"
+      },
+      {
+        "food": "milk semi",
+        "grams": 300,
+        "display": "300ml semi-skimmed milk"
+      },
+      {
+        "food": "whey",
+        "grams": 30,
+        "display": "1 scoop vanilla whey protein"
+      },
+      {
+        "food": "peanut butter",
+        "grams": 15,
+        "display": "1 tsp peanut butter"
+      }
+    ],
+    "steps": [
+      "Break the banana into a blender and add the oats, milk, whey and peanut butter.",
+      "Blend on high for 30-45 seconds until completely smooth and no oat grit remains.",
+      "Pour into a tall glass or a bottle. If it thickens on standing, loosen with a splash more milk."
+    ]
+  },
+  {
+    "id": "bran-flakes-with-milk",
+    "name": "Bran flakes with milk",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "bran flakes",
+        "grams": 45,
+        "display": "45g bran flakes"
+      },
+      {
+        "food": "milk semi",
+        "grams": 250,
+        "display": "250ml semi-skimmed milk"
+      },
+      {
+        "food": "raisins",
+        "grams": 20,
+        "display": "small handful of raisins"
+      }
+    ],
+    "steps": [
+      "Tip the bran flakes into a bowl and scatter over the raisins.",
+      "Pour over the cold milk and eat straight away while the flakes still have some bite."
+    ]
+  },
+  {
+    "id": "fruit-and-yoghurt-pot",
+    "name": "Fruit and yoghurt pot",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "greek yoghurt 5%",
+        "grams": 150,
+        "display": "150g Greek yoghurt"
+      },
+      {
+        "food": "strawberries",
+        "grams": 80,
+        "display": "80g strawberries, halved"
+      },
+      {
+        "food": "blueberries",
+        "grams": 60,
+        "display": "60g blueberries"
+      },
+      {
+        "food": "mixed seeds",
+        "grams": 10,
+        "display": "2 tsp mixed seeds"
+      },
+      {
+        "food": "honey",
+        "grams": 10,
+        "display": "2 tsp honey"
+      }
+    ],
+    "steps": [
+      "Hull and halve the strawberries and layer them with the blueberries in a small lidded pot.",
+      "Spoon the yoghurt over the fruit, drizzle with honey and seal. It keeps in the fridge overnight.",
+      "Scatter the seeds over just before eating so they stay crisp."
+    ]
+  },
+  {
+    "id": "greek-yoghurt-with-granola-and-berries",
+    "name": "Greek yoghurt with granola and berries",
+    "slots": [
+      "breakfast",
+      "snack"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "greek yoghurt 5%",
+        "grams": 200,
+        "display": "200g Greek yoghurt"
+      },
+      {
+        "food": "granola",
+        "grams": 50,
+        "display": "50g granola"
+      },
+      {
+        "food": "blueberries",
+        "grams": 80,
+        "display": "80g blueberries"
+      },
+      {
+        "food": "honey",
+        "grams": 10,
+        "display": "2 tsp honey"
+      }
+    ],
+    "steps": [
+      "Spoon the yoghurt into a bowl or a jar if you are taking it out with you.",
+      "Scatter over the granola and blueberries and finish with the honey. Add the granola just before eating so it stays crunchy."
+    ]
+  },
+  {
+    "id": "muesli-with-yoghurt",
+    "name": "Muesli with yoghurt",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook"
+    ],
+    "ingredients": [
+      {
+        "food": "muesli",
+        "grams": 60,
+        "display": "60g muesli"
+      },
+      {
+        "food": "natural yoghurt low fat",
+        "grams": 150,
+        "display": "150g natural yoghurt"
+      },
+      {
+        "food": "raspberries",
+        "grams": 60,
+        "display": "60g raspberries"
+      },
+      {
+        "food": "honey",
+        "grams": 10,
+        "display": "2 tsp honey"
+      }
+    ],
+    "steps": [
+      "Spoon the muesli into a bowl and top with the yoghurt.",
+      "Add the raspberries and drizzle with honey. For a softer bowl, stir the muesli into the yoghurt and leave for 10 minutes first."
+    ]
+  },
+  {
+    "id": "overnight-oats-with-berries",
+    "name": "Overnight oats with berries",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "make-ahead",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "oats",
+        "grams": 50,
+        "display": "50g porridge oats"
+      },
+      {
+        "food": "milk semi",
+        "grams": 150,
+        "display": "150ml semi-skimmed milk"
+      },
+      {
+        "food": "greek yoghurt 5%",
+        "grams": 100,
+        "display": "100g Greek yoghurt"
+      },
+      {
+        "food": "chia seeds",
+        "grams": 10,
+        "display": "2 tsp chia seeds"
+      },
+      {
+        "food": "berries frozen",
+        "grams": 80,
+        "display": "80g frozen mixed berries"
+      },
+      {
+        "food": "honey",
+        "grams": 10,
+        "display": "2 tsp honey"
+      }
+    ],
+    "steps": [
+      "Stir the oats, milk, yoghurt, chia seeds and honey together in a jar or lidded tub.",
+      "Scatter the frozen berries over the top, put the lid on and chill overnight.",
+      "In the morning stir through the berries, which will have thawed and bled into the oats, and eat cold straight from the jar."
+    ]
+  },
+  {
+    "id": "porridge-with-banana-and-honey",
+    "name": "Porridge with banana and honey",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 5,
+    "tags": [
+      "vegetarian",
+      "one-pan",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "oats",
+        "grams": 60,
+        "display": "60g porridge oats"
+      },
+      {
+        "food": "milk semi",
+        "grams": 300,
+        "display": "300ml semi-skimmed milk"
+      },
+      {
+        "food": "banana",
+        "grams": 120,
+        "display": "1 banana, sliced"
+      },
+      {
+        "food": "honey",
+        "grams": 15,
+        "display": "1 tbsp honey"
+      }
+    ],
+    "steps": [
+      "Tip the oats and milk into a small saucepan with a pinch of salt and bring to a gentle simmer over a medium heat.",
+      "Cook for 4-5 minutes, stirring often so it does not catch, until thick and creamy. Add a splash more milk if it stiffens too much.",
+      "Pour into a bowl, top with the sliced banana and drizzle over the honey."
+    ]
+  },
+  {
+    "id": "weetabix-with-milk",
+    "name": "Weetabix with milk",
+    "slots": [
+      "breakfast"
+    ],
+    "category": "cereal-and-cold",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 2,
+    "cook_min": 0,
+    "tags": [
+      "vegetarian",
+      "no-cook",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "weetabix",
+        "grams": 40,
+        "display": "2 Weetabix"
+      },
+      {
+        "food": "milk semi",
+        "grams": 250,
+        "display": "250ml semi-skimmed milk"
+      },
+      {
+        "food": "banana",
+        "grams": 100,
+        "display": "1 small banana, sliced"
+      }
+    ],
+    "steps": [
+      "Put the Weetabix in a bowl and pour over the milk.",
+      "Top with the sliced banana and eat straight away, before the biscuits collapse."
+    ]
+  }
+]

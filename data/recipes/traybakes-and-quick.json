@@ -1,0 +1,722 @@
+[
+  {
+    "id": "beef-stroganoff",
+    "name": "Beef stroganoff",
+    "slots": [
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "other",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 20,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "sirloin raw trimmed",
+        "grams": 160,
+        "display": "160 g sirloin or rump steak, sliced into strips"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 140,
+        "display": "140 g chestnut mushrooms, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, sliced"
+      },
+      {
+        "food": "creme fraiche half fat",
+        "grams": 70,
+        "display": "70 g half fat creme fraiche"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 70,
+        "display": "70 g long grain rice"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 4,
+        "display": "2 tsp smoked paprika"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 8,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "half a beef stock cube in 100 ml water"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Cook the rice in simmering water for 10 minutes, then drain and cover.",
+      "Sear the beef in half the butter in a very hot pan for 1 minute, just to colour, then lift it out.",
+      "Add the rest of the butter with the onion and mushrooms and fry for 8 minutes until the liquid has cooked off and they start to brown.",
+      "Stir in the paprika, mustard and stock and bubble for 2 minutes, then lower the heat and stir in the creme fraiche.",
+      "Return the beef and any juices for 1 minute only, season, and serve on the rice with parsley."
+    ]
+  },
+  {
+    "id": "chicken-fajitas",
+    "name": "Chicken fajitas",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "mexican",
+    "source": {
+      "name": "Standard Tex-Mex home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 15,
+    "tags": [
+      "one-pan",
+      "packable",
+      "spicy"
+    ],
+    "ingredients": [
+      {
+        "food": "chicken breast raw",
+        "grams": 160,
+        "display": "1 large chicken breast (about 160 g), sliced"
+      },
+      {
+        "food": "tortilla wrap",
+        "grams": 124,
+        "display": "2 tortilla wraps"
+      },
+      {
+        "food": "red pepper",
+        "grams": 90,
+        "display": "1 red pepper, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, sliced"
+      },
+      {
+        "food": "spices",
+        "grams": 8,
+        "display": "2 tsp fajita spice mix (cumin, paprika, chilli, oregano)"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 10,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "lime juice",
+        "grams": 12,
+        "display": "juice of half a lime"
+      },
+      {
+        "food": "salsa",
+        "grams": 45,
+        "display": "3 tbsp tomato salsa"
+      },
+      {
+        "food": "greek yoghurt 0%",
+        "grams": 40,
+        "display": "2 tbsp fat free Greek yoghurt"
+      }
+    ],
+    "steps": [
+      "Toss the chicken with the spice mix, oil and half the lime juice and leave for 10 minutes.",
+      "Fry the chicken in a very hot pan for 5 minutes until browned, then add the pepper and onion.",
+      "Cook for another 5 minutes so the veg softens but keeps a little bite, and squeeze over the rest of the lime.",
+      "Warm the wraps in a dry pan for 20 seconds a side.",
+      "Fill the wraps with the chicken and peppers and top with salsa and yoghurt."
+    ]
+  },
+  {
+    "id": "chicken-traybake-with-roasted-veg",
+    "name": "Chicken traybake with roasted veg",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 40,
+    "tags": [
+      "one-pan",
+      "batch",
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "chicken thigh skinless raw",
+        "grams": 180,
+        "display": "3 skinless chicken thighs (about 180 g)"
+      },
+      {
+        "food": "mixed roast veg",
+        "grams": 250,
+        "display": "250 g peppers, courgette and red onion, chunked"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 180,
+        "display": "180 g new potatoes, halved"
+      },
+      {
+        "food": "olive oil",
+        "grams": 15,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 3,
+        "display": "1 tsp dried mixed herbs"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 12,
+        "display": "juice of half a lemon"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "salt and black pepper"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 200C fan. Toss the potatoes with a third of the oil in a large tray and roast for 15 minutes.",
+      "Add the mixed veg, garlic, herbs and the rest of the oil, then sit the chicken thighs on top and season well.",
+      "Roast for 25 to 30 minutes, turning the veg once, until the chicken is cooked through and the edges are caramelised.",
+      "Squeeze over the lemon juice and spoon the tray juices back over everything before serving.",
+      "Cools well for a packed lunch: scale the tray up and keep portions in the fridge for up to three days."
+    ]
+  },
+  {
+    "id": "moussaka",
+    "name": "Moussaka",
+    "slots": [
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "greek",
+    "source": {
+      "name": "Standard Greek-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 45,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "lamb mince 10% raw",
+        "grams": 150,
+        "display": "150 g lamb mince"
+      },
+      {
+        "food": "aubergine",
+        "grams": 200,
+        "display": "1 aubergine, sliced into rounds"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 120,
+        "display": "120 g potatoes, sliced thinly"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 150,
+        "display": "150 g chopped tomatoes"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, chopped"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 15,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "milk semi",
+        "grams": 120,
+        "display": "120 ml semi-skimmed milk"
+      },
+      {
+        "food": "plain flour",
+        "grams": 12,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "a small knob of butter"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 25,
+        "display": "25 g grated cheddar"
+      },
+      {
+        "food": "ground cinnamon",
+        "grams": 1,
+        "display": "a good pinch of cinnamon"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 190C fan. Brush the aubergine slices with most of the oil and roast for 20 minutes until golden; parboil the potato slices for 5 minutes.",
+      "Fry the onion in the last of the oil for 5 minutes, add the lamb and brown well, then stir in the garlic and cinnamon.",
+      "Add the tomatoes and simmer for 15 minutes until thick, and season.",
+      "Melt the butter, stir in the flour, cook for a minute, then whisk in the milk and simmer to a thick white sauce.",
+      "Layer potato, mince and aubergine in a small dish, pour over the sauce, scatter with cheddar and bake for 25 minutes until bubbling and browned."
+    ]
+  },
+  {
+    "id": "paella",
+    "name": "Paella",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "spanish",
+    "source": {
+      "name": "Standard Spanish-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 30,
+    "tags": [
+      "one-pan",
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "white rice dry",
+        "grams": 90,
+        "display": "90 g paella or short grain rice"
+      },
+      {
+        "food": "chicken thigh skinless raw",
+        "grams": 110,
+        "display": "2 skinless chicken thighs (about 110 g), diced"
+      },
+      {
+        "food": "prawns cooked",
+        "grams": 80,
+        "display": "80 g cooked king prawns"
+      },
+      {
+        "food": "chorizo",
+        "grams": 30,
+        "display": "30 g chorizo, sliced"
+      },
+      {
+        "food": "roasted peppers in brine drained",
+        "grams": 60,
+        "display": "60 g roasted peppers, sliced"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 50,
+        "display": "50 g frozen peas"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "1 small onion, chopped"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 3,
+        "display": "1 tsp smoked paprika"
+      },
+      {
+        "food": "spices",
+        "grams": 1,
+        "display": "a pinch of saffron"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "1 chicken stock cube in 350 ml water"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 12,
+        "display": "juice of half a lemon"
+      }
+    ],
+    "steps": [
+      "Fry the chorizo in the oil in a wide pan until its red fat runs, then add the chicken and brown for 5 minutes.",
+      "Add the onion and cook for 5 minutes, then the garlic, paprika and saffron for 30 seconds.",
+      "Stir in the rice to coat, pour in the hot stock and simmer without stirring for about 18 minutes.",
+      "Scatter over the peppers and peas for the last 5 minutes, adding a splash more water if it looks dry.",
+      "Lay the prawns on top to heat through, rest off the heat for 5 minutes, then serve with the lemon juice squeezed over."
+    ]
+  },
+  {
+    "id": "sausage-and-veg-traybake",
+    "name": "Sausage and veg traybake",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 40,
+    "tags": [
+      "one-pan",
+      "batch",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 150,
+        "display": "3 pork sausages (about 150 g)"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 200,
+        "display": "200 g new potatoes, halved"
+      },
+      {
+        "food": "mixed roast veg",
+        "grams": 220,
+        "display": "220 g peppers, courgette and carrot, chunked"
+      },
+      {
+        "food": "red onion",
+        "grams": 70,
+        "display": "1 red onion, cut into wedges"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 3,
+        "display": "1 tsp dried mixed herbs"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "salt and black pepper"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 200C fan and toss the potatoes with half the oil in a large roasting tray.",
+      "Roast for 15 minutes, then add the veg, onion, herbs and remaining oil and shake to coat.",
+      "Nestle the sausages among the vegetables and roast for a further 25 minutes, turning once, until browned all over.",
+      "Season and serve from the tray, scraping up the sticky bits."
+    ]
+  },
+  {
+    "id": "shakshuka-with-flatbread",
+    "name": "Shakshuka with flatbread",
+    "slots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "other",
+    "source": {
+      "name": "Standard North African-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 20,
+    "tags": [
+      "vegetarian",
+      "one-pan",
+      "spicy"
+    ],
+    "ingredients": [
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 200,
+        "display": "200 g chopped tomatoes"
+      },
+      {
+        "food": "red pepper",
+        "grams": 90,
+        "display": "1 red pepper, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, sliced"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, sliced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "ground cumin",
+        "grams": 3,
+        "display": "1 tsp ground cumin"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 3,
+        "display": "1 tsp smoked paprika"
+      },
+      {
+        "food": "harissa",
+        "grams": 10,
+        "display": "2 tsp harissa"
+      },
+      {
+        "food": "feta",
+        "grams": 30,
+        "display": "30 g feta, crumbled"
+      },
+      {
+        "food": "flatbread",
+        "grams": 80,
+        "display": "1 flatbread, warmed"
+      },
+      {
+        "food": "fresh coriander",
+        "grams": 5,
+        "display": "small handful of coriander"
+      }
+    ],
+    "steps": [
+      "Soften the onion and pepper in the oil in a frying pan for 8 minutes over a medium heat.",
+      "Add the garlic, cumin, paprika and harissa and cook for a minute until fragrant.",
+      "Pour in the tomatoes with a splash of water, season, and simmer for 8 minutes until thick enough to hold a dip.",
+      "Make two wells, crack in the eggs, cover and cook for 5 to 6 minutes until the whites are set and the yolks still runny.",
+      "Scatter over the feta and coriander and serve with the warm flatbread for scooping."
+    ]
+  },
+  {
+    "id": "stuffed-peppers",
+    "name": "Stuffed peppers",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "other",
+    "source": {
+      "name": "Standard Mediterranean-style home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 35,
+    "tags": [
+      "vegetarian",
+      "packable",
+      "make-ahead",
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "red pepper",
+        "grams": 300,
+        "display": "2 large red peppers, halved and deseeded"
+      },
+      {
+        "food": "white rice dry",
+        "grams": 60,
+        "display": "60 g long grain rice"
+      },
+      {
+        "food": "chickpeas drained",
+        "grams": 120,
+        "display": "120 g chickpeas, drained"
+      },
+      {
+        "food": "feta",
+        "grams": 50,
+        "display": "50 g feta, crumbled"
+      },
+      {
+        "food": "red onion",
+        "grams": 60,
+        "display": "1 small red onion, chopped"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 120,
+        "display": "120 g chopped tomatoes"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 14,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "dried oregano",
+        "grams": 2,
+        "display": "1 tsp dried oregano"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 190C fan. Boil the rice for 10 minutes, drain and set aside.",
+      "Soften the onion and garlic in most of the oil for 5 minutes, add the tomatoes and oregano and simmer for 5 minutes until thick.",
+      "Stir the rice, chickpeas and half the feta through the sauce and season well.",
+      "Sit the pepper halves in a tray, rub with the last of the oil, fill with the mixture and scatter over the rest of the feta.",
+      "Bake for 30 to 35 minutes until the peppers are soft and blistered, then finish with parsley."
+    ]
+  },
+  {
+    "id": "turkey-burgers-with-salad",
+    "name": "Turkey burgers with salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "traybakes-and-quick",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 15,
+    "tags": [
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "turkey mince 5% raw",
+        "grams": 180,
+        "display": "180 g turkey mince"
+      },
+      {
+        "food": "crusty white roll",
+        "grams": 75,
+        "display": "1 crusty roll, split"
+      },
+      {
+        "food": "panko breadcrumbs",
+        "grams": 20,
+        "display": "2 tbsp panko breadcrumbs"
+      },
+      {
+        "food": "red onion",
+        "grams": 40,
+        "display": "half a red onion, half grated and half sliced"
+      },
+      {
+        "food": "egg",
+        "grams": 25,
+        "display": "half a beaten egg, to bind"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "tomato",
+        "grams": 60,
+        "display": "1 tomato, sliced"
+      },
+      {
+        "food": "light mayo",
+        "grams": 15,
+        "display": "1 tbsp light mayonnaise"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "1.5 tsp sunflower oil"
+      },
+      {
+        "food": "spices",
+        "grams": 3,
+        "display": "1 tsp smoked paprika, salt and pepper"
+      }
+    ],
+    "steps": [
+      "Mix the mince with the breadcrumbs, grated onion, egg and seasoning, then shape into one thick patty and chill for 10 minutes so it holds together.",
+      "Fry in the oil over a medium heat for 6 minutes a side, until browned and cooked right through.",
+      "Toast the cut sides of the roll in the pan for a minute.",
+      "Spread the mayo on the base and build with leaves, tomato, the burger and the sliced red onion.",
+      "The raw patties freeze well: make a batch and interleave them with baking paper."
+    ]
+  }
+]

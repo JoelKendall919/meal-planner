@@ -1,0 +1,267 @@
+[
+  {
+    "id": "baked-salmon-with-new-potatoes",
+    "name": "Baked salmon with new potatoes",
+    "slots": [
+      "dinner"
+    ],
+    "category": "fish",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "salmon raw",
+        "grams": 150,
+        "display": "1 salmon fillet (about 150 g)"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 250,
+        "display": "250 g new potatoes, halved"
+      },
+      {
+        "food": "green beans",
+        "grams": 100,
+        "display": "100 g green beans, trimmed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 12,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 12,
+        "display": "juice of half a lemon"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley, chopped"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "salt and black pepper"
+      }
+    ],
+    "steps": [
+      "Heat the oven to 200C fan. Toss the potatoes with two thirds of the oil and roast for 20 minutes.",
+      "Push the potatoes aside, sit the salmon in the tray, rub with the rest of the oil, the garlic and seasoning.",
+      "Bake for 12 to 14 minutes, until the salmon flakes at its thickest point.",
+      "Boil or steam the green beans for 4 minutes and add them to the tray.",
+      "Squeeze over the lemon juice and scatter with parsley before serving."
+    ]
+  },
+  {
+    "id": "cod-with-parsley-sauce",
+    "name": "Cod with parsley sauce",
+    "slots": [
+      "dinner"
+    ],
+    "category": "fish",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 25,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "cod raw",
+        "grams": 200,
+        "display": "1 cod fillet (about 200 g)"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250 g floury potatoes, for mash"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 90,
+        "display": "90 g frozen peas"
+      },
+      {
+        "food": "milk semi",
+        "grams": 180,
+        "display": "180 ml semi-skimmed milk"
+      },
+      {
+        "food": "butter",
+        "grams": 18,
+        "display": "a knob of butter (about 18 g)"
+      },
+      {
+        "food": "plain flour",
+        "grams": 15,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 8,
+        "display": "a good handful of parsley, chopped"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "salt, pepper and a grating of nutmeg"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes for 18 minutes until tender, then drain and mash with a splash of the milk and a third of the butter.",
+      "Poach the cod in the remaining milk in a shallow pan for 7 to 8 minutes, covered, until it flakes. Lift it out and keep the milk.",
+      "Melt the rest of the butter in a small pan, stir in the flour and cook for 1 minute.",
+      "Whisk in the poaching milk a little at a time and simmer for 3 minutes until smooth and thick, then stir in the parsley and season.",
+      "Boil the peas for 3 minutes and serve everything with the sauce poured over the fish."
+    ]
+  },
+  {
+    "id": "grilled-mackerel-with-salad",
+    "name": "Grilled mackerel with salad",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "fish",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "packable"
+    ],
+    "ingredients": [
+      {
+        "food": "mackerel raw",
+        "grams": 150,
+        "display": "1 fresh mackerel fillet (about 150 g)"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 200,
+        "display": "200 g new potatoes"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 60,
+        "display": "60 g mixed salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 80,
+        "display": "80 g cherry tomatoes, halved"
+      },
+      {
+        "food": "cucumber",
+        "grams": 60,
+        "display": "a chunk of cucumber, sliced"
+      },
+      {
+        "food": "horseradish sauce",
+        "grams": 15,
+        "display": "1 tbsp horseradish sauce"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "1.5 tsp olive oil"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 12,
+        "display": "juice of half a lemon"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "salt and black pepper"
+      }
+    ],
+    "steps": [
+      "Boil the new potatoes for 15 minutes until tender, then drain and halve any large ones.",
+      "Heat the grill to high, score the mackerel skin, season it and grill skin side up for 5 to 6 minutes until the skin crisps and the flesh is opaque.",
+      "Toss the leaves, tomatoes and cucumber with the olive oil, half the lemon juice and seasoning.",
+      "Loosen the horseradish with the rest of the lemon juice to make a dressing for the warm potatoes.",
+      "Serve the mackerel on the salad with the potatoes alongside."
+    ]
+  },
+  {
+    "id": "smoked-haddock-with-poached-egg",
+    "name": "Smoked haddock with poached egg",
+    "slots": [
+      "dinner"
+    ],
+    "category": "fish",
+    "cuisine": "british",
+    "source": {
+      "name": "Standard British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 20,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "smoked haddock raw",
+        "grams": 200,
+        "display": "1 smoked haddock fillet (about 200 g)"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 250,
+        "display": "250 g new potatoes"
+      },
+      {
+        "food": "spinach",
+        "grams": 120,
+        "display": "120 g spinach"
+      },
+      {
+        "food": "milk semi",
+        "grams": 150,
+        "display": "150 ml semi-skimmed milk, for poaching"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "spices",
+        "grams": 2,
+        "display": "black pepper and a grating of nutmeg"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes for 15 minutes until tender, then drain and toss with half the butter and pepper.",
+      "Poach the haddock in the milk in a shallow pan over a low heat for 6 to 8 minutes, until it flakes; drain and discard the milk.",
+      "Wilt the spinach in the rest of the butter, season with nutmeg and press out any water.",
+      "Poach the egg in barely simmering water for 3 minutes so the yolk stays soft.",
+      "Pile the spinach on the plate, sit the haddock on top with the egg, and serve the potatoes alongside."
+    ]
+  }
+]

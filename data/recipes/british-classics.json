@@ -1,0 +1,1318 @@
+[
+  {
+    "id": "bangers-and-mash-onion-gravy",
+    "name": "Bangers and mash with onion gravy",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 125,
+        "display": "2 large pork sausages (about 125 g)"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "onion",
+        "grams": 90,
+        "display": "1 large onion, finely sliced"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 5,
+        "display": "1 tsp plain flour"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 275,
+        "display": "275 g floury potatoes"
+      },
+      {
+        "food": "milk whole",
+        "grams": 40,
+        "display": "40 ml whole milk"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 70,
+        "display": "70 g frozen peas"
+      }
+    ],
+    "steps": [
+      "Brown the sausages slowly in the oil in a frying pan for 18-20 minutes, turning often, then set aside.",
+      "Soften the sliced onion in the same pan with half the butter for 12 minutes until sticky, stir in the flour, then add 200 ml water and the gravy granules and simmer to a thick onion gravy.",
+      "Boil the potatoes for 18 minutes, drain, and mash with the rest of the butter and the warm milk.",
+      "Boil the peas for 3 minutes. Pile the mash on the plate, lean the sausages against it and pour over the onion gravy."
+    ]
+  },
+  {
+    "id": "beef-stew-with-dumplings",
+    "name": "Beef stew with dumplings",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 150,
+    "tags": [
+      "batch",
+      "one-pan",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "stewing beef raw",
+        "grams": 180,
+        "display": "180 g stewing beef, cubed"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, chopped"
+      },
+      {
+        "food": "carrot",
+        "grams": 80,
+        "display": "1 large carrot, thickly sliced"
+      },
+      {
+        "food": "swede",
+        "grams": 80,
+        "display": "80 g swede, cubed"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 150,
+        "display": "150 g potatoes, halved"
+      },
+      {
+        "food": "pearl barley dry",
+        "grams": 20,
+        "display": "20 g pearl barley"
+      },
+      {
+        "food": "plain flour",
+        "grams": 40,
+        "display": "40 g plain flour (15 g to thicken, 25 g for dumplings)"
+      },
+      {
+        "food": "suet",
+        "grams": 22,
+        "display": "22 g shredded suet"
+      },
+      {
+        "food": "stock cube",
+        "grams": 6,
+        "display": "1 beef stock cube in 400 ml water"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 10,
+        "display": "2 tsp tomato puree"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 1,
+        "display": "1/2 tsp dried mixed herbs"
+      }
+    ],
+    "steps": [
+      "Brown the floured beef in the oil in a casserole, then add the onion, carrot and swede and cook for 5 minutes.",
+      "Add the stock, tomato puree, herbs and pearl barley, cover and simmer gently for 1 hour 45 minutes, adding the potatoes for the last 40 minutes.",
+      "Rub the remaining flour with the suet, a pinch of salt and a splash of cold water to a soft dough and roll into small dumplings.",
+      "Sit the dumplings on top of the stew, cover and simmer for a final 20 minutes until risen and fluffy."
+    ]
+  },
+  {
+    "id": "bubble-and-squeak-with-fried-egg",
+    "name": "Bubble and squeak with fried egg",
+    "slots": [
+      "breakfast",
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 25,
+    "tags": [
+      "one-pan",
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250 g potatoes (or leftover mash)"
+      },
+      {
+        "food": "savoy cabbage",
+        "grams": 120,
+        "display": "120 g savoy cabbage, shredded"
+      },
+      {
+        "food": "brussels sprouts",
+        "grams": 60,
+        "display": "60 g sprouts, shredded"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "1 small onion, finely chopped"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 15,
+        "display": "1 tbsp brown sauce"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes, drain and crush them roughly; boil the cabbage and sprouts for 3 minutes and squeeze out the water.",
+      "Soften the onion in the butter, then mix it into the potato and greens and season heavily with salt and pepper.",
+      "Press the mixture into a hot oiled frying pan as one cake and cook for 6-8 minutes a side until a dark crust forms.",
+      "Fry the eggs and serve them on top of the wedges of bubble, with brown sauce."
+    ]
+  },
+  {
+    "id": "cauliflower-cheese-with-bacon",
+    "name": "Cauliflower cheese with bacon",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 30,
+    "tags": [
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "cauliflower",
+        "grams": 350,
+        "display": "1/2 large cauliflower, in florets"
+      },
+      {
+        "food": "streaky bacon raw",
+        "grams": 60,
+        "display": "3 rashers streaky bacon, chopped"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 20,
+        "display": "20 g plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 220,
+        "display": "220 ml whole milk"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 60,
+        "display": "60 g mature cheddar, grated"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard"
+      },
+      {
+        "food": "panko breadcrumbs",
+        "grams": 15,
+        "display": "15 g breadcrumbs"
+      }
+    ],
+    "steps": [
+      "Boil the cauliflower florets for 5 minutes so they are just tender, then drain very well.",
+      "Fry the bacon until crisp and keep the fat in the pan for flavour.",
+      "Melt the butter, stir in the flour, cook for a minute, then whisk in the milk gradually. Simmer to a thick sauce and stir in most of the cheddar and the mustard off the heat.",
+      "Mix the cauliflower and bacon into a dish, pour over the sauce, top with the rest of the cheese and the breadcrumbs, and bake at 200C for 25 minutes until blistered."
+    ]
+  },
+  {
+    "id": "chicken-and-leek-pie",
+    "name": "Chicken and leek pie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 45,
+    "tags": [
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "chicken thigh skinless raw",
+        "grams": 160,
+        "display": "160 g boneless chicken thighs, cubed"
+      },
+      {
+        "food": "leek",
+        "grams": 110,
+        "display": "1 large leek, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 40,
+        "display": "1/2 onion, diced"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 20,
+        "display": "20 g plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 150,
+        "display": "150 ml whole milk"
+      },
+      {
+        "food": "double cream",
+        "grams": 25,
+        "display": "25 ml double cream"
+      },
+      {
+        "food": "stock cube",
+        "grams": 4,
+        "display": "1/2 chicken stock cube in 100 ml water"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 5,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley"
+      },
+      {
+        "food": "shortcrust pastry",
+        "grams": 70,
+        "display": "70 g shortcrust pastry"
+      },
+      {
+        "food": "egg",
+        "grams": 10,
+        "display": "beaten egg, to glaze"
+      }
+    ],
+    "steps": [
+      "Melt the butter and sweat the leek and onion with a lid on for 10 minutes until soft but not coloured.",
+      "Add the chicken and cook for 5 minutes, stir in the flour, then gradually add the stock and milk to make a thick sauce.",
+      "Take off the heat and stir through the cream, mustard and parsley. Season and cool for 10 minutes.",
+      "Fill a pie dish, cover with the pastry, glaze with egg and bake at 200C for 30-35 minutes until deep golden."
+    ]
+  },
+  {
+    "id": "corned-beef-hash",
+    "name": "Corned beef hash",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "corned beef",
+        "grams": 150,
+        "display": "150 g corned beef, cubed"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 300,
+        "display": "300 g potatoes, cubed"
+      },
+      {
+        "food": "onion",
+        "grams": 80,
+        "display": "1 onion, diced"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp sunflower oil"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 8,
+        "display": "2 tsp Worcestershire sauce"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 egg, to top"
+      },
+      {
+        "food": "brown sauce",
+        "grams": 15,
+        "display": "1 tbsp brown sauce"
+      }
+    ],
+    "steps": [
+      "Parboil the cubed potatoes for 8 minutes and drain them well so they dry off.",
+      "Fry the onion in the oil for 5 minutes, add the potatoes and press them down, leaving them alone for several minutes at a time so a crust forms.",
+      "Fold through the corned beef and Worcestershire sauce and cook for another 8 minutes until crisp in patches; try not to stir it to mush.",
+      "Fry the egg and slide it on top, with brown sauce on the side."
+    ]
+  },
+  {
+    "id": "cottage-pie",
+    "name": "Cottage pie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 45,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "beef mince 20% raw",
+        "grams": 160,
+        "display": "160 g beef mince (20% fat)"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, diced"
+      },
+      {
+        "food": "carrot",
+        "grams": 70,
+        "display": "1 large carrot, diced"
+      },
+      {
+        "food": "celery",
+        "grams": 40,
+        "display": "1 celery stick, diced"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "plain flour",
+        "grams": 8,
+        "display": "1 tsp plain flour"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 8,
+        "display": "2 tsp Worcestershire sauce"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "1/2 beef stock cube in 200 ml water"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 300,
+        "display": "300 g floury potatoes"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "milk whole",
+        "grams": 40,
+        "display": "40 ml whole milk"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 20,
+        "display": "20 g grated cheddar"
+      }
+    ],
+    "steps": [
+      "Fry the mince hard in the oil until properly browned, then tip in the onion, carrot and celery and cook for 8 minutes.",
+      "Add the flour, tomato puree, Worcestershire sauce and stock, then simmer for 30 minutes until glossy and thick.",
+      "Boil and mash the potatoes with the butter and milk, seasoning well.",
+      "Top the mince with mash, scatter over the cheddar and bake at 200C for 25 minutes until bubbling at the edges."
+    ]
+  },
+  {
+    "id": "fish-and-chips",
+    "name": "Fish and chips",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 25,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "cod raw",
+        "grams": 180,
+        "display": "180 g cod fillet, skinned"
+      },
+      {
+        "food": "plain flour",
+        "grams": 40,
+        "display": "40 g plain flour"
+      },
+      {
+        "food": "cider",
+        "grams": 70,
+        "display": "70 ml cider (or beer) for the batter"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 14,
+        "display": "oil for frying (about 14 g absorbed)"
+      },
+      {
+        "food": "oven chips frozen",
+        "grams": 200,
+        "display": "200 g thick-cut oven chips"
+      },
+      {
+        "food": "mushy peas",
+        "grams": 120,
+        "display": "120 g mushy peas"
+      },
+      {
+        "food": "tartare sauce",
+        "grams": 20,
+        "display": "1 tbsp tartare sauce"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 10,
+        "display": "a squeeze of lemon"
+      }
+    ],
+    "steps": [
+      "Bake the chips at 220C for 25 minutes, turning once, so they finish at the same time as the fish.",
+      "Whisk most of the flour with the cider to a thick batter; keep the rest of the flour dry on a plate.",
+      "Pat the cod dry, dust it in the dry flour, then dip into the batter and lower into hot oil (180C). Fry for 6-7 minutes until the batter is crisp and deep gold.",
+      "Drain on kitchen paper, salt it, and serve with warmed mushy peas, tartare sauce and lemon."
+    ]
+  },
+  {
+    "id": "fish-pie",
+    "name": "Fish pie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 30,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "cod raw",
+        "grams": 110,
+        "display": "110 g cod fillet, cubed"
+      },
+      {
+        "food": "smoked haddock raw",
+        "grams": 80,
+        "display": "80 g smoked haddock, cubed"
+      },
+      {
+        "food": "prawns cooked",
+        "grams": 50,
+        "display": "50 g cooked prawns"
+      },
+      {
+        "food": "milk whole",
+        "grams": 180,
+        "display": "180 ml whole milk"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 20,
+        "display": "20 g plain flour"
+      },
+      {
+        "food": "double cream",
+        "grams": 25,
+        "display": "25 ml double cream"
+      },
+      {
+        "food": "dijon mustard",
+        "grams": 5,
+        "display": "1 tsp Dijon mustard"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley, chopped"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 60,
+        "display": "60 g frozen peas"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 280,
+        "display": "280 g floury potatoes"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 20,
+        "display": "20 g grated cheddar"
+      }
+    ],
+    "steps": [
+      "Poach the cod and haddock in the milk for 4 minutes, lift out the fish and keep the milk.",
+      "Melt the butter, stir in the flour, cook for a minute, then beat in the poaching milk a little at a time to a smooth sauce. Add the cream, mustard and parsley.",
+      "Fold the fish, prawns and peas into the sauce and tip into a dish.",
+      "Boil and mash the potatoes, spread over the filling, scatter with cheddar and bake at 200C for 30 minutes until golden."
+    ]
+  },
+  {
+    "id": "gammon-egg-and-chips",
+    "name": "Gammon, egg and chips",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 25,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "gammon steak raw",
+        "grams": 180,
+        "display": "1 gammon steak (about 180 g)"
+      },
+      {
+        "food": "egg",
+        "grams": 120,
+        "display": "2 eggs"
+      },
+      {
+        "food": "oven chips frozen",
+        "grams": 250,
+        "display": "250 g oven chips"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 80,
+        "display": "80 g frozen peas"
+      },
+      {
+        "food": "tomato",
+        "grams": 80,
+        "display": "1 tomato, halved"
+      }
+    ],
+    "steps": [
+      "Bake the chips at 220C for 25 minutes, turning halfway.",
+      "Snip through the fat of the gammon in a few places so it does not curl, then griddle or fry for 4-5 minutes a side until caramelised, adding the tomato halves alongside.",
+      "Fry the eggs in the oil, basting the whites so the yolks stay soft.",
+      "Boil the peas for 3 minutes and serve everything together."
+    ]
+  },
+  {
+    "id": "homemade-fishcakes-with-peas",
+    "name": "Homemade fishcakes with peas",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 30,
+    "tags": [
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "cod raw",
+        "grams": 150,
+        "display": "150 g cod fillet"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 220,
+        "display": "220 g floury potatoes"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "milk whole",
+        "grams": 60,
+        "display": "60 ml whole milk, to poach"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "small handful of parsley, chopped"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 10,
+        "display": "squeeze of lemon"
+      },
+      {
+        "food": "plain flour",
+        "grams": 15,
+        "display": "15 g plain flour, to coat"
+      },
+      {
+        "food": "egg",
+        "grams": 30,
+        "display": "1/2 beaten egg, to coat"
+      },
+      {
+        "food": "panko breadcrumbs",
+        "grams": 35,
+        "display": "35 g panko breadcrumbs"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp sunflower oil"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 120,
+        "display": "120 g frozen peas"
+      },
+      {
+        "food": "tartare sauce",
+        "grams": 25,
+        "display": "1 tbsp tartare sauce"
+      }
+    ],
+    "steps": [
+      "Poach the cod in the milk for 5 minutes, then drain and flake it, removing any bones.",
+      "Boil and mash the potatoes with the butter, keeping the mash dry and stiff, then fold in the fish, parsley and lemon with plenty of pepper.",
+      "Shape into two cakes and chill for 20 minutes, then coat in flour, egg and breadcrumbs.",
+      "Fry in the oil for 4 minutes a side until crisp, and serve with buttered peas and tartare sauce."
+    ]
+  },
+  {
+    "id": "lancashire-hotpot",
+    "name": "Lancashire hotpot",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 150,
+    "tags": [
+      "batch",
+      "one-pan",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "lamb shoulder raw",
+        "grams": 165,
+        "display": "165 g lamb shoulder, cubed"
+      },
+      {
+        "food": "onion",
+        "grams": 90,
+        "display": "1 large onion, sliced"
+      },
+      {
+        "food": "carrot",
+        "grams": 70,
+        "display": "1 carrot, sliced"
+      },
+      {
+        "food": "plain flour",
+        "grams": 12,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "stock cube",
+        "grams": 6,
+        "display": "1 lamb stock cube in 300 ml water"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 5,
+        "display": "1 tsp Worcestershire sauce"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 1,
+        "display": "1/2 tsp dried thyme or mixed herbs"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 280,
+        "display": "280 g potatoes, thinly sliced"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g melted butter"
+      }
+    ],
+    "steps": [
+      "Toss the lamb in the flour and brown it in a casserole, then layer it with the onion and carrot.",
+      "Pour in the stock with the Worcestershire sauce and herbs so the meat is just covered.",
+      "Overlap the potato slices on top like roof tiles, brush generously with melted butter and season.",
+      "Cover and bake at 160C for 2 hours, then uncover and give it 30 minutes at 200C so the potatoes crisp."
+    ]
+  },
+  {
+    "id": "liver-and-bacon-with-mash",
+    "name": "Liver and bacon with mash",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "lambs liver raw",
+        "grams": 150,
+        "display": "150 g lamb's liver, sliced"
+      },
+      {
+        "food": "back bacon raw",
+        "grams": 50,
+        "display": "2 rashers back bacon"
+      },
+      {
+        "food": "plain flour",
+        "grams": 12,
+        "display": "1 tbsp plain flour, seasoned"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "onion",
+        "grams": 90,
+        "display": "1 large onion, sliced"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 280,
+        "display": "280 g floury potatoes"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "milk whole",
+        "grams": 40,
+        "display": "40 ml whole milk"
+      },
+      {
+        "food": "savoy cabbage",
+        "grams": 90,
+        "display": "90 g savoy cabbage, shredded"
+      }
+    ],
+    "steps": [
+      "Boil the potatoes for 18 minutes and mash with the butter and warm milk.",
+      "Fry the bacon until crisp and set aside, then soften the onion in the same pan for 10 minutes.",
+      "Dust the liver in seasoned flour and fry in the oil for 90 seconds a side only, so it stays pink in the middle, then rest it.",
+      "Add 200 ml water and the gravy granules to the onion pan, scraping up the sticky bits. Serve the liver and bacon on the mash with the onion gravy and steamed cabbage."
+    ]
+  },
+  {
+    "id": "sausage-and-bean-casserole",
+    "name": "Sausage and bean casserole",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 35,
+    "tags": [
+      "batch",
+      "one-pan",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 140,
+        "display": "3 pork sausages (about 140 g)"
+      },
+      {
+        "food": "olive oil",
+        "grams": 10,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, sliced"
+      },
+      {
+        "food": "red pepper",
+        "grams": 70,
+        "display": "1 red pepper, sliced"
+      },
+      {
+        "food": "garlic",
+        "grams": 6,
+        "display": "2 garlic cloves, crushed"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 160,
+        "display": "160 g chopped tomatoes"
+      },
+      {
+        "food": "baked beans",
+        "grams": 200,
+        "display": "1 small tin of baked beans"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 2,
+        "display": "1 tsp smoked paprika"
+      },
+      {
+        "food": "stock cube",
+        "grams": 4,
+        "display": "1/2 stock cube in 100 ml water"
+      },
+      {
+        "food": "crusty white roll",
+        "grams": 60,
+        "display": "1 crusty roll, to mop up"
+      }
+    ],
+    "steps": [
+      "Brown the sausages all over in the oil, lift them out and cut each into three.",
+      "Soften the onion and pepper in the pan for 6 minutes, add the garlic and paprika and cook for another minute.",
+      "Return the sausages with the chopped tomatoes, stock and baked beans, then simmer for 20-25 minutes until thick and glossy.",
+      "Season and serve with a crusty roll."
+    ]
+  },
+  {
+    "id": "shepherds-pie",
+    "name": "Shepherd's pie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 45,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "lamb mince 10% raw",
+        "grams": 180,
+        "display": "180 g lamb mince"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "1 small onion, diced"
+      },
+      {
+        "food": "carrot",
+        "grams": 60,
+        "display": "1 carrot, diced"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "plain flour",
+        "grams": 8,
+        "display": "1 tsp plain flour"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 8,
+        "display": "2 tsp Worcestershire sauce"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "1/2 lamb stock cube in 200 ml water"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 1,
+        "display": "1/2 tsp dried mixed herbs"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 60,
+        "display": "60 g frozen peas"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 300,
+        "display": "300 g floury potatoes"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "milk whole",
+        "grams": 40,
+        "display": "40 ml whole milk"
+      }
+    ],
+    "steps": [
+      "Brown the lamb mince in the oil over a high heat, then add the onion and carrot and soften for 8 minutes.",
+      "Stir in the flour, tomato puree, Worcestershire sauce, herbs and stock. Simmer uncovered for 25 minutes until thick, adding the peas at the end.",
+      "Meanwhile boil the potatoes for 18 minutes, drain well, then mash with the butter and warm milk and season.",
+      "Spoon the mince into a dish, fork the mash over the top and bake at 200C for 25 minutes until the peaks are browned."
+    ]
+  },
+  {
+    "id": "steak-and-ale-pie",
+    "name": "Steak and ale pie",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 150,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable"
+    ],
+    "ingredients": [
+      {
+        "food": "stewing beef raw",
+        "grams": 170,
+        "display": "170 g braising steak, cubed"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 8,
+        "display": "2 tsp sunflower oil"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, chopped"
+      },
+      {
+        "food": "carrot",
+        "grams": 50,
+        "display": "1 small carrot, chopped"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 60,
+        "display": "60 g mushrooms, quartered"
+      },
+      {
+        "food": "plain flour",
+        "grams": 15,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "ale",
+        "grams": 120,
+        "display": "120 ml ale"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "1/2 beef stock cube in 150 ml water"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 10,
+        "display": "2 tsp tomato puree"
+      },
+      {
+        "food": "worcestershire sauce",
+        "grams": 8,
+        "display": "2 tsp Worcestershire sauce"
+      },
+      {
+        "food": "puff pastry",
+        "grams": 70,
+        "display": "70 g puff pastry"
+      },
+      {
+        "food": "egg",
+        "grams": 10,
+        "display": "beaten egg, to glaze"
+      }
+    ],
+    "steps": [
+      "Toss the beef in the flour and brown it hard in the oil in batches, then set aside.",
+      "Soften the onion, carrot and mushrooms in the same pan, return the beef, and add the ale, stock, tomato puree and Worcestershire sauce.",
+      "Cover and simmer very gently for 2 hours until the beef pulls apart, then cool slightly so the pastry does not melt.",
+      "Tip into a pie dish, lay the pastry on top, crimp the edges, cut a steam hole and brush with egg. Bake at 200C for 30 minutes until risen and bronzed."
+    ]
+  },
+  {
+    "id": "toad-in-the-hole",
+    "name": "Toad in the hole",
+    "slots": [
+      "dinner"
+    ],
+    "category": "british-classics",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 40,
+    "tags": [
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pork sausages raw",
+        "grams": 140,
+        "display": "3 pork sausages (about 140 g)"
+      },
+      {
+        "food": "plain flour",
+        "grams": 55,
+        "display": "55 g plain flour"
+      },
+      {
+        "food": "egg",
+        "grams": 60,
+        "display": "1 large egg"
+      },
+      {
+        "food": "milk whole",
+        "grams": 120,
+        "display": "120 ml whole milk"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp sunflower oil"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 onion, sliced, for the gravy"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      },
+      {
+        "food": "peas frozen",
+        "grams": 70,
+        "display": "70 g frozen peas"
+      }
+    ],
+    "steps": [
+      "Whisk the flour, egg, milk and a pinch of salt to a smooth batter and rest it for 20 minutes.",
+      "Put the oil and sausages in a small roasting tin and roast at 220C for 10 minutes until the fat is smoking hot and the sausages are coloured.",
+      "Pour the batter around the sausages and return to the oven for 25-30 minutes without opening the door, until risen and deep golden.",
+      "Meanwhile fry the onion until soft, add 200 ml water and the gravy granules and simmer. Serve with boiled peas."
+    ]
+  }
+]

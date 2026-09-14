@@ -1,0 +1,278 @@
+[
+  {
+    "id": "jacket-potato-with-beans-and-cheese",
+    "name": "Jacket potato with beans and cheese",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "jacket-potatoes",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 3,
+    "cook_min": 75,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "baking potato baked",
+        "grams": 300,
+        "display": "1 large baking potato"
+      },
+      {
+        "food": "baked beans",
+        "grams": 200,
+        "display": "1/2 large tin of baked beans"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 60,
+        "display": "60 g mature cheddar, grated"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "a generous knob of butter"
+      }
+    ],
+    "steps": [
+      "Prick the potato all over, rub with a little oil and salt, and bake at 200C for about 1 hour 15 minutes until crisp-skinned and soft inside.",
+      "Heat the beans gently in a small pan, stirring so they do not catch.",
+      "Split the potato open, fluff the flesh with a fork and stir in the butter and a good pinch of salt.",
+      "Spoon over the beans and finish with the grated cheddar so it melts into the heat."
+    ]
+  },
+  {
+    "id": "jacket-potato-with-cheese-and-coleslaw",
+    "name": "Jacket potato with cheese and coleslaw",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "jacket-potatoes",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 4,
+    "cook_min": 75,
+    "tags": [
+      "vegetarian"
+    ],
+    "ingredients": [
+      {
+        "food": "baking potato baked",
+        "grams": 300,
+        "display": "1 large baking potato"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 70,
+        "display": "70 g mature cheddar, grated"
+      },
+      {
+        "food": "coleslaw",
+        "grams": 90,
+        "display": "3 tbsp coleslaw"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "a generous knob of butter"
+      },
+      {
+        "food": "spring onion",
+        "grams": 15,
+        "display": "1 spring onion, sliced"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 40,
+        "display": "a handful of salad leaves"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 60,
+        "display": "a few cherry tomatoes, halved"
+      }
+    ],
+    "steps": [
+      "Prick the potato, rub with oil and salt and bake at 200C for about 1 hour 15 minutes until crisp outside and fluffy within.",
+      "Split it open, fluff the flesh with a fork and work in the butter and a pinch of salt.",
+      "Scatter over the cheddar while the potato is hot so it melts, then spoon the coleslaw alongside.",
+      "Finish with the spring onion and black pepper and serve with the salad leaves and cherry tomatoes."
+    ]
+  },
+  {
+    "id": "jacket-potato-with-chilli",
+    "name": "Jacket potato with chilli",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "jacket-potatoes",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 75,
+    "tags": [
+      "spicy",
+      "batch",
+      "freezable",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "baking potato baked",
+        "grams": 300,
+        "display": "1 large baking potato"
+      },
+      {
+        "food": "beef mince 20% raw",
+        "grams": 125,
+        "display": "125 g beef mince"
+      },
+      {
+        "food": "kidney beans drained",
+        "grams": 80,
+        "display": "80 g kidney beans, drained"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 150,
+        "display": "1/2 tin chopped tomatoes"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "1/2 onion, diced"
+      },
+      {
+        "food": "garlic",
+        "grams": 6,
+        "display": "2 cloves garlic, crushed"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "smoked paprika",
+        "grams": 3,
+        "display": "1 tsp smoked paprika"
+      },
+      {
+        "food": "ground cumin",
+        "grams": 2,
+        "display": "1 tsp ground cumin"
+      },
+      {
+        "food": "chilli",
+        "grams": 8,
+        "display": "1 red chilli, finely chopped"
+      },
+      {
+        "food": "stock cube",
+        "grams": 3,
+        "display": "1/2 beef stock cube"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 30,
+        "display": "30 g cheddar, grated"
+      },
+      {
+        "food": "creme fraiche",
+        "grams": 30,
+        "display": "1 tbsp soured cream"
+      }
+    ],
+    "steps": [
+      "Prick and bake the potato at 200C for about 1 hour 15 minutes until the skin is crisp.",
+      "Meanwhile soften the onion in the oil for 6-8 minutes, add the garlic, chilli, paprika and cumin and cook for a minute until fragrant.",
+      "Turn up the heat, brown the mince well, then stir in the tomato puree, chopped tomatoes, kidney beans and crumbled stock cube with a splash of water.",
+      "Simmer for 30-40 minutes until thick and glossy, seasoning to taste.",
+      "Split the potato, spoon in the chilli and top with the cheddar and a spoonful of soured cream."
+    ]
+  },
+  {
+    "id": "jacket-potato-with-tuna-mayo",
+    "name": "Jacket potato with tuna mayo",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "jacket-potatoes",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 75,
+    "tags": [],
+    "ingredients": [
+      {
+        "food": "baking potato baked",
+        "grams": 300,
+        "display": "1 large baking potato"
+      },
+      {
+        "food": "tuna spring water drained",
+        "grams": 100,
+        "display": "1 small tin of tuna, drained"
+      },
+      {
+        "food": "mayonnaise",
+        "grams": 30,
+        "display": "1 1/2 tbsp mayonnaise"
+      },
+      {
+        "food": "sweetcorn",
+        "grams": 50,
+        "display": "2 tbsp sweetcorn"
+      },
+      {
+        "food": "spring onion",
+        "grams": 20,
+        "display": "1 spring onion, sliced"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "a knob of butter"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 25,
+        "display": "25 g cheddar, grated"
+      },
+      {
+        "food": "salad leaves",
+        "grams": 30,
+        "display": "a handful of salad on the side"
+      }
+    ],
+    "steps": [
+      "Prick the potato all over, rub with oil and salt, and bake at 200C for 1 hour 15 minutes until the skin is crisp and it gives when squeezed.",
+      "Meanwhile mix the tuna with the mayonnaise, sweetcorn, spring onion and black pepper.",
+      "Split the potato, fluff the inside with a fork and work in the butter with a pinch of salt.",
+      "Pile on the tuna mayo, scatter over the cheddar and serve with the salad."
+    ]
+  }
+]

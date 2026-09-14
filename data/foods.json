@@ -2122,5 +2122,1184 @@
   "unit_g": 30,
   "unit": "jar",
   "aisle": "cupboard"
+ },
+ "milk whole": {
+  "kcal": 64,
+  "protein": 3.4,
+  "fat": 3.6,
+  "group": "Milk",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "double cream": {
+  "kcal": 449,
+  "protein": 1.7,
+  "fat": 48.0,
+  "group": "Cream",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "single cream": {
+  "kcal": 193,
+  "protein": 2.6,
+  "fat": 19.1,
+  "group": "Cream",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "clotted cream": {
+  "kcal": 586,
+  "protein": 1.6,
+  "fat": 63.5,
+  "group": "Cream",
+  "unit_g": 227,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "creme fraiche": {
+  "kcal": 299,
+  "protein": 2.4,
+  "fat": 30.0,
+  "group": "Creme fraiche",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "mascarpone": {
+  "kcal": 384,
+  "protein": 4.3,
+  "fat": 39.0,
+  "group": "Mascarpone",
+  "unit_g": 250,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "cream cheese": {
+  "kcal": 253,
+  "protein": 5.5,
+  "fat": 24.0,
+  "group": "Cream cheese",
+  "unit_g": 180,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "mozzarella": {
+  "kcal": 300,
+  "protein": 22.0,
+  "fat": 23.0,
+  "group": "Mozzarella",
+  "unit_g": 125,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "stilton": {
+  "kcal": 410,
+  "protein": 23.7,
+  "fat": 35.0,
+  "group": "Stilton",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "babybel": {
+  "kcal": 302,
+  "protein": 22.5,
+  "fat": 24.0,
+  "group": "Babybel",
+  "unit_g": 20,
+  "unit": "cheese",
+  "aisle": "chilled"
+ },
+ "mayonnaise": {
+  "kcal": 721,
+  "protein": 1.1,
+  "fat": 79.0,
+  "group": "Mayonnaise",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "custard": {
+  "kcal": 101,
+  "protein": 2.9,
+  "fat": 3.0,
+  "group": "Custard",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "vanilla ice cream": {
+  "kcal": 207,
+  "protein": 3.5,
+  "fat": 11.0,
+  "group": "Ice cream",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "frozen"
+ },
+ "tzatziki": {
+  "kcal": 130,
+  "protein": 3.5,
+  "fat": 10.0,
+  "group": "Tzatziki",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "coleslaw": {
+  "kcal": 180,
+  "protein": 1.4,
+  "fat": 16.0,
+  "group": "Coleslaw",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "lard": {
+  "kcal": 899,
+  "protein": 0.0,
+  "fat": 99.0,
+  "group": "Lard",
+  "unit_g": 250,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "suet": {
+  "kcal": 826,
+  "protein": 0.5,
+  "fat": 87.0,
+  "group": "Suet",
+  "unit_g": 240,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "beef mince 20% raw": {
+  "kcal": 250,
+  "protein": 18.0,
+  "fat": 20.0,
+  "group": "Beef mince",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "pork mince raw": {
+  "kcal": 213,
+  "protein": 19.0,
+  "fat": 15.0,
+  "group": "Pork mince",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "back bacon raw": {
+  "kcal": 215,
+  "protein": 16.5,
+  "fat": 16.5,
+  "group": "Bacon",
+  "unit_g": 25,
+  "unit": "rasher",
+  "aisle": "meat"
+ },
+ "streaky bacon raw": {
+  "kcal": 320,
+  "protein": 14.0,
+  "fat": 29.0,
+  "group": "Bacon",
+  "unit_g": 20,
+  "unit": "rasher",
+  "aisle": "meat"
+ },
+ "pork sausages raw": {
+  "kcal": 273,
+  "protein": 13.0,
+  "fat": 22.0,
+  "group": "Sausages",
+  "unit_g": 57,
+  "unit": "sausage",
+  "aisle": "meat"
+ },
+ "chipolata raw": {
+  "kcal": 280,
+  "protein": 13.0,
+  "fat": 23.0,
+  "group": "Sausages",
+  "unit_g": 30,
+  "unit": "sausage",
+  "aisle": "meat"
+ },
+ "black pudding": {
+  "kcal": 297,
+  "protein": 10.3,
+  "fat": 21.5,
+  "group": "Black pudding",
+  "unit_g": 100,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "corned beef": {
+  "kcal": 205,
+  "protein": 26.0,
+  "fat": 11.0,
+  "group": "Corned beef",
+  "unit_g": 340,
+  "unit": "tin",
+  "aisle": "cupboard"
+ },
+ "stewing beef raw": {
+  "kcal": 145,
+  "protein": 21.0,
+  "fat": 6.5,
+  "group": "Stewing beef",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "beef topside raw": {
+  "kcal": 130,
+  "protein": 22.5,
+  "fat": 4.3,
+  "group": "Beef joint",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "lamb chops raw": {
+  "kcal": 231,
+  "protein": 19.0,
+  "fat": 17.0,
+  "group": "Lamb chops",
+  "unit_g": 100,
+  "unit": "chop",
+  "aisle": "meat"
+ },
+ "lamb shoulder raw": {
+  "kcal": 235,
+  "protein": 18.0,
+  "fat": 18.0,
+  "group": "Lamb joint",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "pork shoulder raw": {
+  "kcal": 213,
+  "protein": 19.0,
+  "fat": 15.0,
+  "group": "Pork joint",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "pork chop raw": {
+  "kcal": 170,
+  "protein": 21.5,
+  "fat": 9.2,
+  "group": "Pork chops",
+  "unit_g": 150,
+  "unit": "chop",
+  "aisle": "meat"
+ },
+ "whole chicken raw": {
+  "kcal": 175,
+  "protein": 18.0,
+  "fat": 11.5,
+  "group": "Whole chicken",
+  "unit_g": 1500,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "lambs liver raw": {
+  "kcal": 137,
+  "protein": 20.0,
+  "fat": 6.2,
+  "group": "Liver",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "meat"
+ },
+ "sausage roll": {
+  "kcal": 322,
+  "protein": 8.5,
+  "fat": 21.0,
+  "group": "Sausage rolls",
+  "unit_g": 60,
+  "unit": "roll",
+  "aisle": "bakery"
+ },
+ "pork pie": {
+  "kcal": 376,
+  "protein": 10.5,
+  "fat": 26.0,
+  "group": "Pork pie",
+  "unit_g": 140,
+  "unit": "pie",
+  "aisle": "chilled"
+ },
+ "scotch egg": {
+  "kcal": 241,
+  "protein": 12.0,
+  "fat": 15.5,
+  "group": "Scotch eggs",
+  "unit_g": 113,
+  "unit": "egg",
+  "aisle": "chilled"
+ },
+ "cornish pasty": {
+  "kcal": 264,
+  "protein": 7.5,
+  "fat": 15.5,
+  "group": "Pasty",
+  "unit_g": 227,
+  "unit": "pasty",
+  "aisle": "chilled"
+ },
+ "quiche lorraine": {
+  "kcal": 280,
+  "protein": 10.0,
+  "fat": 19.0,
+  "group": "Quiche",
+  "unit_g": 400,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "biltong": {
+  "kcal": 270,
+  "protein": 50.0,
+  "fat": 6.0,
+  "group": "Biltong",
+  "unit_g": 35,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "pork scratchings": {
+  "kcal": 606,
+  "protein": 48.0,
+  "fat": 46.0,
+  "group": "Pork scratchings",
+  "unit_g": 40,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "kipper": {
+  "kcal": 205,
+  "protein": 25.5,
+  "fat": 11.4,
+  "group": "Kippers",
+  "unit_g": 150,
+  "unit": "fillet",
+  "aisle": "fish"
+ },
+ "smoked haddock raw": {
+  "kcal": 101,
+  "protein": 23.3,
+  "fat": 0.9,
+  "group": "Smoked haddock",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "fish"
+ },
+ "plaice raw": {
+  "kcal": 79,
+  "protein": 17.0,
+  "fat": 1.4,
+  "group": "Plaice",
+  "unit_g": 200,
+  "unit": "fillet",
+  "aisle": "fish"
+ },
+ "fish fingers": {
+  "kcal": 202,
+  "protein": 11.5,
+  "fat": 8.0,
+  "group": "Fish fingers",
+  "unit_g": 28,
+  "unit": "finger",
+  "aisle": "frozen"
+ },
+ "white bread": {
+  "kcal": 236,
+  "protein": 8.4,
+  "fat": 1.5,
+  "group": "White bread",
+  "unit_g": 800,
+  "unit": null,
+  "aisle": "bakery"
+ },
+ "crusty white roll": {
+  "kcal": 262,
+  "protein": 9.0,
+  "fat": 2.0,
+  "group": "Bread rolls",
+  "unit_g": 60,
+  "unit": "roll",
+  "aisle": "bakery"
+ },
+ "baguette": {
+  "kcal": 270,
+  "protein": 9.0,
+  "fat": 2.0,
+  "group": "Baguette",
+  "unit_g": 250,
+  "unit": null,
+  "aisle": "bakery"
+ },
+ "teacake": {
+  "kcal": 291,
+  "protein": 8.0,
+  "fat": 5.0,
+  "group": "Teacakes",
+  "unit_g": 65,
+  "unit": "teacake",
+  "aisle": "bakery"
+ },
+ "hot cross bun": {
+  "kcal": 280,
+  "protein": 7.5,
+  "fat": 5.0,
+  "group": "Hot cross buns",
+  "unit_g": 65,
+  "unit": "bun",
+  "aisle": "bakery"
+ },
+ "scone": {
+  "kcal": 362,
+  "protein": 7.2,
+  "fat": 14.8,
+  "group": "Scones",
+  "unit_g": 60,
+  "unit": "scone",
+  "aisle": "bakery"
+ },
+ "malt loaf": {
+  "kcal": 300,
+  "protein": 7.0,
+  "fat": 2.0,
+  "group": "Malt loaf",
+  "unit_g": 260,
+  "unit": null,
+  "aisle": "bakery"
+ },
+ "croissant": {
+  "kcal": 414,
+  "protein": 8.0,
+  "fat": 22.0,
+  "group": "Croissants",
+  "unit_g": 60,
+  "unit": "croissant",
+  "aisle": "bakery"
+ },
+ "naan": {
+  "kcal": 321,
+  "protein": 8.8,
+  "fat": 8.0,
+  "group": "Naan",
+  "unit_g": 90,
+  "unit": "naan",
+  "aisle": "bakery"
+ },
+ "chapati": {
+  "kcal": 297,
+  "protein": 8.0,
+  "fat": 7.0,
+  "group": "Chapatis",
+  "unit_g": 55,
+  "unit": "chapati",
+  "aisle": "bakery"
+ },
+ "pizza base": {
+  "kcal": 270,
+  "protein": 9.0,
+  "fat": 3.5,
+  "group": "Pizza bases",
+  "unit_g": 150,
+  "unit": "base",
+  "aisle": "bakery"
+ },
+ "puff pastry": {
+  "kcal": 373,
+  "protein": 5.2,
+  "fat": 24.0,
+  "group": "Puff pastry",
+  "unit_g": 375,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "shortcrust pastry": {
+  "kcal": 449,
+  "protein": 6.0,
+  "fat": 28.0,
+  "group": "Shortcrust pastry",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "yorkshire pudding": {
+  "kcal": 208,
+  "protein": 6.5,
+  "fat": 9.0,
+  "group": "Yorkshire puddings",
+  "unit_g": 20,
+  "unit": "pudding",
+  "aisle": "frozen"
+ },
+ "plain flour": {
+  "kcal": 341,
+  "protein": 9.4,
+  "fat": 1.3,
+  "group": "Flour",
+  "unit_g": 1500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "self raising flour": {
+  "kcal": 336,
+  "protein": 8.9,
+  "fat": 1.2,
+  "group": "Flour",
+  "unit_g": 1500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "weetabix": {
+  "kcal": 362,
+  "protein": 12.0,
+  "fat": 2.0,
+  "group": "Weetabix",
+  "unit_g": 20,
+  "unit": "biscuit",
+  "aisle": "cupboard"
+ },
+ "bran flakes": {
+  "kcal": 355,
+  "protein": 10.0,
+  "fat": 2.0,
+  "group": "Cereal",
+  "unit_g": 750,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "cornflakes": {
+  "kcal": 378,
+  "protein": 7.0,
+  "fat": 0.9,
+  "group": "Cereal",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "muesli": {
+  "kcal": 363,
+  "protein": 9.8,
+  "fat": 6.0,
+  "group": "Muesli",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "granola": {
+  "kcal": 432,
+  "protein": 8.5,
+  "fat": 16.0,
+  "group": "Granola",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "white rice dry": {
+  "kcal": 355,
+  "protein": 7.3,
+  "fat": 1.0,
+  "group": "Rice",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "lasagne sheets dry": {
+  "kcal": 350,
+  "protein": 12.0,
+  "fat": 1.5,
+  "group": "Lasagne sheets",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "crisps": {
+  "kcal": 532,
+  "protein": 6.0,
+  "fat": 33.0,
+  "group": "Crisps",
+  "unit_g": 25,
+  "unit": "bag",
+  "aisle": "cupboard"
+ },
+ "pretzels": {
+  "kcal": 380,
+  "protein": 10.0,
+  "fat": 3.5,
+  "group": "Pretzels",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "salted peanuts": {
+  "kcal": 602,
+  "protein": 25.0,
+  "fat": 50.0,
+  "group": "Peanuts",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "mixed nuts": {
+  "kcal": 607,
+  "protein": 20.0,
+  "fat": 54.0,
+  "group": "Mixed nuts",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "milk chocolate": {
+  "kcal": 534,
+  "protein": 7.3,
+  "fat": 30.0,
+  "group": "Chocolate",
+  "unit_g": 100,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "digestive biscuits": {
+  "kcal": 471,
+  "protein": 6.7,
+  "fat": 21.0,
+  "group": "Digestives",
+  "unit_g": 400,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "chocolate digestives": {
+  "kcal": 495,
+  "protein": 6.5,
+  "fat": 24.0,
+  "group": "Digestives",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "jaffa cakes": {
+  "kcal": 371,
+  "protein": 4.3,
+  "fat": 8.0,
+  "group": "Jaffa cakes",
+  "unit_g": 122,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "flapjack": {
+  "kcal": 460,
+  "protein": 5.0,
+  "fat": 22.0,
+  "group": "Flapjacks",
+  "unit_g": 80,
+  "unit": "flapjack",
+  "aisle": "cupboard"
+ },
+ "cereal bar": {
+  "kcal": 400,
+  "protein": 5.0,
+  "fat": 12.0,
+  "group": "Cereal bars",
+  "unit_g": 35,
+  "unit": "bar",
+  "aisle": "cupboard"
+ },
+ "protein bar": {
+  "kcal": 350,
+  "protein": 32.0,
+  "fat": 9.0,
+  "group": "Protein bars",
+  "unit_g": 60,
+  "unit": "bar",
+  "aisle": "cupboard"
+ },
+ "potatoes raw": {
+  "kcal": 79,
+  "protein": 2.0,
+  "fat": 0.2,
+  "group": "Potatoes",
+  "unit_g": 2500,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "oven chips frozen": {
+  "kcal": 162,
+  "protein": 2.8,
+  "fat": 4.9,
+  "group": "Oven chips",
+  "unit_g": 1500,
+  "unit": null,
+  "aisle": "frozen"
+ },
+ "swede": {
+  "kcal": 24,
+  "protein": 0.7,
+  "fat": 0.3,
+  "group": "Swede",
+  "unit_g": 600,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "turnip": {
+  "kcal": 23,
+  "protein": 0.9,
+  "fat": 0.3,
+  "group": "Turnip",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "runner beans": {
+  "kcal": 22,
+  "protein": 1.6,
+  "fat": 0.4,
+  "group": "Runner beans",
+  "unit_g": 250,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "broad beans frozen": {
+  "kcal": 81,
+  "protein": 7.9,
+  "fat": 0.6,
+  "group": "Broad beans",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "frozen"
+ },
+ "mushy peas": {
+  "kcal": 82,
+  "protein": 5.6,
+  "fat": 0.5,
+  "group": "Mushy peas",
+  "unit_g": 300,
+  "unit": "tin",
+  "aisle": "cupboard"
+ },
+ "shallot": {
+  "kcal": 72,
+  "protein": 2.5,
+  "fat": 0.2,
+  "group": "Shallots",
+  "unit_g": 30,
+  "unit": "shallot",
+  "aisle": "produce"
+ },
+ "watercress": {
+  "kcal": 22,
+  "protein": 3.0,
+  "fat": 1.0,
+  "group": "Watercress",
+  "unit_g": 85,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "beansprouts": {
+  "kcal": 31,
+  "protein": 2.9,
+  "fat": 0.5,
+  "group": "Beansprouts",
+  "unit_g": 300,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "baby corn": {
+  "kcal": 26,
+  "protein": 2.0,
+  "fat": 0.3,
+  "group": "Baby corn",
+  "unit_g": 175,
+  "unit": null,
+  "aisle": "produce"
+ },
+ "marmalade": {
+  "kcal": 266,
+  "protein": 0.2,
+  "fat": 0.0,
+  "group": "Marmalade",
+  "unit_g": 454,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "strawberry jam": {
+  "kcal": 258,
+  "protein": 0.4,
+  "fat": 0.0,
+  "group": "Jam",
+  "unit_g": 340,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "mint sauce": {
+  "kcal": 100,
+  "protein": 1.0,
+  "fat": 0.0,
+  "group": "Mint sauce",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "apple sauce": {
+  "kcal": 90,
+  "protein": 0.2,
+  "fat": 0.1,
+  "group": "Apple sauce",
+  "unit_g": 250,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "cranberry sauce": {
+  "kcal": 180,
+  "protein": 0.2,
+  "fat": 0.1,
+  "group": "Cranberry sauce",
+  "unit_g": 200,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "horseradish sauce": {
+  "kcal": 180,
+  "protein": 2.0,
+  "fat": 12.0,
+  "group": "Horseradish",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "tartare sauce": {
+  "kcal": 358,
+  "protein": 1.0,
+  "fat": 36.0,
+  "group": "Tartare sauce",
+  "unit_g": 175,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "gravy granules": {
+  "kcal": 380,
+  "protein": 6.0,
+  "fat": 12.0,
+  "group": "Gravy granules",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "stuffing mix dry": {
+  "kcal": 350,
+  "protein": 10.0,
+  "fat": 5.0,
+  "group": "Stuffing mix",
+  "unit_g": 170,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "brown sauce": {
+  "kcal": 140,
+  "protein": 1.0,
+  "fat": 0.1,
+  "group": "Brown sauce",
+  "unit_g": 450,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "worcestershire sauce": {
+  "kcal": 115,
+  "protein": 0.5,
+  "fat": 0.0,
+  "group": "Worcestershire",
+  "unit_g": 150,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "english mustard": {
+  "kcal": 190,
+  "protein": 7.0,
+  "fat": 10.0,
+  "group": "Mustard",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "marmite": {
+  "kcal": 250,
+  "protein": 34.0,
+  "fat": 0.1,
+  "group": "Marmite",
+  "unit_g": 250,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "golden syrup": {
+  "kcal": 298,
+  "protein": 0.3,
+  "fat": 0.0,
+  "group": "Golden syrup",
+  "unit_g": 454,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "curry powder": {
+  "kcal": 325,
+  "protein": 12.7,
+  "fat": 13.8,
+  "group": "Curry powder",
+  "unit_g": 100,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "garam masala": {
+  "kcal": 379,
+  "protein": 15.6,
+  "fat": 15.0,
+  "group": "Garam masala",
+  "unit_g": 100,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "tikka masala paste": {
+  "kcal": 200,
+  "protein": 3.0,
+  "fat": 15.0,
+  "group": "Curry paste",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "korma paste": {
+  "kcal": 250,
+  "protein": 3.5,
+  "fat": 20.0,
+  "group": "Curry paste",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "madras paste": {
+  "kcal": 210,
+  "protein": 4.0,
+  "fat": 15.0,
+  "group": "Curry paste",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "thai green curry paste": {
+  "kcal": 120,
+  "protein": 3.0,
+  "fat": 5.0,
+  "group": "Curry paste",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "coconut milk": {
+  "kcal": 169,
+  "protein": 1.6,
+  "fat": 17.0,
+  "group": "Coconut milk",
+  "unit_g": 400,
+  "unit": "tin",
+  "aisle": "cupboard"
+ },
+ "hoisin sauce": {
+  "kcal": 220,
+  "protein": 2.5,
+  "fat": 2.0,
+  "group": "Hoisin",
+  "unit_g": 250,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "black bean sauce": {
+  "kcal": 110,
+  "protein": 3.0,
+  "fat": 2.0,
+  "group": "Black bean sauce",
+  "unit_g": 180,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "teriyaki sauce": {
+  "kcal": 150,
+  "protein": 3.0,
+  "fat": 0.1,
+  "group": "Teriyaki",
+  "unit_g": 250,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "satay sauce": {
+  "kcal": 350,
+  "protein": 9.0,
+  "fat": 26.0,
+  "group": "Satay sauce",
+  "unit_g": 250,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "mirin": {
+  "kcal": 250,
+  "protein": 0.2,
+  "fat": 0.0,
+  "group": "Mirin",
+  "unit_g": 150,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "dried mixed herbs": {
+  "kcal": 250,
+  "protein": 10.0,
+  "fat": 5.0,
+  "group": "Dried herbs",
+  "unit_g": 30,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "red wine": {
+  "kcal": 68,
+  "protein": 0.1,
+  "fat": 0.0,
+  "group": "Red wine",
+  "unit_g": 750,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "white wine": {
+  "kcal": 66,
+  "protein": 0.1,
+  "fat": 0.0,
+  "group": "White wine",
+  "unit_g": 750,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "cider": {
+  "kcal": 40,
+  "protein": 0.0,
+  "fat": 0.0,
+  "group": "Cider",
+  "unit_g": 500,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "branston pickle": {
+  "kcal": 118,
+  "protein": 0.7,
+  "fat": 0.2,
+  "group": "Pickle",
+  "unit_g": 360,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "mango chutney": {
+  "kcal": 250,
+  "protein": 0.3,
+  "fat": 0.2,
+  "group": "Mango chutney",
+  "unit_g": 320,
+  "unit": "jar",
+  "aisle": "cupboard"
+ },
+ "hummus": {
+  "kcal": 300,
+  "protein": 7.6,
+  "fat": 25.0,
+  "group": "Hummus",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "gruyere": {
+  "kcal": 413,
+  "protein": 27.0,
+  "fat": 33.0,
+  "group": "Gruyere",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "chilled"
+ },
+ "ale": {
+  "kcal": 40,
+  "protein": 0.4,
+  "fat": 0.0,
+  "group": "Ale",
+  "unit_g": 500,
+  "unit": "bottle",
+  "aisle": "cupboard"
+ },
+ "cream crackers": {
+  "kcal": 440,
+  "protein": 9.5,
+  "fat": 16.0,
+  "group": "Crackers",
+  "unit_g": 200,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "hash browns frozen": {
+  "kcal": 210,
+  "protein": 2.5,
+  "fat": 11.0,
+  "group": "Hash browns",
+  "unit_g": 750,
+  "unit": null,
+  "aisle": "frozen"
+ },
+ "english muffin": {
+  "kcal": 235,
+  "protein": 9.0,
+  "fat": 1.8,
+  "group": "Muffins",
+  "unit_g": 67,
+  "unit": "muffin",
+  "aisle": "bakery"
+ },
+ "mackerel raw": {
+  "kcal": 220,
+  "protein": 19.0,
+  "fat": 16.0,
+  "group": "Mackerel",
+  "unit_g": 150,
+  "unit": "fillet",
+  "aisle": "fish"
+ },
+ "flatbread": {
+  "kcal": 280,
+  "protein": 8.5,
+  "fat": 5.0,
+  "group": "Flatbread",
+  "unit_g": 80,
+  "unit": "flatbread",
+  "aisle": "bakery"
+ },
+ "arborio rice dry": {
+  "kcal": 349,
+  "protein": 6.7,
+  "fat": 0.6,
+  "group": "Risotto rice",
+  "unit_g": 500,
+  "unit": null,
+  "aisle": "cupboard"
+ },
+ "gammon joint raw": {
+  "kcal": 165,
+  "protein": 20.0,
+  "fat": 9.0,
+  "group": "Gammon joint",
+  "unit_g": 1000,
+  "unit": null,
+  "aisle": "meat"
  }
 }

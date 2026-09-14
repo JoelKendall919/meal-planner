@@ -1,0 +1,701 @@
+[
+  {
+    "id": "homemade-pizza",
+    "name": "Homemade pizza",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Neapolitan-style home pizza"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "vegetarian",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pizza base",
+        "grams": 150,
+        "display": "1 pizza base"
+      },
+      {
+        "food": "passata",
+        "grams": 80,
+        "display": "80 g passata"
+      },
+      {
+        "food": "mozzarella",
+        "grams": 100,
+        "display": "1 ball mozzarella, torn and patted dry"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 50,
+        "display": "50 g cherry tomatoes, halved"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "1 1/2 tsp olive oil"
+      },
+      {
+        "food": "garlic",
+        "grams": 4,
+        "display": "1 clove garlic, crushed"
+      },
+      {
+        "food": "dried oregano",
+        "grams": 1,
+        "display": "1 tsp dried oregano"
+      },
+      {
+        "food": "fresh basil",
+        "grams": 4,
+        "display": "a few basil leaves"
+      }
+    ],
+    "steps": [
+      "Heat the oven as hot as it goes with a baking tray or stone inside.",
+      "Mix the passata with the garlic, oregano and a pinch of salt and spread thinly over the base, leaving a clear rim.",
+      "Top with the mozzarella and cherry tomatoes and drizzle with the oil.",
+      "Slide onto the hot tray and bake 10-12 minutes until the crust is blistered and the cheese is bubbling, then finish with basil."
+    ]
+  },
+  {
+    "id": "lasagne",
+    "name": "Lasagne",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Classic Italian-British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 75,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "lasagne sheets dry",
+        "grams": 60,
+        "display": "3 dried lasagne sheets"
+      },
+      {
+        "food": "beef mince 20% raw",
+        "grams": 110,
+        "display": "110 g beef mince (20% fat)"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, finely diced"
+      },
+      {
+        "food": "carrot",
+        "grams": 50,
+        "display": "1 small carrot, finely diced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 cloves garlic, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 7,
+        "display": "1 1/2 tsp olive oil"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 180,
+        "display": "1/2 tin chopped tomatoes"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "butter",
+        "grams": 12,
+        "display": "12 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 12,
+        "display": "1 tbsp plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 160,
+        "display": "160 ml whole milk"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 20,
+        "display": "20 g grated cheddar"
+      },
+      {
+        "food": "parmesan",
+        "grams": 8,
+        "display": "8 g parmesan, grated"
+      }
+    ],
+    "steps": [
+      "Soften the onion and carrot in the oil, add the garlic, then brown the mince. Stir in the puree, tomatoes and seasoning and simmer 30 minutes until thick.",
+      "For the white sauce, melt the butter, stir in the flour and cook 1 minute, then add the milk a splash at a time, whisking to a smooth pouring sauce.",
+      "Layer ragu, lasagne sheets and white sauce twice in a small dish, finishing with sauce so no pasta is exposed.",
+      "Scatter over the cheddar and parmesan and bake at 180C fan for 35-40 minutes until bubbling and browned.",
+      "Rest for 10 minutes before cutting so the layers hold together."
+    ]
+  },
+  {
+    "id": "macaroni-cheese",
+    "name": "Macaroni cheese",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "British family kitchen staple"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "vegetarian",
+      "kid-friendly",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 100,
+        "display": "100 g dried macaroni"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 15,
+        "display": "1 heaped tbsp plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 250,
+        "display": "250 ml whole milk"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 55,
+        "display": "55 g mature cheddar, grated"
+      },
+      {
+        "food": "parmesan",
+        "grams": 8,
+        "display": "8 g parmesan, grated"
+      },
+      {
+        "food": "english mustard",
+        "grams": 3,
+        "display": "1/2 tsp English mustard"
+      }
+    ],
+    "steps": [
+      "Boil the macaroni for a minute less than the packet says, then drain.",
+      "Melt the butter, stir in the flour and cook for a minute, then whisk in the milk gradually and simmer until it coats the back of a spoon.",
+      "Off the heat stir in the cheddar and mustard until smooth, season with black pepper, then fold through the pasta.",
+      "Tip into a dish, top with the parmesan and grill for 5 minutes until blistered and golden."
+    ]
+  },
+  {
+    "id": "meatballs-in-tomato-sauce",
+    "name": "Meatballs in tomato sauce",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Classic Italian-British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 35,
+    "tags": [
+      "batch",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "beef mince 20% raw",
+        "grams": 130,
+        "display": "130 g beef mince (20% fat)"
+      },
+      {
+        "food": "panko breadcrumbs",
+        "grams": 20,
+        "display": "20 g breadcrumbs"
+      },
+      {
+        "food": "egg",
+        "grams": 25,
+        "display": "1/2 beaten egg"
+      },
+      {
+        "food": "parmesan",
+        "grams": 10,
+        "display": "10 g parmesan, grated"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, finely diced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 cloves garlic, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 10,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 200,
+        "display": "1/2 tin chopped tomatoes"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "dried oregano",
+        "grams": 1,
+        "display": "1 tsp dried oregano"
+      },
+      {
+        "food": "pasta dry",
+        "grams": 85,
+        "display": "85 g dried spaghetti"
+      },
+      {
+        "food": "fresh basil",
+        "grams": 4,
+        "display": "a few basil leaves"
+      }
+    ],
+    "steps": [
+      "Mix the mince with the breadcrumbs, egg, parmesan, half the garlic and plenty of seasoning, then roll into about 8 walnut-sized balls.",
+      "Brown the meatballs all over in the oil and lift out. Soften the onion in the same pan, then add the remaining garlic and the puree.",
+      "Add the tomatoes and oregano, return the meatballs, and simmer gently for 25 minutes until the sauce is thick and the meatballs cooked through.",
+      "Boil the spaghetti, drain and serve topped with the meatballs, sauce and torn basil."
+    ]
+  },
+  {
+    "id": "mushroom-risotto",
+    "name": "Mushroom risotto",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Classic Italian-British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 30,
+    "tags": [
+      "vegetarian",
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "arborio rice dry",
+        "grams": 90,
+        "display": "90 g arborio risotto rice"
+      },
+      {
+        "food": "mushrooms",
+        "grams": 200,
+        "display": "200 g chestnut mushrooms, sliced"
+      },
+      {
+        "food": "onion",
+        "grams": 70,
+        "display": "1 small onion, finely chopped"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 cloves garlic, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 8,
+        "display": "1 1/2 tsp olive oil"
+      },
+      {
+        "food": "butter",
+        "grams": 22,
+        "display": "22 g butter"
+      },
+      {
+        "food": "white wine",
+        "grams": 60,
+        "display": "a small glass of white wine"
+      },
+      {
+        "food": "stock cube",
+        "grams": 5,
+        "display": "1 vegetable stock cube, made up to 600 ml"
+      },
+      {
+        "food": "parmesan",
+        "grams": 28,
+        "display": "28 g parmesan, grated"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 4,
+        "display": "a little parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Fry the mushrooms hard in the oil until browned and squeaky, season and set aside.",
+      "Soften the onion and garlic in half the butter, add the rice and stir for a minute until translucent at the edges.",
+      "Pour in the wine, let it absorb, then add the hot stock a ladle at a time, stirring, for about 18 minutes until the rice is creamy but has bite.",
+      "Beat in the rest of the butter, the parmesan and the mushrooms, cover for 2 minutes off the heat, then scatter with parsley."
+    ]
+  },
+  {
+    "id": "prawn-linguine",
+    "name": "Prawn linguine",
+    "slots": [
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Italian coastal-style pasta"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 15,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 100,
+        "display": "100 g dried linguine"
+      },
+      {
+        "food": "prawns cooked",
+        "grams": 140,
+        "display": "140 g king prawns"
+      },
+      {
+        "food": "olive oil",
+        "grams": 15,
+        "display": "1 tbsp olive oil"
+      },
+      {
+        "food": "butter",
+        "grams": 10,
+        "display": "10 g butter"
+      },
+      {
+        "food": "garlic",
+        "grams": 10,
+        "display": "3 cloves garlic, sliced"
+      },
+      {
+        "food": "chilli",
+        "grams": 10,
+        "display": "1 red chilli, finely sliced"
+      },
+      {
+        "food": "cherry tomatoes",
+        "grams": 120,
+        "display": "120 g cherry tomatoes, halved"
+      },
+      {
+        "food": "white wine",
+        "grams": 60,
+        "display": "a small glass of white wine"
+      },
+      {
+        "food": "lemon juice",
+        "grams": 10,
+        "display": "juice of 1/4 lemon"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 5,
+        "display": "a handful of parsley, chopped"
+      }
+    ],
+    "steps": [
+      "Put the linguine on to boil and save a mugful of the water before draining.",
+      "Gently fry the garlic and chilli in the olive oil for a minute without colouring, add the tomatoes and cook until they collapse.",
+      "Pour in the wine and let it reduce by half, then add the prawns and warm through for 2 minutes only.",
+      "Toss in the drained pasta with the butter, lemon juice, parsley and a splash of pasta water until the sauce clings."
+    ]
+  },
+  {
+    "id": "spaghetti-bolognese",
+    "name": "Spaghetti bolognese",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Classic Italian-British home cooking"
+    },
+    "servings": 1,
+    "prep_min": 15,
+    "cook_min": 60,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 100,
+        "display": "100 g dried spaghetti"
+      },
+      {
+        "food": "beef mince 20% raw",
+        "grams": 125,
+        "display": "125 g beef mince (20% fat)"
+      },
+      {
+        "food": "onion",
+        "grams": 80,
+        "display": "1 small onion, finely diced"
+      },
+      {
+        "food": "carrot",
+        "grams": 60,
+        "display": "1 small carrot, finely diced"
+      },
+      {
+        "food": "celery",
+        "grams": 40,
+        "display": "1 stick celery, finely diced"
+      },
+      {
+        "food": "garlic",
+        "grams": 8,
+        "display": "2 cloves garlic, crushed"
+      },
+      {
+        "food": "olive oil",
+        "grams": 10,
+        "display": "2 tsp olive oil"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 200,
+        "display": "1/2 tin chopped tomatoes"
+      },
+      {
+        "food": "tomato puree",
+        "grams": 15,
+        "display": "1 tbsp tomato puree"
+      },
+      {
+        "food": "red wine",
+        "grams": 60,
+        "display": "a small glass of red wine"
+      },
+      {
+        "food": "stock cube",
+        "grams": 3,
+        "display": "1/2 beef stock cube"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 1,
+        "display": "1 tsp dried mixed herbs"
+      },
+      {
+        "food": "parmesan",
+        "grams": 10,
+        "display": "10 g parmesan, grated"
+      }
+    ],
+    "steps": [
+      "Soften the onion, carrot and celery in the oil over a low heat for 10 minutes, then add the garlic for a final minute.",
+      "Turn the heat up, add the mince and brown it properly, breaking up any lumps until no pink remains.",
+      "Stir in the tomato puree and cook for a minute, pour in the wine and let it bubble away, then add the tomatoes, crumbled stock cube and herbs.",
+      "Simmer uncovered for at least 40 minutes, topping up with a splash of water if it tightens. Season well.",
+      "Boil the spaghetti until al dente, drain reserving a little water, toss through the sauce and finish with the parmesan."
+    ]
+  },
+  {
+    "id": "spaghetti-carbonara",
+    "name": "Spaghetti carbonara",
+    "slots": [
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "Traditional Roman method"
+    },
+    "servings": 1,
+    "prep_min": 5,
+    "cook_min": 15,
+    "tags": [
+      "one-pan"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 100,
+        "display": "100 g dried spaghetti"
+      },
+      {
+        "food": "streaky bacon raw",
+        "grams": 70,
+        "display": "70 g streaky bacon or pancetta, cut into lardons"
+      },
+      {
+        "food": "egg",
+        "grams": 100,
+        "display": "2 eggs"
+      },
+      {
+        "food": "parmesan",
+        "grams": 30,
+        "display": "30 g parmesan, finely grated"
+      },
+      {
+        "food": "olive oil",
+        "grams": 5,
+        "display": "1 tsp olive oil"
+      },
+      {
+        "food": "garlic",
+        "grams": 5,
+        "display": "1 clove garlic, lightly crushed"
+      }
+    ],
+    "steps": [
+      "Beat the eggs with most of the parmesan and plenty of black pepper in a bowl.",
+      "Fry the bacon in the oil with the crushed garlic clove until the fat runs and the edges crisp, then discard the garlic.",
+      "Cook the spaghetti until al dente and save a mugful of the starchy water before draining.",
+      "Take the pan off the heat, add the pasta and bacon fat, then stir in the egg mixture with a splash of pasta water, tossing hard until glossy and creamy, never on direct heat.",
+      "Serve at once with the rest of the parmesan."
+    ]
+  },
+  {
+    "id": "tuna-pasta-bake",
+    "name": "Tuna pasta bake",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "pasta-and-italian",
+    "cuisine": "italian",
+    "source": {
+      "name": "British family kitchen staple"
+    },
+    "servings": 1,
+    "prep_min": 10,
+    "cook_min": 35,
+    "tags": [
+      "batch",
+      "make-ahead",
+      "freezable",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "pasta dry",
+        "grams": 100,
+        "display": "100 g dried pasta shapes"
+      },
+      {
+        "food": "tuna spring water drained",
+        "grams": 110,
+        "display": "1 tin tuna, drained"
+      },
+      {
+        "food": "sweetcorn",
+        "grams": 60,
+        "display": "60 g tinned sweetcorn, drained"
+      },
+      {
+        "food": "onion",
+        "grams": 60,
+        "display": "1/2 onion, diced"
+      },
+      {
+        "food": "butter",
+        "grams": 15,
+        "display": "15 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 15,
+        "display": "1 heaped tbsp plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 180,
+        "display": "180 ml whole milk"
+      },
+      {
+        "food": "chopped tomatoes",
+        "grams": 120,
+        "display": "1/3 tin chopped tomatoes"
+      },
+      {
+        "food": "cheddar grated",
+        "grams": 35,
+        "display": "35 g grated cheddar"
+      }
+    ],
+    "steps": [
+      "Boil the pasta until just short of al dente and drain. Soften the onion in a little of the butter.",
+      "Melt the rest of the butter, stir in the flour, cook a minute, then whisk in the milk to a smooth sauce. Stir in the tomatoes and season.",
+      "Fold the pasta, tuna, sweetcorn and onion through the sauce and tip into a baking dish.",
+      "Scatter with cheddar and bake at 190C fan for 20-25 minutes until golden and bubbling at the edges."
+    ]
+  }
+]

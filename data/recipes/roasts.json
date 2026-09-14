@@ -1,0 +1,370 @@
+[
+  {
+    "id": "roast-beef-with-yorkshire-puddings",
+    "name": "Roast beef with Yorkshire puddings",
+    "slots": [
+      "dinner"
+    ],
+    "category": "roasts",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British Sunday lunch"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 90,
+    "tags": [
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "beef topside raw",
+        "grams": 180,
+        "display": "180 g topside of beef per person"
+      },
+      {
+        "food": "yorkshire pudding",
+        "grams": 60,
+        "display": "2 Yorkshire puddings"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250 g potatoes for roasting"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 14,
+        "display": "1 tbsp oil for the roasties"
+      },
+      {
+        "food": "carrot",
+        "grams": 80,
+        "display": "1 large carrot, in batons"
+      },
+      {
+        "food": "savoy cabbage",
+        "grams": 100,
+        "display": "100 g savoy cabbage, shredded"
+      },
+      {
+        "food": "parsnip",
+        "grams": 60,
+        "display": "1 small parsnip, halved"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 15,
+        "display": "1 tbsp gravy granules"
+      },
+      {
+        "food": "horseradish sauce",
+        "grams": 15,
+        "display": "1 tbsp horseradish sauce"
+      },
+      {
+        "food": "english mustard",
+        "grams": 3,
+        "display": "1/2 tsp English mustard, rubbed over the joint"
+      }
+    ],
+    "steps": [
+      "Rub the beef with mustard, salt and pepper and roast at 220C for 20 minutes, then 180C for 15 minutes per 500 g for medium-rare. Rest for 20 minutes.",
+      "Parboil the potatoes, rough them up and roast in hot oil for 50 minutes with the parsnips, turning once.",
+      "Turn the oven back up to 220C and bake the Yorkshire puddings for 6-8 minutes while the beef rests.",
+      "Boil the carrots and cabbage, make gravy from the tin juices and granules, and carve the beef thinly across the grain."
+    ]
+  },
+  {
+    "id": "roast-chicken-with-trimmings",
+    "name": "Roast chicken with all the trimmings",
+    "slots": [
+      "dinner"
+    ],
+    "category": "roasts",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British Sunday lunch"
+    },
+    "servings": 1,
+    "prep_min": 25,
+    "cook_min": 90,
+    "tags": [
+      "batch",
+      "kid-friendly"
+    ],
+    "ingredients": [
+      {
+        "food": "whole chicken raw",
+        "grams": 180,
+        "display": "180 g roast chicken, on the bone, per person"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 220,
+        "display": "220 g potatoes for roasting"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp oil for the roasties"
+      },
+      {
+        "food": "carrot",
+        "grams": 70,
+        "display": "1 carrot, cut into batons"
+      },
+      {
+        "food": "brussels sprouts",
+        "grams": 90,
+        "display": "90 g sprouts, halved"
+      },
+      {
+        "food": "parsnip",
+        "grams": 70,
+        "display": "1 small parsnip, quartered"
+      },
+      {
+        "food": "stuffing mix dry",
+        "grams": 25,
+        "display": "25 g sage and onion stuffing mix"
+      },
+      {
+        "food": "chipolata raw",
+        "grams": 40,
+        "display": "2 chipolatas"
+      },
+      {
+        "food": "streaky bacon raw",
+        "grams": 12,
+        "display": "1/2 rasher streaky bacon, for the pigs in blankets"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      }
+    ],
+    "steps": [
+      "Roast the chicken at 190C, allowing 45 minutes per kg plus 20 minutes, and rest it for 20 minutes before carving.",
+      "Parboil the potatoes for 8 minutes, drain and shake them in the pan to rough up the edges, then roast in hot oil for 50 minutes, turning once.",
+      "Wrap the bacon round the chipolatas and roast for the last 25 minutes with the parsnips; make up the stuffing and bake alongside.",
+      "Boil the carrots and sprouts for 5-6 minutes. Make the gravy with the resting juices and 200 ml water plus the granules."
+    ]
+  },
+  {
+    "id": "roast-gammon-with-parsley-sauce",
+    "name": "Roast gammon with parsley sauce",
+    "slots": [
+      "lunch",
+      "dinner"
+    ],
+    "category": "roasts",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British Sunday lunch"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 120,
+    "tags": [
+      "batch",
+      "make-ahead"
+    ],
+    "ingredients": [
+      {
+        "food": "gammon joint raw",
+        "grams": 190,
+        "display": "190 g gammon joint per person"
+      },
+      {
+        "food": "honey",
+        "grams": 10,
+        "display": "2 tsp honey for the glaze"
+      },
+      {
+        "food": "english mustard",
+        "grams": 5,
+        "display": "1 tsp English mustard for the glaze"
+      },
+      {
+        "food": "butter",
+        "grams": 20,
+        "display": "20 g butter"
+      },
+      {
+        "food": "plain flour",
+        "grams": 18,
+        "display": "18 g plain flour"
+      },
+      {
+        "food": "milk whole",
+        "grams": 180,
+        "display": "180 ml whole milk"
+      },
+      {
+        "food": "fresh parsley",
+        "grams": 8,
+        "display": "large handful of parsley, chopped"
+      },
+      {
+        "food": "new potatoes",
+        "grams": 250,
+        "display": "250 g new potatoes"
+      },
+      {
+        "food": "savoy cabbage",
+        "grams": 110,
+        "display": "110 g savoy cabbage, shredded"
+      },
+      {
+        "food": "carrot",
+        "grams": 80,
+        "display": "1 large carrot, in batons"
+      }
+    ],
+    "steps": [
+      "Simmer the gammon in water for 20 minutes per 500 g, then drain, score the fat, brush with the honey and mustard and roast at 200C for 20 minutes until lacquered.",
+      "Melt the butter, stir in the flour and cook for a minute, then whisk in the milk to a smooth sauce and simmer for 5 minutes.",
+      "Stir a generous amount of chopped parsley into the sauce and season with pepper; it needs little salt as the gammon is salty.",
+      "Boil the new potatoes for 15 minutes with the carrots and cabbage added near the end, and carve the gammon into thick slices under the sauce."
+    ]
+  },
+  {
+    "id": "roast-lamb-with-mint-sauce",
+    "name": "Roast lamb with mint sauce",
+    "slots": [
+      "dinner"
+    ],
+    "category": "roasts",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British Sunday lunch"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 90,
+    "tags": [
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "lamb leg raw lean",
+        "grams": 180,
+        "display": "180 g leg of lamb per person"
+      },
+      {
+        "food": "garlic",
+        "grams": 6,
+        "display": "2 garlic cloves, slivered"
+      },
+      {
+        "food": "dried mixed herbs",
+        "grams": 1,
+        "display": "1/2 tsp dried rosemary or mixed herbs"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250 g potatoes for roasting"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 14,
+        "display": "1 tbsp oil for the roasties"
+      },
+      {
+        "food": "carrot",
+        "grams": 80,
+        "display": "1 large carrot, in batons"
+      },
+      {
+        "food": "green beans",
+        "grams": 90,
+        "display": "90 g green beans"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      },
+      {
+        "food": "mint sauce",
+        "grams": 20,
+        "display": "1 tbsp mint sauce"
+      }
+    ],
+    "steps": [
+      "Stud the lamb with garlic slivers, scatter with herbs and salt, and roast at 190C for 25 minutes per 500 g for pink meat. Rest for 20 minutes.",
+      "Parboil the potatoes for 8 minutes, rough up the edges and roast in hot oil for 50 minutes until crunchy.",
+      "Boil the carrots and green beans for 5 minutes.",
+      "Tip the fat off the roasting tin, add 200 ml water and the granules and scrape up the sediment for gravy. Serve with mint sauce."
+    ]
+  },
+  {
+    "id": "roast-pork-with-crackling-and-apple-sauce",
+    "name": "Roast pork with crackling and apple sauce",
+    "slots": [
+      "dinner"
+    ],
+    "category": "roasts",
+    "cuisine": "british",
+    "source": {
+      "name": "Classic British Sunday lunch"
+    },
+    "servings": 1,
+    "prep_min": 20,
+    "cook_min": 120,
+    "tags": [
+      "batch"
+    ],
+    "ingredients": [
+      {
+        "food": "pork shoulder raw",
+        "grams": 175,
+        "display": "175 g pork shoulder with skin on, per person"
+      },
+      {
+        "food": "potatoes raw",
+        "grams": 250,
+        "display": "250 g potatoes for roasting"
+      },
+      {
+        "food": "sunflower oil",
+        "grams": 12,
+        "display": "1 tbsp oil for the roasties"
+      },
+      {
+        "food": "carrot",
+        "grams": 80,
+        "display": "1 large carrot, in batons"
+      },
+      {
+        "food": "savoy cabbage",
+        "grams": 100,
+        "display": "100 g savoy cabbage, shredded"
+      },
+      {
+        "food": "stuffing mix dry",
+        "grams": 25,
+        "display": "25 g sage and onion stuffing mix"
+      },
+      {
+        "food": "apple sauce",
+        "grams": 40,
+        "display": "2 tbsp apple sauce"
+      },
+      {
+        "food": "gravy granules",
+        "grams": 12,
+        "display": "2 tsp gravy granules"
+      }
+    ],
+    "steps": [
+      "Score the pork skin, dry it thoroughly and rub with plenty of salt. Roast at 220C for 30 minutes, then 170C for 1 hour 30 minutes.",
+      "If the crackling has not blistered, cut it off and blast it at 230C for 10 minutes while the joint rests.",
+      "Parboil and roast the potatoes in hot oil for 50 minutes; bake the stuffing for the last 25 minutes.",
+      "Boil the carrots and cabbage, make gravy from the pan juices and granules, and serve with apple sauce."
+    ]
+  }
+]
