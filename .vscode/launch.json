@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build site",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "fitnessplan.build",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    },
+    {
+      "name": "Nutrition report",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "fitnessplan.nutrition",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

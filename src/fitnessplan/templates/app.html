@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20192%20192%22%3E%3Crect%20width%3D%22192%22%20height%3D%22192%22%20rx%3D%2238%22%20fill%3D%22%23111%22/%3E%3Ctext%20x%3D%2296%22%20y%3D%22128%22%20font-size%3D%22104%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fff%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22bold%22%3EFP%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20192%20192%22%3E%3Crect%20width%3D%22192%22%20height%3D%22192%22%20rx%3D%2238%22%20fill%3D%22%23111%22/%3E%3Ctext%20x%3D%2296%22%20y%3D%22128%22%20font-size%3D%22104%22%20text-anchor%3D%22middle%22%20fill%3D%22%23fff%22%20font-family%3D%22Helvetica%2CArial%2Csans-serif%22%20font-weight%3D%22bold%22%3EFP%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%20%22Fitness%20Plan%22%2C%20%22short_name%22%3A%20%22Fitness%22%2C%20%22start_url%22%3A%20%22.%22%2C%20%22display%22%3A%20%22standalone%22%2C%20%22background_color%22%3A%20%22%23111111%22%2C%20%22theme_color%22%3A%20%22%23111111%22%2C%20%22icons%22%3A%20%5B%7B%22src%22%3A%20%22data%3Aimage/svg%2Bxml%2C%253Csvg%2520xmlns%253D%2522http%253A//www.w3.org/2000/svg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252238%2522%2520fill%253D%2522%2523111%2522/%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522128%2522%2520font-size%253D%2522104%2522%2520text-anchor%253D%2522middle%2522%2520fill%253D%2522%2523fff%2522%2520font-family%253D%2522Helvetica%252CArial%252Csans-serif%2522%2520font-weight%253D%2522bold%2522%253EFP%253C/text%253E%253C/svg%253E%22%2C%20%22sizes%22%3A%20%22192x192%22%2C%20%22type%22%3A%20%22image/svg%2Bxml%22%2C%20%22purpose%22%3A%20%22any%20maskable%22%7D%5D%7D">
+<title>Fitness Plan</title>
+<style>
+:root{--bg:#faf9f7;--card:#fff;--ink:#15141a;--mut:#6b6a72;--line:#e6e4e0;--acc:#1f6f43;--accbg:#e8f2ec;--warn:#a33;--r:12px}
+@media(prefers-color-scheme:dark){:root{--bg:#121214;--card:#1c1c1f;--ink:#ecebe8;--mut:#9b9aa2;--line:#2e2e33;--acc:#5fcf94;--accbg:#16281f}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding-bottom:80px}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:env(safe-area-inset-top) 0 0}
+h1{margin:0;padding:12px 16px 8px;font-size:19px;letter-spacing:-.3px}
+h1 span{float:right;font-size:12px;font-weight:400;color:var(--mut);padding-top:5px}
+main{padding:14px 16px;max-width:760px;margin:0 auto}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:flex;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;color:var(--mut);font:600 11px/1 inherit;padding:11px 2px 13px;cursor:pointer;letter-spacing:.2px}
+nav button svg{display:block;margin:0 auto 5px;width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7}
+nav button[aria-selected=true]{color:var(--acc)}
+nav button .bdg{position:absolute;transform:translate(12px,-4px);background:var(--acc);color:#fff;border-radius:9px;font-size:10px;padding:1px 5px;line-height:1.4}
+@media(prefers-color-scheme:dark){nav button .bdg{color:#10261a}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px}
+.row{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 10px;scrollbar-width:none}.row::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 14px;font:600 13px/1 inherit;cursor:pointer}
+.chip[aria-selected=true]{background:var(--acc);border-color:var(--acc);color:#fff}
+@media(prefers-color-scheme:dark){.chip[aria-selected=true]{color:#10261a}}
+.k{display:flex;gap:14px;margin:2px 0 12px;font-size:13px;color:var(--mut)}
+.k b{color:var(--ink);font-variant-numeric:tabular-nums}
+.mt{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--acc);margin-bottom:3px}
+h2{font-size:17px;margin:0 0 2px;letter-spacing:-.2px}
+.sub{font-size:12.5px;color:var(--mut);margin-bottom:10px}
+.ing{background:var(--accbg);border-radius:9px;padding:10px 12px;font-size:14px;margin:10px 0}
+.ing div+div{margin-top:7px;padding-top:7px;border-top:1px solid var(--line)}
+ol{margin:10px 0 0;padding-left:20px;font-size:14.6px}ol li{margin:6px 0}
+.note{font-size:13.2px;color:var(--mut);margin-top:10px}
+.lk{border:0;background:none;color:var(--acc);font:600 14px/1 inherit;cursor:pointer;padding:0;text-align:left}
+button.pri{background:var(--acc);color:#fff;border:0;border-radius:9px;padding:11px 14px;font:600 14px/1 inherit;cursor:pointer;width:100%}
+@media(prefers-color-scheme:dark){button.pri{color:#10261a}}
+button.sec{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font:600 13px/1 inherit;cursor:pointer}
+li.it{display:flex;align-items:flex-start;gap:11px;padding:9px 2px;border-bottom:1px solid var(--line);list-style:none}
+li.it:last-child{border-bottom:0}
+ul.items{margin:0;padding:0}
+.cb{flex:0 0 auto;width:21px;height:21px;margin-top:1px;border:1.8px solid var(--mut);border-radius:6px;background:none;cursor:pointer;padding:0}
+.cb[aria-checked=true]{background:var(--acc);border-color:var(--acc)}
+.cb[aria-checked=true]::after{content:"✓";color:#fff;font-size:14px;display:block;line-height:18px;text-align:center}
+@media(prefers-color-scheme:dark){.cb[aria-checked=true]::after{color:#10261a}}
+.itxt{flex:1;font-size:15px}
+.itxt small{display:block;color:var(--mut);font-size:12.5px}
+li.done .itxt{text-decoration:line-through;opacity:.45}
+.del{border:0;background:none;color:var(--mut);font-size:19px;cursor:pointer;padding:0 4px;line-height:1}
+.add{display:flex;gap:8px;margin-top:10px}
+.add input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:10px 12px;font:15px inherit}
+.add input:focus{outline:2px solid var(--acc);outline-offset:-1px}
+.empty{text-align:center;color:var(--mut);font-size:14px;padding:26px 10px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.sm{font-size:12.5px;color:var(--mut)}
+.hd{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px}
+.wrow{display:flex;gap:9px;align-items:baseline;margin-top:5px;font-size:14.5px}
+.wt{flex:0 0 58px;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--acc)}
+.daycard:active{background:var(--accbg)}
+details summary{cursor:pointer;font:600 14px/1 inherit;color:var(--acc);padding:4px 0}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fitness Plan <span id="hdr"></span></h1>
+  <div class="row" id="chips"></div>
+</header>
+<main id="view"></main>
+<nav id="nav"></nav>
+<script>
+const DATA = __DATA__;
+const DAYN={Mon:"Monday",Tue:"Tuesday",Wed:"Wednesday",Thu:"Thursday",Fri:"Friday",Sat:"Saturday",Sun:"Sunday"};
+const KEY="fitplan.list.v1";
+const ORDER=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+let tab="today", day=ORDER[(new Date().getDay()+6)%7], listOpen=null;
+let STORE_OK=true;
+try{ localStorage.setItem(KEY+".probe","1"); localStorage.removeItem(KEY+".probe"); }
+catch(e){ STORE_OK=false; }
+let items=[]; try{items=JSON.parse(localStorage.getItem(KEY))||[]}catch(e){}
+const save=()=>{ if(!STORE_OK) return; try{ localStorage.setItem(KEY,JSON.stringify(items)); }
+  catch(e){ STORE_OK=false; toast("Storage is full or blocked \u2014 list won't be saved"); } };
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/\*(.+?)\*/g,"<i>$1</i>").replace(/`(.+?)`/g,"$1");
+const uid=()=>Math.random().toString(36).slice(2,9);
+
+function recipeCard(code,label){
+  let r=DATA.recipes[code]; if(!r) return "";
+  let src=r.alias?DATA.recipes[r.alias]:r;
+  let ing=(src.ingredients||[]).map(t=>`<div>${md(t)}</div>`).join("");
+  let steps=(src.steps||[]).map(t=>`<li>${md(t)}</li>`).join("");
+  let notes=(r.notes||[]).concat(r.alias?(src.notes||[]):[]).map(t=>`<p class="note">${md(t)}</p>`).join("");
+  return `<div class="card">
+    <div class="mt">${label}</div>
+    <h2>${esc(r.name)}</h2>
+    <div class="sub">${r.code}${r.meta?" · "+esc(r.meta):""}</div>
+    <div class="k"><span>Calories <b>${r.kcal}</b></span><span>Protein <b>${r.protein} g</b></span></div>
+    ${r.alias?`<p class="note">Leftovers from ${r.alias} — ${esc(DATA.recipes[r.alias].name)}.</p>`:""}
+    ${ing?`<div class="ing">${ing}</div>`:""}
+    ${steps?`<ol>${steps}</ol>`:""}
+    ${notes}
+  </div>`;
+}
+
+function viewToday(){
+  let d=DATA.days.find(x=>x.day===day);
+  let sn=Object.values(DATA.snacks);
+  return `<div class="card">
+      <div class="hd"><h2>${DAYN[d.day]}</h2><span class="sm">${d.kcal} kcal · ${d.protein} g protein</span></div>
+      <div class="sub">${esc(d.snacks)}</div>
+    </div>
+    ${recipeCard(d.first,"First meal")}
+    ${recipeCard(d.dinner,"Dinner")}
+    <div class="card"><h2>Snacks</h2><div class="sub">${esc(d.snacks)}</div>
+      <ul class="items">${sn.map(s=>`<li class="it"><div class="itxt">${esc(s.name)}<small>${esc(s.contents)}</small></div><div class="sm" style="white-space:nowrap">${s.kcal} kcal<br>${s.protein} g</div></li>`).join("")}</ul>
+    </div>`;
+}
+
+function viewWeek(){
+  let ks=DATA.days.map(d=>d.kcal), ps=DATA.days.map(d=>d.protein);
+  const avg=a=>Math.round(a.reduce((x,y)=>x+y,0)/a.length);
+  const SHOP={Sat:"Lidl shop",Wed:"Tesco shop"};
+  return `<div class="card">
+      <div class="hd"><h2>The week</h2><span class="sm">7 days</span></div>
+      <div class="k"><span>Average <b>${avg(ks)} kcal</b></span><span>Protein <b>${avg(ps)} g</b></span></div>
+      <div class="sm">Range ${Math.min(...ks)}–${Math.max(...ks)} kcal · ${Math.min(...ps)}–${Math.max(...ps)} g protein</div>
+    </div>
+    ${DATA.days.map(d=>{
+      let f=DATA.recipes[d.first], di=DATA.recipes[d.dinner];
+      let isToday=d.day===ORDER[(new Date().getDay()+6)%7];
+      return `<div class="card daycard" data-goday="${d.day}" style="cursor:pointer;${isToday?"border-color:var(--acc)":""}">
+        <div class="hd">
+          <h2 style="font-size:16px">${DAYN[d.day]}${isToday?' <span class="sm" style="color:var(--acc);font-weight:600">today</span>':""}${SHOP[d.day]?` <span class="sm">· ${SHOP[d.day]}</span>`:""}</h2>
+          <span class="sm" style="white-space:nowrap">${d.kcal} kcal · ${d.protein} g</span>
+        </div>
+        <div class="wrow"><span class="wt">${f.code}</span><span>${esc(f.name)}</span></div>
+        <div class="wrow"><span class="wt">${di.code}</span><span>${esc(di.name)}</span></div>
+        <div class="wrow"><span class="wt">Snacks</span><span class="sm">${esc(d.snacks)}</span></div>
+      </div>`;}).join("")}
+    <p class="note" style="text-align:center">Tap a day to see the recipes.</p>`;
+}
+
+function viewShop(){
+  let l=DATA.lists.map(L=>{
+    let n=L.items.length;
+    return `<div class="card"><div class="hd"><div><h2>${esc(L.name)}</h2><div class="sub" style="margin:0">${esc(L.sub)} · ${n} items · approx £${L.total.toFixed(2)}</div></div></div>
+      <div class="bar"><button class="pri" style="width:auto;flex:1" data-addall="${L.id}">Add all to my list</button></div>
+      <details><summary>View items</summary><ul class="items">${L.items.map(i=>
+        `<li class="it"><div class="itxt">${esc(i.item)}<small>${esc(i.qty)}${i.forr?" · "+esc(i.forr):""}${i.weeks?" · lasts ~"+i.weeks+" wks":""}</small></div><div style="display:flex;align-items:center;gap:8px"><span class="sub" style="margin:0">£${i.price.toFixed(2)}</span><button class="sec" data-add1="${L.id}|${esc(i.item)}">Add</button></div></li>`).join("")}</ul></details></div>`;
+  }).join("");
+  let c=DATA.cost;
+  return l+`<div class="card"><h2>Cost estimate</h2><div class="sub">Approximate UK prices, no promotions.</div>
+    <table style="width:100%;border-collapse:collapse;font-size:14px">
+    <tr><td>Weekly shops (Lidl + Tesco)</td><td style="text-align:right"><b>£${c.weekly.toFixed(2)}</b></td></tr>
+    <tr><td>As-needed, spread over its life</td><td style="text-align:right">£${c.amortised.toFixed(2)}</td></tr>
+    <tr><td><b>True cost per week</b></td><td style="text-align:right"><b>£${c.true.toFixed(2)}</b></td></tr>
+    <tr><td>Per day</td><td style="text-align:right">£${c.perday.toFixed(2)}</td></tr>
+    <tr><td>As-needed if bought all at once</td><td style="text-align:right">£${c.asneeded.toFixed(2)}</td></tr>
+    </table></div>`;
+}
+
+function viewList(){
+  let done=items.filter(i=>i.done).length;
+  return `<div class="card">
+    <div class="hd"><h2>My list</h2><span class="sm">${done}/${items.length} done</span></div>
+    <form class="add" id="addf"><input id="addi" placeholder="Add an item…" autocomplete="off"><button class="pri" style="width:auto" type="submit">Add</button></form>
+    ${items.length?`<ul class="items">${items.map(i=>
+      `<li class="it ${i.done?"done":""}"><button class="cb" role="checkbox" aria-checked="${!!i.done}" data-tg="${i.id}"></button>
+       <div class="itxt">${esc(i.text)}${i.sub?`<small>${esc(i.sub)}</small>`:""}</div>
+       <button class="del" data-rm="${i.id}">×</button></li>`).join("")}</ul>`
+      :`<div class="empty">Nothing here yet.<br>Add a shop from the Shopping tab.</div>`}
+    ${items.length?`<div class="bar" style="margin:12px 0 0"><button class="sec" id="clrd">Clear ticked</button><button class="sec" id="clra">Clear all</button></div>`:""}
+  </div>`;
+}
+
+const TABS=[["today","Today",'<path d="M8 2v4M16 2v4M3 9h18M4 5h16v16H4z"/>'],
+            ["week","Week",'<path d="M4 5h16v16H4zM4 10h16M9 10v11"/>'],
+            ["shop","Shopping",'<path d="M3 5h2l2 11h11l2-8H7"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/>'],
+            ["list","My list",'<path d="M4 7h16M4 12h16M4 17h10"/>']];
+
+function render(){
+  document.getElementById("nav").innerHTML=TABS.map(([id,lbl,ic])=>
+    `<button data-tab="${id}" aria-selected="${tab===id}"><svg viewBox="0 0 24 24">${ic}</svg>${lbl}${id==="list"&&items.length?`<span class="bdg">${items.filter(i=>!i.done).length}</span>`:""}</button>`).join("");
+  let chips=document.getElementById("chips");
+  chips.style.display = tab==="today" ? "flex" : "none";
+  if(tab==="today") chips.innerHTML=ORDER.map(d=>`<button class="chip" data-day="${d}" aria-selected="${d===day}">${d}</button>`).join("");
+  let d=DATA.days.find(x=>x.day===day);
+  document.getElementById("hdr").textContent = tab==="today" ? `${d.kcal} kcal · ${d.protein} g` : "";
+  document.getElementById("view").innerHTML =
+    tab==="today"?viewToday():tab==="week"?viewWeek():tab==="shop"?viewShop():viewList();
+  window.scrollTo(0,0);
+}
+
+function addItems(arr){
+  let added=0;
+  arr.forEach(o=>{
+    if(items.some(i=>i.text.toLowerCase()===o.text.toLowerCase()&&!i.done)) return;
+    items.push({id:uid(),text:o.text,sub:o.sub||"",done:false}); added++;
+  });
+  save(); return added;
+}
+function toast(msg){
+  let t=document.createElement("div");
+  t.textContent=msg;
+  t.style.cssText="position:fixed;left:50%;bottom:86px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:14px;z-index:50;opacity:0;transition:opacity .2s";
+  document.body.appendChild(t); requestAnimationFrame(()=>t.style.opacity="1");
+  setTimeout(()=>{t.style.opacity="0";setTimeout(()=>t.remove(),250)},1600);
+}
+
+document.addEventListener("click",e=>{
+  let t=e.target.closest("[data-tab],[data-day],[data-goday],[data-addall],[data-add1],[data-tg],[data-rm],#clrd,#clra");
+  if(!t) return;
+  if(t.dataset.tab){tab=t.dataset.tab;render();return}
+  if(t.dataset.day){day=t.dataset.day;render();return}
+  if(t.dataset.goday){day=t.dataset.goday;tab="today";render();return}
+  if(t.dataset.addall){
+    let L=DATA.lists.find(x=>x.id===t.dataset.addall);
+    let n=addItems(L.items.map(i=>({text:i.item,sub:i.qty})));
+    toast(n?`${n} item${n>1?"s":""} added`:"Already on your list"); render(); return;
+  }
+  if(t.dataset.add1){
+    let [lid,name]=t.dataset.add1.split("|");
+    let L=DATA.lists.find(x=>x.id===lid), it=L.items.find(i=>i.item===name);
+    toast(addItems([{text:it.item,sub:it.qty}])?"Added":"Already on your list"); render(); return;
+  }
+  if(t.dataset.tg){let i=items.find(x=>x.id===t.dataset.tg);i.done=!i.done;save();render();return}
+  if(t.dataset.rm){items=items.filter(x=>x.id!==t.dataset.rm);save();render();return}
+  if(t.id==="clrd"){items=items.filter(i=>!i.done);save();render();return}
+  if(t.id==="clra"){if(confirm("Clear the whole list?")){items=[];save();render()}return}
+});
+document.addEventListener("submit",e=>{
+  if(e.target.id!=="addf") return;
+  e.preventDefault();
+  let v=document.getElementById("addi").value.trim();
+  if(v){addItems([{text:v}]);render();}
+});
+render();
+</script>
+</body>
+</html>

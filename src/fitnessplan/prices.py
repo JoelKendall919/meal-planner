@@ -1,0 +1,92 @@
+"""Estimated UK grocery prices in GBP.
+
+Estimates only, excluding Clubcard/Lidl Plus promotions; expect +/-10% drift.
+WEEKS records how long a long-life item lasts, so its cost can be amortised
+rather than charged to a single week.
+"""
+
+PRICES: dict[str, float] = {
+    # --- Lidl weekly ---
+    "Chicken thighs, bone-in skin-on": 1.90,
+    "Turkey mince, 7% (Birchwood)": 2.39,
+    "Firm tofu": 1.49,
+    "Salmon fillet": 2.60,
+    "Smoked salmon": 2.29,
+    "0% Greek yoghurt": 5.25,
+    "Eggs": 2.20,
+    "Frozen berries": 2.29,
+    "Tenderstem broccoli": 3.00,
+    "Green beans": 0.95,
+    "Peppers": 1.60,
+    "Courgette": 0.55,
+    "Red onions": 0.40,
+    "Onions": 0.35,
+    "New potatoes": 1.29,
+    "Carrot": 0.15,
+    "Spring onions": 0.55,
+    "Baby spinach": 0.99,
+    "Salad leaves": 0.89,
+    "Cherry tomatoes": 1.15,
+    "Apples": 0.90,
+    "Kidney beans": 0.45,
+    "Chickpeas": 0.45,
+    "Light coconut milk": 0.95,
+    # --- Tesco weekly ---
+    "Beef mince, 5%": 5.05,
+    "Sirloin steak": 6.00,
+    "Sweet potato": 0.70,
+    "Broccoli": 0.75,
+    "Baking potato": 0.55,
+    "Cucumber": 0.85,
+    "Black beans": 0.80,
+    "Tuna in spring water": 2.00,
+    "Garlic": 0.60,
+    # --- As needed ---
+    "Couscous": 1.10,
+    "Red lentils": 1.60,
+    "Basmati rice": 2.50,
+    "Cornflour": 1.00,
+    "Flaked almonds": 2.20,
+    "Soy sauce": 1.30,
+    "Sesame oil": 1.90,
+    "Olive oil": 4.50,
+    "Sunflower oil": 2.30,
+    "Light mayo": 1.60,
+    "Passata": 2.40,
+    "Salsa": 1.30,
+    "Sweetcorn": 0.70,
+    "Stock cubes": 1.10,
+    "Smoked paprika": 1.00,
+    "Feta": 2.00,
+    "Grated cheddar": 2.50,
+    "Frozen edamame": 4.00,
+    "Root ginger": 0.40,
+    "Dark chocolate 70%": 1.50,
+    "Whey protein": 42.00,
+}
+# Same item, different pack size per store.
+OVERRIDES: dict[tuple[str, str], float] = {("tesco", "Eggs"): 1.50}
+# How many weeks each long-life item lasts.
+WEEKS: dict[str, int] = {
+    "Couscous": 12,
+    "Red lentils": 6,
+    "Basmati rice": 10,
+    "Cornflour": 20,
+    "Flaked almonds": 3,
+    "Soy sauce": 20,
+    "Sesame oil": 20,
+    "Olive oil": 8,
+    "Sunflower oil": 8,
+    "Light mayo": 6,
+    "Passata": 2,
+    "Salsa": 3,
+    "Sweetcorn": 3,
+    "Stock cubes": 12,
+    "Smoked paprika": 20,
+    "Feta": 2,
+    "Grated cheddar": 3,
+    "Frozen edamame": 3,
+    "Root ginger": 3,
+    "Dark chocolate 70%": 5,
+    "Whey protein": 12,
+}

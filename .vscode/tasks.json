@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build site",
+      "type": "shell",
+      "command": "make build",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test",
+      "type": "shell",
+      "command": "make test",
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint",
+      "type": "shell",
+      "command": "make lint",
+      "problemMatcher": []
+    },
+    {
+      "label": "Nutrition report",
+      "type": "shell",
+      "command": "make nutrition",
+      "problemMatcher": []
+    },
+    {
+      "label": "Serve site",
+      "type": "shell",
+      "command": "make serve",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
