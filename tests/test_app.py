@@ -91,9 +91,20 @@ def test_macros_are_computed_not_stored(recipes):
 
 
 def test_macros_match_the_food_data(recipes, foods):
+    """Recomputes kcal independently to guard the macro implementation.
+
+    This checks ``Recipe.macros`` itself, not the recipe data: a wrong weight moves
+    both sides equally, but a dropped ``/ 100`` or a swapped field is caught. Data
+    errors are covered by the band and ingredient-resolution tests instead.
+
+    Allows 1 kcal: a total landing exactly on .5 can round either way depending on
+    the last bit of the running sum, which differs between Python versions.
+    """
     for r in recipes:
         kcal = sum(foods[i.food].kcal * i.grams / 100 for i in r.ingredients)
-        assert r.macros["kcal"] == round(kcal), f"{r.id} kcal disagrees with its ingredients"
+        assert abs(r.macros["kcal"] - kcal) <= 1, (
+            f"{r.id} claims {r.macros['kcal']} kcal but its ingredients give {kcal:.1f}"
+        )
 
 
 def test_recipes_sit_in_sensible_bands(recipes):
