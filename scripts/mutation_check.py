@@ -79,6 +79,24 @@ CASES = [
         "test_the_fill_scope_buttons_are_live_and_honoured",
     ),
     (
+        "fill refuses again whenever every main slot is taken",
+        "if (!empty && !openSnacks){",
+        "if (!empty){",
+        "test_fill_reaches_the_protein_top_up_on_a_fully_planned_day",
+    ),
+    (
+        "the top-up goes back to being unreachable on a planned day",
+        "      topUpProtein(date, used);\n      return;",
+        "      return;",
+        "test_fill_reaches_the_protein_top_up_on_a_fully_planned_day",
+    ),
+    (
+        "the toast count goes back to being assumed",
+        "const added = planned() - before;",
+        "const added = empty;",
+        "test_fill_reaches_the_protein_top_up_on_a_fully_planned_day",
+    ),
+    (
         "fillPool drops its empty-pool fallback",
         "return scoped.length ? scoped : all;",
         "return scoped;",

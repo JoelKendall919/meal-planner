@@ -1297,20 +1297,32 @@ function fillPool(slot){
 function fillRange(){
   const [a, b] = range();
   const dates = daysBetween(a, b);
-  // Only the main meals count as empty. A snack is a top-up, so leaving one out
-  // is not a gap to be filled.
+  // Only the main meals count as empty: a snack is a top-up, not a gap. But a
+  // day whose mains are all planned can still be short on protein, and its
+  // empty snack tile is exactly where that shortfall gets closed -- so having
+  // no empty main slots is not the same as having nothing to do.
   const empty = dates.reduce((n, d) =>
     n + MAIN_SLOTS.filter(s => !(S.plan[d] || {})[s]).length, 0);
-  if (!empty){ toast("Nothing empty to fill in this view"); return; }
+  const openSnacks = dates.filter(d => !(S.plan[d] || {}).snack).length;
+  if (!empty && !openSnacks){ toast("Nothing empty to fill in this view"); return; }
   if (empty > 21 && !confirm(`Fill ${empty} empty meal slots across ${dates.length} days?`)) return;
 
+  // Counted rather than assumed: a slot whose pool is empty is skipped, and the
+  // protein top-up only lands when the day is short and has room for it.
+  const planned = () => dates.reduce((n, d) =>
+    n + SLOTS.filter(s => (S.plan[d] || {})[s]).length, 0);
+  const before = planned();
   const used = new Set(idsIn(a, b));
   // Hold back roughly a snack's worth of calories when the protein goal is out of
   // reach of main meals alone, so there is room to top the day up afterwards.
   const reserve = snackReserve();
   dates.forEach(date => {
     const open = MAIN_SLOTS.filter(s => !(S.plan[date] || {})[s]);
-    if (!open.length) return;
+    if (!open.length){
+      // Every main is planned, but the day can still be under on protein.
+      topUpProtein(date, used);
+      return;
+    }
     // Spend what is left of the day's calorie goal across the slots still open,
     // so filling a day lands near your target instead of wherever chance falls.
     let budget = Math.max(0, S.goals.kcal - reserve - totalsOn(date).kcal);
@@ -1352,7 +1364,10 @@ function fillRange(){
     topUpProtein(date, used);
   });
   render();
-  toast(`Filled ${empty} slot${empty === 1 ? "" : "s"}`);
+  const added = planned() - before;
+  toast(added
+    ? `Filled ${added} slot${added === 1 ? "" : "s"}`
+    : "Nothing more to add: every day is on target or full");
 }
 
 /** Add a snack only when the day is short on protein and has calories spare. */

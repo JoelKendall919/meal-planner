@@ -783,3 +783,36 @@ def test_the_fill_scope_buttons_are_live_and_honoured(tmp_path):
     pool = js_block(html, "function fillPool(slot){")
     assert "r.tags.includes(S.scope)" in pool, "fill ignores the chosen scope"
     assert "scoped.length ? scoped : all" in pool, "a narrow scope could leave slots unfilled"
+
+
+def test_fill_reaches_the_protein_top_up_on_a_fully_planned_day(tmp_path):
+    """A day whose mains are planned can still be short on protein.
+
+    Fill used to return early the moment a day had no empty main slot, so the
+    protein top-up was unreachable: the snack tile sat visibly empty while the
+    button reported "Nothing empty to fill" and did nothing.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    fill = js_block(html, "function fillRange(){")
+
+    # Refusing to act must consider the empty snacks, not just the empty mains.
+    assert "const openSnacks = dates.filter(d => !(S.plan[d] || {}).snack).length;" in fill, (
+        "nothing counts the days that could still be topped up"
+    )
+    assert "if (!empty && !openSnacks){" in fill, (
+        "fill still refuses whenever every main slot is taken"
+    )
+
+    # The early return for a fully planned day has to top up before it leaves.
+    assert "if (!open.length){\n      // Every main is planned" in fill, (
+        "the no-open-slots branch lost its comment, so check what replaced it"
+    )
+    early = fill[fill.index("if (!open.length){") :]
+    assert early.index("topUpProtein(date, used);") < early.index("return;"), (
+        "the top-up is still unreachable on a day with no empty main slot"
+    )
+
+    # The count reported has to be what actually landed, since a top-up may add
+    # nothing and a slot with an empty pool is skipped.
+    assert "const added = planned() - before;" in fill, "the toast count is assumed, not measured"
+    assert "Nothing more to add" in fill, "a fill that adds nothing gives no feedback"

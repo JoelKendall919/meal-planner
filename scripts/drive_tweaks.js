@@ -501,6 +501,54 @@ function testRecipeMeta(){
   closeSheet();
 }
 
+/* Fill on a day whose mains are all planned. The snack tile is visibly empty,
+   so "Fill empty slots" must either close the protein gap or say why not --
+   silently reporting "nothing empty" while a tile sits blank reads as broken. */
+function testFillTopsUpAPlannedDay(){
+  const toastText = () => document.getElementById("toast").textContent;
+  tab = "plan"; S.view = "day"; S.cursor = "2026-09-16"; S.scope = null;
+
+  S.plan = {}; render();
+  document.querySelector("[data-fill]").click();
+  const day = () => S.plan[S.cursor] || {};
+  ok("a clean day fills completely", SLOTS.every(s => day()[s]), JSON.stringify(day()));
+
+  // Mains planned, snack cleared: the state the app was silently refusing.
+  delete S.plan[S.cursor].snack;
+  const short = S.goals.protein - totalsOn(S.cursor).protein;
+  render();
+  document.querySelector("[data-fill]").click();
+  ok("filling a mains-only day is not refused",
+    toastText() !== "Nothing empty to fill in this view", toastText());
+  ok("the empty snack is filled when the day is short on protein",
+    short <= 0 || !!day().snack, "short by " + short + "g, snack=" + (day().snack || "none"));
+  ok("the top-up closes some of the protein gap",
+    short <= 0 || totalsOn(S.cursor).protein > S.goals.protein - short,
+    totalsOn(S.cursor).protein + "g vs goal " + S.goals.protein);
+  ok("topping up does not disturb the planned mains",
+    MAIN_SLOTS.every(s => day()[s]), JSON.stringify(day()));
+
+  // A genuinely complete day must still say so rather than pile on snacks.
+  document.querySelector("[data-fill]").click();
+  ok("a complete day is reported, not refilled",
+    toastText() === "Nothing empty to fill in this view", toastText());
+
+  // A day already at its protein goal must not gain a snack it does not need.
+  S.plan = {}; render();
+  document.querySelector("[data-fill]").click();
+  delete S.plan[S.cursor].snack;
+  const goals = S.goals;
+  S.goals = Object.assign({}, goals, { protein: 1 });
+  render();
+  document.querySelector("[data-fill]").click();
+  ok("a day already on target gains no snack", !day().snack, day().snack || "none");
+  ok("...and says so plainly",
+    toastText() === "Nothing more to add: every day is on target or full", toastText());
+  S.goals = goals;
+
+  S.plan = {}; render();
+}
+
 try { testCatLabels(); } catch (e){ out.push("FAIL  catLabels threw: " + e.message); }
 try { testControls(); } catch (e){ out.push("FAIL  controls threw: " + e.message); }
 try { testPortions(); } catch (e){ out.push("FAIL  portions threw: " + e.message); }
@@ -512,6 +560,7 @@ try { testCopyPrevious(); } catch (e){ out.push("FAIL  copyPrevious threw: " + e
 try { testFillScope(); } catch (e){ out.push("FAIL  fillScope threw: " + e.message); }
 try { testMultiFilter(); } catch (e){ out.push("FAIL  multiFilter threw: " + e.message); }
 try { testRecipeMeta(); } catch (e){ out.push("FAIL  recipeMeta threw: " + e.message); }
+try { testFillTopsUpAPlannedDay(); } catch (e){ out.push("FAIL  fillTopUp threw: " + e.message); }
 
 const pre = document.createElement("pre");
 pre.id = "drv";
