@@ -3,7 +3,7 @@
 A catalogue of 75 recipes with a weekly planner and automatic shopping lists,
 built as a single offline-capable web page.
 
-**Live site:** https://joelkendall919.github.io/fitness-plan/
+**Live site:** https://joelkendall919.github.io/meal-planner/
 
 Pick meals for any day of the week and the shopping list builds itself, merging
 ingredients you would buy as one product — red and yellow peppers become one
