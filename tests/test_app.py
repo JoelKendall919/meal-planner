@@ -340,9 +340,9 @@ def test_recipe_rows_show_every_macro(tmp_path):
     """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     assert "function macroLine" in html
-    row = html[html.index("function recipeRow"):html.index("function viewRecipes")]
+    row = html[html.index("function recipeRow") : html.index("function viewRecipes")]
     assert "macroLine(r.macros)" in row, "recipe rows show no macro line"
-    assert "MACROS.map" in html[html.index("function macroLine"):], (
+    assert "MACROS.map" in html[html.index("function macroLine") :], (
         "the macro line is not generated from MACROS, so it can fall out of step"
     )
 
@@ -388,7 +388,7 @@ def test_protein_is_scored_as_a_target_and_the_rest_as_budgets(tmp_path):
     its goal red, which is exactly backwards.
     """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
-    block = html[html.index("const MACROS = ["):html.index("const MACRO_BY_KEY")]
+    block = html[html.index("const MACROS = [") : html.index("const MACRO_BY_KEY")]
     targets = re.findall(r'key: "(\w+)".*?dir: "target"', block)
     budgets = re.findall(r'key: "(\w+)".*?dir: "budget"', block)
     assert targets == ["protein"], f"expected only protein to be a target, got {targets}"
@@ -407,7 +407,7 @@ def test_the_plan_page_has_no_progress_bars(tmp_path):
     """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     assert "function macroCards" in html
-    cards = html[html.index("function macroCards"):html.index("function macroLine")]
+    cards = html[html.index("function macroCards") : html.index("function macroLine")]
     assert "prog" not in cards, "the macro cards still render a progress bar"
     assert ".barwrap .prog{display:block" in html, "the nutrients bar is not a block"
     assert re.search(r"(?<!barwrap )\.prog\{", html) is None, "an unscoped .prog remains"
