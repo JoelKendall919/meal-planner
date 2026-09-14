@@ -638,14 +638,34 @@ def test_meal_filter_is_capitalised_buttons(tmp_path):
     assert "SLOT_LABEL[s]}</button>" in html, "the meal buttons do not use the labels"
 
 
-def test_type_and_filter_are_dropdowns(tmp_path):
+def test_type_is_a_dropdown(tmp_path):
+    """Type alone runs to 21 entries, past the point a chip strip stays usable."""
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
-    assert 'data-${hook}="${ns}"' in html, "the filter selects have no handler hook"
-    assert "<select" in html, "the filters are not dropdowns"
+    assert 'data-${hook}="${ns}"' in html, "the filter select has no handler hook"
+    assert "<select" in html, "Type is not a dropdown"
     # Selects report on change; the delegated click handler cannot see them.
-    assert "ds.fcatsel || ds.tagsel" in html, "the dropdowns are not wired to change"
-    for dead in ("data-fcat=", "data-tag="):
-        assert dead not in html, f"{dead} chips are still being rendered"
+    assert "const ns = ds.fcatsel;" in html, "the dropdown is not wired to change"
+    assert "data-fcat=" not in html, "Type chips are still being rendered"
+
+
+def test_the_filter_tags_multi_select_and_narrow(tmp_path):
+    """Each tag chosen narrows further: Vegetarian + High protein means both."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'data-ftag="${ns}|${id}"' in html, "the filter tags are not buttons"
+    assert "[data-ftag]" in html, "the filter buttons are not in the click selector"
+    assert "data-tagsel" not in html, "the old single-choice Filter select survives"
+
+    # Toggling adds or removes rather than replacing, so several can be on.
+    assert (
+        "f.tags = f.tags.includes(tag) ? f.tags.filter(t => t !== tag) : f.tags.concat(tag);"
+    ) in html, "choosing a tag replaces the previous one instead of adding to it"
+
+    # AND, not OR. `every` on an empty list is true, so no tags means no filtering.
+    match = js_block(html, "function filterRecipes(f){")
+    assert "if (!f.tags.every(t => r.tags.includes(t))) return false;" in match, (
+        "the chosen tags do not all have to match"
+    )
+    assert "f.tag " not in match, "the old single-tag check survives"
 
 
 def test_type_options_follow_the_chosen_meal(tmp_path):
@@ -734,13 +754,21 @@ def test_every_toggleable_control_has_a_visible_selected_state(tmp_path):
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     css = html[html.index("<style>") : html.index("</style>")]
 
-    # Classes written as `class="x${cond ? " on" : ""}"`, i.e. ones that toggle.
-    toggling = set(re.findall(r'class="([a-z-]+)[^"]*\$\{[^}]*" on"', html))
-    assert toggling, "no toggleable controls found -- the pattern must have changed"
+    # Every class attribute whose ternary can yield "on", reduced to the literal
+    # class it is built on: `class="chip${cond ? " on" : ""}"` gives "chip".
+    # Controls whose whole class is the ternary (`class="${cond ? "on" : ""}"`)
+    # are styled contextually, e.g. `.seg button.on`, and are not checked here.
+    toggling = set(re.findall(r'class="([a-z][a-z-]*)[^"]{0,60}\?\s*" ?on"', html))
+    assert toggling >= {"chip", "fsel"}, f"toggleable controls not found: {toggling}"
+
     for cls in toggling:
-        assert re.search(rf"\.{re.escape(cls)}[a-z.-]*\.on\b", css), (
-            f".{cls} toggles an 'on' class but no .{cls}...on CSS rule styles it, "
-            f"so selecting it would not be visible"
+        # The bare `.cls.on` rule specifically. Matching `.cls<anything>.on`
+        # is too weak: with .chip.on deleted, .chip.slot-dinner.on would still
+        # satisfy it while every plain chip lost its selected state -- which is
+        # the exact bug this test exists to catch.
+        assert re.search(rf"\.{re.escape(cls)}\.on\s*[,{{]", css), (
+            f".{cls} toggles an 'on' class but there is no '.{cls}.on' rule, "
+            f"so selecting a plain .{cls} would not be visible"
         )
 
 

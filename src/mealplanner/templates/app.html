@@ -417,10 +417,10 @@ function save(){
 }
 
 let tab = "plan";
-const filter = { slot: null, cat: null, tag: null, q: "" };
+const filter = { slot: null, cat: null, tags: [], q: "" };
 // The plan's meal picker keeps its own filters so browsing for a Tuesday lunch
 // never disturbs whatever you had set up on the Recipes tab.
-let pickFilter = { slot: null, cat: null, tag: null, q: "" };
+let pickFilter = { slot: null, cat: null, tags: [], q: "" };
 
 // Readable names for the controlled category vocabulary. The vocabulary is
 // closed, so these are written out rather than derived from the slug. The
@@ -456,7 +456,7 @@ function filterRecipes(f){
   return RECIPES.filter(r => {
     if (f.slot && !r.slots.includes(f.slot)) return false;
     if (f.cat && r.category !== f.cat) return false;
-    if (f.tag && !r.tags.includes(f.tag)) return false;
+    if (!f.tags.every(t => r.tags.includes(t))) return false;
     if (q){
       const hay = (r.name + " " + r.tags.join(" ") + " " + catLabel(r.category) + " " +
         r.cuisine + " " + r.ingredients.map(i => i.display).join(" ")).toLowerCase();
@@ -495,7 +495,9 @@ function filterControls(f, ns){
       `<button class="chip slot-${s} ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${
         SLOT_LABEL[s]}</button>`).join("")}</div>`)}
     ${row("Type", select("fcatsel", f.cat, cats.map(c => [c, catLabel(c)]), "All types"))}
-    ${row("Filter", select("tagsel", f.tag, FILTER_TAGS, "No filter"))}`;
+    ${row("Filter", `<div class="chips">${FILTER_TAGS.map(([id, label]) =>
+      `<button class="chip${f.tags.includes(id) ? " on" : ""}" data-ftag="${ns}|${id}">${
+        label}</button>`).join("")}</div>`)}`;
 }
 let sheet = null;
 
@@ -1105,7 +1107,7 @@ function pickSheet(date, slot, keep){
   // Opening the picker preselects the slot you tapped, so you land on the meals
   // that belong there. Clearing the chip widens it to the whole catalogue, which
   // is what you want when a lunch recipe would do fine as a dinner.
-  if (!keep) pickFilter = { slot: slot, cat: null, tag: null, q: "" };
+  if (!keep) pickFilter = { slot: slot, cat: null, tags: [], q: "" };
   const list = filterRecipes(pickFilter);
   const current = (S.plan[date] || {})[slot];
   openSheet(`<header><h1>${esc(fmtDate(date))} &middot; ${slot}</h1>
@@ -1211,7 +1213,8 @@ function recipeSheet(id, portions){
     : "";
   openSheet(`<header><h1>${esc(r.name)}</h1><button class="x" data-close="1">&times;</button></header>
     <div class="body"><div class="card">
-      <div class="sub">${esc(r.slots.join(" &middot; "))}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
+      <div class="sub">${r.slots.map(s => esc(SLOT_LABEL[s] || s)).join(" &middot; ")}${
+        r.total_min ? ` &middot; ${r.total_min} min` : ""}${
         r.tags.length ? ` &middot; ${r.tags.map(esc).join(", ")}` : ""}</div>
       <div class="macros" style="margin-top:10px">
         ${MACROS.map(m => `<div class="macro k-${m.key}"><span class="nm k-${m.key}">${m.label}</span>
@@ -1441,7 +1444,7 @@ document.addEventListener("click", e => {
     "[data-fill],[data-clear],[data-clearday],[data-copyprev],[data-fslot]," +
     "[data-newlist],[data-gen]," +
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
-    "[data-addsnack],[data-portions],[data-scope]");
+    "[data-addsnack],[data-portions],[data-scope],[data-ftag]");
   if (!t) return;
   const d = t.dataset;
 
@@ -1497,7 +1500,11 @@ document.addEventListener("click", e => {
   if (d.clearday){ clearDay(d.clearday); return; }
   if (d.copyprev){ copyPrevious(); return; }
   /* recipe filters, shared by the Recipes tab and the plan's meal picker.
-     Only Meal is a button; Type and Filter are selects handled on "change". */
+     Meal and Filter are buttons; only Type is a select, handled on "change". */
+  const reFilter = ns => {
+    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    else render();
+  };
   if (d.fslot){
     const [ns, slot] = d.fslot.split("|");
     const f = ns === "pick" ? pickFilter : filter;
@@ -1507,8 +1514,16 @@ document.addEventListener("click", e => {
     if (f.cat && !RECIPES.some(r => r.category === f.cat && (!f.slot || r.slots.includes(f.slot)))){
       f.cat = null;
     }
-    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
-    else render();
+    reFilter(ns);
+    return;
+  }
+  // Filter takes any number of tags at once, each one narrowing further, so
+  // "Vegetarian" and "High protein" together mean both rather than either.
+  if (d.ftag){
+    const [ns, tag] = d.ftag.split("|");
+    const f = ns === "pick" ? pickFilter : filter;
+    f.tags = f.tags.includes(tag) ? f.tags.filter(t => t !== tag) : f.tags.concat(tag);
+    reFilter(ns);
     return;
   }
 
@@ -1551,11 +1566,11 @@ document.addEventListener("click", e => {
 document.addEventListener("change", e => {
   const ds = e.target.dataset;
   if (!ds) return;
-  const ns = ds.fcatsel || ds.tagsel;
+  const ns = ds.fcatsel;
   if (!ns) return;
   const f = ns === "pick" ? pickFilter : filter;
   const value = e.target.value || null;
-  if (ds.fcatsel) f.cat = value; else f.tag = value;
+  f.cat = value;
   if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
   else render();
 });

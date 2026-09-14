@@ -34,10 +34,11 @@ different rates:
   wording and all. It offers only the categories that exist within the meal you
   have chosen, so picking Breakfast does not leave "Roasts" on the list; a type
   that stops applying is cleared rather than left selected over an empty result.
-- **Filter** is a dropdown holding only **Vegetarian**, **Light** and **High
-  protein**. Recipes carry a dozen other authored tags, which stay searchable
-  and still show on a recipe, but a filter list that long is a menu to read
-  rather than a control to use.
+- **Filter** holds only **Vegetarian**, **Light** and **High protein**, and
+  takes any number of them at once. Each one narrows further, so Vegetarian and
+  High protein together means both rather than either. Recipes carry a dozen
+  other authored tags, which stay searchable and still show on a recipe, but a
+  filter list that long is a menu to read rather than a control to use.
 
 ## The plan, and what it does not tell you
 

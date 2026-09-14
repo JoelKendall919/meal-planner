@@ -58,11 +58,11 @@ function testControls(){
   render();
 
   const cat = document.querySelector("select[data-fcatsel]");
-  const tagSel = document.querySelector("select[data-tagsel]");
   ok("Type is a dropdown", !!cat && cat.tagName === "SELECT");
-  ok("Filter is a dropdown", !!tagSel && tagSel.tagName === "SELECT");
-  ok("no filter chips left for type or filter",
-    !document.querySelector("[data-fcat],[data-tag]"));
+  const tagBtns = [...document.querySelectorAll("[data-ftag]")];
+  ok("Filter is buttons", tagBtns.length === 3 && tagBtns.every(b => b.tagName === "BUTTON"),
+    tagBtns.map(b => b.tagName).join(","));
+  ok("no filter chips left for type", !document.querySelector("[data-fcat]"));
 
   const meals = [...document.querySelectorAll("[data-fslot]")];
   ok("Meal is still buttons", meals.length === 4 && meals.every(b => b.tagName === "BUTTON"),
@@ -93,11 +93,9 @@ function testControls(){
   ok("the blank option clears the type filter",
     filter.cat === null && filterRecipes(filter).length === before);
 
-  const tg = document.querySelector("select[data-tagsel]");
-  tg.value = "vegetarian";
-  tg.dispatchEvent(new Event("change", { bubbles: true }));
+  document.querySelector('[data-ftag="tab|vegetarian"]').click();
   ok("choosing a filter tag filters the list",
-    filter.tag === "vegetarian" &&
+    filter.tags.includes("vegetarian") &&
     filterRecipes(filter).every(r => r.tags.includes("vegetarian")));
 
   // Type must stay scoped to the chosen meal
@@ -244,14 +242,13 @@ function testFilterRules(){
     JSON.stringify(meals) === JSON.stringify(["Breakfast", "Lunch", "Dinner", "Snack"]),
     meals.join(","));
 
-  const tags = [...document.querySelector("select[data-tagsel]").options]
-    .map(o => o.textContent.trim());
-  ok("the Filter dropdown offers only the three wanted tags",
-    JSON.stringify(tags) === JSON.stringify(["No filter", "Vegetarian", "Light", "High protein"]),
+  const tags = [...document.querySelectorAll("[data-ftag]")].map(b => b.textContent.trim());
+  ok("the Filter row offers only the three wanted tags",
+    JSON.stringify(tags) === JSON.stringify(["Vegetarian", "Light", "High protein"]),
     tags.join(" | "));
 
-  const values = [...document.querySelector("select[data-tagsel]").options]
-    .map(o => o.value).filter(Boolean);
+  const values = [...document.querySelectorAll("[data-ftag]")]
+    .map(b => b.dataset.ftag.split("|")[1]);
   ok("each Filter tag actually matches recipes",
     values.every(v => RECIPES.some(r => r.tags.includes(v))),
     values.map(v => v + ":" + RECIPES.filter(r => r.tags.includes(v)).length).join(" "));
@@ -432,6 +429,78 @@ function testFillScope(){
   S.scope = null; S.plan = {}; render();
 }
 
+/* The Filter row: any number of tags at once, each one narrowing further. */
+function testMultiFilter(){
+  tab = "recipes";
+  Object.assign(filter, { slot: null, cat: null, tags: [], q: "" });
+  render();
+
+  const btns = () => [...document.querySelectorAll('[data-ftag^="tab|"]')];
+  ok("the filter tags are buttons", btns().length === 3, btns().length + " buttons");
+  ok("no select survives for Filter",
+    !document.querySelector("[data-tagsel]"), "a tag select is still rendered");
+
+  const count = () => document.querySelectorAll("[data-open]").length;
+  const all = count();
+
+  const click = label => btns().find(b => b.textContent === label).click();
+
+  click("Vegetarian");
+  const veg = count();
+  ok("one tag filters", veg > 0 && veg < all, veg + " of " + all);
+  ok("the chosen tag is lit",
+    btns().find(b => b.textContent === "Vegetarian").classList.contains("on"), "not lit");
+
+  click("High protein");
+  const both = count();
+  ok("two tags stay selected together", filter.tags.length === 2, filter.tags.join(","));
+  ok("both chosen tags are lit",
+    btns().filter(b => b.classList.contains("on")).length === 2, "not both lit");
+  // The point of AND: adding a tag can only ever narrow.
+  ok("a second tag narrows rather than widens", both > 0 && both <= veg,
+    both + " with both vs " + veg + " with one");
+
+  // ...and every survivor genuinely has both tags.
+  const shown = filterRecipes(filter);
+  const bad = shown.filter(r => !r.tags.includes("vegetarian") || !r.tags.includes("high-protein"));
+  ok("every result has both tags", bad.length === 0, bad.map(r => r.name).join(", "));
+
+  click("Vegetarian");
+  ok("clicking again removes just that tag",
+    filter.tags.length === 1 && filter.tags[0] === "high-protein", filter.tags.join(","));
+
+  click("High protein");
+  ok("clearing every tag restores the full list", count() === all, count() + " of " + all);
+
+  // The same controls live in the plan's meal picker, which re-renders through
+  // pickSheet rather than render(), so the wiring has to work in both.
+  tab = "plan"; S.view = "day"; S.cursor = "2026-02-17"; S.plan = {}; render();
+  pickSheet("2026-02-17", "dinner");
+  const pbtns = () => [...document.querySelectorAll('[data-ftag^="pick|"]')];
+  ok("the picker has the same filter buttons", pbtns().length === 3, pbtns().length + "");
+  const pcount = () => document.querySelectorAll(".sheet [data-set]").length;
+  const pall = pcount();
+  pbtns().find(b => b.textContent === "Vegetarian").click();
+  ok("filtering inside the picker narrows it", pcount() > 0 && pcount() < pall,
+    pcount() + " of " + pall);
+  ok("the picker keeps the button lit after its own re-render",
+    pbtns().find(b => b.textContent === "Vegetarian").classList.contains("on"), "not lit");
+  ok("the picker filter is independent of the Recipes tab",
+    filter.tags.length === 0, filter.tags.join(","));
+  closeSheet();
+}
+
+/* The recipe sheet's meta line: HTML entities must not be escaped as text. */
+function testRecipeMeta(){
+  const r = RECIPES.find(x => x.slots.length > 1);
+  recipeSheet(r.id);
+  const sub = document.querySelector(".sheet .sub").textContent;
+  ok("the slot separator renders as a dot, not markup",
+    !sub.includes("&middot") && !sub.includes("&amp"), sub);
+  ok("the separator is actually there", sub.includes("\u00b7"), sub);
+  closeSheet();
+}
+
 try { testCatLabels(); } catch (e){ out.push("FAIL  catLabels threw: " + e.message); }
 try { testControls(); } catch (e){ out.push("FAIL  controls threw: " + e.message); }
 try { testPortions(); } catch (e){ out.push("FAIL  portions threw: " + e.message); }
@@ -441,6 +510,8 @@ try { testNutrients(); } catch (e){ out.push("FAIL  nutrients threw: " + e.messa
 try { testFilterRules(); } catch (e){ out.push("FAIL  filterRules threw: " + e.message); }
 try { testCopyPrevious(); } catch (e){ out.push("FAIL  copyPrevious threw: " + e.message); }
 try { testFillScope(); } catch (e){ out.push("FAIL  fillScope threw: " + e.message); }
+try { testMultiFilter(); } catch (e){ out.push("FAIL  multiFilter threw: " + e.message); }
+try { testRecipeMeta(); } catch (e){ out.push("FAIL  recipeMeta threw: " + e.message); }
 
 const pre = document.createElement("pre");
 pre.id = "drv";
