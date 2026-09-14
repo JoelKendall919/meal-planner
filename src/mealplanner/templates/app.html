@@ -1098,13 +1098,14 @@ function render(){
   document.querySelectorAll("nav button").forEach(b =>
     b.classList.toggle("on", b.dataset.tab === tab));
 
-  const planned = Object.keys(S.plan).filter(d => mealsOn(d).length).length;
+  // Only ever describes the tab you are on. A running count of planned days
+  // outranked everything, so it followed you onto Recipes and Nutrients where
+  // it meant nothing, and on the plan it restated what is already on screen.
   document.getElementById("hsub").textContent =
     tab === "shop" && S.shopping
       ? `${S.shopping.items.filter(i => !i.ticked).length} to buy`
-      : planned ? `${planned} day${planned === 1 ? "" : "s"} planned`
-                : `${RECIPES.length} recipes`;
-
+      : tab === "recipes" ? `${RECIPES.length} recipes`
+      : "";
 }
 
 /** Keep the caret where the user left it after a search re-render. */
@@ -1251,10 +1252,6 @@ function recipeSheet(id, portions){
         <button class="step" data-portions="${r.id}|${n + 1}" ${n >= 8 ? "disabled" : ""}>+</button>
         <span>portion${n === 1 ? "" : "s"}</span>
       </div>
-      ${n > 1 ? `<div class="sub">Quantities below make ${n} portions &mdash; ${
-        r.macros.kcal * n} kcal and ${r.macros.protein * n} g protein in total. Cook once and
-        the extra portions cover another slot; plan this meal on each day you eat it so the
-        shopping list buys enough.</div>` : ""}
       <h2 style="margin-top:14px">Ingredients</h2>
       <ul class="ing">${r.ingredients.map(i =>
         `<li><span>${esc(scaleDisplay(i.display, n))}</span>

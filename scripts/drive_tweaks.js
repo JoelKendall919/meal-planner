@@ -549,6 +549,52 @@ function testFillTopsUpAPlannedDay(){
   S.plan = {}; render();
 }
 
+/* The header subtitle and the portions sheet, after both bits of chatter were
+   removed. The scaling itself must survive: only the prose went. */
+function testChatterRemoved(){
+  const hsub = () => document.getElementById("hsub").textContent.trim();
+
+  S.plan = {}; S.cursor = "2026-09-16"; tab = "plan"; S.view = "day"; render();
+  document.querySelector("[data-fill]").click();
+  tab = "plan"; render();
+  ok("the plan header says nothing", hsub() === "", hsub());
+
+  tab = "nutrients"; render();
+  ok("the nutrients header says nothing", hsub() === "", hsub());
+
+  tab = "recipes"; render();
+  ok("the recipes header still counts recipes", hsub() === RECIPES.length + " recipes", hsub());
+
+  // No days-planned count anywhere, even with a plan in place.
+  ok("no planned-days count survives", !/day(s)? planned/.test(document.body.textContent),
+    (document.body.textContent.match(/\d+ days? planned/) || ["none"])[0]);
+
+  // The portions sheet: stepper and scaled quantities, no explanatory blurb.
+  const r = RECIPES.find(x => x.ingredients.some(i => /^\d/.test(i.display)));
+  recipeSheet(r.id, 3);
+  const body = document.querySelector(".sheet .body").textContent;
+  ok("no portions blurb at n>1", !body.includes("Quantities below make"), "");
+  ok("no total-for-n-portions line", !/kcal and \d+ g protein in total/.test(body), "");
+  // Read the stepper itself rather than the prose: it uses a real minus sign.
+  const stepper = document.querySelector(".sheet .portions");
+  ok("the stepper still reports the count",
+    stepper && stepper.querySelector("b").textContent === "3",
+    stepper ? stepper.textContent.replace(/\s+/g, " ").trim() : "no stepper");
+
+  // The actual point of the stepper still works.
+  const line = r.ingredients.find(i => /^\d/.test(i.display));
+  const shown = [...document.querySelectorAll(".sheet .ing li")]
+    .map(li => li.textContent).find(t => t.includes(scaleDisplay(line.display, 3)));
+  ok("quantities are still scaled", !!shown,
+    "expected " + scaleDisplay(line.display, 3) + " from " + line.display);
+  ok("grams are still scaled", document.querySelector(".sheet .ing .g").textContent
+    === scaleGrams(r.ingredients[0].grams, 3) + " g",
+    document.querySelector(".sheet .ing .g").textContent);
+  ok("macros stay per portion", body.includes("Per portion."), "");
+  closeSheet();
+  S.plan = {};
+}
+
 try { testCatLabels(); } catch (e){ out.push("FAIL  catLabels threw: " + e.message); }
 try { testControls(); } catch (e){ out.push("FAIL  controls threw: " + e.message); }
 try { testPortions(); } catch (e){ out.push("FAIL  portions threw: " + e.message); }
@@ -561,6 +607,7 @@ try { testFillScope(); } catch (e){ out.push("FAIL  fillScope threw: " + e.messa
 try { testMultiFilter(); } catch (e){ out.push("FAIL  multiFilter threw: " + e.message); }
 try { testRecipeMeta(); } catch (e){ out.push("FAIL  recipeMeta threw: " + e.message); }
 try { testFillTopsUpAPlannedDay(); } catch (e){ out.push("FAIL  fillTopUp threw: " + e.message); }
+try { testChatterRemoved(); } catch (e){ out.push("FAIL  chatterRemoved threw: " + e.message); }
 
 const pre = document.createElement("pre");
 pre.id = "drv";
