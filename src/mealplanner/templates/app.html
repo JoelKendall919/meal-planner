@@ -25,7 +25,7 @@ header{position:sticky;top:0;z-index:20;background:var(--accent);color:#fff;
   padding:14px 16px 12px;display:flex;align-items:baseline;gap:10px}
 header h1{font-size:17px;margin:0;font-weight:600;letter-spacing:-.2px}
 header .sub{font-size:12px;opacity:.7;margin-left:auto;color:#fff}
-main{padding:12px 12px 24px;max-width:780px;margin:0 auto}
+main{padding:12px 12px 24px;max-width:900px;margin:0 auto}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
   padding:14px;margin-bottom:12px}
 .card h2{font-size:15px;margin:0 0 2px;font-weight:600}
@@ -34,8 +34,12 @@ main{padding:12px 12px 24px;max-width:780px;margin:0 auto}
 button{font:inherit;cursor:pointer;border-radius:9px;border:1px solid var(--line);
   background:#fff;color:var(--ink);padding:9px 12px}
 button:active{transform:translateY(1px)}
+button:disabled{opacity:.45;cursor:default}
+.pri{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
 .sec{padding:6px 10px;font-size:13px}
+.danger{color:var(--bad);border-color:#f0c2bc}
 .bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.bar.tight{margin-top:0}
 nav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;background:#fff;
   border-top:1px solid var(--line);padding-bottom:var(--pad)}
 nav button{flex:1;border:0;border-radius:0;background:none;padding:11px 4px 9px;
@@ -47,8 +51,73 @@ nav button.on{color:var(--ink);font-weight:600;box-shadow:inset 0 -2.5px 0 var(-
 .chip{white-space:nowrap;padding:6px 11px;border-radius:999px;border:1px solid var(--line);
   background:#fff;font-size:13px}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
-input[type=search],input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--line);
-  border-radius:9px;font:inherit;background:#fff}
+input[type=search],input[type=text],input[type=number],input[type=date]{width:100%;
+  padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;
+  color:var(--ink)}
+label.fld{display:block;margin-bottom:10px}
+label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
+
+/* --- period switcher and date navigation --- */
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#fff}
+.seg button{flex:1;border:0;border-radius:0;font-size:13px;padding:8px 4px;background:none}
+.seg button.on{background:var(--accent);color:#fff;font-weight:600}
+.nav2{display:flex;align-items:center;gap:8px;margin-top:10px}
+.nav2 .lbl{flex:1;text-align:center;font-weight:600;font-size:14px}
+.nav2 button{padding:7px 13px}
+
+/* --- macro summary --- */
+.macros{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.macro{background:#fafaf8;border:1px solid var(--line);border-radius:10px;padding:8px 6px;
+  text-align:center}
+.macro b{display:block;font-size:16px;line-height:1.2}
+.macro .of{font-size:10.5px;color:var(--mut)}
+.macro span.nm{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.3px;
+  display:block;margin-bottom:3px}
+.prog{height:4px;border-radius:3px;background:#e7e7e3;margin-top:5px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--good);border-radius:3px}
+.prog i.over{background:var(--bad)}
+.prog i.under{background:var(--warn)}
+
+/* --- plan: day view (large tiles) --- */
+.tile{border:1px solid var(--line);border-radius:12px;background:#fff;padding:13px;
+  margin-bottom:10px}
+.tile .slotname{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+.tile .mealname{font-size:16px;font-weight:600;margin:3px 0 2px}
+.tile .mealname.empty{color:#a8a8a8;font-weight:400}
+
+/* --- plan: week view (medium tiles) --- */
+.wk{display:grid;gap:9px}
+.wkday{border:1px solid var(--line);border-radius:11px;background:#fff;overflow:hidden}
+.wkday.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.wkday h3{margin:0;padding:8px 11px;font-size:12.5px;background:#fafaf8;
+  border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:6px}
+.wkday h3 .kc{font-weight:600;font-size:11.5px}
+.mini{display:flex;align-items:center;gap:8px;padding:7px 11px;width:100%;background:none;
+  border:0;border-top:1px solid #f0f0ec;text-align:left;border-radius:0}
+.mini:first-of-type{border-top:0}
+.mini .lbl{font-size:10px;color:var(--mut);width:22px;flex:none;text-transform:uppercase}
+.mini .val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  font-size:13px}
+.mini .val.empty{color:#b4b4b0}
+.mini .n{font-size:11px;color:var(--mut);white-space:nowrap}
+@media (min-width:660px){ .wk{grid-template-columns:repeat(7,1fr)} .mini .lbl{display:none} }
+
+/* --- plan: month view (small tiles) --- */
+.mgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.mhead{font-size:10px;color:var(--mut);text-align:center;text-transform:uppercase;
+  letter-spacing:.3px;padding-bottom:2px}
+.mcell{border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px 2px 5px;
+  min-height:54px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:11px;justify-content:flex-start}
+.mcell.out{opacity:.35}
+.mcell.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.mcell .dn{font-weight:600;font-size:12px}
+.mcell .dots{display:flex;gap:2.5px}
+.mcell .dots i{width:5px;height:5px;border-radius:50%;background:#dcdcd8;display:block}
+.mcell .dots i.on{background:var(--accent)}
+.mcell .kc{font-size:9.5px;color:var(--mut);line-height:1}
+
+/* --- recipes --- */
 .rlist{list-style:none;margin:0;padding:0}
 .rlist li{border-bottom:1px solid var(--line)}
 .rlist li:last-child{border-bottom:0}
@@ -63,18 +132,8 @@ input[type=search],input[type=text]{width:100%;padding:10px 12px;border:1px soli
 .tag{display:inline-block;font-size:10.5px;padding:1.5px 6px;border-radius:5px;
   background:#efefec;color:#555;margin-right:4px}
 .tag.veg{background:#e6f4ea;color:#1a7f37}
-.day{border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:10px;overflow:hidden}
-.day>h3{margin:0;padding:10px 13px;font-size:13.5px;background:#fafaf8;
-  border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.slot{display:flex;align-items:center;gap:10px;padding:9px 13px;border-bottom:1px solid var(--line);
-  width:100%;background:none;border-left:0;border-right:0;border-top:0;text-align:left;border-radius:0}
-.day .slot:last-of-type{border-bottom:0}
-.slot .lbl{font-size:11px;color:var(--mut);width:64px;flex:none;
-  text-transform:uppercase;letter-spacing:.4px}
-.slot .val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
-.slot .val.empty{color:#a8a8a8}
-.tot{font-size:12px;font-weight:600}
-.tot.ok{color:var(--good)} .tot.hi{color:var(--bad)} .tot.lo{color:var(--warn)}
+
+/* --- sheets --- */
 .sheet{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.4);display:flex;align-items:flex-end}
 .sheet .inner{background:var(--bg);width:100%;max-height:88vh;border-radius:16px 16px 0 0;
   display:flex;flex-direction:column;padding-bottom:var(--pad)}
@@ -87,29 +146,44 @@ input[type=search],input[type=text]{width:100%;padding:10px 12px;border:1px soli
 .ing .g{margin-left:auto;color:var(--mut);font-size:12.5px;white-space:nowrap}
 ol.steps{margin:8px 0 0;padding-left:18px}
 ol.steps li{margin:6px 0}
-.macros{display:flex;gap:6px;margin:10px 0 0}
-.macro{flex:1;background:#fafaf8;border:1px solid var(--line);border-radius:9px;
-  padding:7px 4px;text-align:center}
-.macro b{display:block;font-size:15px}
-.macro span{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.3px}
-.it{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.src{font-size:11.5px;color:var(--mut);margin-top:10px;font-style:italic}
+
+/* --- shopping --- */
+.it{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
 .it:last-child{border-bottom:0}
-.it.done .itxt{text-decoration:line-through;color:#a8a8a8}
-.itxt{flex:1;min-width:0}
-.itxt small{display:block;color:var(--mut);font-size:11.5px}
-.ck{width:21px;height:21px;border-radius:6px;border:1.5px solid #c4c4c0;background:#fff;
+.it.done .itxt b{text-decoration:line-through;color:#a8a8a8}
+.it.done .itxt{color:#a8a8a8}
+.itxt{flex:1;min-width:0;background:none;border:0;text-align:left;padding:0;font:inherit}
+.itxt b{font-weight:600}
+.itxt small{display:block;color:var(--mut);font-size:11.5px;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
+.ck{width:22px;height:22px;border-radius:6px;border:1.5px solid #c4c4c0;background:#fff;
   flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;padding:0}
 .ck.on{background:var(--good);border-color:var(--good)}
+.rm{border:0;background:none;color:var(--mut);font-size:17px;padding:2px 4px;line-height:1}
 .aisle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
   color:var(--mut);margin:14px 0 2px}
 .aisle:first-child{margin-top:0}
-.empty-state{text-align:center;color:var(--mut);padding:34px 16px;font-size:14px}
+.add{display:flex;gap:8px;margin-top:12px}
+.add input{flex:1}
+
+/* --- nutrients --- */
+.nrow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.nrow:last-child{border-bottom:0}
+.nrow .nm{width:74px;flex:none;font-size:13px}
+.nrow .barwrap{flex:1}
+.nrow .fig{width:96px;text-align:right;font-size:12px;color:var(--mut);white-space:nowrap}
+.nrow .fig b{color:var(--ink)}
+.dlist{list-style:none;margin:0;padding:0;font-size:13px}
+.dlist li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;
+  border-bottom:1px solid var(--line)}
+.dlist li:last-child{border-bottom:0}
+
+.empty-state{text-align:center;color:var(--mut);padding:30px 16px;font-size:14px}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(74px + var(--pad));
   background:#222;color:#fff;padding:9px 15px;border-radius:999px;font-size:13px;z-index:60;
-  opacity:0;pointer-events:none;transition:opacity .2s}
+  opacity:0;pointer-events:none;transition:opacity .2s;max-width:88vw;text-align:center}
 .toast.on{opacity:1}
-.src{font-size:11.5px;color:var(--mut);margin-top:10px;font-style:italic}
-.add{display:flex;gap:8px;margin-top:10px}
 .warnbar{background:#fff4e5;border:1px solid #f0d8b0;color:#7a4b00;font-size:12.5px;
   padding:9px 12px;border-radius:9px;margin-bottom:12px}
 </style>
@@ -120,6 +194,7 @@ ol.steps li{margin:6px 0}
 <nav>
   <button data-tab="plan" class="on"><span class="ic">&#128197;</span>Plan</button>
   <button data-tab="recipes"><span class="ic">&#127859;</span>Recipes</button>
+  <button data-tab="nutrients"><span class="ic">&#128202;</span>Nutrients</button>
   <button data-tab="shop"><span class="ic">&#128722;</span>Shopping</button>
 </nav>
 <div class="toast" id="toast"></div>
@@ -132,103 +207,314 @@ const DATA = __DATA__;
 </script>
 <script>
 "use strict";
-const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-const SLOTS = ["breakfast","lunch","dinner"];
-const KEY = "mealplanner.v2";
 
+/* ===== constants and data ================================================ */
+const SLOTS = ["breakfast", "lunch", "dinner"];
+const SLOT_ABBR = { breakfast: "B", lunch: "L", dinner: "D" };
+const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const MONTHS = ["January","February","March","April","May","June",
+                "July","August","September","October","November","December"];
+const MACROS = [
+  { key: "kcal", label: "Calories", unit: "" },
+  { key: "protein", label: "Protein", unit: "g" },
+  { key: "fat", label: "Fat", unit: "g" },
+  { key: "carbs", label: "Carbs", unit: "g" },
+];
+const KEY = "mealplanner.v3";
+const OLD_KEY = "mealplanner.v2";
+
+const RECIPES = DATA.recipes;
+const FOODS = DATA.foods;
+const BY_ID = {};
+RECIPES.forEach(r => { BY_ID[r.id] = r; });
+
+/* ===== dates =============================================================
+ * All dates are handled as local YYYY-MM-DD strings. Date#toISOString is
+ * deliberately avoided: it converts to UTC, which shifts the date by a day
+ * during British Summer Time.
+ */
+function iso(d){
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+function parseISO(s){
+  const [y, m, d] = s.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+function todayISO(){ return iso(new Date()); }
+function addDays(s, n){ const d = parseISO(s); d.setDate(d.getDate() + n); return iso(d); }
+function addMonths(s, n){
+  const d = parseISO(s);
+  const day = d.getDate();
+  d.setDate(1);
+  d.setMonth(d.getMonth() + n);
+  // Clamp: adding a month to the 31st must not skip into the following one.
+  d.setDate(Math.min(day, new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate()));
+  return iso(d);
+}
+function startOfWeek(s){
+  const d = parseISO(s);
+  d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); // weeks run Monday to Sunday
+  return iso(d);
+}
+function startOfMonth(s){ const d = parseISO(s); return iso(new Date(d.getFullYear(), d.getMonth(), 1)); }
+function endOfMonth(s){ const d = parseISO(s); return iso(new Date(d.getFullYear(), d.getMonth() + 1, 0)); }
+function dowName(s){ return DOW[(parseISO(s).getDay() + 6) % 7]; }
+function daysBetween(a, b){
+  const out = [];
+  for (let c = a; c <= b; c = addDays(c, 1)) out.push(c);
+  return out;
+}
+function fmtDate(s){
+  const d = parseISO(s);
+  return `${dowName(s)} ${d.getDate()} ${MONTHS[d.getMonth()].slice(0, 3)}`;
+}
+function fmtShort(s){
+  const d = parseISO(s);
+  return `${d.getDate()} ${MONTHS[d.getMonth()].slice(0, 3)}`;
+}
+
+/* ===== state ============================================================= */
 let STORE_OK = true;
 try { localStorage.setItem(KEY + ".probe", "1"); localStorage.removeItem(KEY + ".probe"); }
 catch (e) { STORE_OK = false; }
 
-const blank = () => ({ plan:{}, ticked:{}, extras:[], staples:true });
+function blank(){
+  return {
+    plan: {},                       // "YYYY-MM-DD" -> { breakfast: id, ... }
+    goals: Object.assign({}, DATA.targets),
+    view: "week",                   // day | week | month
+    cursor: todayISO(),
+    shopping: null,                 // { from, to, created, items: [...] }
+  };
+}
+
+/* The week used to be stored against weekday names. Move any existing plan onto
+ * this week's dates so an upgrade does not silently lose it. */
+function migrate(state){
+  try {
+    const raw = localStorage.getItem(OLD_KEY);
+    if (!raw) return state;
+    const old = JSON.parse(raw);
+    if (old && old.plan) {
+      const monday = startOfWeek(todayISO());
+      DOW.forEach((name, i) => {
+        const day = old.plan[name];
+        if (!day) return;
+        const date = addDays(monday, i);
+        SLOTS.forEach(slot => {
+          if (day[slot] && BY_ID[day[slot]]) {
+            state.plan[date] = state.plan[date] || {};
+            state.plan[date][slot] = day[slot];
+          }
+        });
+      });
+    }
+    localStorage.removeItem(OLD_KEY);
+  } catch (e) { /* nothing worth recovering */ }
+  return state;
+}
+
 let S = blank();
 try {
   const raw = STORE_OK ? localStorage.getItem(KEY) : null;
-  if (raw) S = Object.assign(blank(), JSON.parse(raw));
+  if (raw) {
+    const saved = JSON.parse(raw);
+    S = Object.assign(blank(), saved);
+    S.goals = Object.assign({}, DATA.targets, saved.goals || {});
+  } else if (STORE_OK) {
+    S = migrate(S);
+  }
 } catch (e) { S = blank(); }
 
 function save(){
   if (!STORE_OK) return;
   try { localStorage.setItem(KEY, JSON.stringify(S)); }
-  catch (e) { STORE_OK = false; toast("Storage blocked - changes won't be saved"); }
+  catch (e) { STORE_OK = false; toast("Storage is full or blocked - changes are not being saved"); }
 }
 
-const RECIPES = DATA.recipes;
-const FOODS = DATA.foods;
-const BY_ID = {}; RECIPES.forEach(r => { BY_ID[r.id] = r; });
-const TARGETS = DATA.targets;
-const STAPLE_AISLES = new Set(["cupboard"]);
-
 let tab = "plan";
-const filter = { slot:null, tag:null, q:"" };
+const filter = { slot: null, tag: null, q: "" };
 let sheet = null;
 
+/* ===== helpers =========================================================== */
 const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c =>
   ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]));
 
 let toastT;
 function toast(msg){
   const el = document.getElementById("toast");
-  el.textContent = msg; el.classList.add("on");
-  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove("on"), 1900);
+  el.textContent = msg;
+  el.classList.add("on");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.classList.remove("on"), 2200);
 }
 
-function dayMeals(day){
-  const d = S.plan[day] || {};
-  return SLOTS.map(s => (d[s] ? BY_ID[d[s]] : null)).filter(Boolean);
+function mealsOn(date){
+  const day = S.plan[date] || {};
+  return SLOTS.map(s => (day[s] ? BY_ID[day[s]] : null)).filter(Boolean);
 }
-function dayTotals(day){
-  return dayMeals(day).reduce((a, r) => ({
-    kcal: a.kcal + r.macros.kcal, protein: a.protein + r.macros.protein
-  }), { kcal:0, protein:0 });
+function totalsOn(date){
+  return mealsOn(date).reduce((a, r) => ({
+    kcal: a.kcal + r.macros.kcal,
+    protein: a.protein + r.macros.protein,
+    fat: a.fat + r.macros.fat,
+    carbs: a.carbs + r.macros.carbs,
+  }), { kcal:0, protein:0, fat:0, carbs:0 });
 }
-function plannedIds(){
+
+/** The date range the Plan and Nutrients pages are currently showing. */
+function range(){
+  if (S.view === "day") return [S.cursor, S.cursor];
+  if (S.view === "week") { const a = startOfWeek(S.cursor); return [a, addDays(a, 6)]; }
+  return [startOfMonth(S.cursor), endOfMonth(S.cursor)];
+}
+function rangeLabel(){
+  const [a, b] = range();
+  if (S.view === "day") return fmtDate(a);
+  if (S.view === "week") return `${fmtShort(a)} - ${fmtShort(b)}`;
+  const d = parseISO(a);
+  return `${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
+function idsIn(a, b){
   const out = [];
-  DAYS.forEach(d => SLOTS.forEach(s => {
-    const id = (S.plan[d] || {})[s];
-    if (id && BY_ID[id]) out.push(id);
-  }));
+  daysBetween(a, b).forEach(date => {
+    const day = S.plan[date] || {};
+    SLOTS.forEach(s => { if (day[s] && BY_ID[day[s]]) out.push(day[s]); });
+  });
   return out;
 }
-function totalsClass(kcal, full){
-  if (!full) return "";
-  if (kcal > TARGETS.kcal + 150) return "hi";
-  if (kcal < TARGETS.kcal - 150) return "lo";
-  return "ok";
+
+/** Totals for a range, plus an average over the days that actually have meals.
+ *  Averaging over every day in a month would be meaningless when only a few
+ *  days are planned, so `days` counts planned days only. */
+function summarise(a, b){
+  const total = { kcal:0, protein:0, fat:0, carbs:0 };
+  let days = 0;
+  daysBetween(a, b).forEach(date => {
+    const meals = mealsOn(date);
+    if (!meals.length) return;
+    days++;
+    const t = totalsOn(date);
+    MACROS.forEach(m => { total[m.key] += t[m.key]; });
+  });
+  const avg = {};
+  MACROS.forEach(m => { avg[m.key] = days ? Math.round(total[m.key] / days) : 0; });
+  return { total, avg, days };
 }
 
+/* ===== shared components ================================================= */
+function segmented(){
+  return `<div class="seg">${["day","week","month"].map(v =>
+    `<button data-view="${v}" class="${S.view === v ? "on" : ""}">${
+      v === "day" ? "Day" : v === "week" ? "Week" : "Month"}</button>`).join("")}</div>
+    <div class="nav2">
+      <button data-step="-1">&#8249;</button>
+      <span class="lbl">${esc(rangeLabel())}</span>
+      <button data-step="1">&#8250;</button>
+    </div>
+    <div class="bar tight" style="margin-top:8px"><button class="sec" data-today="1">Today</button></div>`;
+}
+
+function macroCards(values, goals, caption){
+  return `<div class="macros">${MACROS.map(m => {
+    const v = values[m.key], g = goals[m.key] || 0;
+    const pct = g ? Math.min(Math.round((v / g) * 100), 100) : 0;
+    const cls = !g ? "" : v > g * 1.05 ? "over" : v < g * 0.9 ? "under" : "";
+    return `<div class="macro"><span class="nm">${m.label}</span>
+      <b>${v}${m.unit}</b><span class="of">of ${g}${m.unit}</span>
+      <span class="prog"><i class="${cls}" style="width:${pct}%"></i></span></div>`;
+  }).join("")}</div>${caption ? `<div class="sub" style="margin-top:8px">${esc(caption)}</div>` : ""}`;
+}
+
+/* ===== plan ============================================================== */
 function viewPlan(){
-  const ids = plannedIds();
-  let html = `<div class="card"><div class="hd"><div>
-      <h2>Your week</h2><div class="sub">${ids.length} of 21 meals chosen &middot; aiming for
-      ${TARGETS.kcal} kcal and ${TARGETS.protein} g protein a day</div>
-    </div></div>
-    <div class="bar">
+  const [a, b] = range();
+  const s = summarise(a, b);
+  const isDay = S.view === "day";
+  const values = isDay ? totalsOn(S.cursor) : s.avg;
+  const caption = isDay
+    ? (mealsOn(S.cursor).length ? "" : "Nothing planned for this day yet.")
+    : s.days
+      ? `Daily average across ${s.days} planned day${s.days === 1 ? "" : "s"}.`
+      : "Nothing planned in this period yet.";
+
+  let html = `<div class="card">${segmented()}</div>
+    <div class="card">${macroCards(values, S.goals, caption)}</div>
+    <div class="card"><div class="bar tight">
       <button class="sec" data-fill="1">Fill empty slots</button>
-      <button class="sec" data-clear="1">Clear week</button>
+      <button class="sec danger" data-clear="1">Clear ${S.view}</button>
     </div></div>`;
 
-  html += DAYS.map(day => {
-    const t = dayTotals(day);
-    const full = dayMeals(day).length === SLOTS.length;
-    return `<div class="day">
-      <h3><span>${day}</span>
-        <span class="tot ${totalsClass(t.kcal, full)}">${
-          t.kcal ? t.kcal + " kcal &middot; " + t.protein + " g" : "&mdash;"}</span></h3>
-      ${SLOTS.map(slot => {
-        const id = (S.plan[day] || {})[slot];
-        const r = id ? BY_ID[id] : null;
-        return `<button class="slot" data-pick="${day}|${slot}">
-          <span class="lbl">${slot}</span>
-          <span class="val ${r ? "" : "empty"}">${r ? esc(r.name) : "Tap to choose"}</span>
-          ${r ? `<span class="kc"><b>${r.macros.kcal}</b>${r.macros.protein} g</span>` : ""}
-        </button>`;
-      }).join("")}
-    </div>`;
-  }).join("");
+  if (isDay) html += dayTiles(S.cursor);
+  else if (S.view === "week") html += weekGrid(a, b);
+  else html += monthGrid(a, b);
   return html;
 }
 
+function dayTiles(date){
+  return SLOTS.map(slot => {
+    const id = (S.plan[date] || {})[slot];
+    const r = id ? BY_ID[id] : null;
+    return `<div class="tile">
+      <div class="slotname">${slot}</div>
+      <div class="mealname ${r ? "" : "empty"}">${r ? esc(r.name) : "Nothing chosen"}</div>
+      ${r ? `<div class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein
+              &middot; ${r.macros.fat} g fat &middot; ${r.macros.carbs} g carbs</div>` : ""}
+      <div class="bar">
+        ${r ? `<button class="sec" data-open="${r.id}">View recipe</button>
+               <button class="sec" data-pick="${date}|${slot}">Change</button>
+               <button class="sec danger" data-unset="${date}|${slot}">Remove</button>`
+            : `<button class="sec pri" data-pick="${date}|${slot}">Choose a meal</button>`}
+      </div></div>`;
+  }).join("");
+}
+
+function weekGrid(a, b){
+  const today = todayISO();
+  return `<div class="wk">${daysBetween(a, b).map(date => {
+    const t = totalsOn(date);
+    return `<div class="wkday ${date === today ? "today" : ""}">
+      <h3><span>${dowName(date)} ${parseISO(date).getDate()}</span>
+        <span class="kc">${t.kcal ? t.kcal + " kcal" : ""}</span></h3>
+      ${SLOTS.map(slot => {
+        const id = (S.plan[date] || {})[slot];
+        const r = id ? BY_ID[id] : null;
+        return `<button class="mini" data-slot-tap="${date}|${slot}">
+          <span class="lbl">${SLOT_ABBR[slot]}</span>
+          <span class="val ${r ? "" : "empty"}">${r ? esc(r.name) : "&mdash;"}</span>
+          <span class="n">${r ? r.macros.kcal : ""}</span>
+        </button>`;
+      }).join("")}
+    </div>`;
+  }).join("")}</div>`;
+}
+
+function monthGrid(a, b){
+  const today = todayISO();
+  const lead = daysBetween(startOfWeek(a), addDays(a, -1));
+  const tail = daysBetween(addDays(b, 1), addDays(startOfWeek(b), 6));
+  const cells = lead.concat(daysBetween(a, b)).concat(tail);
+  return `<div class="card"><div class="mgrid">
+    ${DOW.map(d => `<div class="mhead">${d[0]}</div>`).join("")}
+    ${cells.map(date => {
+      const inMonth = date >= a && date <= b;
+      const day = S.plan[date] || {};
+      const t = totalsOn(date);
+      return `<button class="mcell ${inMonth ? "" : "out"} ${date === today ? "today" : ""}"
+        data-day="${date}">
+        <span class="dn">${parseISO(date).getDate()}</span>
+        <span class="dots">${SLOTS.map(s =>
+          `<i class="${day[s] ? "on" : ""}"></i>`).join("")}</span>
+        <span class="kc">${t.kcal || ""}</span>
+      </button>`;
+    }).join("")}
+  </div>
+  <div class="sub" style="margin-top:9px">Tap a day to open it.</div></div>`;
+}
+
+/* ===== recipes =========================================================== */
 function recipeRow(r, action){
   const veg = r.tags.includes("vegetarian");
   const rest = r.tags.filter(t => t !== "vegetarian").slice(0, 2);
@@ -241,9 +527,9 @@ function recipeRow(r, action){
   </button></li>`;
 }
 
-function applyFilter(list){
+function viewRecipes(){
   const q = filter.q.trim().toLowerCase();
-  return list.filter(r => {
+  const list = RECIPES.filter(r => {
     if (filter.slot && r.slot !== filter.slot) return false;
     if (filter.tag && !r.tags.includes(filter.tag)) return false;
     if (q){
@@ -253,15 +539,11 @@ function applyFilter(list){
     }
     return true;
   });
-}
-
-function viewRecipes(){
-  const list = applyFilter(RECIPES);
   return `<div class="card">
     <input type="search" id="q" placeholder="Search recipes or ingredients..." value="${esc(filter.q)}">
     <div class="chips" style="margin-top:9px">
       ${SLOTS.map(s =>
-        `<button class="chip ${filter.slot === s ? "on" : ""}" data-slot="${s}">${s}</button>`).join("")}
+        `<button class="chip ${filter.slot === s ? "on" : ""}" data-fslot="${s}">${s}</button>`).join("")}
       ${DATA.tags.map(t =>
         `<button class="chip ${filter.tag === t ? "on" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("")}
     </div>
@@ -273,76 +555,260 @@ function viewRecipes(){
   }</ul></div>`;
 }
 
-function viewShop(){
-  const ids = plannedIds();
-  if (!ids.length){
-    return `<div class="card"><div class="empty-state">
-      Choose some meals on the Plan tab and your shopping list will build itself.
-    </div></div>`;
-  }
-  const all = buildShoppingList(RECIPES, FOODS, ids);
-  const staples = all.filter(l => STAPLE_AISLES.has(l.aisle)).length;
-  const lines = S.staples ? all : all.filter(l => !STAPLE_AISLES.has(l.aisle));
-  const merged = lines.filter(l => l.merged).length;
+/* ===== nutrients ========================================================= */
+function viewNutrients(){
+  const [a, b] = range();
+  const s = summarise(a, b);
+  const isDay = S.view === "day";
+  const values = isDay ? totalsOn(S.cursor) : s.avg;
 
-  let html = `<div class="card"><div class="hd"><div>
-      <h2>Shopping list</h2>
-      <div class="sub">${lines.length} item${lines.length === 1 ? "" : "s"} from ${ids.length} meal${
-        ids.length === 1 ? "" : "s"}${merged ? ` &middot; ${merged} combined` : ""}</div>
-    </div></div>
-    <div class="bar">
-      <button class="sec" data-staples="1">${S.staples ? "Hide" : "Show"} cupboard staples${
-        staples ? ` (${staples})` : ""}</button>
-      <button class="sec" data-untick="1">Clear ticks</button>
-      <button class="sec" data-copy="1">Copy list</button>
-    </div></div>`;
+  let html = `<div class="card">${segmented()}</div>`;
 
-  let aisle = null;
-  let body = "";
-  lines.forEach(l => {
-    if (l.aisle !== aisle){
-      aisle = l.aisle;
-      body += `<div class="aisle">${esc(l.aisle_label)}</div>`;
-    }
-    const on = !!S.ticked[l.group];
-    const from = l.merged
-      ? l.components.map(c => c.food).join(" + ")
-      : Array.from(new Set(l.components[0].recipes.map(id => BY_ID[id] ? BY_ID[id].name : id)))
-          .slice(0, 2).join(", ");
-    body += `<div class="it ${on ? "done" : ""}">
-      <button class="ck ${on ? "on" : ""}" data-tick="${esc(l.group)}">${on ? "&#10003;" : ""}</button>
-      <div class="itxt"><b>${esc(l.group)}</b> &mdash; ${esc(l.quantity)}
-        <small>${esc(from)}</small></div>
+  html += `<div class="card"><div class="hd"><div>
+    <h2>${isDay ? "This day" : "Daily average"}</h2>
+    <div class="sub">${isDay
+      ? esc(fmtDate(S.cursor))
+      : s.days
+        ? `across ${s.days} planned day${s.days === 1 ? "" : "s"} in ${esc(rangeLabel())}`
+        : `nothing planned in ${esc(rangeLabel())}`}</div>
+  </div></div>`;
+
+  html += MACROS.map(m => {
+    const v = values[m.key], g = S.goals[m.key] || 0;
+    const pct = g ? Math.min(Math.round((v / g) * 100), 100) : 0;
+    const diff = v - g;
+    const cls = !g ? "" : v > g * 1.05 ? "over" : v < g * 0.9 ? "under" : "";
+    return `<div class="nrow">
+      <span class="nm">${m.label}</span>
+      <span class="barwrap"><span class="prog"><i class="${cls}" style="width:${pct}%"></i></span></span>
+      <span class="fig"><b>${v}${m.unit}</b> / ${g}${m.unit}
+        <br>${diff === 0 ? "on target" : (diff > 0 ? "+" : "") + diff + m.unit}</span>
     </div>`;
-  });
+  }).join("");
+  html += `</div>`;
 
-  S.extras.forEach((x, i) => {
-    const on = !!S.ticked["x:" + x];
-    body += `<div class="it ${on ? "done" : ""}">
-      <button class="ck ${on ? "on" : ""}" data-tick="x:${esc(x)}">${on ? "&#10003;" : ""}</button>
-      <div class="itxt"><b>${esc(x)}</b><small>added by you</small></div>
-      <button class="sec" data-rmx="${i}">Remove</button></div>`;
-  });
+  if (!isDay && s.days){
+    html += `<div class="card"><h2>By day</h2><ul class="dlist">${
+      daysBetween(a, b).filter(d => mealsOn(d).length).map(d => {
+        const t = totalsOn(d);
+        return `<li><span>${esc(fmtDate(d))}</span>
+          <span class="sub">${t.kcal} kcal &middot; ${t.protein} g P &middot;
+            ${t.fat} g F &middot; ${t.carbs} g C</span></li>`;
+      }).join("")}</ul></div>`;
+  }
 
-  html += `<div class="card">${body}
-    <form class="add" id="addf">
-      <input type="text" id="addi" placeholder="Add an item..." autocomplete="off">
-      <button class="sec" type="submit">Add</button>
+  html += `<div class="card"><div class="hd"><div>
+      <h2>Daily goals</h2>
+      <div class="sub">Used across the app to score your days.</div>
+    </div></div>
+    <form id="goalf">
+      ${MACROS.map(m => `<label class="fld"><span>${m.label}${m.unit ? " (" + m.unit + ")" : ""}</span>
+        <input type="number" inputmode="numeric" min="0" max="20000"
+          name="${m.key}" value="${S.goals[m.key]}"></label>`).join("")}
+      <div class="bar tight">
+        <button class="pri" type="submit">Save goals</button>
+        <button class="sec" type="button" data-resetgoals="1">Reset to defaults</button>
+      </div>
     </form></div>`;
   return html;
 }
 
+/* ===== shopping ==========================================================
+ * The list is a snapshot: it is generated from a chosen date range and then
+ * owned by the user. Editing the plan afterwards does not silently rewrite it,
+ * which is what makes "start over" meaningful.
+ */
+let itemSeq = 0;
+function newItemId(){ return "i" + Date.now().toString(36) + (itemSeq++).toString(36); }
+
+function generateList(from, to, includeStaples){
+  const ids = idsIn(from, to);
+  const lines = buildShoppingList(RECIPES, FOODS, ids);
+  const items = lines
+    .filter(l => includeStaples || l.aisle !== "cupboard")
+    .map(l => ({
+      id: newItemId(),
+      name: l.group,
+      qty: l.quantity,
+      aisle: l.aisle,
+      aisleLabel: l.aisle_label,
+      note: l.merged
+        ? l.components.map(c => c.food).join(" + ")
+        : Array.from(new Set(l.components[0].recipes.map(id => BY_ID[id] ? BY_ID[id].name : id)))
+            .slice(0, 2).join(", "),
+      ticked: false,
+      manual: false,
+    }));
+  return { from, to, created: new Date().toISOString(), items };
+}
+
+function viewShop(){
+  if (!S.shopping){
+    return `<div class="card"><div class="empty-state">
+        No shopping list yet.<br>Create one from the days you want to shop for.
+      </div>
+      <div class="bar"><button class="pri" data-newlist="1" style="width:100%">Create a shopping list</button></div>
+    </div>`;
+  }
+
+  const sh = S.shopping;
+  const left = sh.items.filter(i => !i.ticked).length;
+  const span = sh.from === sh.to ? fmtDate(sh.from) : `${fmtShort(sh.from)} - ${fmtShort(sh.to)}`;
+
+  let html = `<div class="card"><div class="hd"><div>
+      <h2>Shopping list</h2>
+      <div class="sub">For ${esc(span)} &middot; ${sh.items.length} item${
+        sh.items.length === 1 ? "" : "s"}, ${left} left</div>
+    </div></div>
+    <div class="bar tight">
+      <button class="sec" data-newlist="1">Start over</button>
+      <button class="sec" data-untick="1">Clear ticks</button>
+      <button class="sec" data-copy="1">Copy</button>
+    </div></div>`;
+
+  if (!sh.items.length){
+    html += `<div class="card"><div class="empty-state">
+      This list is empty. Add an item below, or start over to pick different days.
+    </div>${addForm()}</div>`;
+    return html;
+  }
+
+  const order = (typeof AISLE_ORDER !== "undefined") ? AISLE_ORDER : [];
+  // Anything not in the shop's aisle order (your own additions) belongs at the end.
+  const rank = aisle => { const i = order.indexOf(aisle); return i === -1 ? order.length : i; };
+  const byAisle = {};
+  sh.items.forEach(i => { (byAisle[i.aisleLabel] = byAisle[i.aisleLabel] || []).push(i); });
+  const labels = Object.keys(byAisle).sort((x, y) =>
+    rank(byAisle[x][0].aisle) - rank(byAisle[y][0].aisle));
+
+  let body = "";
+  labels.forEach(label => {
+    body += `<div class="aisle">${esc(label)}</div>`;
+    byAisle[label].forEach(i => {
+      body += `<div class="it ${i.ticked ? "done" : ""}">
+        <button class="ck ${i.ticked ? "on" : ""}" data-tick="${i.id}"
+          aria-label="Tick off">${i.ticked ? "&#10003;" : ""}</button>
+        <button class="itxt" data-edit="${i.id}">
+          <b>${esc(i.name)}</b>${i.qty ? ` &mdash; ${esc(i.qty)}` : ""}
+          <small>${esc(i.note || (i.manual ? "added by you" : ""))}</small>
+        </button>
+        <button class="rm" data-rm="${i.id}" aria-label="Remove">&times;</button>
+      </div>`;
+    });
+  });
+
+  html += `<div class="card">${body}${addForm()}</div>`;
+  return html;
+}
+
+function addForm(){
+  return `<form class="add" id="addf">
+    <input type="text" id="addi" placeholder="Add an item..." autocomplete="off">
+    <button class="sec" type="submit">Add</button>
+  </form>`;
+}
+
+function newListSheet(){
+  const today = todayISO();
+  const [a, b] = range();
+  openSheet(`<header><h1>New shopping list</h1>
+      <button class="x" data-close="1">&times;</button></header>
+    <div class="body">
+      <div class="card"><h2>Quick choice</h2>
+        <div class="sub">Shop for a single day, or the whole week.</div>
+        <div class="bar">
+          <button class="sec" data-gen="${today}|${today}">Today</button>
+          <button class="sec" data-gen="${today}|${addDays(today, 1)}">Today + tomorrow</button>
+          <button class="sec" data-gen="${startOfWeek(today)}|${addDays(startOfWeek(today), 6)}">This week</button>
+          <button class="sec" data-gen="${addDays(startOfWeek(today), 7)}|${addDays(startOfWeek(today), 13)}">Next week</button>
+        </div>
+        ${S.view !== "day" ? `<div class="bar"><button class="sec" data-gen="${a}|${b}">
+          Current view (${esc(rangeLabel())})</button></div>` : ""}
+      </div>
+      <div class="card"><h2>Choose any range</h2>
+        <form id="rangef">
+          <label class="fld"><span>From</span><input type="date" name="from" value="${a}"></label>
+          <label class="fld"><span>To</span><input type="date" name="to" value="${b}"></label>
+          <label class="fld" style="display:flex;align-items:center;gap:9px">
+            <input type="checkbox" name="staples" checked style="width:auto">
+            <span style="margin:0">Include cupboard staples</span></label>
+          <button class="pri" type="submit" style="width:100%">Create list</button>
+        </form>
+      </div>
+    </div>`);
+}
+
+function createList(from, to, staples){
+  if (to < from){ toast("The end date is before the start date"); return; }
+  const list = generateList(from, to, staples !== false);
+  if (!list.items.length){
+    toast("No meals planned in those days, so there is nothing to buy");
+    return;
+  }
+  S.shopping = list;
+  save();
+  closeSheet();
+  tab = "shop";
+  render();
+  toast(`${list.items.length} items from ${idsIn(from, to).length} meals`);
+}
+
+function editItemSheet(id){
+  const item = S.shopping.items.find(i => i.id === id);
+  if (!item) return;
+  openSheet(`<header><h1>Edit item</h1><button class="x" data-close="1">&times;</button></header>
+    <div class="body"><div class="card">
+      <form id="editf" data-id="${item.id}">
+        <label class="fld"><span>Item</span>
+          <input type="text" name="name" value="${esc(item.name)}" required></label>
+        <label class="fld"><span>Quantity</span>
+          <input type="text" name="qty" value="${esc(item.qty || "")}" placeholder="e.g. 2 packs"></label>
+        <div class="bar tight">
+          <button class="pri" type="submit">Save</button>
+          <button class="sec danger" type="button" data-rm="${item.id}">Remove item</button>
+        </div>
+      </form>
+      ${item.note ? `<div class="src">From: ${esc(item.note)}</div>` : ""}
+    </div></div>`);
+}
+
+function copyList(){
+  if (!S.shopping) return;
+  const text = S.shopping.items
+    .map(i => `- ${i.name}${i.qty ? " - " + i.qty : ""}${i.ticked ? " (got it)" : ""}`)
+    .join("\n");
+  const done = () => toast("List copied");
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, () => toast("Could not copy"));
+  } else {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); done(); } catch (e) { toast("Could not copy"); }
+    ta.remove();
+  }
+}
+
+/* ===== render ============================================================ */
 function render(){
   const warn = STORE_OK ? "" :
-    `<div class="warnbar">This browser is blocking local storage, so your plan won't be
-     remembered after you close the page. Opening the file from a normal folder usually fixes it.</div>`;
+    `<div class="warnbar">This browser is blocking local storage, so your plan will not be
+     remembered after you close the page.</div>`;
   document.getElementById("view").innerHTML = warn + (
-    tab === "plan" ? viewPlan() : tab === "recipes" ? viewRecipes() : viewShop());
+    tab === "plan" ? viewPlan() :
+    tab === "recipes" ? viewRecipes() :
+    tab === "nutrients" ? viewNutrients() : viewShop());
   document.querySelectorAll("nav button").forEach(b =>
     b.classList.toggle("on", b.dataset.tab === tab));
-  const n = plannedIds().length;
+
+  const planned = Object.keys(S.plan).filter(d => mealsOn(d).length).length;
   document.getElementById("hsub").textContent =
-    n ? `${n}/21 planned` : `${RECIPES.length} recipes`;
+    tab === "shop" && S.shopping
+      ? `${S.shopping.items.filter(i => !i.ticked).length} to buy`
+      : planned ? `${planned} day${planned === 1 ? "" : "s"} planned`
+                : `${RECIPES.length} recipes`;
+
   if (tab === "recipes"){
     const q = document.getElementById("q");
     if (q){
@@ -357,6 +823,7 @@ function render(){
   }
 }
 
+/* ===== sheets ============================================================ */
 function openSheet(html){
   closeSheet();
   sheet = document.createElement("div");
@@ -367,17 +834,39 @@ function openSheet(html){
 }
 function closeSheet(){ if (sheet){ sheet.remove(); sheet = null; } }
 
-function pickSheet(day, slot){
+function pickSheet(date, slot){
   const list = RECIPES.filter(r => r.slot === slot);
-  const current = (S.plan[day] || {})[slot];
-  openSheet(`<header><h1>${day} &middot; ${slot}</h1>
+  const current = (S.plan[date] || {})[slot];
+  openSheet(`<header><h1>${esc(fmtDate(date))} &middot; ${slot}</h1>
       <button class="x" data-close="1">&times;</button></header>
     <div class="body">
-      ${current ? `<div class="card"><button class="sec" data-unset="${day}|${slot}">Remove this meal</button></div>` : ""}
+      ${current ? `<div class="card"><div class="bar tight">
+          <button class="sec" data-open="${current}">View recipe</button>
+          <button class="sec danger" data-unset="${date}|${slot}">Remove</button>
+        </div></div>` : ""}
       <div class="card"><ul class="rlist">${list.map(r => recipeRow(r, "set")).join("")}</ul></div>
     </div>`);
-  sheet.dataset.day = day;
+  sheet.dataset.date = date;
   sheet.dataset.slot = slot;
+}
+
+/** Tapping a filled slot in week view: show what it is before changing it. */
+function slotSheet(date, slot){
+  const id = (S.plan[date] || {})[slot];
+  if (!id){ pickSheet(date, slot); return; }
+  const r = BY_ID[id];
+  openSheet(`<header><h1>${esc(fmtDate(date))} &middot; ${slot}</h1>
+      <button class="x" data-close="1">&times;</button></header>
+    <div class="body"><div class="card">
+      <div class="mealname" style="font-size:17px;font-weight:600">${esc(r.name)}</div>
+      <div class="sub">${r.macros.kcal} kcal &middot; ${r.macros.protein} g protein
+        &middot; ${r.macros.fat} g fat &middot; ${r.macros.carbs} g carbs</div>
+      <div class="bar">
+        <button class="sec pri" data-open="${r.id}">View recipe</button>
+        <button class="sec" data-pick="${date}|${slot}">Change meal</button>
+        <button class="sec danger" data-unset="${date}|${slot}">Remove</button>
+      </div>
+    </div></div>`);
 }
 
 function recipeSheet(id){
@@ -390,11 +879,9 @@ function recipeSheet(id){
     <div class="body"><div class="card">
       <div class="sub">${esc(r.slot)}${r.total_min ? ` &middot; ${r.total_min} min` : ""}${
         r.tags.length ? ` &middot; ${r.tags.map(esc).join(", ")}` : ""}</div>
-      <div class="macros">
-        <div class="macro"><b>${r.macros.kcal}</b><span>kcal</span></div>
-        <div class="macro"><b>${r.macros.protein}</b><span>protein</span></div>
-        <div class="macro"><b>${r.macros.carbs}</b><span>carbs</span></div>
-        <div class="macro"><b>${r.macros.fat}</b><span>fat</span></div>
+      <div class="macros" style="margin-top:10px">
+        ${MACROS.map(m => `<div class="macro"><span class="nm">${m.label}</span>
+          <b>${r.macros[m.key]}${m.unit}</b></div>`).join("")}
       </div>
       <h2 style="margin-top:14px">Ingredients</h2>
       <ul class="ing">${r.ingredients.map(i =>
@@ -405,91 +892,216 @@ function recipeSheet(id){
     </div></div>`);
 }
 
-function setMeal(day, slot, id){
-  if (!S.plan[day]) S.plan[day] = {};
-  S.plan[day][slot] = id;
+/* ===== plan mutations ==================================================== */
+function setMeal(date, slot, id){
+  if (!S.plan[date]) S.plan[date] = {};
+  S.plan[date][slot] = id;
+  save();
+}
+function unsetMeal(date, slot){
+  if (S.plan[date]){
+    delete S.plan[date][slot];
+    if (!Object.keys(S.plan[date]).length) delete S.plan[date];
+  }
   save();
 }
 
-function fillWeek(){
-  let added = 0;
-  DAYS.forEach(day => SLOTS.forEach(slot => {
-    if ((S.plan[day] || {})[slot]) return;
-    const pool = RECIPES.filter(r => r.slot === slot);
-    if (!pool.length) return;
-    const used = new Set(plannedIds());
-    const fresh = pool.filter(r => !used.has(r.id));
-    const from = fresh.length ? fresh : pool;
-    setMeal(day, slot, from[Math.floor(Math.random() * from.length)].id);
-    added++;
-  }));
-  toast(added ? `Filled ${added} slot${added === 1 ? "" : "s"}` : "Week is already full");
+const FILL_TOLERANCE = 120;
+const SLOT_SHARE = { breakfast: 0.25, lunch: 0.35, dinner: 0.40 };
+
+function fillRange(){
+  const [a, b] = range();
+  const dates = daysBetween(a, b);
+  const empty = dates.reduce((n, d) =>
+    n + SLOTS.filter(s => !(S.plan[d] || {})[s]).length, 0);
+  if (!empty){ toast("Nothing empty to fill in this view"); return; }
+  if (empty > 21 && !confirm(`Fill ${empty} empty meal slots across ${dates.length} days?`)) return;
+
+  const used = new Set(idsIn(a, b));
+  dates.forEach(date => {
+    const open = SLOTS.filter(s => !(S.plan[date] || {})[s]);
+    if (!open.length) return;
+    // Spend what is left of the day's calorie goal across the slots still open,
+    // so filling a day lands near your target instead of wherever chance falls.
+    let budget = Math.max(0, S.goals.kcal - totalsOn(date).kcal);
+    let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);
+
+    open.forEach((slot, i) => {
+      const pool = RECIPES.filter(r => r.slot === slot);
+      if (!pool.length) return;
+      const target = share > 0 ? budget * (SLOT_SHARE[slot] / share) : 0;
+      const fresh = pool.filter(r => !used.has(r.id));
+      const rank = list => list.slice().sort((x, y) =>
+        Math.abs(x.macros.kcal - target) - Math.abs(y.macros.kcal - target));
+      // Prefer meals not already used in this period, but not at any price: once
+      // the unused ones are a poor fit for what's left of the day, reuse one.
+      let ranked = rank(fresh);
+      if (!ranked.length || Math.abs(ranked[0].macros.kcal - target) > FILL_TOLERANCE){
+        const all = rank(pool);
+        if (!ranked.length || Math.abs(all[0].macros.kcal - target)
+            < Math.abs(ranked[0].macros.kcal - target)) ranked = all;
+      }
+      // Shortlist the closest fits, then pick among them so weeks still vary.
+      // The shortlist narrows as the day fills up, so the last meal is chosen to
+      // close the gap on your goal rather than widen it.
+      const width = Math.max(2, 6 - 2 * i);
+      const shortlist = ranked.slice(0, Math.min(width, ranked.length));
+      const pick = shortlist[Math.floor(Math.random() * shortlist.length)];
+      setMeal(date, slot, pick.id);
+      used.add(pick.id);
+      budget = Math.max(0, budget - pick.macros.kcal);
+      share -= SLOT_SHARE[slot];
+    });
+  });
+  render();
+  toast(`Filled ${empty} slot${empty === 1 ? "" : "s"}`);
+}
+
+function clearRange(){
+  const [a, b] = range();
+  const dates = daysBetween(a, b).filter(d => mealsOn(d).length);
+  if (!dates.length){ toast("Nothing planned to clear"); return; }
+  if (!confirm(`Clear every meal on ${dates.length} day${dates.length === 1 ? "" : "s"}?`)) return;
+  dates.forEach(d => { delete S.plan[d]; });
+  save();
   render();
 }
 
-function copyList(){
-  const ids = plannedIds();
-  const all = buildShoppingList(RECIPES, FOODS, ids)
-    .filter(l => S.staples || !STAPLE_AISLES.has(l.aisle));
-  const text = all.map(l => `- ${l.group} - ${l.quantity}`)
-    .concat(S.extras.map(x => `- ${x}`)).join("\n");
-  const done = () => toast("List copied");
-  if (navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(done, () => toast("Could not copy"));
-  } else {
-    const ta = document.createElement("textarea");
-    ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand("copy"); done(); } catch (e) { toast("Could not copy"); }
-    ta.remove();
-  }
-}
-
+/* ===== events ============================================================ */
 document.addEventListener("click", e => {
-  const t = e.target.closest("[data-tab],[data-pick],[data-set],[data-open],[data-close]," +
-    "[data-unset],[data-tick],[data-rmx],[data-staples],[data-untick],[data-fill]," +
-    "[data-clear],[data-slot],[data-tag],[data-copy]");
+  const t = e.target.closest("[data-tab],[data-view],[data-step],[data-today],[data-day]," +
+    "[data-pick],[data-slot-tap],[data-set],[data-open],[data-close],[data-unset]," +
+    "[data-fill],[data-clear],[data-fslot],[data-tag],[data-newlist],[data-gen]," +
+    "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]");
   if (!t) return;
   const d = t.dataset;
 
   if (d.tab){ tab = d.tab; render(); return; }
   if (d.close){ closeSheet(); return; }
-  if (d.pick){ const [day, slot] = d.pick.split("|"); pickSheet(day, slot); return; }
+
+  /* period navigation */
+  if (d.view){ S.view = d.view; save(); render(); return; }
+  if (d.step){
+    const n = Number(d.step);
+    S.cursor = S.view === "day" ? addDays(S.cursor, n)
+             : S.view === "week" ? addDays(S.cursor, n * 7)
+             : addMonths(S.cursor, n);
+    save(); render(); return;
+  }
+  if (d.today){ S.cursor = todayISO(); save(); render(); return; }
+  if (d.day){ S.cursor = d.day; S.view = "day"; save(); render(); return; }
+
+  /* plan */
+  if (d.pick){ const [date, slot] = d.pick.split("|"); pickSheet(date, slot); return; }
+  if (d.slotTap){ const [date, slot] = d.slotTap.split("|"); slotSheet(date, slot); return; }
   if (d.set){
-    const day = sheet.dataset.day, slot = sheet.dataset.slot;
-    setMeal(day, slot, d.set);
+    const date = sheet.dataset.date, slot = sheet.dataset.slot;
+    setMeal(date, slot, d.set);
     closeSheet(); render();
-    toast(`${BY_ID[d.set].name} added to ${day}`);
+    toast(`${BY_ID[d.set].name} set for ${fmtDate(date)}`);
     return;
   }
   if (d.unset){
-    const [day, slot] = d.unset.split("|");
-    if (S.plan[day]) delete S.plan[day][slot];
-    save(); closeSheet(); render();
+    const [date, slot] = d.unset.split("|");
+    unsetMeal(date, slot);
+    closeSheet(); render();
     return;
   }
   if (d.open){ recipeSheet(d.open); return; }
-  if (d.slot){ filter.slot = filter.slot === d.slot ? null : d.slot; render(); return; }
+  if (d.fill){ fillRange(); return; }
+  if (d.clear){ clearRange(); return; }
+
+  /* recipe filters */
+  if (d.fslot){ filter.slot = filter.slot === d.fslot ? null : d.fslot; render(); return; }
   if (d.tag){ filter.tag = filter.tag === d.tag ? null : d.tag; render(); return; }
-  if (d.tick){ S.ticked[d.tick] = !S.ticked[d.tick]; save(); render(); return; }
-  if (d.rmx){ S.extras.splice(Number(d.rmx), 1); save(); render(); return; }
-  if (d.staples){ S.staples = !S.staples; save(); render(); return; }
-  if (d.untick){ S.ticked = {}; save(); render(); toast("Ticks cleared"); return; }
-  if (d.fill){ fillWeek(); return; }
+
+  /* shopping */
+  if (d.newlist){ newListSheet(); return; }
+  if (d.gen){ const [from, to] = d.gen.split("|"); createList(from, to, true); return; }
+  if (d.tick){
+    const item = S.shopping.items.find(i => i.id === d.tick);
+    if (item){ item.ticked = !item.ticked; save(); render(); }
+    return;
+  }
+  if (d.rm){
+    const i = S.shopping.items.findIndex(x => x.id === d.rm);
+    if (i >= 0){
+      const [gone] = S.shopping.items.splice(i, 1);
+      save(); closeSheet(); render();
+      toast(`Removed ${gone.name}`);
+    }
+    return;
+  }
+  if (d.edit){ editItemSheet(d.edit); return; }
+  if (d.untick){
+    S.shopping.items.forEach(i => { i.ticked = false; });
+    save(); render(); toast("Ticks cleared");
+    return;
+  }
   if (d.copy){ copyList(); return; }
-  if (d.clear){
-    if (confirm("Clear every meal from the week?")){ S.plan = {}; save(); render(); }
+
+  /* nutrients */
+  if (d.resetgoals){
+    S.goals = Object.assign({}, DATA.targets);
+    save(); render(); toast("Goals reset to defaults");
     return;
   }
 });
 
 document.addEventListener("submit", e => {
-  if (e.target.id !== "addf") return;
-  e.preventDefault();
-  const input = document.getElementById("addi");
-  const v = input.value.trim();
-  if (!v) return;
-  if (S.extras.some(x => x.toLowerCase() === v.toLowerCase())){ toast("Already on the list"); return; }
-  S.extras.push(v); save(); render();
+  const form = e.target;
+
+  if (form.id === "addf"){
+    e.preventDefault();
+    const input = document.getElementById("addi");
+    const value = input.value.trim();
+    if (!value) return;
+    if (!S.shopping) S.shopping = { from: todayISO(), to: todayISO(), created: new Date().toISOString(), items: [] };
+    S.shopping.items.push({
+      id: newItemId(), name: value, qty: "", aisle: "other",
+      aisleLabel: "Added by you", note: "", ticked: false, manual: true,
+    });
+    save(); render();
+    const again = document.getElementById("addi");
+    if (again) again.focus();
+    return;
+  }
+
+  if (form.id === "rangef"){
+    e.preventDefault();
+    const data = new FormData(form);
+    createList(data.get("from"), data.get("to"), data.get("staples") !== null);
+    return;
+  }
+
+  if (form.id === "editf"){
+    e.preventDefault();
+    const data = new FormData(form);
+    const item = S.shopping.items.find(i => i.id === form.dataset.id);
+    if (item){
+      const name = String(data.get("name")).trim();
+      if (!name){ toast("An item needs a name"); return; }
+      item.name = name;
+      item.qty = String(data.get("qty")).trim();
+      save();
+    }
+    closeSheet(); render();
+    return;
+  }
+
+  if (form.id === "goalf"){
+    e.preventDefault();
+    const data = new FormData(form);
+    const next = {};
+    for (const m of MACROS){
+      const raw = Number(data.get(m.key));
+      if (!Number.isFinite(raw) || raw < 0){ toast(`${m.label} must be a positive number`); return; }
+      next[m.key] = Math.round(raw);
+    }
+    S.goals = next;
+    save(); render(); toast("Goals saved");
+    return;
+  }
 });
 
 render();
@@ -500,8 +1112,6 @@ render();
 if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
   let reloading = false;
   navigator.serviceWorker.addEventListener("controllerchange", () => {
-    // Fires when a new version takes over. Reload once so the running page
-    // matches the code now in charge; the guard avoids a reload loop.
     if (reloading) return;
     reloading = true;
     location.reload();

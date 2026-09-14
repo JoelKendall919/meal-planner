@@ -9,6 +9,7 @@ numbers (one early batch tagged 14 recipes "high-protein" that were not).
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -187,3 +188,71 @@ def test_payload_recipes_carry_what_the_app_renders():
     for food in data["foods"].values():
         for field in ("group", "aisle", "kcal", "protein"):
             assert field in food
+
+
+def test_targets_are_achievable_from_the_catalogue(recipes):
+    """The default goals must be reachable by picking real meals.
+
+    This guards a genuine mistake that shipped: the goals were carried over from
+    the earlier hand-built week (180 g protein), which no combination of these
+    recipes can reach under the calorie cap. A goal you cannot hit is worse than
+    no goal, because every day reads as a failure.
+    """
+    from itertools import product
+
+    from mealplanner.build import TARGETS
+
+    pools = [[r for r in recipes if r.slot == slot] for slot in SLOTS]
+    hits = 0
+    for combo in product(*pools):
+        totals = {k: sum(r.macros[k] for r in combo) for k in TARGETS}
+        if totals["kcal"] <= TARGETS["kcal"] and totals["protein"] >= TARGETS["protein"]:
+            hits += 1
+    total = len(pools[0]) * len(pools[1]) * len(pools[2])
+    share = hits / total
+    assert share >= 0.05, (
+        f"only {hits} of {total} day combinations ({share:.1%}) meet the "
+        f"{TARGETS['protein']} g protein goal within {TARGETS['kcal']} kcal"
+    )
+
+
+def test_targets_energy_roughly_matches_the_calorie_goal():
+    """Protein/fat/carb goals should add up to about the calorie goal."""
+    from mealplanner.build import TARGETS
+
+    energy = TARGETS["protein"] * 4 + TARGETS["fat"] * 9 + TARGETS["carbs"] * 4
+    assert abs(energy - TARGETS["kcal"]) <= TARGETS["kcal"] * 0.1, (
+        f"macro goals give {energy} kcal against a {TARGETS['kcal']} kcal goal"
+    )
+
+
+def test_app_has_every_section_the_planner_needs(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    for tab in ("plan", "recipes", "nutrients", "shop"):
+        assert f'data-tab="{tab}"' in html, f"the {tab} tab is missing"
+    # The view buttons are generated from this list, so check the source of them.
+    assert '["day","week","month"]' in html, "the calendar views are missing"
+    assert 'data-view="${v}"' in html, "the view buttons carry no handler hook"
+    assert "data-step=" in html, "there is no way to move between weeks"
+
+
+def test_app_keeps_the_shopping_list_editable(tmp_path):
+    """Add, remove, tick and start over are the list's whole point."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    for hook in ("data-tick", "data-rm", "data-edit", "data-newlist", "data-untick"):
+        assert hook in html, f"the shopping list has no {hook} control"
+
+
+def test_fill_budgets_a_whole_day(tmp_path):
+    """SLOT_SHARE splits the day's calorie goal, so it has to add up to 1."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    line = next(ln for ln in html.splitlines() if ln.startswith("const SLOT_SHARE"))
+    shares = [float(part) for part in re.findall(r":\s*([0-9.]+)", line)]
+    assert len(shares) == len(SLOTS)
+    assert abs(sum(shares) - 1.0) < 1e-9, f"slot shares add up to {sum(shares)}"
+
+
+def test_stored_plans_from_the_previous_version_are_migrated(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'KEY = "mealplanner.v3"' in html
+    assert "mealplanner.v2" in html, "old saved plans would be silently dropped"
