@@ -567,3 +567,157 @@ def test_the_scope_actually_changes_which_recipes_qualify(recipes):
             f"scoped {slot} averages {lean:.0f} g protein against {wide:.0f} g "
             "unscoped; the scope is not buying anything"
         )
+
+
+# --- the UI tweaks -------------------------------------------------------
+#
+# These guard behaviour that only exists in the template. Each assertion is
+# pinned to a call site rather than a name: matching "fillPool(slot)" once
+# passed against the function's own definition, and a "scope" check was being
+# satisfied by the explanatory comment beside it.
+
+
+def js_block(html: str, opener: str) -> str:
+    """The text of a brace-delimited JS block, found by its opening line."""
+    start = html.index(opener)
+    depth = 0
+    for i in range(start, len(html)):
+        if html[i] == "{":
+            depth += 1
+        elif html[i] == "}":
+            depth -= 1
+            if depth == 0:
+                return html[start : i + 1]
+    raise AssertionError(f"{opener!r} is never closed")
+
+
+def test_type_filter_labels_match_the_recipe_shortlist(tmp_path):
+    """The filter should name a category the way the catalogue was planned."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    block = js_block(html, "const CAT_LABEL = {")
+    for slug, label in {
+        "cooked-breakfast": "Hot & hearty",
+        "sandwiches": "Sandwiches, toasties & wraps",
+        "salads": "Salads & bowls",
+        "pasta-and-italian": "Pasta, pizza & Italian",
+        "curries": "Curries & spiced",
+        "asian": "Asian-style",
+        "british-classics": "British classics",
+        "traybakes-and-quick": "Traybakes & quick",
+    }.items():
+        assert f'"{slug}": "{label}"' in block, f"{slug} is not labelled {label!r}"
+
+
+def test_every_category_has_a_label(tmp_path, recipes):
+    """An unlabelled category falls back to its slug, which looks like a bug."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    block = js_block(html, "const CAT_LABEL = {")
+    labelled = set(re.findall(r'"([a-z-]+)":\s*"', block))
+    used = {r.category for r in recipes}
+    assert used <= labelled, f"no label for {sorted(used - labelled)}"
+
+
+def test_the_filter_dropdown_offers_only_three_tags(tmp_path, recipes):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    block = js_block(html, "const FILTER_TAGS = [")
+    pairs = re.findall(r'\["([a-z-]+)",\s*"([^"]+)"\]', block)
+    assert [p[0] for p in pairs] == ["vegetarian", "light", "high-protein"]
+    assert [p[1] for p in pairs] == ["Vegetarian", "Light", "High protein"]
+    # A filter that matches nothing is worse than no filter.
+    for tag, label in pairs:
+        assert any(tag in r.tags for r in recipes), f"{label} matches no recipe"
+    assert "DATA.tags.map" not in html, "the full tag list is still being offered"
+
+
+def test_meal_filter_is_capitalised_buttons(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    block = js_block(html, "const SLOT_LABEL = {")
+    for slot in SLOTS:
+        assert f'{slot}: "{slot.capitalize()}"' in block, f"{slot} is not capitalised"
+    # The label has to reach the button, not just exist.
+    assert "SLOT_LABEL[s]}</button>" in html, "the meal buttons do not use the labels"
+
+
+def test_type_and_filter_are_dropdowns(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'data-${hook}="${ns}"' in html, "the filter selects have no handler hook"
+    assert "<select" in html, "the filters are not dropdowns"
+    # Selects report on change; the delegated click handler cannot see them.
+    assert "ds.fcatsel || ds.tagsel" in html, "the dropdowns are not wired to change"
+    for dead in ("data-fcat=", "data-tag="):
+        assert dead not in html, f"{dead} chips are still being rendered"
+
+
+def test_type_options_follow_the_chosen_meal(tmp_path):
+    """Picking breakfast must not leave 'Roasts' on the Type list."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "r => !f.slot || r.slots.includes(f.slot)" in html, "Type is not scoped to the meal"
+    # ...and a type that no longer applies must be dropped, not left selected
+    # while the results silently empty.
+    assert "f.cat = null;" in html, "a stale category is never cleared"
+
+
+def test_the_plan_dashboard_is_day_only(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    plan = js_block(html, "function viewPlan(){")
+    assert "const dash = isDay" in plan, "the dashboard is not gated on the day view"
+    assert plan.count("macroCards(") == 1, "the dashboard is built more than once"
+    assert "${dash}" in plan, "the gated dashboard is never rendered"
+
+
+def test_the_plan_dashboard_is_not_colour_graded(tmp_path):
+    """Scoring a day belongs to Nutrients; the plan just states the figures."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    cards = js_block(html, "function macroCards(")
+    assert "statusClass" not in cards, "the plan dashboard still grades against the goal"
+    for cls in ("s-good", "s-warn", "s-bad"):
+        assert cls not in cards, f"the plan dashboard still emits {cls}"
+    # Nutrients must keep its colouring: this is a plan-only change.
+    nutrients = js_block(html, "function viewNutrients(){")
+    assert "statusClass" in nutrients, "Nutrients lost its colour grading too"
+
+
+def test_nutrients_has_no_by_day_breakdown(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "By day" not in html, "the by-day list is back"
+    assert "macroStat" not in html, "macroStat outlived its only caller"
+
+
+def test_portions_multiply_the_written_quantity(tmp_path):
+    """Three portions of "1/2 tin" is "1 1/2 tin", not "3 x 1/2 tin"."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "function scaleDisplay(" in html, "there is no quantity scaler"
+    # The call site, not the definition.
+    assert "esc(scaleDisplay(i.display, n))" in html, "the ingredient list does not scale"
+    assert "${n} &times; " not in html, "the old 'n x' prefix is still there"
+    # Both halves of a line have to move together.
+    assert "scaleGrams(i.grams, n)" in html, "the gram weights stopped scaling"
+
+
+def test_each_day_can_be_cleared_on_its_own(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'data-clearday="${date}"' in html, "the week has no per-day clear button"
+    assert "if (d.clearday){ clearDay(d.clearday); return; }" in html, "the button is dead"
+    clear = js_block(html, "function clearDay(date){")
+    assert "delete S.plan[date];" in clear, "clearDay does not clear the day"
+    assert "[data-clearday]" in html, "the clear button is not in the click selector"
+
+
+def test_the_plan_can_copy_the_previous_period(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "if (d.copyprev){ copyPrevious(); return; }" in html, "the copy button is dead"
+    labels = js_block(html, "const PREVIOUS_LABEL = {")
+    for view, label in (("day", "yesterday"), ("week", "last week"), ("month", "last month")):
+        assert f'{view}: "{label}"' in labels, f"{view} has no name for its previous period"
+    copy = js_block(html, "function copyPrevious(){")
+    # An empty source day must not wipe a planned target day: copying is additive.
+    assert "filter(([from]) => from && mealsOn(from).length)" in copy, (
+        "copying would clear days the source left empty"
+    )
+    # Anything genuinely overwritten is confirmed first. Assert the guard, not
+    # the word: "confirm(" alone is still a substring of "!xconfirm(", so a
+    # gutted check would keep passing.
+    assert "if (busy && !confirm(" in copy, "copying replaces planned days without asking"
+    assert "const busy = pairs.filter" in copy, "nothing counts what would be replaced"
+    # The copy has to be independent of its source.
+    assert "Object.assign({}, S.plan[from])" in copy, "the copy aliases the original"

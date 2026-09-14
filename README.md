@@ -12,11 +12,45 @@ entry, and chicken thigh spread across three meals becomes "3 thighs".
 ## Portions, and why they do not reach the shopping list
 
 A planned slot is always **one portion**. The portions stepper on a recipe is a
-cooking aid: it scales the ingredient quantities so you can cook two at once and
-take the second to work, but it deliberately does not feed into the shopping
-list. The list is built from the plan alone, so plan a meal on both days you eat
-it and the ingredients are counted twice. Were the stepper to scale the list as
-well, cooking two and planning two would buy four portions' worth.
+cooking aid: it multiplies the quantities written into each ingredient line — so
+three portions of "1/2 tin chopped tomatoes" reads "1 1/2 tin", not "3 x 1/2
+tin" — alongside the gram weight beside it. A line with no stated number ("a
+knob of butter") keeps its wording, because there is nothing there to multiply
+and its gram weight already scales.
+
+The stepper deliberately does not feed into the shopping list. The list is built
+from the plan alone, so plan a meal on both days you eat it and the ingredients
+are counted twice. Were the stepper to scale the list as well, cooking two and
+planning two would buy four portions' worth.
+
+## Finding a recipe
+
+Three controls, deliberately shaped differently because they are used at
+different rates:
+
+- **Meal** is buttons, each in its own colour. It is the filter you change
+  constantly, so it is worth the space and is readable without being read.
+- **Type** is a dropdown of the 21 categories the catalogue was planned under,
+  wording and all. It offers only the categories that exist within the meal you
+  have chosen, so picking Breakfast does not leave "Roasts" on the list; a type
+  that stops applying is cleared rather than left selected over an empty result.
+- **Filter** is a dropdown holding only **Vegetarian**, **Light** and **High
+  protein**. Recipes carry a dozen other authored tags, which stay searchable
+  and still show on a recipe, but a filter list that long is a menu to read
+  rather than a control to use.
+
+## The plan, and what it does not tell you
+
+The macro dashboard belongs to the **day** view alone. Over a week or a month it
+could only show an average, which reads as a verdict on a period you are still
+halfway through planning. Scoring a day is the Nutrients tab's job, which is
+also the only place figures are graded green, amber and red — the plan states
+what you are eating and leaves it at that.
+
+Each day in the week view carries its own clear button, and **Copy yesterday /
+last week / last month** duplicates the previous period onto the one on screen.
+Copying is additive: a day the source left empty is skipped rather than wiped,
+and anything genuinely being replaced is confirmed first.
 
 ## Reading the colours
 

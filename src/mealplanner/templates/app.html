@@ -20,6 +20,9 @@
      recognisable before you have read its label. */
   --m-kcal:#b45309; --m-protein:#1d4ed8; --m-fat:#a21caf; --m-carbs:#0f766e;
   --m-kcal-bg:#fdf3e7; --m-protein-bg:#eef2ff; --m-fat-bg:#fbf0fb; --m-carbs-bg:#ecf8f6;
+  /* One colour per meal. Separate from the macro palette on purpose: these
+     label which meal you are looking at, not which number. */
+  --sl-breakfast:#c2410c; --sl-lunch:#15803d; --sl-dinner:#6d28d9; --sl-snack:#0369a1;
 }
 .k-kcal{color:var(--m-kcal)} .k-protein{color:var(--m-protein)}
 .k-fat{color:var(--m-fat)} .k-carbs{color:var(--m-carbs)}
@@ -69,6 +72,23 @@ nav button.on{color:var(--ink);font-weight:600;box-shadow:inset 0 -2.5px 0 var(-
 .chip{white-space:nowrap;padding:6px 11px;border-radius:999px;border:1px solid var(--line);
   background:#fff;font-size:13px}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+/* One colour per meal, so the selected meal reads before its label does. These
+   are deliberately a separate family from the macro colours: a macro figure is
+   always introduced by a round dot, a meal is always a pill. */
+.chip.slot-breakfast{color:var(--sl-breakfast);border-color:#f0d9c4}
+.chip.slot-lunch{color:var(--sl-lunch);border-color:#c9e3d2}
+.chip.slot-dinner{color:var(--sl-dinner);border-color:#d9d0f2}
+.chip.slot-snack{color:var(--sl-snack);border-color:#c5dcec}
+.chip.slot-breakfast.on{background:var(--sl-breakfast);border-color:var(--sl-breakfast);color:#fff}
+.chip.slot-lunch.on{background:var(--sl-lunch);border-color:var(--sl-lunch);color:#fff}
+.chip.slot-dinner.on{background:var(--sl-dinner);border-color:var(--sl-dinner);color:#fff}
+.chip.slot-snack.on{background:var(--sl-snack);border-color:var(--sl-snack);color:#fff}
+.fsel{flex:1 1 auto;min-width:0;margin-bottom:6px;padding:8px 10px;font:inherit;font-size:13px;
+  border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0l5 6 5-6z' fill='%236b6b6b'/></svg>");
+  background-repeat:no-repeat;background-position:right 11px center;padding-right:28px}
+.fsel.on{border-color:var(--accent);font-weight:600}
 input[type=search],input[type=text],input[type=number],input[type=date]{width:100%;
   padding:10px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;background:#fff;
   color:var(--ink)}
@@ -117,11 +137,17 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .wkday.today{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
 .wkday h3{margin:0;padding:8px 11px;font-size:12.5px;background:#fafaf8;
   border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:6px}
-.wkday h3 .kc{font-weight:600;font-size:11.5px}
+.wkday h3 .kc{font-weight:600;font-size:11.5px;margin-left:auto}
+.wkday h3 .dayclear{padding:0;width:20px;height:20px;line-height:1;font-size:15px;border:0;
+  background:none;color:var(--mut);border-radius:6px;flex:none}
+.wkday h3 .dayclear:hover:not(:disabled){background:#efefea;color:var(--bad)}
+.wkday h3 .dayclear:disabled{opacity:.25}
 .mini{display:flex;align-items:center;gap:8px;padding:7px 11px;width:100%;background:none;
   border:0;border-top:1px solid #f0f0ec;text-align:left;border-radius:0}
 .mini:first-of-type{border-top:0}
 .mini .lbl{font-size:10px;color:var(--mut);width:22px;flex:none;text-transform:uppercase}
+.mini .lbl.slot-breakfast{color:var(--sl-breakfast)} .mini .lbl.slot-lunch{color:var(--sl-lunch)}
+.mini .lbl.slot-dinner{color:var(--sl-dinner)} .mini .lbl.slot-snack{color:var(--sl-snack)}
 .mini .val{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   font-size:13px}
 .mini .val.empty{color:#b4b4b0}
@@ -257,6 +283,7 @@ const DATA = __DATA__;
 const MAIN_SLOTS = ["breakfast", "lunch", "dinner"];
 const SLOTS = MAIN_SLOTS.concat("snack");
 const SLOT_ABBR = { breakfast: "B", lunch: "L", dinner: "D", snack: "S" };
+const SLOT_LABEL = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
 const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = ["January","February","March","April","May","June",
                 "July","August","September","October","November","December"];
@@ -396,20 +423,32 @@ const filter = { slot: null, cat: null, tag: null, q: "" };
 let pickFilter = { slot: null, cat: null, tag: null, q: "" };
 
 // Readable names for the controlled category vocabulary. The vocabulary is
-// closed, so these are written out rather than derived from the slug.
+// closed, so these are written out rather than derived from the slug. The
+// wording matches the headings the catalogue was planned under, so that the
+// shortlist and the app describe the same thing the same way.
 const CAT_LABEL = {
   "cereal-and-cold": "Cereal & cold", "toast-and-bakery": "Toast & bakery",
-  "eggs": "Eggs", "cooked-breakfast": "Cooked breakfast",
-  "sandwiches": "Sandwiches", "jacket-potatoes": "Jacket potatoes",
-  "soups": "Soups", "salads": "Salads", "bakery-and-picky": "Bakery & picky",
-  "british-classics": "Classics", "roasts": "Roasts",
-  "pasta-and-italian": "Pasta & Italian", "curries": "Curries",
-  "asian": "Asian", "fish": "Fish", "traybakes-and-quick": "Traybakes",
+  "eggs": "Eggs", "cooked-breakfast": "Hot & hearty",
+  "sandwiches": "Sandwiches, toasties & wraps", "jacket-potatoes": "Jacket potatoes",
+  "soups": "Soups", "salads": "Salads & bowls", "bakery-and-picky": "Bakery & picky",
+  "british-classics": "British classics", "roasts": "Roasts",
+  "pasta-and-italian": "Pasta, pizza & Italian", "curries": "Curries & spiced",
+  "asian": "Asian-style", "fish": "Fish", "traybakes-and-quick": "Traybakes & quick",
   "fruit-and-veg": "Fruit & veg", "dairy-and-protein": "Dairy & protein",
   "bread-and-baked": "Bread & baked", "savoury-treats": "Savoury treats",
   "sweet-treats": "Sweet treats",
 };
 const catLabel = c => CAT_LABEL[c] || c;
+
+// The Filter dropdown is deliberately short. Recipes carry a dozen authored
+// tags, which stay searchable and still show on a recipe, but a filter list
+// that long is a menu to read rather than a control to use. These three are the
+// ones that change which meal you would pick.
+const FILTER_TAGS = [
+  ["vegetarian", "Vegetarian"],
+  ["light", "Light"],
+  ["high-protein", "High protein"],
+];
 
 /** Recipes matching a filter set, used by both the Recipes tab and the picker. */
 function filterRecipes(f){
@@ -427,27 +466,36 @@ function filterRecipes(f){
   });
 }
 
-/** The search box and filter chips. `ns` namespaces the hooks so the picker's
+/** The search box and filter controls. `ns` namespaces the hooks so the picker's
  *  copy and the Recipes tab's copy can coexist without fighting each other.
  *
- *  Filters are grouped into facets rather than one flat strip: a single strip
- *  of every tag was already ~20 chips and does not survive a larger catalogue.
- *  The Type row only offers categories that exist within the chosen meal, so
- *  picking breakfast does not leave "Roasts" on screen. */
+ *  Meal stays as buttons because it is the one filter you change constantly and
+ *  it is worth its screen space; each slot carries its own colour so the active
+ *  meal is readable at a glance. Type and Filter are dropdowns: Type alone is 21
+ *  entries, which is past the point where a scrolling chip strip is usable, and
+ *  a closed select also shows the current choice without any horizontal hunting.
+ *  The Type list only offers categories that exist within the chosen meal, so
+ *  picking breakfast does not leave "Roasts" on the list. */
 function filterControls(f, ns){
   const cats = [...new Set(RECIPES
     .filter(r => !f.slot || r.slots.includes(f.slot))
     .map(r => r.category))].sort((a, b) => catLabel(a).localeCompare(catLabel(b)));
-  const row = (label, chips) =>
-    `<div class="facet"><span class="flab">${label}</span><div class="chips">${chips}</div></div>`;
+  const row = (label, body) =>
+    `<div class="facet"><span class="flab">${label}</span>${body}</div>`;
+  const select = (hook, current, options, anyLabel) =>
+    `<select class="fsel${current ? " on" : ""}" data-${hook}="${ns}">
+      <option value="">${anyLabel}</option>
+      ${options.map(([val, label]) =>
+        `<option value="${esc(val)}" ${current === val ? "selected" : ""}>${esc(label)}</option>`
+      ).join("")}
+    </select>`;
   return `<input type="search" id="q-${ns}" data-search="${ns}"
       placeholder="Search recipes or ingredients..." value="${esc(f.q)}">
-    ${row("Meal", SLOTS.map(s =>
-      `<button class="chip ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${s}</button>`).join(""))}
-    ${row("Type", cats.map(c =>
-      `<button class="chip ${f.cat === c ? "on" : ""}" data-fcat="${ns}|${esc(c)}">${esc(catLabel(c))}</button>`).join(""))}
-    ${row("Filter", DATA.tags.map(t =>
-      `<button class="chip ${f.tag === t ? "on" : ""}" data-tag="${ns}|${esc(t)}">${esc(t)}</button>`).join(""))}`;
+    ${row("Meal", `<div class="chips">${SLOTS.map(s =>
+      `<button class="chip slot-${s} ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${
+        SLOT_LABEL[s]}</button>`).join("")}</div>`)}
+    ${row("Type", select("fcatsel", f.cat, cats.map(c => [c, catLabel(c)]), "All types"))}
+    ${row("Filter", select("tagsel", f.tag, FILTER_TAGS, "No filter"))}`;
 }
 let sheet = null;
 
@@ -544,21 +592,17 @@ function statusClass(value, goal, dir){
   return pct > 1.02 ? "s-bad" : pct >= 0.9 ? "s-warn" : "s-good";
 }
 
-/** A single "42 g of 150 g" figure, coloured by how it is tracking. */
-function macroStat(key, value, goal){
-  const m = MACRO_BY_KEY[key];
-  const cls = statusClass(value, goal, m.dir);
-  return `<span class="stat"><i class="dot k-${key}"></i>${
-    value}${m.unit}<small class="${cls}"> / ${goal}${m.unit}</small></span>`;
-}
 
+/** The macro dashboard. Figures carry their macro's own colour but no
+ *  good/warning/over status: the Nutrients tab is where a day is scored, and
+ *  colouring the same numbers here made the plan read as a verdict on every
+ *  glance rather than as a list of what you are eating. */
 function macroCards(values, goals, caption){
   return `<div class="macros">${MACROS.map(m => {
     const v = values[m.key], g = goals[m.key] || 0;
-    const cls = statusClass(v, g, m.dir);
     return `<div class="macro k-${m.key}"><span class="nm k-${m.key}">${m.label}</span>
-      <b class="${cls}">${v}${m.unit}</b>${
-      g ? `<span class="of ${cls}">of ${g}${m.unit}</span>` : ""}</div>`;
+      <b>${v}${m.unit}</b>${
+      g ? `<span class="of">of ${g}${m.unit}</span>` : ""}</div>`;
   }).join("")}</div>${caption ? `<div class="sub" style="margin-top:8px">${esc(caption)}</div>` : ""}`;
 }
 
@@ -572,26 +616,29 @@ function macroLine(macros){
 /* ===== plan ============================================================== */
 function viewPlan(){
   const [a, b] = range();
-  const s = summarise(a, b);
   const isDay = S.view === "day";
-  const values = isDay ? totalsOn(S.cursor) : s.avg;
-  const caption = isDay
-    ? (mealsOn(S.cursor).length ? "" : "Nothing planned for this day yet.")
-    : s.days
-      ? `Daily average across ${s.days} planned day${s.days === 1 ? "" : "s"}.`
-      : "Nothing planned in this period yet.";
+
+  // The dashboard belongs to the day view only. Over a week or a month it could
+  // only show an average, which reads like a score for a period you are still
+  // half way through planning; the Nutrients tab is the place for that figure.
+  const dash = isDay
+    ? `<div class="card">${macroCards(totalsOn(S.cursor), S.goals,
+        mealsOn(S.cursor).length ? "" : "Nothing planned for this day yet.")}</div>`
+    : "";
 
   let html = `<div class="card">${segmented()}</div>
-    <div class="card">${macroCards(values, S.goals, caption)}</div>
+    ${dash}
     <div class="card"><div class="bar tight">
       <button class="sec" data-fill="1">Fill empty slots</button>
+      <button class="sec" data-copyprev="1">Copy ${PREVIOUS_LABEL[S.view]}</button>
       <button class="sec danger" data-clear="1">Clear ${S.view}</button>
     </div>
     <div class="facet">
       <span class="flab">Fill with</span>
       ${SCOPES.map(sc => `<button class="tag${S.scope === sc.id ? " on" : ""}" `
         + `data-scope="${sc.id === null ? "" : sc.id}">${sc.label}</button>`).join("")}
-    </div></div>`;
+    </div>
+    </div>`;
 
   if (isDay) html += dayTiles(S.cursor);
   else if (S.view === "week") html += weekGrid(a, b);
@@ -623,14 +670,17 @@ function weekGrid(a, b){
   const today = todayISO();
   return `<div class="wk">${daysBetween(a, b).map(date => {
     const t = totalsOn(date);
+    const planned = mealsOn(date).length;
     return `<div class="wkday ${date === today ? "today" : ""}">
       <h3><span>${dowName(date)} ${parseISO(date).getDate()}</span>
-        <span class="kc">${t.kcal ? t.kcal + " kcal" : ""}</span></h3>
+        <span class="kc">${t.kcal ? t.kcal + " kcal" : ""}</span>
+        <button class="dayclear" data-clearday="${date}" ${planned ? "" : "disabled"}
+          title="Clear this day" aria-label="Clear ${esc(fmtDate(date))}">&times;</button></h3>
       ${SLOTS.map(slot => {
         const id = (S.plan[date] || {})[slot];
         const r = id ? BY_ID[id] : null;
         return `<button class="mini" data-slot-tap="${date}|${slot}">
-          <span class="lbl">${SLOT_ABBR[slot]}</span>
+          <span class="lbl slot-${slot}">${SLOT_ABBR[slot]}</span>
           <span class="val ${r ? "" : "empty"}">${r ? esc(r.name) : "&mdash;"}</span>
           <span class="n k-kcal">${r ? r.macros.kcal : ""}</span>
         </button>`;
@@ -815,16 +865,6 @@ function viewNutrients(){
           <span class="sub">${x.by} g short</span>
           <button class="sec" data-day="${x.date}">Open</button></li>`).join("")}</ul></div>`;
     }
-  }
-
-  if (!isDay && s.days){
-    html += `<div class="card"><h2>By day</h2><ul class="dlist">${
-      daysBetween(a, b).filter(d => mealsOn(d).length).map(d => {
-        const t = totalsOn(d);
-        return `<li><span>${esc(fmtDate(d))}</span>
-          <span class="sub mline">${MACROS.map(m =>
-            macroStat(m.key, t[m.key], S.goals[m.key])).join("")}</span></li>`;
-      }).join("")}</ul></div>`;
   }
 
   html += `<div class="card"><div class="hd"><div>
@@ -1113,6 +1153,52 @@ function scaleGrams(grams, n){
   return v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
 }
 
+// Quantities written into an ingredient line, in the forms recipes actually use:
+// a whole number, a decimal, a simple fraction, a mixed number, or a typographic
+// fraction. Anything else ("a knob of butter") has no number to multiply.
+const VULGAR = { "\u00bc": 0.25, "\u00bd": 0.5, "\u00be": 0.75, "\u2153": 1 / 3, "\u2154": 2 / 3 };
+const LEADING_QTY =
+  /^(\s*)(\d+\s+\d+\s*\/\s*\d+|\d+\s*\/\s*\d+|\d+(?:\.\d+)?|[\u00bc\u00bd\u00be\u2153\u2154])(\s*)/;
+
+function parseQty(token){
+  const tok = token.trim();
+  if (VULGAR[tok] !== undefined) return VULGAR[tok];
+  const mixed = tok.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+  if (mixed) return Number(mixed[1]) + Number(mixed[2]) / Number(mixed[3]);
+  const frac = tok.match(/^(\d+)\s*\/\s*(\d+)$/);
+  if (frac) return Number(frac[1]) / Number(frac[2]);
+  return Number(tok);
+}
+
+/** Write a quantity back the way a recipe would: whole numbers plain, the usual
+ *  kitchen fractions as fractions, and anything else to one decimal place. */
+function fmtQty(v){
+  if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v));
+  const whole = Math.floor(v), rem = v - whole;
+  const FRACTIONS = [[0.25, "1/4"], [1 / 3, "1/3"], [0.5, "1/2"], [2 / 3, "2/3"], [0.75, "3/4"]];
+  for (const [val, text] of FRACTIONS){
+    if (Math.abs(rem - val) < 0.02) return whole ? `${whole} ${text}` : text;
+  }
+  return String(Math.round(v * 10) / 10);
+}
+
+/** Scale the quantity written into an ingredient line.
+ *
+ * This multiplies the number in the text rather than prefixing "2 x", so that
+ * three portions of a recipe calling for "1/2 tin chopped tomatoes" reads
+ * "1 1/2 tin chopped tomatoes" and you can shop and cook straight from it.
+ * Lines with no stated number ("a knob of butter") are left alone: there is
+ * nothing to multiply, and the gram weight beside them already scales.
+ */
+function scaleDisplay(display, n){
+  if (n === 1) return display;
+  const m = display.match(LEADING_QTY);
+  if (!m) return display;
+  const v = parseQty(m[2]);
+  if (!isFinite(v) || v <= 0) return display;
+  return m[1] + fmtQty(v * n) + m[3] + display.slice(m[0].length);
+}
+
 function recipeSheet(id, portions){
   const r = BY_ID[id];
   if (!r) return;
@@ -1145,7 +1231,7 @@ function recipeSheet(id, portions){
         shopping list buys enough.</div>` : ""}
       <h2 style="margin-top:14px">Ingredients</h2>
       <ul class="ing">${r.ingredients.map(i =>
-        `<li><span>${n > 1 ? `${n} &times; ` : ""}${esc(i.display)}</span>
+        `<li><span>${esc(scaleDisplay(i.display, n))}</span>
           <span class="g">${scaleGrams(i.grams, n)} g</span></li>`).join("")}</ul>
       <h2 style="margin-top:14px">Method</h2>
       <ol class="steps">${r.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol>
@@ -1299,11 +1385,61 @@ function clearRange(){
   render();
 }
 
+function clearDay(date){
+  if (!mealsOn(date).length){ toast("Nothing planned to clear"); return; }
+  delete S.plan[date];
+  save();
+  render();
+  toast(`Cleared ${fmtShort(date)}`);
+}
+
+const PREVIOUS_LABEL = { day: "yesterday", week: "last week", month: "last month" };
+
+/** Copy the previous period's plan onto the one on screen.
+ *
+ * Days are paired by position, so Monday lands on Monday. A source day with
+ * nothing on it is skipped rather than copied, because an empty day is not a
+ * plan and clearing what you already have is the opposite of what this button
+ * is for -- anything genuinely being replaced is confirmed first.
+ */
+function copyPrevious(){
+  const [a, b] = range();
+  const target = daysBetween(a, b);
+  let source;
+  if (S.view === "month"){
+    const prev = startOfMonth(addMonths(a, -1));
+    source = daysBetween(prev, endOfMonth(prev));
+  } else {
+    const shift = S.view === "day" ? -1 : -7;
+    source = target.map(d => addDays(d, shift));
+  }
+
+  const label = PREVIOUS_LABEL[S.view];
+  const pairs = target
+    .map((to, i) => [source[i], to])
+    .filter(([from]) => from && mealsOn(from).length);
+  if (!pairs.length){ toast(`Nothing planned ${label} to copy`); return; }
+
+  const busy = pairs.filter(([, to]) => mealsOn(to).length).length;
+  if (busy && !confirm(
+    `Replace what is already planned on ${busy} day${busy === 1 ? "" : "s"}?`)) return;
+
+  let meals = 0;
+  pairs.forEach(([from, to]) => {
+    S.plan[to] = Object.assign({}, S.plan[from]);
+    meals += Object.keys(S.plan[to]).length;
+  });
+  save();
+  render();
+  toast(`Copied ${meals} meal${meals === 1 ? "" : "s"} from ${label}`);
+}
+
 /* ===== events ============================================================ */
 document.addEventListener("click", e => {
   const t = e.target.closest("[data-tab],[data-view],[data-step],[data-today],[data-day]," +
     "[data-pick],[data-slot-tap],[data-set],[data-open],[data-close],[data-unset]," +
-    "[data-fill],[data-clear],[data-fslot],[data-fcat],[data-tag],[data-newlist],[data-gen]," +
+    "[data-fill],[data-clear],[data-clearday],[data-copyprev],[data-fslot]," +
+    "[data-newlist],[data-gen]," +
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
     "[data-addsnack],[data-portions],[data-scope]");
   if (!t) return;
@@ -1358,8 +1494,10 @@ document.addEventListener("click", e => {
   if ("scope" in d){ S.scope = d.scope || null; save(); render(); return; }
   if (d.fill){ fillRange(); return; }
   if (d.clear){ clearRange(); return; }
-
-  /* recipe filters, shared by the Recipes tab and the plan's meal picker */
+  if (d.clearday){ clearDay(d.clearday); return; }
+  if (d.copyprev){ copyPrevious(); return; }
+  /* recipe filters, shared by the Recipes tab and the plan's meal picker.
+     Only Meal is a button; Type and Filter are selects handled on "change". */
   if (d.fslot){
     const [ns, slot] = d.fslot.split("|");
     const f = ns === "pick" ? pickFilter : filter;
@@ -1369,24 +1507,6 @@ document.addEventListener("click", e => {
     if (f.cat && !RECIPES.some(r => r.category === f.cat && (!f.slot || r.slots.includes(f.slot)))){
       f.cat = null;
     }
-    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
-    else render();
-    return;
-  }
-  if (d.fcat){
-    const i = d.fcat.indexOf("|");
-    const ns = d.fcat.slice(0, i), cat = d.fcat.slice(i + 1);
-    const f = ns === "pick" ? pickFilter : filter;
-    f.cat = f.cat === cat ? null : cat;
-    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
-    else render();
-    return;
-  }
-  if (d.tag){
-    const i = d.tag.indexOf("|");
-    const ns = d.tag.slice(0, i), tag = d.tag.slice(i + 1);
-    const f = ns === "pick" ? pickFilter : filter;
-    f.tag = f.tag === tag ? null : tag;
     if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
     else render();
     return;
@@ -1426,6 +1546,20 @@ document.addEventListener("click", e => {
 });
 
 // One listener covers both search boxes: the Recipes tab and the plan's picker.
+/* The Type and Filter dropdowns. Selects report on "change", not "click", so
+   they cannot ride the delegated click handler the buttons use. */
+document.addEventListener("change", e => {
+  const ds = e.target.dataset;
+  if (!ds) return;
+  const ns = ds.fcatsel || ds.tagsel;
+  if (!ns) return;
+  const f = ns === "pick" ? pickFilter : filter;
+  const value = e.target.value || null;
+  if (ds.fcatsel) f.cat = value; else f.tag = value;
+  if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+  else render();
+});
+
 document.addEventListener("input", e => {
   const ns = e.target.dataset && e.target.dataset.search;
   if (!ns) return;
