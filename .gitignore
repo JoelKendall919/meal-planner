@@ -17,3 +17,4 @@ private/
 
 # OS / editor
 .DS_Store
+data/staging/
