@@ -37,7 +37,7 @@ jobs:
         run: pytest
 
       - name: Validate recipe catalogue
-        run: python scripts/validate_recipes.py data/recipes-breakfast.json data/recipes-lunch.json data/recipes-dinner.json
+        run: python scripts/validate_recipes.py data/recipes/*.json
 
       - name: Nutrition report
         run: python -m mealplanner.nutrition

@@ -33,7 +33,7 @@ pdf: ## Regenerate the PDF documents (requires Google Chrome)
 	$(PY) scripts/mkpdf.py
 
 validate: ## Validate the recipe catalogue against the food database
-	$(PY) scripts/validate_recipes.py data/recipes-breakfast.json data/recipes-lunch.json data/recipes-dinner.json
+	$(PY) scripts/validate_recipes.py data/recipes/*.json
 
 nutrition: ## Print the full nutrition report (legacy fixed-week plan)
 	$(PY) -m mealplanner.nutrition
