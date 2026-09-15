@@ -1108,3 +1108,84 @@ def test_a_locked_meal_survives_being_cleared(tmp_path):
     assert 'if ("leftovers" in d){ S.leftovers = !!d.leftovers;' in html, (
         "the leftovers Off button is dead"
     )
+
+
+def test_a_pinned_meal_is_used_instead_of_being_chosen(tmp_path):
+    """Pinning a meal has to short-circuit the picker, not merely bias it.
+
+    The whole point of "breakfast is always yoghurt and fruit" is that fill
+    stops deciding. The scope and the time limit are deliberately not consulted
+    for a pinned slot: they exist to narrow a search, and there is no search.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    fill = js_block(html, "function fillRange(){")
+    assert "let pick = usualFor(slot);\n      if (!pick){" in fill, (
+        "fill does not check for a pinned meal before choosing one"
+    )
+    # The pinned meal still has to be paid for out of the day's calories, or the
+    # rest of the day is planned as though breakfast were free.
+    tail = "budget = Math.max(0, budget - pick.macros.kcal);"
+    assert tail in fill, "a pinned meal is not charged to the day's calorie budget"
+    assert fill.index("let pick = usualFor(slot);") < fill.index(tail), (
+        "the pin is applied after the budget is spent"
+    )
+
+
+def test_a_pinned_id_is_checked_against_the_catalogue(tmp_path):
+    """A pinned id goes stale exactly like a planned one.
+
+    Recipes get renamed and removed. A pin left pointing at a dead id must fall
+    back to choosing, not stop that slot being planned at all -- a silently
+    unfillable breakfast is far worse than an unwanted one.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    usual = js_block(html, "function usualFor(slot){")
+    assert "return r && r.slots.includes(slot) ? r : null;" in usual, (
+        "a pinned id is trusted without checking it still serves that slot"
+    )
+    assert "const r = id ? BY_ID[id] : null;" in usual, "a pinned id is not resolved"
+    # Defaults have to be merged on load or an older save has no usual at all.
+    merged = "S.usual = Object.assign({ breakfast: null, lunch: null, dinner: null },"
+    assert merged in html, "a saved plan from before pinning would load without usual"
+
+
+def test_leftovers_do_not_steal_a_pinned_slot(tmp_path):
+    """Two features both want tomorrow's lunch; the explicit one has to win.
+
+    Leftovers fill the next day's lunch automatically. If that lunch is pinned,
+    the pin was a decision the user typed in and the leftover is a convenience,
+    so the leftover must look elsewhere.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    plan = js_block(html, "function planLeftovers(date, last, used){")
+    guard = "!takenAt(next, s) && !usualFor(s)"
+    assert guard in plan, "a leftover can overwrite a meal you pinned"
+
+
+def test_every_main_slot_has_something_worth_pinning(tmp_path):
+    """The control is only honest if the catalogue can fill it.
+
+    A dropdown offering two breakfasts would make pinning a nuisance rather
+    than a shortcut, and no amount of source checking would reveal that.
+    """
+    recipes = payload()["recipes"]
+    for slot in MAIN_SLOTS:
+        options = [r for r in recipes if slot in r["slots"]]
+        assert len(options) >= 20, f"only {len(options)} recipes can be pinned to {slot}"
+        # Pinning the same thing daily should not wreck the day's calories.
+        modest = [r for r in options if r["macros"]["kcal"] <= 600]
+        assert modest, f"every {slot} option would eat the whole calorie goal"
+
+
+def test_the_fill_settings_button_says_what_it_opens(tmp_path):
+    """ "How fill works" described the sheet's contents, not its purpose."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "How fill works" not in html, "the old settings label is still shown"
+    assert "Fill settings &middot; ${esc(fillSummary())}" in html, (
+        "the plan bar no longer labels the settings button"
+    )
+    assert "<h1>Fill settings</h1>" in html, "the settings sheet has no title"
+    # The pin control needs a change hook; it is a select, not a button.
+    assert "S.usual[ds.usual] = e.target.value || null;" in html, (
+        "choosing a usual meal does nothing"
+    )

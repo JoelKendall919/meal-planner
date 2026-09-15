@@ -23,6 +23,7 @@ function reset(){
   S.leftovers = true;
   S.maxMin = { week: 0, weekend: 0 };
   S.slotDays = { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK() };
+  S.usual = { breakfast: null, lunch: null, dinner: null };
 }
 
 const week = () => daysBetween(MON, SUN);
@@ -227,8 +228,12 @@ function testOverlap(){
   // Measured rather than asserted: run the real fill repeatedly with the
   // preference on and off, and compare how many different perishables a week
   // ends up needing. Fewer means less half-used food going off in the fridge.
+  //
+  // The sample is large because the answer is noisy: fill picks at random among
+  // equally good meals, and at 40 weeks a run the difference wandered either
+  // side of the threshold and made this check flap.
   const sample = worth => {
-    const runs = 40;
+    const runs = 150;
     let total = 0;
     for (let i = 0; i < runs; i++){
       reset();
@@ -342,7 +347,7 @@ function testSettingsSheet(){
   reset();
   S.cursor = MON; S.view = "week"; render();
   document.querySelector("[data-fillset]").click();
-  ok("the settings sheet opens", /How fill works/.test(sheet.innerHTML));
+  ok("the settings sheet opens", /Fill settings/.test(sheet.innerHTML));
   const boxes = sheet.querySelectorAll("[data-slotday]");
   ok("every main meal has a box for every day", boxes.length === 21, boxes.length + " boxes");
   ok("they all start ticked", [...boxes].every(b => b.classList.contains("on")));
@@ -372,10 +377,97 @@ function testSettingsSheet(){
     /every meal, every day/.test(document.querySelector("[data-fillset]").textContent));
 }
 
+/* --- pinning a usual meal ------------------------------------------------ */
+function testPinnedMeals(){
+  reset();
+  const pot = RECIPES.find(r => r.slots.includes("breakfast") && /yoghurt/i.test(r.name));
+  ok("the catalogue has a yoghurt breakfast to pin", !!pot, pot && pot.name);
+
+  S.usual.breakfast = pot.id;
+  fillRange();
+  const days = daysBetween(MON, SUN);
+  const bf = days.map(d => idOf(slotAt(d, "breakfast")));
+  ok("every breakfast is the pinned meal",
+    bf.every(id => id === pot.id), new Set(bf).size + " distinct");
+  // The rest of the day must still be planned around it.
+  const kcal = days.map(d => totalsOn(d).kcal);
+  ok("days still land on the calorie goal with a pin",
+    kcal.every(k => k > S.goals.kcal * 0.9 && k < S.goals.kcal * 1.1),
+    Math.min.apply(null, kcal) + "-" + Math.max.apply(null, kcal));
+  const lunches = new Set(days.map(d => idOf(slotAt(d, "lunch"))));
+  ok("pinning one slot does not flatten the others", lunches.size >= 4, lunches.size);
+
+  // A pin beats the scope and the time limit: you asked for it by name.
+  reset();
+  S.usual.breakfast = pot.id;
+  S.maxMin = { week: 20, weekend: 20 };
+  S.scope = "high-protein";
+  fillRange();
+  ok("a pin overrules the scope and the time limit",
+    idOf(slotAt(MON, "breakfast")) === pot.id,
+    (mealAt(MON, "breakfast") || {}).name);
+
+  // A pinned slot is not something leftovers may claim.
+  reset();
+  S.usual.lunch = "ham-and-cheese-sandwich";
+  S.leftovers = true;
+  fillRange();
+  const stolen = days.filter(d => {
+    const v = slotAt(d, "lunch");
+    return idOf(v) !== "ham-and-cheese-sandwich" || isLeftover(v);
+  });
+  ok("leftovers never take a pinned slot", stolen.length === 0, stolen.join(", "));
+
+  // A pin left pointing at a dead id must not strand the slot.
+  reset();
+  S.usual.breakfast = "no-such-recipe-xyz";
+  ok("a stale pin resolves to nothing", usualFor("breakfast") === null);
+  fillRange();
+  ok("a stale pin still leaves breakfast planned",
+    !!mealAt(MON, "breakfast"), (mealAt(MON, "breakfast") || {}).name);
+}
+
+function testPinnedMealsUI(){
+  reset(); render();
+  document.querySelector("[data-fillset]").click();
+  const sel = sheet.querySelector('[data-usual="breakfast"]');
+  ok("the settings sheet offers a breakfast pin", !!sel);
+  ok("it lists the breakfasts and an opt-out",
+    sel.options.length === RECIPES.filter(r => r.slots.includes("breakfast")).length + 1,
+    sel.options.length + " options");
+  ok("the opt-out comes first and is empty",
+    sel.options[0].value === "" && /different/i.test(sel.options[0].textContent));
+
+  const pot = RECIPES.find(r => r.slots.includes("breakfast") && /yoghurt/i.test(r.name));
+  sel.value = pot.id;
+  sel.dispatchEvent(new Event("change", { bubbles: true }));
+  ok("choosing one records it", S.usual.breakfast === pot.id, S.usual.breakfast);
+  const sel2 = sheet.querySelector('[data-usual="breakfast"]');
+  ok("the re-rendered control shows the choice", sel2.value === pot.id);
+  ok("and marks itself as set", /\bon\b/.test(sel2.className), sel2.className);
+  ok("the sheet counts what pinning costs",
+    /1 pinned, taking \d+ kcal/.test(sheet.textContent), usualNote());
+
+  closeSheet(); render();
+  ok("the plan button names the pinned meal",
+    /breakfast is always/.test(document.querySelector("[data-fillset]").textContent),
+    document.querySelector("[data-fillset]").textContent.trim());
+
+  // And it can be taken off again.
+  document.querySelector("[data-fillset]").click();
+  const sel3 = sheet.querySelector('[data-usual="breakfast"]');
+  sel3.value = "";
+  sel3.dispatchEvent(new Event("change", { bubbles: true }));
+  ok("clearing the pin goes back to choosing", S.usual.breakfast === null);
+  ok("and the note says so", /Nothing pinned/.test(usualNote()), usualNote());
+  closeSheet();
+}
+
 /* --- run ---------------------------------------------------------------- */
 [testSlotShapes, testLeftoversNotBought, testFillMakesLeftovers, testLeftoversStayHonest,
  testCadence, testCadenceUI, testTimeCap, testOverlap, testLocking, testLockingUI,
- testCopyPrevious, testSettingsSheet].forEach(fn => {
+ testCopyPrevious, testSettingsSheet,
+ testPinnedMeals, testPinnedMealsUI].forEach(fn => {
   try { fn(); }
   catch (err){ ok(fn.name + " threw", false, String(err && err.stack || err)); }
 });

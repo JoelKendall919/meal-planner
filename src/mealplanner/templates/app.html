@@ -393,6 +393,9 @@ function blank(){
     // kinds of evening.
     maxMin: { week: 0, weekend: 0 },
     leftovers: true,                // cook a batch dish once, eat it twice
+    // A meal you always have, per slot: an id fill uses instead of choosing.
+    // null means pick something different each day.
+    usual: { breakfast: null, lunch: null, dinner: null },
     shopping: null,                 // { from, to, created, items: [...] }
   };
 }
@@ -498,6 +501,16 @@ function normaliseSlotDays(saved){
   return out;
 }
 
+/** The meal you always have in this slot, or null. Checked against the
+ *  catalogue every time rather than trusted: a pinned id can go stale exactly
+ *  like a planned one, and a usual meal that no longer exists would otherwise
+ *  stop fill planning that slot at all. */
+function usualFor(slot){
+  const id = S.usual && S.usual[slot];
+  const r = id ? BY_ID[id] : null;
+  return r && r.slots.includes(slot) ? r : null;
+}
+
 let S = blank();
 let pruned = 0;
 try {
@@ -509,6 +522,8 @@ try {
     S.slotDays = normaliseSlotDays(saved.slotDays);
     S.maxMin = Object.assign({ week: 0, weekend: 0 }, saved.maxMin || {});
     S.leftovers = saved.leftovers !== false;
+    S.usual = Object.assign({ breakfast: null, lunch: null, dinner: null },
+      saved.usual || {});
     if (!S.plan || typeof S.plan !== "object") S.plan = {};
     pruned = prunePlan(S.plan);
     if (pruned) save();
@@ -773,7 +788,7 @@ function viewPlan(){
         + `data-scope="${sc.id === null ? "" : sc.id}">${sc.label}</button>`).join("")}</div>
     </div>
     <div class="bar tight"><button class="sec" data-fillset="1" style="width:100%">
-      How fill works &middot; ${esc(fillSummary())}</button></div>
+      Fill settings &middot; ${esc(fillSummary())}</button></div>
     </div>`;
 
   if (isDay) html += dayTiles(S.cursor);
@@ -787,6 +802,10 @@ function viewPlan(){
  *  button stays quiet until there is something worth saying. */
 function fillSummary(){
   const bits = [];
+  MAIN_SLOTS.forEach(s => {
+    const r = usualFor(s);
+    if (r) bits.push(`${SLOT_LABEL[s].toLowerCase()} is always ${r.name.toLowerCase()}`);
+  });
   const off = MAIN_SLOTS.filter(s => S.slotDays[s].filter(Boolean).length < 7);
   off.forEach(s => bits.push(
     `${SLOT_LABEL[s].toLowerCase()} ${S.slotDays[s].filter(Boolean).length}/7`));
@@ -798,12 +817,52 @@ function fillSummary(){
   return bits.length ? bits.join(" \u00b7 ") : "every meal, every day";
 }
 
+/** What pinning has already spent of a day's calories. Counted rather than
+ *  promised: a usual meal that takes most of the goal leaves fill very little to
+ *  work with, and it is better to see that here than to wonder later why dinner
+ *  keeps coming out a salad. */
+function usualNote(){
+  const pinned = MAIN_SLOTS.map(s => usualFor(s)).filter(Boolean);
+  if (!pinned.length) return "Nothing pinned: fill chooses every meal.";
+  const kcal = pinned.reduce((n, r) => n + r.macros.kcal, 0);
+  const prot = pinned.reduce((n, r) => n + r.macros.protein, 0);
+  const left = S.goals.kcal - kcal;
+  const spent = `${pinned.length} pinned, taking ${kcal} kcal and ${prot} g protein`
+    + ` of your ${S.goals.kcal} kcal goal`;
+  return left > 0
+    ? `${spent}, leaving ${left} kcal for the rest of the day.`
+    : `${spent} - which is already over it, so fill has nothing left to give.`;
+}
+
 const TIME_CAPS = [0, 20, 30, 45, 60];
 
 function fillSettingsSheet(){
-  openSheet(`<header><h1>How fill works</h1>
+  openSheet(`<header><h1>Fill settings</h1>
       <button class="x" data-close="1">&times;</button></header>
     <div class="body">
+      <div class="card"><div class="hd"><div>
+          <h2>Meals you always have</h2>
+          <div class="sub">Pin a meal and fill stops choosing for that slot: you
+            get the same thing every day you eat it. The rest of the day is
+            planned around it, so its calories still count.</div>
+        </div></div>
+        ${MAIN_SLOTS.map(slot => {
+          const current = usualFor(slot);
+          const opts = RECIPES.filter(r => r.slots.includes(slot))
+            .slice().sort((a, b) => a.name.localeCompare(b.name));
+          return `<div class="facet">
+            <span class="flab slot-${slot}">${SLOT_LABEL[slot]}</span>
+            <select class="fsel${current ? " on" : ""}" data-usual="${slot}">
+              <option value="">Something different each day</option>
+              ${opts.map(r => `<option value="${esc(r.id)}"${
+                current && current.id === r.id ? " selected" : ""}>${
+                esc(r.name)} &middot; ${r.macros.kcal} kcal</option>`).join("")}
+            </select>
+          </div>`;
+        }).join("")}
+        <div class="sub">${esc(usualNote())}</div>
+      </div>
+
       <div class="card"><div class="hd"><div>
           <h2>Meals you eat</h2>
           <div class="sub">A meal you do not eat is not an empty slot: fill leaves
@@ -1656,35 +1715,41 @@ function fillRange(){
     let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);
 
     open.forEach((slot, i) => {
-      const pool = fillPool(slot, date);
-      if (!pool.length) return;
-      const target = share > 0 ? budget * (SLOT_SHARE[slot] / share) : 0;
-      const fresh = pool.filter(r => !used.has(r.id));
-      const rank = list => list.slice().sort((x, y) =>
-        Math.abs(x.macros.kcal - target) - Math.abs(y.macros.kcal - target));
-      // Prefer meals not already used in this period, but not at any price: once
-      // the unused ones are a poor fit for what's left of the day, reuse one.
-      let ranked = rank(fresh);
-      if (!ranked.length || Math.abs(ranked[0].macros.kcal - target) > FILL_TOLERANCE){
-        const all = rank(pool);
-        if (!ranked.length || Math.abs(all[0].macros.kcal - target)
-            < Math.abs(ranked[0].macros.kcal - target)) ranked = all;
+      // A meal you always have is not a choice to make. It ignores the scope and
+      // the time limit on purpose: you asked for this one by name, and a setting
+      // meant to narrow a search should not overrule it.
+      let pick = usualFor(slot);
+      if (!pick){
+        const pool = fillPool(slot, date);
+        if (!pool.length) return;
+        const target = share > 0 ? budget * (SLOT_SHARE[slot] / share) : 0;
+        const fresh = pool.filter(r => !used.has(r.id));
+        const rank = list => list.slice().sort((x, y) =>
+          Math.abs(x.macros.kcal - target) - Math.abs(y.macros.kcal - target));
+        // Prefer meals not already used in this period, but not at any price: once
+        // the unused ones are a poor fit for what's left of the day, reuse one.
+        let ranked = rank(fresh);
+        if (!ranked.length || Math.abs(ranked[0].macros.kcal - target) > FILL_TOLERANCE){
+          const all = rank(pool);
+          if (!ranked.length || Math.abs(all[0].macros.kcal - target)
+              < Math.abs(ranked[0].macros.kcal - target)) ranked = all;
+        }
+        // Shortlist the closest fits, then pick among them so weeks still vary.
+        // The shortlist narrows as the day fills up, so the last meal is chosen to
+        // close the gap on your goal rather than widen it.
+        const width = Math.max(2, 6 - 2 * i);
+        const shortlist = ranked.slice(0, Math.min(width, ranked.length));
+        // Among fits that are equally good on calories, prefer protein, and prefer
+        // a recipe that reuses ingredients the week already needs. The calorie
+        // window is deliberately tight: leaning on anything else across a wide
+        // spread drags the day well under its calorie goal.
+        const bestGap = Math.abs(shortlist[0].macros.kcal - target);
+        const level = shortlist.filter(r =>
+          Math.abs(r.macros.kcal - target) <= bestGap + FILL_LEVEL_KCAL);
+        const score = r => r.macros.protein + OVERLAP_WORTH * overlapWith(r, pantry);
+        level.sort((x, y) => score(y) - score(x));
+        pick = level[Math.floor(Math.random() * Math.min(2, level.length))];
       }
-      // Shortlist the closest fits, then pick among them so weeks still vary.
-      // The shortlist narrows as the day fills up, so the last meal is chosen to
-      // close the gap on your goal rather than widen it.
-      const width = Math.max(2, 6 - 2 * i);
-      const shortlist = ranked.slice(0, Math.min(width, ranked.length));
-      // Among fits that are equally good on calories, prefer protein, and prefer
-      // a recipe that reuses ingredients the week already needs. The calorie
-      // window is deliberately tight: leaning on anything else across a wide
-      // spread drags the day well under its calorie goal.
-      const bestGap = Math.abs(shortlist[0].macros.kcal - target);
-      const level = shortlist.filter(r =>
-        Math.abs(r.macros.kcal - target) <= bestGap + FILL_LEVEL_KCAL);
-      const score = r => r.macros.protein + OVERLAP_WORTH * overlapWith(r, pantry);
-      level.sort((x, y) => score(y) - score(x));
-      const pick = level[Math.floor(Math.random() * Math.min(2, level.length))];
       setMeal(date, slot, pick.id);
       used.add(pick.id);
       perishables(pick).forEach(f => pantry.add(f));
@@ -1735,8 +1800,9 @@ function planLeftovers(date, last, used){
   });
   sources.some(from => {
     const r = BY_ID[idOf(slotAt(date, from))];
+    // A slot you have pinned is spoken for: your usual beats yesterday's pot.
     const target = ["lunch", "dinner"].find(s =>
-      r.slots.includes(s) && eats(next, s) && !takenAt(next, s));
+      r.slots.includes(s) && eats(next, s) && !takenAt(next, s) && !usualFor(s));
     if (!target) return false;
     // Eating the same dish twice in one day is not leftovers, it is a rut.
     if (MAIN_SLOTS.some(s => idOf(slotAt(next, s)) === r.id)) return false;
@@ -2054,6 +2120,13 @@ document.addEventListener("click", e => {
 document.addEventListener("change", e => {
   const ds = e.target.dataset;
   if (!ds) return;
+  if (ds.usual){
+    S.usual[ds.usual] = e.target.value || null;
+    save();
+    fillSettingsSheet();
+    render();
+    return;
+  }
   const ns = ds.fcatsel;
   if (!ns) return;
   const f = ns === "pick" ? pickFilter : filter;

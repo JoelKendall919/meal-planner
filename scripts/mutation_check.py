@@ -277,6 +277,42 @@ CASES = [
         "[data-fillset],[data-slotday],[data-maxmin],[data-leftovers],",
         "test_a_locked_meal_survives_being_cleared",
     ),
+    (
+        "a pinned meal is ignored and fill chooses anyway",
+        "let pick = usualFor(slot);\n      if (!pick){",
+        "let pick = null;\n      if (!pick){",
+        "test_a_pinned_meal_is_used_instead_of_being_chosen",
+    ),
+    (
+        "a pinned meal is not charged to the day's calories",
+        "budget = Math.max(0, budget - pick.macros.kcal);",
+        "budget = Math.max(0, budget);",
+        "test_a_pinned_meal_is_used_instead_of_being_chosen",
+    ),
+    (
+        "a stale pin is trusted and strands the slot",
+        "return r && r.slots.includes(slot) ? r : null;",
+        "return r || null;",
+        "test_a_pinned_id_is_checked_against_the_catalogue",
+    ),
+    (
+        "an older save loads with no usual meals at all",
+        "S.usual = Object.assign({ breakfast: null, lunch: null, dinner: null },",
+        "S.usual = Object.assign({},",
+        "test_a_pinned_id_is_checked_against_the_catalogue",
+    ),
+    (
+        "a leftover overwrites the lunch you pinned",
+        "!takenAt(next, s) && !usualFor(s)",
+        "!takenAt(next, s)",
+        "test_leftovers_do_not_steal_a_pinned_slot",
+    ),
+    (
+        "choosing a usual meal does nothing",
+        "S.usual[ds.usual] = e.target.value || null;",
+        "S.usual[ds.usual] = S.usual[ds.usual];",
+        "test_the_fill_settings_button_says_what_it_opens",
+    ),
 ]
 
 

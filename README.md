@@ -114,7 +114,7 @@ keep passing while typical days quietly rot beneath it.
 ## What "fill empty slots" knows about your week
 
 Filling a week used to mean 28 separate cooks, whatever else was going on that
-day. Four settings, behind the **How fill works** button, make it fit a real week
+day. Five settings, behind the **Fill settings** button, make it fit a real week
 instead. Measured over 40 filled weeks each, counting only time spent actually
 cooking:
 
@@ -155,7 +155,16 @@ noise. Measuring properly showed the shortlist width, not the calorie window, wa
 the binding constraint; retuning the weight from 1.5 to 5 takes a week from 43.9
 distinct perishables to 41.7 for one gram of protein a day.
 
-A fifth idea was built, measured and **removed**: steering dinner towards batch
+**Pinning a meal** stops fill choosing for that slot at all: breakfast is always
+the yoghurt and fruit pot, and the rest of the day is planned around its 294 kcal.
+A pin is a decision typed in by hand, so it deliberately overrules the scope and
+the time limit, which exist only to narrow a search that is no longer happening.
+It also beats leftovers, which would otherwise claim a pinned lunch. A pinned id
+goes stale exactly like a planned one, so it is re-checked against the catalogue
+on every use -- a pin pointing at a deleted recipe falls back to choosing, because
+a silently unfillable breakfast is worse than an unwanted one.
+
+A sixth idea was built, measured and **removed**: steering dinner towards batch
 dishes when tomorrow had a slot free. Across 60 weeks a setting it made no
 difference at any weight worth having (2.5 leftovers either way; forcing it to 3.0
 cost 14 minutes and variety), because the choice is already pinned by the calorie
