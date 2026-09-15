@@ -430,21 +430,46 @@ function testPinnedMeals(){
 function testPinnedMealsUI(){
   reset(); render();
   document.querySelector("[data-fillset]").click();
-  const sel = sheet.querySelector('[data-usual="breakfast"]');
-  ok("the settings sheet offers a breakfast pin", !!sel);
-  ok("it lists the breakfasts and an opt-out",
-    sel.options.length === RECIPES.filter(r => r.slots.includes("breakfast")).length + 1,
-    sel.options.length + " options");
-  ok("the opt-out comes first and is empty",
-    sel.options[0].value === "" && /different/i.test(sel.options[0].textContent));
+  const btn = sheet.querySelector('[data-usual="breakfast"]');
+  ok("the settings sheet offers a breakfast pin", !!btn);
+  ok("it starts out saying nothing is pinned",
+    /different/i.test(btn.textContent), btn.textContent.trim());
 
-  const pot = RECIPES.find(r => r.slots.includes("breakfast") && /yoghurt/i.test(r.name));
-  sel.value = pot.id;
-  sel.dispatchEvent(new Event("change", { bubbles: true }));
-  ok("choosing one records it", S.usual.breakfast === pot.id, S.usual.breakfast);
-  const sel2 = sheet.querySelector('[data-usual="breakfast"]');
-  ok("the re-rendered control shows the choice", sel2.value === pot.id);
-  ok("and marks itself as set", /\bon\b/.test(sel2.className), sel2.className);
+  // Pinning uses the plan page's picker, not a dropdown of names.
+  btn.click();
+  ok("tapping it opens the meal picker", !!sheet.querySelector('[data-search]'));
+  ok("the picker knows what it is for", sheet.dataset.usual === "breakfast");
+  ok("it is titled for the slot",
+    /always have for breakfast/i.test(sheet.querySelector("h1").textContent),
+    sheet.querySelector("h1").textContent.trim());
+  ok("it opens filtered to that slot",
+    sheet.querySelectorAll("[data-set]").length
+      === RECIPES.filter(r => r.slots.includes("breakfast")).length,
+    sheet.querySelectorAll("[data-set]").length + " rows");
+  // The rows carry the numbers a dropdown could not.
+  const first = sheet.querySelector("[data-set]").textContent;
+  ok("rows show calories and protein", /kcal/.test(first) && /\dg/.test(first),
+    first.replace(/\s+/g, " ").trim().slice(0, 60));
+
+  // Searching must not lose the fact that this is a pin, not a day.
+  const q = sheet.querySelector("[data-search]");
+  q.value = "yoghurt";
+  q.dispatchEvent(new Event("input", { bubbles: true }));
+  ok("filtering keeps it in pin mode", sheet.dataset.usual === "breakfast");
+  const pot = [...sheet.querySelectorAll("[data-set]")]
+    .find(b => b.dataset.set === "fruit-and-yoghurt-pot");
+  ok("the search finds the yoghurt pot", !!pot);
+
+  pot.click();
+  ok("choosing one records it", S.usual.breakfast === "fruit-and-yoghurt-pot",
+    S.usual.breakfast);
+  ok("and returns to the settings",
+    /Fill settings/.test(sheet.querySelector("h1").textContent));
+  const btn2 = sheet.querySelector('[data-usual="breakfast"]');
+  ok("the control now names the meal and its calories",
+    /Fruit and yoghurt pot/.test(btn2.textContent) && /294 kcal/.test(btn2.textContent),
+    btn2.textContent.trim());
+  ok("and marks itself as set", /\bon\b/.test(btn2.className), btn2.className);
   ok("the sheet counts what pinning costs",
     /1 pinned, taking \d+ kcal/.test(sheet.textContent), usualNote());
 
@@ -453,21 +478,47 @@ function testPinnedMealsUI(){
     /breakfast is always/.test(document.querySelector("[data-fillset]").textContent),
     document.querySelector("[data-fillset]").textContent.trim());
 
-  // And it can be taken off again.
+  // And it can be taken off again from inside the picker.
   document.querySelector("[data-fillset]").click();
-  const sel3 = sheet.querySelector('[data-usual="breakfast"]');
-  sel3.value = "";
-  sel3.dispatchEvent(new Event("change", { bubbles: true }));
-  ok("clearing the pin goes back to choosing", S.usual.breakfast === null);
+  sheet.querySelector('[data-usual="breakfast"]').click();
+  ok("the picker shows what is currently pinned",
+    /Fruit and yoghurt pot/.test(sheet.querySelector(".mealname").textContent));
+  sheet.querySelector("[data-unusual]").click();
+  ok("stop pinning goes back to choosing", S.usual.breakfast === null);
   ok("and the note says so", /Nothing pinned/.test(usualNote()), usualNote());
   closeSheet();
+}
+
+/* Choosing in one picker must never act on the other. */
+function testPickersStaySeparate(){
+  reset();
+  S.view = "day";
+  S.usual.breakfast = "fruit-and-yoghurt-pot";
+  render();
+  const pick = document.querySelector("[data-pick]");
+  pick.click();
+  ok("the plan picker is not in pin mode", sheet.dataset.usual === undefined,
+    String(sheet.dataset.usual));
+  ok("it knows its day and slot",
+    sheet.dataset.date === MON && !!sheet.dataset.slot, sheet.dataset.date);
+  const q = sheet.querySelector("[data-search]");
+  q.value = "eggs";
+  q.dispatchEvent(new Event("input", { bubbles: true }));
+  ok("filtering keeps the day", sheet.dataset.date === MON);
+  const row = sheet.querySelector("[data-set]");
+  const chosen = row.dataset.set;
+  row.click();
+  ok("choosing plans that day", idOf(slotAt(MON, "breakfast")) === chosen,
+    JSON.stringify(S.plan[MON]));
+  ok("and leaves the pin alone", S.usual.breakfast === "fruit-and-yoghurt-pot");
+  reset();
 }
 
 /* --- run ---------------------------------------------------------------- */
 [testSlotShapes, testLeftoversNotBought, testFillMakesLeftovers, testLeftoversStayHonest,
  testCadence, testCadenceUI, testTimeCap, testOverlap, testLocking, testLockingUI,
  testCopyPrevious, testSettingsSheet,
- testPinnedMeals, testPinnedMealsUI].forEach(fn => {
+ testPinnedMeals, testPinnedMealsUI, testPickersStaySeparate].forEach(fn => {
   try { fn(); }
   catch (err){ ok(fn.name + " threw", false, String(err && err.stack || err)); }
 });

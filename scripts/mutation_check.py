@@ -309,8 +309,26 @@ CASES = [
     ),
     (
         "choosing a usual meal does nothing",
-        "S.usual[ds.usual] = e.target.value || null;",
-        "S.usual[ds.usual] = S.usual[ds.usual];",
+        "S.usual[pinned] = d.set;",
+        "S.usual[pinned] = S.usual[pinned];",
+        "test_the_fill_settings_button_says_what_it_opens",
+    ),
+    (
+        "the pin picker plans a day's meal instead of a standing choice",
+        "const pinned = sheet.dataset.usual;",
+        "const pinned = null;",
+        "test_the_fill_settings_button_says_what_it_opens",
+    ),
+    (
+        "the pin picker forgets which slot it is for",
+        "sheet.dataset.usual = slot;",
+        "sheet.dataset.slot = slot;",
+        "test_the_fill_settings_button_says_what_it_opens",
+    ),
+    (
+        "a pin cannot be taken off again",
+        "if (d.unusual){\n    S.usual[d.unusual] = null;",
+        "if (false){\n    S.usual[d.unusual] = null;",
         "test_the_fill_settings_button_says_what_it_opens",
     ),
 ]

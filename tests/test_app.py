@@ -1185,7 +1185,19 @@ def test_the_fill_settings_button_says_what_it_opens(tmp_path):
         "the plan bar no longer labels the settings button"
     )
     assert "<h1>Fill settings</h1>" in html, "the settings sheet has no title"
-    # The pin control needs a change hook; it is a select, not a button.
-    assert "S.usual[ds.usual] = e.target.value || null;" in html, (
-        "choosing a usual meal does nothing"
+    # Pinning opens the same picker the plan page uses, so a choice can be made
+    # on calories and protein rather than from an alphabetical list of names.
+    assert "if (d.usual){ usualPickSheet(d.usual); return; }" in html, (
+        "the pin control does not open the picker"
     )
+    pick = js_block(html, "function usualPickSheet(slot, keep){")
+    assert '${filterControls(pickFilter, "pick")}' in pick, "the pin picker has no filters"
+    assert 'recipeRow(r, "set")' in pick, "the pin picker does not list recipes"
+    assert "sheet.dataset.usual = slot;" in pick, "the picker does not record what it is for"
+    # Which picker is open decides what a row does. Without this, choosing in the
+    # pin picker would plan a meal for whatever day the plan picker last had open.
+    assert "const pinned = sheet.dataset.usual;" in html, (
+        "choosing a recipe cannot tell a pin from a day's meal"
+    )
+    assert "S.usual[pinned] = d.set;" in html, "choosing a usual meal does nothing"
+    assert "if (d.unusual){\n    S.usual[d.unusual] = null;" in html, "a pin cannot be removed"

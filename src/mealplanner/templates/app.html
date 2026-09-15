@@ -54,6 +54,7 @@ button:active{transform:translateY(1px)}
 button:disabled{opacity:.45;cursor:default}
 .pri{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
 .sec{padding:6px 10px;font-size:13px}
+.sec.on{border-color:var(--accent);font-weight:600}
 .danger{color:var(--bad);border-color:#f0c2bc}
 .bar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .bar.tight{margin-top:0}
@@ -848,16 +849,12 @@ function fillSettingsSheet(){
         </div></div>
         ${MAIN_SLOTS.map(slot => {
           const current = usualFor(slot);
-          const opts = RECIPES.filter(r => r.slots.includes(slot))
-            .slice().sort((a, b) => a.name.localeCompare(b.name));
           return `<div class="facet">
             <span class="flab slot-${slot}">${SLOT_LABEL[slot]}</span>
-            <select class="fsel${current ? " on" : ""}" data-usual="${slot}">
-              <option value="">Something different each day</option>
-              ${opts.map(r => `<option value="${esc(r.id)}"${
-                current && current.id === r.id ? " selected" : ""}>${
-                esc(r.name)} &middot; ${r.macros.kcal} kcal</option>`).join("")}
-            </select>
+            <button class="sec${current ? " on" : ""}" data-usual="${slot}"
+              style="flex:1 1 auto;min-width:0;text-align:left">${
+              current ? esc(current.name) + " \u00b7 " + current.macros.kcal + " kcal"
+                      : "Something different each day"}</button>
           </div>`;
         }).join("")}
         <div class="sub">${esc(usualNote())}</div>
@@ -1437,6 +1434,46 @@ function pickSheet(date, slot, keep){
   sheet.dataset.slot = slot;
 }
 
+/* The plan page's picker, aimed at a setting instead of a day.
+ *
+ * Choosing what you always have is still choosing a meal, so it should feel
+ * like it: the same search, filters and recipe rows. A dropdown of 97 lunch
+ * names sorted alphabetically is a list you cannot judge anything from -- no
+ * calories worth reading, no protein, no way to find the quick ones. */
+function usualPickSheet(slot, keep){
+  if (!keep) pickFilter = { slot: slot, cat: null, tags: [], q: "" };
+  const list = filterRecipes(pickFilter);
+  const current = usualFor(slot);
+  openSheet(`<header><h1>Always have for ${esc(SLOT_LABEL[slot].toLowerCase())}</h1>
+      <button class="x" data-close="1">&times;</button></header>
+    <div class="body">
+      ${current ? `<div class="card">
+          <div class="mealname" style="font-size:17px;font-weight:600">${
+            esc(current.name)}</div>
+          <div class="macros">${macroLine(current.macros)}</div>
+          <div class="bar tight">
+            <button class="sec" data-open="${current.id}">View recipe</button>
+            <button class="sec danger" data-unusual="${slot}">Stop pinning</button>
+          </div>
+        </div>` : ""}
+      <div class="card">
+        ${filterControls(pickFilter, "pick")}
+        <div class="sub">${list.length} recipe${list.length === 1 ? "" : "s"}</div>
+      </div>
+      <div class="card"><ul class="rlist">${
+        list.length ? list.map(r => recipeRow(r, "set")).join("")
+                    : `<li><div class="empty-state">Nothing matches those filters.</div></li>`
+      }</ul></div>
+    </div>`);
+  sheet.dataset.usual = slot;
+}
+
+/** Re-open whichever picker is showing, after a filter changes. */
+function reopenPicker(){
+  if (sheet && sheet.dataset.usual) usualPickSheet(sheet.dataset.usual, true);
+  else pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+}
+
 /** Tapping a filled slot in week view: show what it is before changing it. */
 function slotSheet(date, slot){
   const v = slotAt(date, slot);
@@ -1951,6 +1988,7 @@ document.addEventListener("click", e => {
     "[data-tick],[data-rm],[data-edit],[data-untick],[data-copy],[data-resetgoals]," +
     "[data-blank],[data-clearitems]," +
     "[data-lock],[data-fillset],[data-slotday],[data-maxmin],[data-leftovers]," +
+    "[data-usual],[data-unusual]," +
     "[data-addsnack],[data-portions],[data-scope],[data-ftag]");
   if (!t) return;
   const d = t.dataset;
@@ -1974,10 +2012,28 @@ document.addEventListener("click", e => {
   if (d.pick){ const [date, slot] = d.pick.split("|"); pickSheet(date, slot); return; }
   if (d.slotTap){ const [date, slot] = d.slotTap.split("|"); slotSheet(date, slot); return; }
   if (d.set){
+    // The same rows serve the plan picker and the pin picker; which one is open
+    // decides whether this sets a day's meal or a standing choice.
+    const pinned = sheet.dataset.usual;
+    if (pinned){
+      S.usual[pinned] = d.set;
+      save();
+      fillSettingsSheet();
+      render();
+      toast(`${BY_ID[d.set].name} is now your usual ${SLOT_LABEL[pinned].toLowerCase()}`);
+      return;
+    }
     const date = sheet.dataset.date, slot = sheet.dataset.slot;
     setMeal(date, slot, d.set);
     closeSheet(); render();
     toast(`${BY_ID[d.set].name} set for ${fmtDate(date)}`);
+    return;
+  }
+  if (d.unusual){
+    S.usual[d.unusual] = null;
+    save();
+    fillSettingsSheet();
+    render();
     return;
   }
   if (d.unset){
@@ -2016,6 +2072,7 @@ document.addEventListener("click", e => {
     return;
   }
   if (d.fillset){ fillSettingsSheet(); return; }
+  if (d.usual){ usualPickSheet(d.usual); return; }
   if (d.slotday){
     const [slot, i] = d.slotday.split("|");
     const days = S.slotDays[slot];
@@ -2034,7 +2091,7 @@ document.addEventListener("click", e => {
   /* recipe filters, shared by the Recipes tab and the plan's meal picker.
      Meal and Filter are buttons; only Type is a select, handled on "change". */
   const reFilter = ns => {
-    if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    if (ns === "pick") reopenPicker();
     else render();
   };
   if (d.fslot){
@@ -2120,19 +2177,12 @@ document.addEventListener("click", e => {
 document.addEventListener("change", e => {
   const ds = e.target.dataset;
   if (!ds) return;
-  if (ds.usual){
-    S.usual[ds.usual] = e.target.value || null;
-    save();
-    fillSettingsSheet();
-    render();
-    return;
-  }
   const ns = ds.fcatsel;
   if (!ns) return;
   const f = ns === "pick" ? pickFilter : filter;
   const value = e.target.value || null;
   f.cat = value;
-  if (ns === "pick") pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+  if (ns === "pick") reopenPicker();
   else render();
 });
 
@@ -2142,7 +2192,7 @@ document.addEventListener("input", e => {
   const pos = e.target.selectionStart;
   if (ns === "pick"){
     pickFilter.q = e.target.value;
-    pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
+    reopenPicker();
   } else {
     filter.q = e.target.value;
     render();

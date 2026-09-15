@@ -159,7 +159,15 @@ distinct perishables to 41.7 for one gram of protein a day.
 the yoghurt and fruit pot, and the rest of the day is planned around its 294 kcal.
 A pin is a decision typed in by hand, so it deliberately overrules the scope and
 the time limit, which exist only to narrow a search that is no longer happening.
-It also beats leftovers, which would otherwise claim a pinned lunch. A pinned id
+It also beats leftovers, which would otherwise claim a pinned lunch.
+
+Pinning opens the same picker the plan page uses rather than a dropdown, because
+choosing what you will eat every day is not a choice you can make from an
+alphabetical list of 97 names: the rows carry calories, protein and cooking time,
+and the search and filters are the only practical way through a catalogue that
+size. Which picker is open decides what tapping a recipe does, so the sheet
+records what it was opened for -- without that, pinning would quietly plan a meal
+for whatever day the plan picker last had open. A pinned id
 goes stale exactly like a planned one, so it is re-checked against the catalogue
 on every use -- a pin pointing at a deleted recipe falls back to choosing, because
 a silently unfillable breakfast is worse than an unwanted one.
