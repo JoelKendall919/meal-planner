@@ -205,6 +205,8 @@ label.fld span{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
 .dbox{border:1px solid var(--line);background:#fff;border-radius:7px;padding:7px 0;
   font-size:12px;line-height:1;color:var(--mut);cursor:pointer}
 .dbox.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.dbox.over{background:repeating-linear-gradient(45deg,#f4f4f2,#f4f4f2 3px,#fff 3px,#fff 6px);
+  color:#b0b0b0}
 .mini.off .val{color:var(--mut);font-style:italic}
 .dots i.off{opacity:.25}
 .note{margin-top:8px;padding:8px 10px;border-radius:8px;background:#e7f0fb;color:#1b5fa8;
@@ -297,10 +299,38 @@ const DATA = __DATA__;
 // The three meals of a day, plus an optional snack. A snack is a protein
 // top-up, not a fourth meal: the main-meal catalogue cannot reach a useful
 // protein figure inside the calorie goal on its own.
-const MAIN_SLOTS = ["breakfast", "lunch", "dinner"];
+// Brunch is not a fourth meal but a replacement for two: on a brunch day you do
+// not eat breakfast or lunch, and the one meal carries both their calories. It
+// is kept out of DAILY_SLOTS so the parts of the app that ask what a normal day
+// looks like are not thrown off by a meal most days do not have.
+const DAILY_SLOTS = ["breakfast", "lunch", "dinner"];
+const MAIN_SLOTS = ["breakfast", "brunch", "lunch", "dinner"];
 const SLOTS = MAIN_SLOTS.concat("snack");
-const SLOT_ABBR = { breakfast: "B", lunch: "L", dinner: "D", snack: "S" };
-const SLOT_LABEL = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner", snack: "Snack" };
+// What a recipe can be tagged with. Brunch is deliberately absent: the Recipes
+// page browses the catalogue as it was written, and offering a Brunch filter
+// would imply a tag no recipe carries.
+const CATALOGUE_SLOTS = DAILY_SLOTS.concat("snack");
+const SLOT_ABBR = { breakfast: "B", brunch: "Br", lunch: "L", dinner: "D", snack: "S" };
+const SLOT_LABEL = { breakfast: "Breakfast", brunch: "Brunch", lunch: "Lunch",
+                     dinner: "Dinner", snack: "Snack" };
+// What a brunch may be made of. There is no `brunch` tag in the catalogue and
+// there should not be: a brunch is an ordinary breakfast or lunch dish, and the
+// thing that makes it brunch is that it has to do the work of both.
+//
+// Drawing on every breakfast and lunch is too loose -- the calorie target for a
+// meal replacing two is high enough that a plain pool hands you roast gammon at
+// eleven in the morning. Filtering by the catalogue's own categories keeps the
+// things you would actually eat at that hour and still leaves 74 recipes, 22 of
+// them over 700 kcal.
+const BRUNCH_CATEGORIES = ["cooked-breakfast", "eggs", "toast-and-bakery",
+  "bread-and-baked", "bakery-and-picky", "sandwiches", "jacket-potatoes"];
+function servesSlot(r, slot){
+  if (slot === "brunch"){
+    return (r.slots.includes("breakfast") || r.slots.includes("lunch"))
+      && BRUNCH_CATEGORIES.indexOf(r.category) !== -1;
+  }
+  return r.slots.includes(slot);
+}
 const DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const MONTHS = ["January","February","March","April","May","June",
                 "July","August","September","October","November","December"];
@@ -388,7 +418,8 @@ function blank(){
     // Which days of the week each main meal is actually eaten, Mon..Sun. A slot
     // you do not eat is not an empty slot: fill leaves it alone and its share of
     // the day's calories goes to the meals you do eat.
-    slotDays: { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK() },
+    slotDays: { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK(),
+                brunch: NO_DAYS() },
     // Longest a main may take, prep and cook together, in minutes. 0 means no
     // limit. Weeknights and weekends are separate because they are different
     // kinds of evening.
@@ -402,17 +433,40 @@ function blank(){
 }
 
 function FULL_WEEK(){ return [true, true, true, true, true, true, true]; }
+function NO_DAYS(){ return [false, false, false, false, false, false, false]; }
 
 /** Mon=0 .. Sun=6, matching DOW. */
 function dowIdx(date){ return (parseISO(date).getDay() + 6) % 7; }
 function isWeekend(date){ return dowIdx(date) >= 5; }
 
-/** Do you eat this slot on this day? Snacks are a top-up, never on a schedule. */
+/** Is this a day you have brunch instead of breakfast and lunch? */
+function isBrunchDay(date){
+  const days = S.slotDays && S.slotDays.brunch;
+  return Array.isArray(days) && days[dowIdx(date)] === true;
+}
+
+/** Do you eat this slot on this day? Snacks are a top-up, never on a schedule.
+ *  Brunch does not sit alongside breakfast and lunch, it stands in for them, so
+ *  a brunch day closes both regardless of what their own schedules say. */
 function eats(date, slot){
   if (slot === "snack") return true;
+  if (slot === "brunch") return isBrunchDay(date);
+  if ((slot === "breakfast" || slot === "lunch") && isBrunchDay(date)) return false;
   const days = S.slotDays && S.slotDays[slot];
   if (!Array.isArray(days)) return true;
   return days[dowIdx(date)] !== false;
+}
+
+/** The slots worth showing for a day. A meal you are not having is only worth a
+ *  line if it is one you might have: the breakfast you skip on Tuesdays reads as
+ *  a deliberate gap, but a brunch slot on every ordinary day is just clutter. */
+function visibleSlots(date){
+  return SLOTS.filter(slot => {
+    if (takenAt(date, slot)) return true;
+    if (slot === "brunch") return isBrunchDay(date);
+    if ((slot === "breakfast" || slot === "lunch") && isBrunchDay(date)) return false;
+    return true;
+  });
 }
 
 /** Minutes a main may take on this day, or 0 for no limit. */
@@ -490,14 +544,20 @@ function cooks(plan, ref, id){
 
 /** A saved schedule is only trusted as far as its shape: anything that is not
  *  seven booleans falls back to eating that meal every day, so a corrupt or
- *  half-written setting can never quietly stop meals being planned. */
+ *  half-written setting can never quietly stop meals being planned.
+ *
+ *  Brunch is the exception and defaults to no days. It replaces breakfast and
+ *  lunch, so guessing it on would take two meals a day off everyone who saved a
+ *  plan before brunch existed. */
 function normaliseSlotDays(saved){
   const out = {};
   MAIN_SLOTS.forEach(slot => {
+    const brunch = slot === "brunch";
     const days = saved && saved[slot];
     out[slot] = Array.isArray(days) && days.length === 7
-      ? days.map(v => v !== false)
-      : FULL_WEEK();
+      // Brunch has to be opted into explicitly; the others are only opted out of.
+      ? days.map(v => (brunch ? v === true : v !== false))
+      : (brunch ? NO_DAYS() : FULL_WEEK());
   });
   return out;
 }
@@ -509,7 +569,7 @@ function normaliseSlotDays(saved){
 function usualFor(slot){
   const id = S.usual && S.usual[slot];
   const r = id ? BY_ID[id] : null;
-  return r && r.slots.includes(slot) ? r : null;
+  return r && servesSlot(r, slot) ? r : null;
 }
 
 let S = blank();
@@ -577,7 +637,7 @@ const FILTER_TAGS = [
 function filterRecipes(f){
   const q = f.q.trim().toLowerCase();
   return RECIPES.filter(r => {
-    if (f.slot && !r.slots.includes(f.slot)) return false;
+    if (f.slot && !servesSlot(r, f.slot)) return false;
     if (f.cat && r.category !== f.cat) return false;
     if (!f.tags.every(t => r.tags.includes(t))) return false;
     if (q){
@@ -601,7 +661,7 @@ function filterRecipes(f){
  *  picking breakfast does not leave "Roasts" on the list. */
 function filterControls(f, ns){
   const cats = [...new Set(RECIPES
-    .filter(r => !f.slot || r.slots.includes(f.slot))
+    .filter(r => !f.slot || servesSlot(r, f.slot))
     .map(r => r.category))].sort((a, b) => catLabel(a).localeCompare(catLabel(b)));
   const row = (label, body) =>
     `<div class="facet"><span class="flab">${label}</span>${body}</div>`;
@@ -614,7 +674,7 @@ function filterControls(f, ns){
     </select>`;
   return `<input type="search" id="q-${ns}" data-search="${ns}"
       placeholder="Search recipes or ingredients..." value="${esc(f.q)}">
-    ${row("Meal", `<div class="chips">${SLOTS.map(s =>
+    ${row("Meal", `<div class="chips">${CATALOGUE_SLOTS.map(s =>
       `<button class="chip slot-${s} ${f.slot === s ? "on" : ""}" data-fslot="${ns}|${s}">${
         SLOT_LABEL[s]}</button>`).join("")}</div>`)}
     ${row("Type", select("fcatsel", f.cat, cats.map(c => [c, catLabel(c)]), "All types"))}
@@ -807,9 +867,17 @@ function fillSummary(){
     const r = usualFor(s);
     if (r) bits.push(`${SLOT_LABEL[s].toLowerCase()} is always ${r.name.toLowerCase()}`);
   });
-  const off = MAIN_SLOTS.filter(s => S.slotDays[s].filter(Boolean).length < 7);
-  off.forEach(s => bits.push(
-    `${SLOT_LABEL[s].toLowerCase()} ${S.slotDays[s].filter(Boolean).length}/7`));
+  const brunch = DOW.filter((d, i) => S.slotDays.brunch[i]);
+  if (brunch.length){
+    bits.push(brunch.length === 7 ? "brunch every day" : `brunch ${brunch.join(", ")}`);
+  }
+  // Counted as days you actually eat them, not as days you ticked: with brunch
+  // on at the weekend, breakfast reads 5/7 however its own row looks.
+  DAILY_SLOTS.forEach(s => {
+    const n = S.slotDays[s].filter((v, i) =>
+      v && !(s !== "dinner" && S.slotDays.brunch[i])).length;
+    if (n < 7) bits.push(`${SLOT_LABEL[s].toLowerCase()} ${n}/7`);
+  });
   const caps = [];
   if (S.maxMin.week) caps.push(`${S.maxMin.week} min weeknights`);
   if (S.maxMin.weekend) caps.push(`${S.maxMin.weekend} min weekends`);
@@ -825,14 +893,22 @@ function fillSummary(){
 function usualNote(){
   const pinned = MAIN_SLOTS.map(s => usualFor(s)).filter(Boolean);
   if (!pinned.length) return "Nothing pinned: fill chooses every meal.";
-  const kcal = pinned.reduce((n, r) => n + r.macros.kcal, 0);
-  const prot = pinned.reduce((n, r) => n + r.macros.protein, 0);
+  // Brunch never shares a day with breakfast or lunch, so adding its calories to
+  // theirs would describe a day nobody eats. It gets its own sentence.
+  const daily = DAILY_SLOTS.map(s => usualFor(s)).filter(Boolean);
+  const brunch = usualFor("brunch");
+  const kcal = daily.reduce((n, r) => n + r.macros.kcal, 0);
+  const prot = daily.reduce((n, r) => n + r.macros.protein, 0);
   const left = S.goals.kcal - kcal;
-  const spent = `${pinned.length} pinned, taking ${kcal} kcal and ${prot} g protein`
+  const brunchBit = brunch
+    ? ` Brunch days start with ${brunch.name} at ${brunch.macros.kcal} kcal.`
+    : "";
+  if (!daily.length) return `${pinned.length} pinned.${brunchBit}`;
+  const spent = `${daily.length} pinned, taking ${kcal} kcal and ${prot} g protein`
     + ` of your ${S.goals.kcal} kcal goal`;
-  return left > 0
+  return (left > 0
     ? `${spent}, leaving ${left} kcal for the rest of the day.`
-    : `${spent} - which is already over it, so fill has nothing left to give.`;
+    : `${spent} - which is already over it, so fill has nothing left to give.`) + brunchBit;
 }
 
 const TIME_CAPS = [0, 20, 30, 45, 60];
@@ -854,7 +930,7 @@ function fillSettingsSheet(){
             <button class="sec${current ? " on" : ""}" data-usual="${slot}"
               style="flex:1 1 auto;min-width:0;text-align:left">${
               current ? esc(current.name) + " \u00b7 " + current.macros.kcal + " kcal"
-                      : "Something different each day"}</button>
+                      : "Something different"}</button>
           </div>`;
         }).join("")}
         <div class="sub">${esc(usualNote())}</div>
@@ -864,18 +940,28 @@ function fillSettingsSheet(){
           <h2>Meals you eat</h2>
           <div class="sub">A meal you do not eat is not an empty slot: fill leaves
             it alone, and its share of the day's calories goes to the meals you
-            do eat.</div>
+            do eat. Brunch is the one that is not a meal on top: pick it for a day
+            and it stands in for breakfast and lunch, carrying both their
+            calories.</div>
         </div></div>
         <div class="wkset">
           <div class="wkrow head"><span></span>${
             DOW.map(d => `<span>${d[0]}</span>`).join("")}</div>
           ${MAIN_SLOTS.map(slot => `<div class="wkrow">
             <span class="slot-${slot}">${SLOT_LABEL[slot]}</span>
-            ${DOW.map((d, i) => `<button class="dbox${S.slotDays[slot][i] ? " on" : ""}"
-              data-slotday="${slot}|${i}"
-              aria-pressed="${S.slotDays[slot][i] ? "true" : "false"}"
-              aria-label="${SLOT_LABEL[slot]} on ${d}">${
-                S.slotDays[slot][i] ? "&#10003;" : ""}</button>`).join("")}
+            ${DOW.map((d, i) => {
+              // A brunch day has already answered for breakfast and lunch, so
+              // their boxes show as overruled rather than as choices you made.
+              const stood = (slot === "breakfast" || slot === "lunch")
+                && S.slotDays.brunch[i];
+              const on = S.slotDays[slot][i] && !stood;
+              return `<button class="dbox${on ? " on" : ""}${stood ? " over" : ""}"
+                data-slotday="${slot}|${i}"
+                aria-pressed="${on ? "true" : "false"}"
+                aria-label="${SLOT_LABEL[slot]} on ${d}"
+                title="${stood ? "Brunch stands in for this on " + d : SLOT_LABEL[slot] + " on " + d}">${
+                  on ? "&#10003;" : stood ? "&ndash;" : ""}</button>`;
+            }).join("")}
           </div>`).join("")}
         </div>
       </div>
@@ -916,7 +1002,7 @@ function fillSettingsSheet(){
  *  Counted rather than promised: a limit that strands the pool would silently be
  *  ignored at fill time, so it is better to say so here. */
 function capNote(){
-  const mains = RECIPES.filter(r => MAIN_SLOTS.some(s => s !== "breakfast" && r.slots.includes(s)));
+  const mains = RECIPES.filter(r => ["lunch", "dinner"].some(s => r.slots.includes(s)));
   return [["week", "Weeknights"], ["weekend", "Weekends"]]
     .filter(([key]) => S.maxMin[key])
     .map(([key, label]) => {
@@ -926,7 +1012,7 @@ function capNote(){
 }
 
 function dayTiles(date){
-  return SLOTS.map(slot => {
+  return visibleSlots(date).map(slot => {
     const v = slotAt(date, slot);
     const r = mealAt(date, slot);
     const optional = slot === "snack";
@@ -965,7 +1051,7 @@ function weekGrid(a, b){
         <span class="kc">${t.kcal ? t.kcal + " kcal" : ""}</span>
         <button class="dayclear" data-clearday="${date}" ${planned ? "" : "disabled"}
           title="Clear this day" aria-label="Clear ${esc(fmtDate(date))}">&times;</button></h3>
-      ${SLOTS.map(slot => {
+      ${visibleSlots(date).map(slot => {
         const v = slotAt(date, slot);
         const r = mealAt(date, slot);
         const off = !r && !eats(date, slot);
@@ -994,7 +1080,7 @@ function monthGrid(a, b){
       return `<button class="mcell ${inMonth ? "" : "out"} ${date === today ? "today" : ""}"
         data-day="${date}">
         <span class="dn">${parseISO(date).getDate()}</span>
-        <span class="dots">${MAIN_SLOTS.map(s =>
+        <span class="dots">${visibleSlots(date).filter(s => s !== "snack").map(s =>
           `<i class="${takenAt(date, s) ? "on" : eats(date, s) ? "" : "off"}"></i>`).join("")}</span>
         <span class="kc">${t.kcal || ""}</span>
       </button>`;
@@ -1647,7 +1733,27 @@ function toggleLock(date, slot){
 
 const FILL_TOLERANCE = 120;
 const FILL_LEVEL_KCAL = 40;
-const SLOT_SHARE = { breakfast: 0.25, lunch: 0.35, dinner: 0.40 };
+// Brunch takes breakfast's share and lunch's together, which is what makes fill
+// reach for a 600 kcal shakshuka rather than a 150 kcal bowl of cereal: the
+// target it aims at is the sum, and meals are ranked by how close they land.
+// How much of the day each meal is aiming for. Shares are normalised over the
+// slots a day actually has, so what matters is the ratio between them.
+//
+// Brunch is the odd one. It replaces two meals, so 0.60 looks like the obvious
+// number -- but that puts the target near 990 kcal, and the only recipes up
+// there are the eight biggest in the pool, so you get the same Full English
+// every weekend. Measured over 50 filled weeks, dropping the share moves the
+// target into a denser part of the catalogue and buys variety:
+//
+//   share  brunch  dinner  distinct brunches
+//   0.25    610     988     7
+//   0.33    723     869     5
+//   0.45    852     741     3
+//   0.60    932     662     3
+//
+// 0.33 is the balance: a brunch twice the size of a normal breakfast, a dinner
+// that still looks like a weekend dinner, and enough choice to not repeat.
+const SLOT_SHARE = { breakfast: 0.25, brunch: 0.33, lunch: 0.35, dinner: 0.40 };
 
 /** Median of a list of numbers, used to judge what a typical meal looks like. */
 function median(xs){
@@ -1661,7 +1767,7 @@ function median(xs){
 function snackReserve(){
   const snacks = RECIPES.filter(r => r.slots.includes("snack"));
   if (!snacks.length) return 0;
-  const typical = MAIN_SLOTS.reduce((n, slot) =>
+  const typical = DAILY_SLOTS.reduce((n, slot) =>
     n + median(RECIPES.filter(r => r.slots.includes(slot)).map(r => r.macros.protein)), 0);
   if (S.goals.protein <= typical) return 0;
   return median(snacks.map(r => r.macros.kcal));
@@ -1682,7 +1788,7 @@ const SCOPES = [
  * you cannot conjure an extra hour on a Tuesday -- so the scope gives way first.
  */
 function fillPool(slot, date){
-  const all = RECIPES.filter(r => r.slots.includes(slot));
+  const all = RECIPES.filter(r => servesSlot(r, slot));
   const cap = date ? timeCap(date) : 0;
   const inTime = cap ? all.filter(r => (r.total_min || 0) <= cap) : all;
   if (!S.scope) return inTime.length ? inTime : all;
@@ -1831,15 +1937,15 @@ function planLeftovers(date, last, used){
   if (next > last) return;
   // Dinner first: it is the meal most likely to be a big cook, and the one whose
   // leftovers you would actually reach for the next day.
-  const sources = ["dinner", "lunch"].filter(s => {
+  const sources = ["dinner", "lunch", "brunch"].filter(s => {
     const v = slotAt(date, s);
     return v && !isLeftover(v) && BY_ID[idOf(v)] && BY_ID[idOf(v)].tags.includes("batch");
   });
   sources.some(from => {
     const r = BY_ID[idOf(slotAt(date, from))];
     // A slot you have pinned is spoken for: your usual beats yesterday's pot.
-    const target = ["lunch", "dinner"].find(s =>
-      r.slots.includes(s) && eats(next, s) && !takenAt(next, s) && !usualFor(s));
+    const target = ["lunch", "brunch", "dinner"].find(s =>
+      servesSlot(r, s) && eats(next, s) && !takenAt(next, s) && !usualFor(s));
     if (!target) return false;
     // Eating the same dish twice in one day is not leftovers, it is a rut.
     if (MAIN_SLOTS.some(s => idOf(slotAt(next, s)) === r.id)) return false;
@@ -2100,7 +2206,7 @@ document.addEventListener("click", e => {
     f.slot = f.slot === slot ? null : slot;
     // The Type row is scoped to the chosen meal, so a category that no longer
     // applies would otherwise stay selected and silently show nothing.
-    if (f.cat && !RECIPES.some(r => r.category === f.cat && (!f.slot || r.slots.includes(f.slot)))){
+    if (f.cat && !RECIPES.some(r => r.category === f.cat && (!f.slot || servesSlot(r, f.slot)))){
       f.cat = null;
     }
     reFilter(ns);

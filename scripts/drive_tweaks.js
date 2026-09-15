@@ -511,7 +511,9 @@ function testFillTopsUpAPlannedDay(){
   S.plan = {}; render();
   document.querySelector("[data-fill]").click();
   const day = () => S.plan[S.cursor] || {};
-  ok("a clean day fills completely", SLOTS.every(s => day()[s]), JSON.stringify(day()));
+  // Brunch is a slot most days do not have, so ask the day what it eats.
+  const eaten = () => SLOTS.filter(s => eats(S.cursor, s));
+  ok("a clean day fills completely", eaten().every(s => day()[s]), JSON.stringify(day()));
 
   // Mains planned, snack cleared: the state the app was silently refusing.
   delete S.plan[S.cursor].snack;
@@ -526,7 +528,7 @@ function testFillTopsUpAPlannedDay(){
     short <= 0 || totalsOn(S.cursor).protein > S.goals.protein - short,
     totalsOn(S.cursor).protein + "g vs goal " + S.goals.protein);
   ok("topping up does not disturb the planned mains",
-    MAIN_SLOTS.every(s => day()[s]), JSON.stringify(day()));
+    MAIN_SLOTS.filter(s => eats(S.cursor, s)).every(s => day()[s]), JSON.stringify(day()));
 
   // A genuinely complete day must still say so rather than pile on snacks.
   document.querySelector("[data-fill]").click();

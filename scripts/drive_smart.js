@@ -22,8 +22,9 @@ function reset(){
   S.scope = null;
   S.leftovers = true;
   S.maxMin = { week: 0, weekend: 0 };
-  S.slotDays = { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK() };
-  S.usual = { breakfast: null, lunch: null, dinner: null };
+  S.slotDays = { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK(),
+                 brunch: NO_DAYS() };
+  S.usual = { breakfast: null, brunch: null, lunch: null, dinner: null };
 }
 
 const week = () => daysBetween(MON, SUN);
@@ -193,9 +194,17 @@ function testTimeCap(){
   }));
   ok("weeknight meals respect the limit", !over.length, JSON.stringify(over));
 
-  const weekendLong = week().filter(d => isWeekend(d))
-    .some(d => MAIN_SLOTS.some(s => mealAt(d, s) && mealAt(d, s).total_min > 30));
-  ok("weekends are still allowed a long cook", weekendLong);
+  // Whether any one weekend happens to draw a long recipe is chance, so ask
+  // over enough weeks that "the cap leaked into the weekend" would show up.
+  let longWeekends = 0;
+  for (let i = 0; i < 20; i++){
+    S.plan = {}; S.maxMin = { week: 30, weekend: 0 };
+    fillRange();
+    if (week().filter(isWeekend).some(d => MAIN_SLOTS.some(s =>
+      mealAt(d, s) && mealAt(d, s).total_min > 30))) longWeekends++;
+  }
+  ok("weekends are still allowed a long cook", longWeekends >= 15,
+    longWeekends + "/20 weekends had one");
 
   // A limit no recipe can meet must not strand the slot: an unfillable day is a
   // worse outcome than a meal that misses a preference.
@@ -203,7 +212,7 @@ function testTimeCap(){
   S.maxMin = { week: 1, weekend: 1 };
   fillRange();
   ok("an impossible limit still fills the week",
-    week().every(d => MAIN_SLOTS.every(s => takenAt(d, s))));
+    week().every(d => MAIN_SLOTS.filter(s => eats(d, s)).every(s => takenAt(d, s))));
 }
 
 /* --- ingredient overlap ------------------------------------------------- */
@@ -349,8 +358,12 @@ function testSettingsSheet(){
   document.querySelector("[data-fillset]").click();
   ok("the settings sheet opens", /Fill settings/.test(sheet.innerHTML));
   const boxes = sheet.querySelectorAll("[data-slotday]");
-  ok("every main meal has a box for every day", boxes.length === 21, boxes.length + " boxes");
-  ok("they all start ticked", [...boxes].every(b => b.classList.contains("on")));
+  ok("every main meal has a box for every day", boxes.length === MAIN_SLOTS.length * 7,
+    boxes.length + " boxes");
+  // Brunch is the exception: it is opted into, so it starts on no day.
+  const daily = [...boxes].filter(b => b.dataset.slotday.split("|")[0] !== "brunch");
+  ok("the meals you eat daily all start ticked",
+    daily.every(b => b.classList.contains("on")));
 
   sheet.querySelector('[data-slotday="breakfast|1"]').click();
   ok("unticking a day is remembered", S.slotDays.breakfast[1] === false);
@@ -514,11 +527,145 @@ function testPickersStaySeparate(){
   reset();
 }
 
+
+/* --- brunch ------------------------------------------------------------- */
+
+const WEEKEND = [5, 6];
+function brunchOn(days){
+  S.slotDays.brunch = NO_DAYS();
+  days.forEach(i => { S.slotDays.brunch[i] = true; });
+}
+
+function testBrunch(){
+  reset();
+  brunchOn(WEEKEND);
+  fillRange();
+  const days = week();
+  const weekend = days.filter(isWeekend);
+  const weekdays = days.filter(d => !isWeekend(d));
+
+  ok("every brunch day gets a brunch",
+    weekend.every(d => !!mealAt(d, "brunch")),
+    weekend.map(d => (mealAt(d, "brunch") || {}).name).join(", "));
+  // The whole point: it replaces two meals rather than being a fourth.
+  ok("a brunch day has no breakfast or lunch",
+    weekend.every(d => !takenAt(d, "breakfast") && !takenAt(d, "lunch")));
+  ok("weekdays are untouched",
+    weekdays.every(d => takenAt(d, "breakfast") && takenAt(d, "lunch")
+      && !takenAt(d, "brunch")));
+  ok("brunch days still hit the calorie goal",
+    weekend.every(d => {
+      const k = totalsOn(d).kcal;
+      return k > S.goals.kcal * 0.9 && k < S.goals.kcal * 1.1;
+    }),
+    weekend.map(d => totalsOn(d).kcal).join("/"));
+
+  // A brunch is one meal doing the work of two, so it has to be bigger than the
+  // breakfasts it replaces or the day is carried entirely by dinner.
+  const brunchKcal = weekend.map(d => mealAt(d, "brunch").macros.kcal);
+  const bfKcal = weekdays.map(d => mealAt(d, "breakfast").macros.kcal);
+  const mean = xs => xs.reduce((a, b) => a + b, 0) / xs.length;
+  ok("a brunch is bigger than a breakfast",
+    mean(brunchKcal) > mean(bfKcal) * 1.4,
+    Math.round(mean(brunchKcal)) + " vs " + Math.round(mean(bfKcal)));
+
+  // ...and made of things you would actually eat at eleven in the morning.
+  ok("no roasts or curries are served as brunch",
+    weekend.every(d => ["roasts", "curries", "soups"]
+      .indexOf(mealAt(d, "brunch").category) === -1),
+    weekend.map(d => mealAt(d, "brunch").category).join(", "));
+}
+
+function testBrunchKeepsWhatYouPlanned(){
+  // Plan a normal Saturday first, then switch brunch on for that day.
+  reset();
+  fillRange();
+  const sat = week().filter(isWeekend)[0];
+  const had = idOf(slotAt(sat, "breakfast"));
+  ok("the Saturday breakfast was planned", !!had);
+
+  brunchOn(WEEKEND);
+  ok("switching brunch on does not delete it", idOf(slotAt(sat, "breakfast")) === had);
+  ok("and it is still on screen", visibleSlots(sat).indexOf("breakfast") !== -1,
+    visibleSlots(sat).join(", "));
+  // An empty replaced slot, though, should get out of the way.
+  const mon = MON;
+  brunchOn([0]);
+  clearDayMeals(mon);
+  ok("an empty breakfast is hidden on a brunch day",
+    visibleSlots(mon).indexOf("breakfast") === -1, visibleSlots(mon).join(", "));
+  reset();
+}
+
+function testBrunchTakesLeftovers(){
+  reset();
+  brunchOn(WEEKEND);
+  // Saturday's brunch turning up again on Sunday is the common case: most batch
+  // dinners are curries and pasta, which are not brunch. Sample wide enough
+  // that the check is about the feature rather than about the draw.
+  let found = 0;
+  const WEEKS = 250;
+  for (let i = 0; i < WEEKS; i++){
+    S.plan = {};
+    fillRange();
+    week().forEach(d => { if (isLeftover(slotAt(d, "brunch"))) found++; });
+  }
+  ok("a brunch can be eaten again as leftovers", found >= 20,
+    found + " in " + WEEKS + " weeks");
+  reset();
+}
+
+function testOldPlansLoadWithoutBrunch(){
+  // A plan saved before brunch existed has no brunch key at all. Reading a
+  // missing day as "yes" -- which is right for every other meal -- would load
+  // it with breakfast and lunch gone from all seven days.
+  const before = localStorage.getItem(KEY);
+  try {
+    localStorage.setItem(KEY, JSON.stringify({
+      plan: {}, goals: S.goals,
+      slotDays: { breakfast: FULL_WEEK(), lunch: FULL_WEEK(), dinner: FULL_WEEK() },
+    }));
+    const days = normaliseSlotDays(JSON.parse(localStorage.getItem(KEY)).slotDays);
+    ok("an old save has brunch on no day",
+      days.brunch.every(v => v === false), JSON.stringify(days.brunch));
+    ok("and keeps its other meals every day",
+      days.breakfast.every(Boolean) && days.lunch.every(Boolean));
+  } finally {
+    if (before === null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, before);
+  }
+}
+
+function testBrunchUI(){
+  reset();
+  brunchOn(WEEKEND);
+  render();
+  fillSettingsSheet();
+  const sheet = document.querySelector(".sheet");
+  const box = s => Array.prototype.slice.call(
+    sheet.querySelectorAll("[data-slotday]"))
+    .filter(b => b.dataset.slotday.split("|")[0] === s);
+  const boxes = box("brunch");
+  ok("the settings sheet has a brunch row", boxes.length === 7, boxes.length + " boxes");
+  ok("the weekend boxes are on",
+    boxes[5].classList.contains("on") && boxes[6].classList.contains("on"));
+  // The days brunch overrules must say so rather than silently disagreeing.
+  const bf = box("breakfast");
+  ok("breakfast reads as overruled on a brunch day",
+    bf[5].classList.contains("over") && !bf[0].classList.contains("over"),
+    bf[5].className);
+  ok("the summary names the brunch days", /brunch Sat, Sun/.test(fillSummary()),
+    fillSummary());
+  sheet.remove();
+  reset();
+}
+
 /* --- run ---------------------------------------------------------------- */
 [testSlotShapes, testLeftoversNotBought, testFillMakesLeftovers, testLeftoversStayHonest,
  testCadence, testCadenceUI, testTimeCap, testOverlap, testLocking, testLockingUI,
  testCopyPrevious, testSettingsSheet,
- testPinnedMeals, testPinnedMealsUI, testPickersStaySeparate].forEach(fn => {
+ testPinnedMeals, testPinnedMealsUI, testPickersStaySeparate,
+ testBrunch, testBrunchKeepsWhatYouPlanned, testBrunchTakesLeftovers,
+ testOldPlansLoadWithoutBrunch, testBrunchUI].forEach(fn => {
   try { fn(); }
   catch (err){ ok(fn.name + " threw", false, String(err && err.stack || err)); }
 });

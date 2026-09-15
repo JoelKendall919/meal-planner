@@ -309,12 +309,32 @@ def test_app_keeps_the_shopping_list_editable(tmp_path):
 
 
 def test_fill_budgets_a_whole_day(tmp_path):
-    """SLOT_SHARE splits the day's calorie goal, so it has to add up to 1."""
+    """SLOT_SHARE splits the day's calorie goal between the meals you eat.
+
+    The three daily slots still add up to 1, so an ordinary day spends its whole
+    budget. Brunch cannot join that sum -- it never shares a day with breakfast
+    and lunch, so adding it in would describe a day nobody eats. What keeps a
+    brunch day honest is that fill normalises the shares over the slots that are
+    actually open, which is asserted below.
+    """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     line = next(ln for ln in html.splitlines() if ln.startswith("const SLOT_SHARE"))
-    shares = [float(part) for part in re.findall(r":\s*([0-9.]+)", line)]
-    assert len(shares) == len(MAIN_SLOTS), "the budget must cover every main meal"
-    assert abs(sum(shares) - 1.0) < 1e-9, f"slot shares add up to {sum(shares)}"
+    shares = dict((k, float(v)) for k, v in re.findall(r"(\w+):\s*([0-9.]+)", line))
+    daily = [shares[slot] for slot in MAIN_SLOTS]
+    assert len(daily) == len(MAIN_SLOTS), "the budget must cover every main meal"
+    assert abs(sum(daily) - 1.0) < 1e-9, f"slot shares add up to {sum(daily)}"
+    # A brunch is one meal doing the work of two, so it has to sit between a
+    # breakfast and a breakfast-plus-lunch or the day's meals come out lopsided.
+    assert "brunch" in shares, "brunch gets no share of the day"
+    assert shares["breakfast"] < shares["brunch"] < shares["breakfast"] + shares["lunch"], (
+        f"a brunch share of {shares['brunch']} is not a meal replacing two"
+    )
+    # Without this, a brunch day would only ever spend 73% of its calories.
+    fill = js_block(html, "function fillRange(){")
+    assert "let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);" in fill, (
+        "shares are not totalled over the slots a day actually has"
+    )
+    assert "budget * (SLOT_SHARE[slot] / share)" in fill, "shares are not normalised"
 
 
 def test_stored_plans_from_the_previous_version_are_migrated(tmp_path):
@@ -677,7 +697,7 @@ def test_the_filter_tags_multi_select_and_narrow(tmp_path):
 def test_type_options_follow_the_chosen_meal(tmp_path):
     """Picking breakfast must not leave 'Roasts' on the Type list."""
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
-    assert "r => !f.slot || r.slots.includes(f.slot)" in html, "Type is not scoped to the meal"
+    assert "r => !f.slot || servesSlot(r, f.slot)" in html, "Type is not scoped to the meal"
     # ...and a type that no longer applies must be dropped, not left selected
     # while the results silently empty.
     assert "f.cat = null;" in html, "a stale category is never cleared"
@@ -1140,7 +1160,7 @@ def test_a_pinned_id_is_checked_against_the_catalogue(tmp_path):
     """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     usual = js_block(html, "function usualFor(slot){")
-    assert "return r && r.slots.includes(slot) ? r : null;" in usual, (
+    assert "return r && servesSlot(r, slot) ? r : null;" in usual, (
         "a pinned id is trusted without checking it still serves that slot"
     )
     assert "const r = id ? BY_ID[id] : null;" in usual, "a pinned id is not resolved"
@@ -1201,3 +1221,118 @@ def test_the_fill_settings_button_says_what_it_opens(tmp_path):
     )
     assert "S.usual[pinned] = d.set;" in html, "choosing a usual meal does nothing"
     assert "if (d.unusual){\n    S.usual[d.unusual] = null;" in html, "a pin cannot be removed"
+
+
+def test_a_brunch_day_replaces_breakfast_and_lunch(tmp_path):
+    """Brunch is not a fourth meal, it is one meal standing in for two.
+
+    If it were merely added, a brunch day would be four meals on a 1750 kcal
+    budget and every plate would shrink. Both the planner and the display have
+    to agree on this or the calorie maths and the screen tell different stories.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    eats = js_block(html, "function eats(date, slot){")
+    assert 'if (slot === "brunch") return isBrunchDay(date);' in eats, "brunch is never eaten"
+    assert (
+        'if ((slot === "breakfast" || slot === "lunch") && isBrunchDay(date)) return false;' in eats
+    ), "a brunch day would still ask for breakfast and lunch as well"
+    visible = js_block(html, "function visibleSlots(date){")
+    assert 'if (slot === "brunch") return isBrunchDay(date);' in visible, (
+        "the brunch slot is never shown"
+    )
+
+
+def test_turning_brunch_on_does_not_delete_the_meals_it_replaces(tmp_path):
+    """Changing a setting must never silently destroy food you planned.
+
+    Someone with a planned Saturday breakfast who then switches brunch on should
+    see both until they clear one themselves.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    visible = js_block(html, "function visibleSlots(date){")
+    lines = [ln.strip() for ln in visible.splitlines() if ln.strip()]
+    taken = next(i for i, ln in enumerate(lines) if ln == "if (takenAt(date, slot)) return true;")
+    hidden = next(i for i, ln in enumerate(lines) if "return false;" in ln)
+    assert taken < hidden, "a planned meal can be hidden by switching brunch on"
+
+
+def test_brunch_is_off_unless_you_ask_for_it(tmp_path):
+    """Every other cadence is opted out of; brunch has to be opted into.
+
+    The lenient default reads a missing day as "yes", which is right for meals
+    you eat unless told otherwise. Applied to brunch it would load every plan
+    saved before this feature existed with breakfast and lunch removed from all
+    seven days.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    norm = js_block(html, "function normaliseSlotDays(saved){")
+    assert "days.map(v => (brunch ? v === true : v !== false))" in norm, (
+        "brunch uses the same lenient default as the meals you eat daily"
+    )
+    assert "(brunch ? NO_DAYS() : FULL_WEEK())" in norm, (
+        "a plan saved before brunch existed would load with brunch every day"
+    )
+    assert "function NO_DAYS(){ return [false, false, false, false, false, false, false]; }" in html
+
+
+def test_brunch_is_made_of_things_you_would_eat_at_eleven(tmp_path):
+    """A brunch pool of every breakfast and lunch served roast gammon.
+
+    A meal replacing two has a high calorie target, so fill reaches for the
+    biggest thing it is allowed -- which on the unfiltered pool was a roast.
+    The catalogue's own categories are the fix, and the pool has to stay deep
+    enough that weekends do not repeat.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    cats = re.search(r"const BRUNCH_CATEGORIES = \[(.*?)\];", html, re.S)
+    assert cats, "the brunch pool is not restricted at all"
+    allowed = set(re.findall(r'"([a-z-]+)"', cats.group(1)))
+    for banned in ("roasts", "curries", "soups", "pasta-and-italian"):
+        assert banned not in allowed, f"{banned} would be planned as brunch"
+    serves = js_block(html, "function servesSlot(r, slot){")
+    assert "BRUNCH_CATEGORIES.indexOf(r.category) !== -1" in serves, (
+        "the brunch categories are declared but never applied"
+    )
+
+    recipes = payload()["recipes"]
+    pool = [
+        r
+        for r in recipes
+        if ("breakfast" in r["slots"] or "lunch" in r["slots"]) and r["category"] in allowed
+    ]
+    assert len(pool) >= 40, f"only {len(pool)} recipes can be planned as brunch"
+    # Fill aims a brunch at roughly 720 kcal, so the pool has to be deep there.
+    big = [r for r in pool if r["macros"]["kcal"] >= 600]
+    assert len(big) >= 10, f"only {len(big)} brunch recipes are big enough to replace two meals"
+
+
+def test_brunch_does_not_skew_what_a_normal_day_looks_like(tmp_path):
+    """Code asking "what does a day contain" must not count a weekend-only meal.
+
+    The snack reserve and the quick-meal note both reason about a typical day.
+    Including brunch there would size them for a day most weeks do not have.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'const DAILY_SLOTS = ["breakfast", "lunch", "dinner"];' in html, (
+        "there is no name for the meals an ordinary day has"
+    )
+    reserve = js_block(html, "function snackReserve(")
+    assert "DAILY_SLOTS" in reserve, "the snack reserve is sized using brunch"
+
+
+def test_the_recipes_page_does_not_offer_a_brunch_filter(tmp_path):
+    """Recipes browses the catalogue as it was written.
+
+    Adding brunch to the slot list put a fifth Meal button on the page offering
+    a tag no recipe carries. Brunch is a planning idea -- one meal doing the
+    work of two -- not something a recipe is labelled with.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert 'const CATALOGUE_SLOTS = DAILY_SLOTS.concat("snack");' in html, (
+        "there is no name for the slots a recipe can actually be tagged with"
+    )
+    assert '${row("Meal", `<div class="chips">${CATALOGUE_SLOTS.map(s =>' in html, (
+        "the Recipes page offers a Meal filter for every planning slot"
+    )
+    slots = {slot for r in payload()["recipes"] for slot in r["slots"]}
+    assert "brunch" not in slots, "a recipe is tagged brunch, which the app does not expect"

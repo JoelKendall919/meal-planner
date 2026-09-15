@@ -172,6 +172,48 @@ goes stale exactly like a planned one, so it is re-checked against the catalogue
 on every use -- a pin pointing at a deleted recipe falls back to choosing, because
 a silently unfillable breakfast is worse than an unwanted one.
 
+**Brunch** is not a fourth meal but a stand-in for two. Switch it on for a day and
+breakfast and lunch come off the menu, and the one meal carries both their
+calories. It is set per day like the other cadences, so weekends can brunch while
+weekdays do not.
+
+There is no `brunch` tag in the catalogue and there should not be: a brunch is an
+ordinary breakfast or lunch dish, and what makes it brunch is having to do the
+work of both. That is also why the Recipes page has no Brunch filter -- it browses
+the catalogue as it was written.
+
+Which dishes qualify had to be narrowed. Drawing on every breakfast and lunch
+looks obvious and is wrong: a meal replacing two has a calorie target near 800,
+fill reaches for the biggest thing it is allowed, and the result was **roast
+gammon with parsley sauce at eleven in the morning**. Restricting the pool to the
+catalogue's own brunch-plausible categories -- cooked breakfasts, eggs, toast and
+bakery, sandwiches, jacket potatoes -- leaves 74 recipes, 22 of them over 700 kcal,
+and no roasts.
+
+How big a brunch should be was measured rather than assumed. Replacing two meals
+suggests a 0.60 share of the day, but that aims at 990 kcal where only the eight
+largest recipes live, so every weekend is the same Full English. Over 50 filled
+weeks:
+
+| share | brunch | dinner | distinct brunches |
+| --- | --- | --- | --- |
+| 0.25 | 610 kcal | 988 kcal | 7 |
+| 0.33 | 723 kcal | 869 kcal | 5 |
+| 0.45 | 852 kcal | 741 kcal | 3 |
+| 0.60 | 932 kcal | 662 kcal | 3 |
+
+0.33 is the balance kept: a brunch twice the size of a normal breakfast, a dinner
+that still looks like a weekend dinner, and enough choice not to repeat. Every
+setting hit the calorie goal, so this is a variety decision, not a calorie one.
+
+Brunch defaults to **no days**, unlike every other cadence, which defaults to all
+seven. The lenient default reads a missing day as "yes", which is right for meals
+you eat unless told otherwise; applied to brunch it would load every plan saved
+before the feature existed with breakfast and lunch removed from all seven days.
+Switching brunch on also never deletes a breakfast you had already planned -- the
+replaced slots stay on screen while they hold food, because a setting should not
+silently destroy a meal.
+
 A sixth idea was built, measured and **removed**: steering dinner towards batch
 dishes when tomorrow had a slot free. Across 60 weeks a setting it made no
 difference at any weight worth having (2.5 leftovers either way; forcing it to 3.0

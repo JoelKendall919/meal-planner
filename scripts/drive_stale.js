@@ -35,9 +35,11 @@ try {
   tab = "plan"; S.view = "day"; S.cursor = "2026-09-16"; render();
   document.querySelector("[data-fill]").click();
   const day = S.plan["2026-09-16"] || {};
-  ok("filling the day now fills every slot", SLOTS.every(s => day[s]), JSON.stringify(day));
+  // Ask the day what it eats: brunch is a slot most days do not have.
+  const want = visibleSlots("2026-09-16");
+  ok("filling the day now fills every slot", want.every(s => day[s]), JSON.stringify(day));
   ok("...and they are real recipes",
-    SLOTS.every(s => BY_ID[day[s]]), SLOTS.map(s => BY_ID[day[s]] ? "ok" : s + "=BAD").join(" "));
+    want.every(s => BY_ID[day[s]]), want.map(s => BY_ID[day[s]] ? "ok" : s + "=BAD").join(" "));
 } catch (e) {
   out.push("FAIL  stale-plan driver threw: " + e.message);
 }

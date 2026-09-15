@@ -291,7 +291,7 @@ CASES = [
     ),
     (
         "a stale pin is trusted and strands the slot",
-        "return r && r.slots.includes(slot) ? r : null;",
+        "return r && servesSlot(r, slot) ? r : null;",
         "return r || null;",
         "test_a_pinned_id_is_checked_against_the_catalogue",
     ),
@@ -330,6 +330,54 @@ CASES = [
         "if (d.unusual){\n    S.usual[d.unusual] = null;",
         "if (false){\n    S.usual[d.unusual] = null;",
         "test_the_fill_settings_button_says_what_it_opens",
+    ),
+    (
+        "a brunch day asks for breakfast and lunch on top of the brunch",
+        'if ((slot === "breakfast" || slot === "lunch") && isBrunchDay(date)) return false;\n  const days',
+        'const days',
+        "test_a_brunch_day_replaces_breakfast_and_lunch",
+    ),
+    (
+        "brunch is never actually eaten",
+        'if (slot === "brunch") return isBrunchDay(date);\n  if ((slot === "breakfast"',
+        'if (slot === "brunch") return false;\n  if ((slot === "breakfast"',
+        "test_a_brunch_day_replaces_breakfast_and_lunch",
+    ),
+    (
+        "switching brunch on hides a breakfast you already planned",
+        '    if (takenAt(date, slot)) return true;\n    if (slot === "brunch") return isBrunchDay(date);',
+        '    if (slot === "brunch") return isBrunchDay(date);',
+        "test_turning_brunch_on_does_not_delete_the_meals_it_replaces",
+    ),
+    (
+        "brunch defaults on, silently removing two meals from every old plan",
+        "(brunch ? NO_DAYS() : FULL_WEEK())",
+        "FULL_WEEK()",
+        "test_brunch_is_off_unless_you_ask_for_it",
+    ),
+    (
+        "a saved brunch day is read with the lenient default",
+        "days.map(v => (brunch ? v === true : v !== false))",
+        "days.map(v => v !== false)",
+        "test_brunch_is_off_unless_you_ask_for_it",
+    ),
+    (
+        "brunch draws on every breakfast and lunch, roasts included",
+        "BRUNCH_CATEGORIES.indexOf(r.category) !== -1",
+        "true",
+        "test_brunch_is_made_of_things_you_would_eat_at_eleven",
+    ),
+    (
+        "the snack reserve is sized for a day with a brunch in it",
+        "const typical = DAILY_SLOTS.reduce((n, slot) =>",
+        "const typical = MAIN_SLOTS.reduce((n, slot) =>",
+        "test_brunch_does_not_skew_what_a_normal_day_looks_like",
+    ),
+    (
+        "the Recipes page offers a Brunch filter for a tag no recipe has",
+        '${row("Meal", `<div class="chips">${CATALOGUE_SLOTS.map(s =>',
+        '${row("Meal", `<div class="chips">${SLOTS.map(s =>',
+        "test_the_recipes_page_does_not_offer_a_brunch_filter",
     ),
 ]
 
