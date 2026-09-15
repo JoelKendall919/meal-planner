@@ -214,6 +214,17 @@ Switching brunch on also never deletes a breakfast you had already planned -- th
 replaced slots stay on screen while they hold food, because a setting should not
 silently destroy a meal.
 
+That search took a while to actually work. Changing a filter redrew the whole
+sheet, which threw away the search box you were typing into and built a new one.
+On a desktop this is invisible -- focus is restored on the replacement and the
+results narrow correctly. On a phone it is fatal: the browser cannot keep focus
+on an element that no longer exists, so the keyboard closed after every single
+letter, and the search and the Type dropdown read as simply not working. The fix
+is to redraw only the results and the filters and leave the input alone. The
+filters still have to be redrawn -- the Type list depends on which meal is
+chosen -- so the input is deliberately kept outside that region rather than
+inside it.
+
 A sixth idea was built, measured and **removed**: steering dinner towards batch
 dishes when tomorrow had a slot free. Across 60 weeks a setting it made no
 difference at any weight worth having (2.5 leftovers either way; forcing it to 3.0

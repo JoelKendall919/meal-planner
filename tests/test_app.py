@@ -1336,3 +1336,69 @@ def test_the_recipes_page_does_not_offer_a_brunch_filter(tmp_path):
     )
     slots = {slot for r in payload()["recipes"] for slot in r["slots"]}
     assert "brunch" not in slots, "a recipe is tagged brunch, which the app does not expect"
+
+
+def test_the_picker_never_redraws_the_box_you_are_typing_into(tmp_path):
+    """A filter change used to rebuild the whole sheet, search box included.
+
+    A browser cannot keep focus on an element that no longer exists, and on a
+    phone losing focus closes the keyboard -- so typing a letter dismissed it
+    and the search read as broken. The input has to sit outside the part that
+    gets redrawn.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    controls = js_block(html, "function filterControls(f, ns){")
+    assert 'id="q-${ns}"' in controls, "the search box has no stable id"
+    assert '<div data-facets="${ns}">${facetRows(f, ns)}</div>' in controls, (
+        "the filters are not separated from the search box"
+    )
+    # Exactly one input, and it is the one outside the redrawn div. A second one
+    # inside would be destroyed on every keystroke like the original bug.
+    assert controls.count("data-search") == 1, "the search box is drawn more than once"
+    facets = js_block(html, "function facetRows(f, ns){")
+    assert "data-search" not in facets, "the search box is inside the redrawn region"
+
+    refresh = js_block(html, "function refreshPicker(){")
+    # Anchored to the whole line: a mutated selector like ".rlist-gone" still
+    # contains ".rlist", and would leave this passing while the list never updates.
+    for line in (
+        "  const facets = sheet && sheet.querySelector('[data-facets=\"pick\"]');",
+        '  const list = sheet && sheet.querySelector(".rlist");',
+        "  const count = sheet && sheet.querySelector('[data-count=\"pick\"]');",
+    ):
+        assert line in refresh, f"the picker refresh does not read {line.strip()}"
+    for write in ("facets.innerHTML =", "count.textContent =", "list.innerHTML ="):
+        assert write in refresh, f"the picker refresh never does {write.strip()}"
+    assert "data-search" not in refresh, "the refresh touches the search box"
+    # Falling back to a rebuild is right when the sheet is not a picker at all.
+    assert "if (!facets || !list || !count){ reopenPicker(); return; }" in refresh, (
+        "a sheet without the hooks would silently fail to update"
+    )
+    # Every filter route has to use it, or one of them still kills the keyboard:
+    # the Meal and Filter chips, the Type select, and the search box itself.
+    assert html.count("refreshPicker();") == 3, (
+        f"{html.count('refreshPicker();')} of the 3 filter routes refresh in place"
+    )
+    # The only rebuild left is the fallback inside refreshPicker.
+    assert html.count("reopenPicker();") == 1, "a filter still rebuilds the whole sheet"
+
+
+def test_the_pinned_meals_card_reads_as_a_list_of_choices(tmp_path):
+    """Four rows of the same shape, so they have to line up and say the same thing.
+
+    `flex: 0 0 46px` is a hypothetical size rather than a promise: min-width
+    defaults to auto, so a label wider than its column pushes the control along.
+    "Breakfast" did exactly that and started its button 18px right of the rest.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    assert "<h2>Pinned meals</h2>" in html, "the card is not titled Pinned meals"
+    assert "Meals you always have" not in html, "the old card title is still shown"
+    assert "Something different" not in html, "an unpinned slot still says something different"
+    assert '                      : "None"}</button>' in html, "an unpinned slot does not say None"
+
+    rule = re.search(r"\.facet\.pin \.flab\{([^}]*)\}", html, re.S)
+    assert rule, "the pin rows have no label column of their own"
+    body = rule.group(1)
+    assert "min-width:0" in body, "the label can still push the button out of line"
+    assert re.search(r"flex:0 0 \d\dpx", body), "the label column is not a fixed width"
+    assert "text-overflow:ellipsis" in body, "a long label would overflow instead of clipping"

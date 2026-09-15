@@ -379,6 +379,36 @@ CASES = [
         '${row("Meal", `<div class="chips">${SLOTS.map(s =>',
         "test_the_recipes_page_does_not_offer_a_brunch_filter",
     ),
+    (
+        "a filter change rebuilds the sheet and kills the keyboard",
+        'if (ns === "pick") refreshPicker();\n  else render();',
+        'if (ns === "pick") reopenPicker();\n  else render();',
+        "test_the_picker_never_redraws_the_box_you_are_typing_into",
+    ),
+    (
+        "the search box is dragged back inside the redrawn region",
+        '<div data-facets="${ns}">${facetRows(f, ns)}</div>',
+        '<div data-facets="${ns}"><input data-search="${ns}">${facetRows(f, ns)}</div>',
+        "test_the_picker_never_redraws_the_box_you_are_typing_into",
+    ),
+    (
+        "the refresh forgets to update the recipe list",
+        "  const list = sheet && sheet.querySelector(\".rlist\");",
+        "  const list = sheet && sheet.querySelector(\".rlist-gone\");",
+        "test_the_picker_never_redraws_the_box_you_are_typing_into",
+    ),
+    (
+        "an unpinned slot goes back to saying something different",
+        '                      : "None"}</button>',
+        '                      : "Something different"}</button>',
+        "test_the_pinned_meals_card_reads_as_a_list_of_choices",
+    ),
+    (
+        "the pin label can push its button out of line again",
+        ".facet.pin .flab{flex:0 0 68px;min-width:0;",
+        ".facet.pin .flab{flex:0 0 68px;",
+        "test_the_pinned_meals_card_reads_as_a_list_of_choices",
+    ),
 ]
 
 

@@ -446,7 +446,12 @@ function testPinnedMealsUI(){
   const btn = sheet.querySelector('[data-usual="breakfast"]');
   ok("the settings sheet offers a breakfast pin", !!btn);
   ok("it starts out saying nothing is pinned",
-    /different/i.test(btn.textContent), btn.textContent.trim());
+    btn.textContent.trim() === "None", btn.textContent.trim());
+  // The four rows are a column of choices, so their buttons have to line up.
+  const xs = [...sheet.querySelectorAll(".facet.pin .sec")]
+    .map(b => b.getBoundingClientRect().x);
+  ok("the pin buttons line up", Math.max.apply(null, xs) - Math.min.apply(null, xs) < 0.5,
+    "spread " + (Math.max.apply(null, xs) - Math.min.apply(null, xs)).toFixed(2) + "px");
 
   // Pinning uses the plan page's picker, not a dropdown of names.
   btn.click();
@@ -659,11 +664,54 @@ function testBrunchUI(){
   reset();
 }
 
+
+function testPickerKeepsTheSearchBox(){
+  // The bug this guards: a filter change rebuilt the whole sheet, so the input
+  // you were typing into was destroyed and recreated. A browser cannot keep
+  // focus on an element that no longer exists, and on a phone that takes the
+  // keyboard down -- the search simply did not work.
+  reset(); render();
+  document.querySelector("[data-fillset]").click();
+  sheet.querySelector('[data-usual="breakfast"]').click();
+  const before = sheet;
+  const q = sheet.querySelector("[data-search]");
+  q.focus();
+  "kedg".split("").forEach(ch => {
+    q.value += ch;
+    q.dispatchEvent(new Event("input", { bubbles: true }));
+  });
+  ok("typing does not replace the sheet", document.querySelector(".sheet") === before);
+  ok("typing does not replace the search box",
+    sheet.querySelector("[data-search]") === q);
+  ok("the search box keeps focus", document.activeElement === q);
+  ok("and the results still narrow", sheet.querySelectorAll("[data-set]").length === 1,
+    sheet.querySelector("[data-count]").textContent);
+
+  // The Type dropdown must not destroy it either.
+  q.value = ""; q.dispatchEvent(new Event("input", { bubbles: true }));
+  const sel = sheet.querySelector("[data-fcatsel]");
+  sel.value = "eggs";
+  sel.dispatchEvent(new Event("change", { bubbles: true }));
+  ok("choosing a type does not replace the search box",
+    sheet.querySelector("[data-search]") === q);
+  ok("choosing a type narrows the list",
+    [...sheet.querySelectorAll("[data-set]")].every(r => BY_ID[r.dataset.set].category === "eggs"),
+    sheet.querySelectorAll("[data-set]").length + " rows");
+
+  // A meal chip changes which types exist, so the facets must redraw.
+  sheet.querySelector('[data-fslot="pick|dinner"]').click();
+  const types = [...sheet.querySelectorAll("[data-fcatsel] option")].map(o => o.value);
+  ok("the type list follows the meal", types.indexOf("roasts") !== -1, types.join(","));
+  ok("the search box survives that too", sheet.querySelector("[data-search]") === q);
+  reset();
+}
+
 /* --- run ---------------------------------------------------------------- */
 [testSlotShapes, testLeftoversNotBought, testFillMakesLeftovers, testLeftoversStayHonest,
  testCadence, testCadenceUI, testTimeCap, testOverlap, testLocking, testLockingUI,
  testCopyPrevious, testSettingsSheet,
  testPinnedMeals, testPinnedMealsUI, testPickersStaySeparate,
+ testPickerKeepsTheSearchBox,
  testBrunch, testBrunchKeepsWhatYouPlanned, testBrunchTakesLeftovers,
  testOldPlansLoadWithoutBrunch, testBrunchUI].forEach(fn => {
   try { fn(); }
