@@ -315,15 +315,21 @@ CASES = [
     ),
     (
         "the pin picker plans a day's meal instead of a standing choice",
-        "const pinned = sheet.dataset.usual;",
+        "const pinned = sheet.dataset.pinslot;",
         "const pinned = null;",
         "test_the_fill_settings_button_says_what_it_opens",
     ),
     (
         "the pin picker forgets which slot it is for",
-        "sheet.dataset.usual = slot;",
-        "sheet.dataset.slot = slot;",
+        "sheet.dataset.pinslot = slot;",
+        "sheet.dataset.slotpin = slot;",
         "test_the_fill_settings_button_says_what_it_opens",
+    ),
+    (
+        "the pin sheet marks itself with a live click hook again",
+        "sheet.dataset.pinslot = slot;",
+        "sheet.dataset.usual = slot;",
+        "test_no_sheet_marker_doubles_as_a_click_hook",
     ),
     (
         "a pin cannot be taken off again",
@@ -381,8 +387,14 @@ CASES = [
     ),
     (
         "a filter change rebuilds the sheet and kills the keyboard",
-        'if (ns === "pick") refreshPicker();\n  else render();',
+        'if (ns === "pick") refreshPicker(true);\n  else render();',
         'if (ns === "pick") reopenPicker();\n  else render();',
+        "test_the_picker_never_redraws_the_box_you_are_typing_into",
+    ),
+    (
+        "typing replaces the dropdown mid-word",
+        "    refreshPicker(false);",
+        "    refreshPicker(true);",
         "test_the_picker_never_redraws_the_box_you_are_typing_into",
     ),
     (

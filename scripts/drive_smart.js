@@ -456,7 +456,7 @@ function testPinnedMealsUI(){
   // Pinning uses the plan page's picker, not a dropdown of names.
   btn.click();
   ok("tapping it opens the meal picker", !!sheet.querySelector('[data-search]'));
-  ok("the picker knows what it is for", sheet.dataset.usual === "breakfast");
+  ok("the picker knows what it is for", sheet.dataset.pinslot === "breakfast");
   ok("it is titled for the slot",
     /always have for breakfast/i.test(sheet.querySelector("h1").textContent),
     sheet.querySelector("h1").textContent.trim());
@@ -473,7 +473,7 @@ function testPinnedMealsUI(){
   const q = sheet.querySelector("[data-search]");
   q.value = "yoghurt";
   q.dispatchEvent(new Event("input", { bubbles: true }));
-  ok("filtering keeps it in pin mode", sheet.dataset.usual === "breakfast");
+  ok("filtering keeps it in pin mode", sheet.dataset.pinslot === "breakfast");
   const pot = [...sheet.querySelectorAll("[data-set]")]
     .find(b => b.dataset.set === "fruit-and-yoghurt-pot");
   ok("the search finds the yoghurt pot", !!pot);
@@ -488,8 +488,21 @@ function testPinnedMealsUI(){
     /Fruit and yoghurt pot/.test(btn2.textContent) && /294 kcal/.test(btn2.textContent),
     btn2.textContent.trim());
   ok("and marks itself as set", /\bon\b/.test(btn2.className), btn2.className);
-  ok("the sheet counts what pinning costs",
-    /1 pinned, taking \d+ kcal/.test(sheet.textContent), usualNote());
+  // The row above already reads "Fruit and yoghurt pot - 294 kcal". Saying it
+  // again underneath is just more to read on a phone.
+  ok("and the sheet does not restate it", usualNote() === "", usualNote());
+
+  // Pinning past the day's goal is the one case worth a word: fill then has
+  // nothing left to give. Three pinned meals well over 1750 kcal prove it.
+  const heavy = RECIPES.filter(r => r.macros.kcal > 700);
+  S.usual.lunch = heavy.find(r => r.slots.includes("lunch")).id;
+  S.usual.dinner = heavy.find(r => r.slots.includes("dinner")).id;
+  S.usual.breakfast = RECIPES.filter(r => r.slots.includes("breakfast"))
+    .sort((a, b) => b.macros.kcal - a.macros.kcal)[0].id;
+  ok("pinning past the goal is called out",
+    /over your \d+ kcal goal/.test(usualNote()), usualNote());
+  S.usual.lunch = null; S.usual.dinner = null;
+  S.usual.breakfast = "fruit-and-yoghurt-pot";
 
   closeSheet(); render();
   ok("the plan button names the pinned meal",
@@ -503,7 +516,10 @@ function testPinnedMealsUI(){
     /Fruit and yoghurt pot/.test(sheet.querySelector(".mealname").textContent));
   sheet.querySelector("[data-unusual]").click();
   ok("stop pinning goes back to choosing", S.usual.breakfast === null);
-  ok("and the note says so", /Nothing pinned/.test(usualNote()), usualNote());
+  fillSettingsSheet();
+  ok("and the row reads as unset",
+    sheet.querySelector('[data-usual="breakfast"]').textContent.trim() === "None",
+    sheet.querySelector('[data-usual="breakfast"]').textContent.trim());
   closeSheet();
 }
 
@@ -515,8 +531,8 @@ function testPickersStaySeparate(){
   render();
   const pick = document.querySelector("[data-pick]");
   pick.click();
-  ok("the plan picker is not in pin mode", sheet.dataset.usual === undefined,
-    String(sheet.dataset.usual));
+  ok("the plan picker is not in pin mode", sheet.dataset.pinslot === undefined,
+    String(sheet.dataset.pinslot));
   ok("it knows its day and slot",
     sheet.dataset.date === MON && !!sheet.dataset.slot, sheet.dataset.date);
   const q = sheet.querySelector("[data-search]");
@@ -706,12 +722,59 @@ function testPickerKeepsTheSearchBox(){
   reset();
 }
 
+/* Tapping a control must not be what destroys it.
+ *
+ * Every check above fires `input` and `change` events straight at the control,
+ * which is what the code does *after* a successful tap. That skipped the tap
+ * itself, and the tap was the broken part: the sheet wore `data-usual`, one of
+ * the hooks the delegated click handler looks for, so a click anywhere inside
+ * bubbled up, matched the sheet, and reopened the picker. The search box was
+ * torn out from under the finger that touched it.
+ *
+ * On a desktop this hid: the browser focuses on mousedown, before click ever
+ * fires, so it still looked like it worked. On a phone there is no mousedown to
+ * save it and the keyboard simply never opened. So: real clicks here.
+ */
+function testTappingAControlDoesNotDestroyIt(){
+  reset(); render();
+  document.querySelector("[data-fillset]").click();
+  sheet.querySelector('[data-usual="breakfast"]').click();
+  const before = sheet;
+
+  const q = sheet.querySelector("[data-search]");
+  q.click();
+  ok("tapping the search box leaves the sheet alone",
+    document.querySelector(".sheet") === before);
+  ok("tapping the search box leaves the box alone",
+    sheet.querySelector("[data-search]") === q);
+
+  const sel = sheet.querySelector("[data-fcatsel]");
+  sel.click();
+  ok("tapping the dropdown leaves the sheet alone",
+    document.querySelector(".sheet") === before);
+  ok("tapping the dropdown leaves the dropdown alone",
+    sheet.querySelector("[data-fcatsel]") === sel);
+
+  // Typing changes no facet, so the dropdown must not be swapped out mid-word.
+  q.value = "kedg";
+  q.dispatchEvent(new Event("input", { bubbles: true }));
+  ok("typing does not replace the dropdown either",
+    sheet.querySelector("[data-fcatsel]") === sel);
+
+  // And after all that the picker still does its job.
+  const hit = [...sheet.querySelectorAll("[data-set]")];
+  ok("the search still finds the dish", hit.length === 1, hit.length + " rows");
+  hit[0].click();
+  ok("and picking it still pins", S.usual.breakfast === "kedgeree", S.usual.breakfast);
+  closeSheet(); reset();
+}
+
 /* --- run ---------------------------------------------------------------- */
 [testSlotShapes, testLeftoversNotBought, testFillMakesLeftovers, testLeftoversStayHonest,
  testCadence, testCadenceUI, testTimeCap, testOverlap, testLocking, testLockingUI,
  testCopyPrevious, testSettingsSheet,
  testPinnedMeals, testPinnedMealsUI, testPickersStaySeparate,
- testPickerKeepsTheSearchBox,
+ testPickerKeepsTheSearchBox, testTappingAControlDoesNotDestroyIt,
  testBrunch, testBrunchKeepsWhatYouPlanned, testBrunchTakesLeftovers,
  testOldPlansLoadWithoutBrunch, testBrunchUI].forEach(fn => {
   try { fn(); }

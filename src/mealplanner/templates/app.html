@@ -902,25 +902,21 @@ function fillSummary(){
  *  promised: a usual meal that takes most of the goal leaves fill very little to
  *  work with, and it is better to see that here than to wonder later why dinner
  *  keeps coming out a salad. */
+/* The one thing about pinning worth interrupting you for.
+ *
+ * The rows already show each pinned meal and its calories, so a note restating
+ * them is just more to read. Pinning past the day's goal is different: fill then
+ * has nothing left to give and the day silently comes out over, so that is said
+ * plainly and nothing else is.
+ *
+ * Brunch is left out of the sum on purpose -- it never shares a day with
+ * breakfast and lunch, so adding them together would describe a day nobody eats.
+ */
 function usualNote(){
-  const pinned = MAIN_SLOTS.map(s => usualFor(s)).filter(Boolean);
-  if (!pinned.length) return "Nothing pinned: fill chooses every meal.";
-  // Brunch never shares a day with breakfast or lunch, so adding its calories to
-  // theirs would describe a day nobody eats. It gets its own sentence.
   const daily = DAILY_SLOTS.map(s => usualFor(s)).filter(Boolean);
-  const brunch = usualFor("brunch");
   const kcal = daily.reduce((n, r) => n + r.macros.kcal, 0);
-  const prot = daily.reduce((n, r) => n + r.macros.protein, 0);
-  const left = S.goals.kcal - kcal;
-  const brunchBit = brunch
-    ? ` Brunch days start with ${brunch.name} at ${brunch.macros.kcal} kcal.`
-    : "";
-  if (!daily.length) return `${pinned.length} pinned.${brunchBit}`;
-  const spent = `${daily.length} pinned, taking ${kcal} kcal and ${prot} g protein`
-    + ` of your ${S.goals.kcal} kcal goal`;
-  return (left > 0
-    ? `${spent}, leaving ${left} kcal for the rest of the day.`
-    : `${spent} - which is already over it, so fill has nothing left to give.`) + brunchBit;
+  if (kcal <= S.goals.kcal) return "";
+  return `Pinned meals come to ${kcal} kcal, over your ${S.goals.kcal} kcal goal.`;
 }
 
 const TIME_CAPS = [0, 20, 30, 45, 60];
@@ -931,9 +927,8 @@ function fillSettingsSheet(){
     <div class="body">
       <div class="card"><div class="hd"><div>
           <h2>Pinned meals</h2>
-          <div class="sub">Pin a meal and fill stops choosing for that slot: you
-            get the same thing every day you eat it. The rest of the day is
-            planned around it, so its calories still count.</div>
+          <div class="sub">Fill stops choosing for a pinned slot and plans the
+            rest of the day around it.</div>
         </div></div>
         ${MAIN_SLOTS.map(slot => {
           const current = usualFor(slot);
@@ -944,16 +939,14 @@ function fillSettingsSheet(){
                       : "None"}</button>
           </div>`;
         }).join("")}
-        <div class="sub">${esc(usualNote())}</div>
+        ${usualNote() ? `<div class="sub s-warn">${esc(usualNote())}</div>` : ""}
       </div>
 
       <div class="card"><div class="hd"><div>
           <h2>Meals you eat</h2>
-          <div class="sub">A meal you do not eat is not an empty slot: fill leaves
-            it alone, and its share of the day's calories goes to the meals you
-            do eat. Brunch is the one that is not a meal on top: pick it for a day
-            and it stands in for breakfast and lunch, carrying both their
-            calories.</div>
+          <div class="sub">Untick a meal and fill leaves it alone, giving its
+            calories to the rest of the day. Brunch replaces breakfast and
+            lunch.</div>
         </div></div>
         <div class="wkset">
           <div class="wkrow head"><span></span>${
@@ -979,9 +972,8 @@ function fillSettingsSheet(){
 
       <div class="card"><div class="hd"><div>
           <h2>Cook once, eat twice</h2>
-          <div class="sub">Dishes that make more than one portion get eaten again
-            the next day, for lunch where you have one. The second serving is
-            food you already cooked, so it never lands on the shopping list.</div>
+          <div class="sub">Batch dishes are eaten again the next day. The second
+            serving is never shopped for.</div>
         </div></div>
         <div class="chips">
           <button class="chip${S.leftovers ? " on" : ""}" data-leftovers="1">On</button>
@@ -991,11 +983,7 @@ function fillSettingsSheet(){
 
       <div class="card"><div class="hd"><div>
           <h2>Time in the kitchen</h2>
-          <div class="sub">The longest a main may take, start to finish. Recipes
-            run from ${Math.min.apply(null, RECIPES.map(r => r.total_min || 0))} to ${
-            Math.max.apply(null, RECIPES.map(r => r.total_min || 0))} minutes, so
-            a limit here is the difference between a Tuesday you can cook and one
-            you cannot.</div>
+          <div class="sub">The longest a main may take, start to finish.</div>
         </div></div>
         ${[["week", "Weeknights"], ["weekend", "Weekends"]].map(([key, label]) => `
           <div class="facet">
@@ -1564,12 +1552,18 @@ function usualPickSheet(slot, keep){
                     : `<li><div class="empty-state">Nothing matches those filters.</div></li>`
       }</ul></div>
     </div>`);
-  sheet.dataset.usual = slot;
+  // Deliberately not `data-usual`: that is a click hook, and the delegated
+  // handler walks up from whatever you tap. Marking the sheet with it made the
+  // sheet itself the nearest match, so tapping the search box or the Type menu
+  // reopened the picker and destroyed the control mid-tap. On a desktop the
+  // keyboard is already up so it looks like nothing happened; on a phone the
+  // keyboard never opens at all.
+  sheet.dataset.pinslot = slot;
 }
 
 /** Re-open whichever picker is showing, after a filter changes. */
 function reopenPicker(){
-  if (sheet && sheet.dataset.usual) usualPickSheet(sheet.dataset.usual, true);
+  if (sheet && sheet.dataset.pinslot) usualPickSheet(sheet.dataset.pinslot, true);
   else pickSheet(sheet.dataset.date, sheet.dataset.slot, true);
 }
 
@@ -1581,14 +1575,16 @@ function reopenPicker(){
  * every keystroke dismissed it and the search looked broken. The facets are
  * still redrawn -- the Type list depends on which meal is chosen -- but the
  * input itself is left strictly alone. */
-function refreshPicker(){
+function refreshPicker(redrawFacets){
   const facets = sheet && sheet.querySelector('[data-facets="pick"]');
   const list = sheet && sheet.querySelector(".rlist");
   const count = sheet && sheet.querySelector('[data-count="pick"]');
   // Nothing to update in place means the sheet is not one of the pickers.
   if (!facets || !list || !count){ reopenPicker(); return; }
   const rs = filterRecipes(pickFilter);
-  facets.innerHTML = facetRows(pickFilter, "pick");
+  // Typing changes no facet: the Type list follows the chosen meal, not the
+  // query. Redrawing them anyway would replace the dropdown on every keystroke.
+  if (redrawFacets) facets.innerHTML = facetRows(pickFilter, "pick");
   count.textContent = `${rs.length} recipe${rs.length === 1 ? "" : "s"}`;
   list.innerHTML = rs.length
     ? rs.map(r => recipeRow(r, "set")).join("")
@@ -2155,7 +2151,7 @@ document.addEventListener("click", e => {
   if (d.set){
     // The same rows serve the plan picker and the pin picker; which one is open
     // decides whether this sets a day's meal or a standing choice.
-    const pinned = sheet.dataset.usual;
+    const pinned = sheet.dataset.pinslot;
     if (pinned){
       S.usual[pinned] = d.set;
       save();
@@ -2232,7 +2228,7 @@ document.addEventListener("click", e => {
   /* recipe filters, shared by the Recipes tab and the plan's meal picker.
      Meal and Filter are buttons; only Type is a select, handled on "change". */
   const reFilter = ns => {
-    if (ns === "pick") refreshPicker();
+    if (ns === "pick") refreshPicker(true);
     else render();
   };
   if (d.fslot){
@@ -2323,7 +2319,7 @@ document.addEventListener("change", e => {
   const f = ns === "pick" ? pickFilter : filter;
   const value = e.target.value || null;
   f.cat = value;
-  if (ns === "pick") refreshPicker();
+  if (ns === "pick") refreshPicker(true);
   else render();
 });
 
@@ -2334,7 +2330,7 @@ document.addEventListener("input", e => {
   if (ns === "pick"){
     // The picker leaves the input in place, so focus and caret need no repair.
     pickFilter.q = e.target.value;
-    refreshPicker();
+    refreshPicker(false);
     return;
   }
   filter.q = e.target.value;

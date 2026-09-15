@@ -214,16 +214,29 @@ Switching brunch on also never deletes a breakfast you had already planned -- th
 replaced slots stay on screen while they hold food, because a setting should not
 silently destroy a meal.
 
-That search took a while to actually work. Changing a filter redrew the whole
-sheet, which threw away the search box you were typing into and built a new one.
-On a desktop this is invisible -- focus is restored on the replacement and the
-results narrow correctly. On a phone it is fatal: the browser cannot keep focus
-on an element that no longer exists, so the keyboard closed after every single
-letter, and the search and the Type dropdown read as simply not working. The fix
-is to redraw only the results and the filters and leave the input alone. The
-filters still have to be redrawn -- the Type list depends on which meal is
-chosen -- so the input is deliberately kept outside that region rather than
-inside it.
+That search took two goes to actually work, and the first go fixed the wrong
+thing. Changing a filter redrew the whole sheet, throwing away the search box you
+were typing into, so that was rebuilt to redraw only the results and the filters.
+A real improvement -- but the box still did nothing on a phone, because that was
+never the cause.
+
+The cause was one word. Clicks are handled by a single delegated listener that
+walks up from whatever you touched looking for an action hook, and the picker
+marked its own sheet with `data-usual` to remember which slot it was for.
+`data-usual` is one of those hooks. So a tap on the search box bubbled up, found
+the sheet, and reopened the picker -- destroying the box under the finger that
+touched it. Buttons were fine, since they match their own hook first; only
+controls that need focus broke. On a desktop it still looked fine, because focus
+lands on mousedown, before the click that wrecks it. On a phone there is no
+mousedown to save it, so the keyboard never opened at all.
+
+Two things missed this twice. The marker is now `data-pinslot`, which is not a
+hook -- and a test parses the hooks straight out of the click handler and fails
+if any sheet marker collides with one, because this is a trap rather than a bug.
+The other miss was in the testing: every check fired `input` and `change` events
+directly at the controls, which is what happens *after* a successful tap. The tap
+itself was never tested, and the tap was the broken part. There are now real
+clicks on the input and the dropdown.
 
 A sixth idea was built, measured and **removed**: steering dinner towards batch
 dishes when tomorrow had a slot free. Across 60 weeks a setting it made no

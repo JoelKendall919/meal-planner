@@ -1213,10 +1213,10 @@ def test_the_fill_settings_button_says_what_it_opens(tmp_path):
     pick = js_block(html, "function usualPickSheet(slot, keep){")
     assert '${filterControls(pickFilter, "pick")}' in pick, "the pin picker has no filters"
     assert 'recipeRow(r, "set")' in pick, "the pin picker does not list recipes"
-    assert "sheet.dataset.usual = slot;" in pick, "the picker does not record what it is for"
+    assert "sheet.dataset.pinslot = slot;" in pick, "the picker does not record what it is for"
     # Which picker is open decides what a row does. Without this, choosing in the
     # pin picker would plan a meal for whatever day the plan picker last had open.
-    assert "const pinned = sheet.dataset.usual;" in html, (
+    assert "const pinned = sheet.dataset.pinslot;" in html, (
         "choosing a recipe cannot tell a pin from a day's meal"
     )
     assert "S.usual[pinned] = d.set;" in html, "choosing a usual meal does nothing"
@@ -1358,7 +1358,7 @@ def test_the_picker_never_redraws_the_box_you_are_typing_into(tmp_path):
     facets = js_block(html, "function facetRows(f, ns){")
     assert "data-search" not in facets, "the search box is inside the redrawn region"
 
-    refresh = js_block(html, "function refreshPicker(){")
+    refresh = js_block(html, "function refreshPicker(redrawFacets){")
     # Anchored to the whole line: a mutated selector like ".rlist-gone" still
     # contains ".rlist", and would leave this passing while the list never updates.
     for line in (
@@ -1367,7 +1367,11 @@ def test_the_picker_never_redraws_the_box_you_are_typing_into(tmp_path):
         "  const count = sheet && sheet.querySelector('[data-count=\"pick\"]');",
     ):
         assert line in refresh, f"the picker refresh does not read {line.strip()}"
-    for write in ("facets.innerHTML =", "count.textContent =", "list.innerHTML ="):
+    for write in (
+        "if (redrawFacets) facets.innerHTML =",
+        "count.textContent =",
+        "list.innerHTML =",
+    ):
         assert write in refresh, f"the picker refresh never does {write.strip()}"
     assert "data-search" not in refresh, "the refresh touches the search box"
     # Falling back to a rebuild is right when the sheet is not a picker at all.
@@ -1376,9 +1380,9 @@ def test_the_picker_never_redraws_the_box_you_are_typing_into(tmp_path):
     )
     # Every filter route has to use it, or one of them still kills the keyboard:
     # the Meal and Filter chips, the Type select, and the search box itself.
-    assert html.count("refreshPicker();") == 3, (
-        f"{html.count('refreshPicker();')} of the 3 filter routes refresh in place"
-    )
+    # Typing redraws no facets, so the dropdown is not replaced mid-word.
+    assert html.count("refreshPicker(true)") == 2, "a facet route does not refresh in place"
+    assert html.count("refreshPicker(false)") == 1, "typing still redraws the filters"
     # The only rebuild left is the fallback inside refreshPicker.
     assert html.count("reopenPicker();") == 1, "a filter still rebuilds the whole sheet"
 
@@ -1402,3 +1406,34 @@ def test_the_pinned_meals_card_reads_as_a_list_of_choices(tmp_path):
     assert "min-width:0" in body, "the label can still push the button out of line"
     assert re.search(r"flex:0 0 \d\dpx", body), "the label column is not a fixed width"
     assert "text-overflow:ellipsis" in body, "a long label would overflow instead of clipping"
+
+
+def test_no_sheet_marker_doubles_as_a_click_hook(tmp_path):
+    """A sheet remembers what it is for; the same attribute also means "tap me".
+
+    The delegated click handler walks up from whatever you touched, so marking
+    the sheet element with an action hook makes the sheet the nearest match for
+    everything inside it. Tapping the search box reopened the picker and
+    destroyed the input mid-tap: on a desktop the keyboard is already up so it
+    looks harmless, on a phone the keyboard never opens at all.
+
+    This is a general trap rather than one bug, so it is checked generally.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    selector = re.search(r"const t = e\.target\.closest\((.*?)\);", html, re.S)
+    assert selector, "the delegated click handler no longer has one selector"
+    hooks = set(re.findall(r"\[data-([a-z-]+)\]", selector.group(1)))
+    assert len(hooks) > 20, f"only found {len(hooks)} click hooks, the parse is wrong"
+
+    marked = set(re.findall(r"sheet\.dataset\.([A-Za-z]+)\s*=", html))
+    assert marked, "no sheet state is recorded at all, the parse is wrong"
+    clashes = {key for key in marked if _dataset_to_attr(key) in hooks}
+    assert not clashes, (
+        f"sheet marker(s) {sorted(clashes)} are also click hooks, so tapping "
+        "anything inside the sheet fires that action"
+    )
+
+
+def _dataset_to_attr(key: str) -> str:
+    """`sheet.dataset.slotTap` is the attribute `data-slot-tap`."""
+    return re.sub(r"([A-Z])", lambda m: "-" + m.group(1).lower(), key)
