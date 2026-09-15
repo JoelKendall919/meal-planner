@@ -111,6 +111,57 @@ Two tests hold this line. One checks the goal is *achievable* under the scope; t
 other checks a **median** day, because an achievability test is a ceiling and will
 keep passing while typical days quietly rot beneath it.
 
+## What "fill empty slots" knows about your week
+
+Filling a week used to mean 28 separate cooks, whatever else was going on that
+day. Four settings, behind the **How fill works** button, make it fit a real week
+instead. Measured over 40 filled weeks each, counting only time spent actually
+cooking:
+
+| Settings | Cooks | Cooking | Shopping lines | kcal | Protein |
+|---|---|---|---|---|---|
+| None of the below | 28.0 | 383 min | 39.5 | 1695 | 102 g |
+| Leftovers | 25.4 | **334 min** | 36.4 | 1693 | 103 g |
+| + 30 min weeknights | 26.4 | **314 min** | 36.7 | 1693 | 104 g |
+| + breakfast 3 days a week | 22.4 | 334 min | 37.2 | 1699 | **114 g** |
+
+**Leftovers** is the one that pays. A dish tagged `batch` makes more than one
+serving, so the next day's lunch can claim the second portion — about an hour a
+week less at the stove. The serving counts towards what you *eat* and deliberately
+not towards what you *buy*, which is the whole correctness problem in one line:
+`idsIn` takes a `cookedOnly` flag, and the shopping list passes `true`. Without
+it, cooking once would have you buying twice.
+
+That also creates a new way for the plan to lie. A leftover whose source meal has
+been deleted still resolves to a real recipe, so nothing *looks* wrong — but it is
+food you never cook and never buy. Orphans are dropped in three places: on load,
+when a source dish changes, and when one is removed.
+
+**A time limit** on weeknights is honest about what it costs. Only 5 of 44 batch
+dishes come in under 30 minutes, so capping weeknights starves the very feature
+that saves you the most time: leftovers fall from 2.6 a week to 1.45. The two
+settings genuinely pull against each other and the app should not pretend
+otherwise — under a cap, big cooks can only land at the weekend.
+
+**Which days you eat which meals** needs no calorie arithmetic of its own: the
+share each slot takes is normalised over the slots you actually eat, so dropping
+breakfast redistributes its calories rather than losing them. The day still lands
+on target, and protein *rises*, because the calories move to main meals.
+
+**Ingredient overlap** was nearly a feature that did nothing. Preferring a recipe
+that reuses something the week already needs only matters among meals that fit the
+day equally well, and the first attempt moved the weekly shop by 0.6 of a line —
+noise. Measuring properly showed the shortlist width, not the calorie window, was
+the binding constraint; retuning the weight from 1.5 to 5 takes a week from 43.9
+distinct perishables to 41.7 for one gram of protein a day.
+
+A fifth idea was built, measured and **removed**: steering dinner towards batch
+dishes when tomorrow had a slot free. Across 60 weeks a setting it made no
+difference at any weight worth having (2.5 leftovers either way; forcing it to 3.0
+cost 14 minutes and variety), because the choice is already pinned by the calorie
+target before preference gets a say. A knob that changes nothing is worse than no
+knob.
+
 ## Why this is a repository and not a document
 
 Every calorie and protein figure is **computed from raw ingredient weights**,

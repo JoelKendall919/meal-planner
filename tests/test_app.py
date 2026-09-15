@@ -539,7 +539,9 @@ def test_the_fill_scope_narrows_what_the_planner_draws_from(tmp_path):
     assert "function fillPool(" in html, "fill has no scoped pool"
     # The call site specifically: matching "fillPool(slot)" alone also matches the
     # function's own definition, so it would pass with fillRange never calling it.
-    assert "const pool = fillPool(slot);" in html, "fillRange does not draw from the scoped pool"
+    assert "const pool = fillPool(slot, date);" in html, (
+        "fillRange does not draw from the scoped pool"
+    )
     for scope in ("high-protein", "light"):
         assert f'"{scope}"' in html, f"the {scope} scope is not offered"
     assert "data-scope" in html, "the scope has no control in the plan page"
@@ -547,8 +549,12 @@ def test_the_fill_scope_narrows_what_the_planner_draws_from(tmp_path):
     # Assert the guard itself, not the phrase: the comment beside it in app.html
     # contains the same words and was quietly satisfying this on its own.
     assert 'if ("scope" in d){' in html, "the reset-to-anything scope button is dead"
-    # A scope that matched nothing must not leave the day unfilled.
-    assert "scoped.length ? scoped : all" in html, "an empty scope has no fallback"
+    # A scope that matched nothing must not leave the day unfilled. The pool is
+    # narrowed by the time limit too, so every combination needs a way out.
+    assert "if (scoped.length) return scoped;" in html, "an empty scope has no fallback"
+    assert "return anyTime.length ? anyTime : all;" in html, (
+        "a scope that no quick recipe satisfies has no fallback"
+    )
 
 
 def test_the_scope_actually_changes_which_recipes_qualify(recipes):
@@ -719,8 +725,15 @@ def test_each_day_can_be_cleared_on_its_own(tmp_path):
     assert 'data-clearday="${date}"' in html, "the week has no per-day clear button"
     assert "if (d.clearday){ clearDay(d.clearday); return; }" in html, "the button is dead"
     clear = js_block(html, "function clearDay(date){")
-    assert "delete S.plan[date];" in clear, "clearDay does not clear the day"
+    assert "const r = clearDayMeals(date);" in clear, "clearDay does not clear the day"
     assert "[data-clearday]" in html, "the clear button is not in the click selector"
+    # Clearing must take the meals out, not just the day's entry: a locked meal
+    # has to survive, which means the day itself cannot simply be deleted.
+    day_meals = js_block(html, "function clearDayMeals(date){")
+    assert "if (isLocked(day[s])){ kept++; return; }" in day_meals, (
+        "clearing a day discards locked meals"
+    )
+    assert "delete day[s];" in day_meals, "clearing a day leaves the meals in place"
 
 
 def test_the_plan_can_copy_the_previous_period(tmp_path):
@@ -739,8 +752,20 @@ def test_the_plan_can_copy_the_previous_period(tmp_path):
     # gutted check would keep passing.
     assert "if (busy && !confirm(" in copy, "copying replaces planned days without asking"
     assert "const busy = pairs.filter" in copy, "nothing counts what would be replaced"
-    # The copy has to be independent of its source.
-    assert "Object.assign({}, S.plan[from])" in copy, "the copy aliases the original"
+    # The copy has to be independent of its source: it is rebuilt slot by slot
+    # into a fresh object rather than aliasing the day it came from.
+    assert "const dst = {};" in copy, "the copy aliases the original"
+    assert "S.plan[to] = dst;" in copy, "the rebuilt day is never stored"
+    # A leftover copied forward has to point at the copy of the meal it came
+    # from, or it would claim to be eating something cooked last week -- and it
+    # is deliberately left off the shopping list, so that food would never
+    # be bought at all.
+    assert "const landed = moved[parts[0]];" in copy, (
+        "copied leftovers still point at the original week"
+    )
+    assert "dst[s] = landed ? Object.assign({}, v, { from: landed" in copy, (
+        "copied leftovers are not remapped onto the copied cook"
+    )
 
 
 def test_every_toggleable_control_has_a_visible_selected_state(tmp_path):
@@ -780,9 +805,17 @@ def test_the_fill_scope_buttons_are_live_and_honoured(tmp_path):
         "the scope handler would skip the empty-string 'Anything' button"
     )
     assert "[data-scope]" in html, "the scope buttons are not in the click selector"
-    pool = js_block(html, "function fillPool(slot){")
-    assert "r.tags.includes(S.scope)" in pool, "fill ignores the chosen scope"
-    assert "scoped.length ? scoped : all" in pool, "a narrow scope could leave slots unfilled"
+    pool = js_block(html, "function fillPool(slot, date){")
+    # The scoping line itself. Matching "r.tags.includes(S.scope)" loosely is
+    # satisfied by the fallback below it, so the main narrowing could be gutted
+    # while this still passed.
+    assert "const scoped = inTime.filter(r => r.tags.includes(S.scope));" in pool, (
+        "fill ignores the chosen scope"
+    )
+    assert "if (scoped.length) return scoped;" in pool, "a narrow scope could leave slots unfilled"
+    assert "return anyTime.length ? anyTime : all;" in pool, (
+        "a scope and a time limit that cannot both be met has no way out"
+    )
 
 
 def test_fill_reaches_the_protein_top_up_on_a_fully_planned_day(tmp_path):
@@ -796,7 +829,7 @@ def test_fill_reaches_the_protein_top_up_on_a_fully_planned_day(tmp_path):
     fill = js_block(html, "function fillRange(){")
 
     # Refusing to act must consider the empty snacks, not just the empty mains.
-    assert "const openSnacks = dates.filter(d => !(S.plan[d] || {}).snack).length;" in fill, (
+    assert 'const openSnacks = dates.filter(d => !takenAt(d, "snack")).length;' in fill, (
         "nothing counts the days that could still be topped up"
     )
     assert "if (!empty && !openSnacks){" in fill, (
@@ -828,10 +861,10 @@ def test_a_saved_plan_is_pruned_of_recipes_that_no_longer_exist(tmp_path):
     """
     html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
     prune = js_block(html, "function prunePlan(plan){")
-    assert "if (day[slot] && !BY_ID[day[slot]]){ delete day[slot]; dropped++; }" in prune, (
+    assert "if (day[slot] && !BY_ID[idOf(day[slot])]){ delete day[slot]; dropped++; }" in prune, (
         "unresolvable ids are not dropped"
     )
-    assert "if (!Object.keys(day).length) delete plan[date];" in prune, (
+    assert "if (!Object.keys(plan[date]).length) delete plan[date];" in prune, (
         "a day emptied by pruning is left behind as an empty object"
     )
     # Corrupt state must not throw on the way in.
@@ -888,3 +921,190 @@ def test_the_shopping_list_can_be_emptied_and_started_blank(tmp_path):
     # Emptying a list leaves it usable rather than deleting it outright.
     assert "S.shopping.items = [];" in html, "clearing does not empty the items"
     assert "S.shopping.from = null;" in html, "an emptied list still claims its old days"
+
+
+def test_leftovers_are_eaten_but_never_bought(tmp_path):
+    """A second serving of a batch cook must not be shopped for twice.
+
+    The shopping list is built by flattening every planned id and summing the
+    grams behind them, so a leftover stored as just another copy of the recipe
+    id would buy its ingredients again -- you would shop for two dinners and
+    cook one. The marker on the slot is what keeps the two apart.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    ids_in = js_block(html, "function idsIn(a, b, cookedOnly){")
+    assert "if (cookedOnly && isLeftover(day[s])) return;" in ids_in, (
+        "leftovers are not excluded from the cooked-only list"
+    )
+    # The shopping list has to ask for the cooked-only view; nutrition must not.
+    assert "const ids = idsIn(from, to, true);" in html, (
+        "the shopping list counts leftovers as food to buy"
+    )
+    totals = js_block(html, "function totalsOn(date){")
+    assert "mealsOn(date)" in totals, "the day's totals stopped counting every serving"
+    meals_on = js_block(html, "function mealsOn(date){")
+    assert "isLeftover" not in meals_on, (
+        "nutrition is skipping leftovers, so days with them read as under-eaten"
+    )
+
+
+def test_a_leftover_cannot_outlive_the_meal_it_came_from(tmp_path):
+    """An orphaned leftover is food that was never cooked and never bought.
+
+    This is the stale-id bug in a new form: the slot resolves to a real recipe,
+    so nothing looks wrong, but its ingredients were deliberately left off the
+    shopping list because another day was supposed to cook them.
+    """
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    prune = js_block(html, "function prunePlan(plan){")
+    orphan = "if (isLeftover(v) && !cooks(plan, v.from, idOf(v))){ delete day[slot]; dropped++; }"
+    assert orphan in prune, "a leftover whose source has gone survives the load"
+
+    cooks = js_block(html, "function cooks(plan, ref, id){")
+    assert "return !!v && idOf(v) === id && !isLeftover(v);" in cooks, (
+        "the source check would accept a leftover of a leftover, or a different dish"
+    )
+
+    # Editing the plan by hand has to keep the same promise, not just loading it.
+    set_meal = js_block(html, "function setMeal(date, slot, id, extra){")
+    assert "if (idOf(prev) !== id) dropLeftoversOf(date, slot);" in set_meal, (
+        "changing a cooked meal leaves its leftovers behind"
+    )
+    unset = js_block(html, "function unsetMeal(date, slot){")
+    assert "dropLeftoversOf(date, slot);" in unset, (
+        "removing a cooked meal leaves its leftovers behind"
+    )
+    drop = js_block(html, "function dropLeftoversOf(date, slot){")
+    # Only days it actually emptied. setMeal creates an empty day and then calls
+    # this before writing into it, so tidying away every empty day would delete
+    # the day out from under the caller.
+    assert "if (hit && !Object.keys(day).length) delete S.plan[d];" in drop, (
+        "dropping leftovers would delete a day it never touched"
+    )
+
+
+def test_the_catalogue_can_actually_support_leftovers(recipes):
+    """Cook-once-eat-twice is only worth offering if the pool is deep.
+
+    Measured against the real catalogue rather than assumed: a handful of batch
+    recipes would mean the same two dinners every week.
+    """
+    batch = [r for r in recipes if "batch" in r.tags and "dinner" in r.slots]
+    assert len(batch) >= 20, f"only {len(batch)} batch dinners, so leftovers would repeat"
+
+    # A leftover is offered to the next day's lunch first, so the dish has to be
+    # allowed in both slots for that to be possible at all.
+    both = [r for r in batch if "lunch" in r.slots]
+    assert len(both) >= 20, f"only {len(both)} batch dinners also work as lunch"
+
+    # Batch cooking should be reserved for meals worth the effort.
+    quick = [r for r in batch if r.total_min < 20]
+    assert not quick, f"these are tagged batch but barely take any cooking: {[r.id for r in quick]}"
+
+
+def test_meals_can_be_scheduled_on_some_days_only(tmp_path):
+    """ "Breakfast three days a week" has to mean fill leaves the rest alone."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    eats = js_block(html, "function eats(date, slot){")
+    assert 'if (slot === "snack") return true;' in eats, "snacks are on a schedule"
+    assert "return days[dowIdx(date)] !== false;" in eats, "the schedule is not consulted"
+    # A corrupt or half-written setting must not quietly stop meals being planned.
+    assert "if (!Array.isArray(days)) return true;" in eats, (
+        "a malformed schedule would leave every slot unplannable"
+    )
+    norm = js_block(html, "function normaliseSlotDays(saved){")
+    assert "Array.isArray(days) && days.length === 7" in norm, (
+        "a saved schedule of the wrong shape is trusted"
+    )
+
+    fill = js_block(html, "function fillRange(){")
+    assert "const openMains = d => MAIN_SLOTS.filter(s => eats(d, s) && !takenAt(d, s));" in fill, (
+        "fill still treats a meal you do not eat as an empty slot"
+    )
+    # The share of the day's calories has to be spread over the meals you do eat,
+    # or the days you skip breakfast come in badly under target.
+    assert "let share = open.reduce((n, s) => n + SLOT_SHARE[s], 0);" in fill, (
+        "the calorie split is not computed from the slots actually being filled"
+    )
+
+
+def test_time_in_the_kitchen_can_be_capped(tmp_path):
+    """A 175-minute pie is not a Tuesday."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    pool = js_block(html, "function fillPool(slot, date){")
+    assert "const inTime = cap ? all.filter(r => (r.total_min || 0) <= cap) : all;" in pool, (
+        "the time limit does not narrow the pool"
+    )
+    cap = js_block(html, "function timeCap(date){")
+    assert "isWeekend(date) ? caps.weekend : caps.week" in cap, (
+        "weeknights and weekends share one limit"
+    )
+    assert "return cap > 0 ? cap : 0;" in cap, "there is no way to ask for no limit"
+    # A limit nothing can meet must not strand the slot.
+    assert "return inTime.length ? inTime : all;" in pool, (
+        "an impossible time limit would leave slots unfilled"
+    )
+
+
+def test_the_catalogue_leaves_room_under_a_time_limit(recipes):
+    """Each offered limit has to leave a usable pool, or it is a trap."""
+    mains = [r for r in recipes if "lunch" in r.slots or "dinner" in r.slots]
+    for limit in (20, 30, 45, 60):
+        fits = [r for r in mains if r.total_min <= limit]
+        assert len(fits) >= 10, (
+            f"only {len(fits)} of {len(mains)} lunches and dinners come in under "
+            f"{limit} minutes, so that limit would repeat the same few meals"
+        )
+
+
+def test_fill_prefers_recipes_that_reuse_what_the_week_already_needs(tmp_path):
+    """Less half-used food going off in the fridge, without costing nutrition."""
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    per = js_block(html, "function perishables(r){")
+    assert 'FOODS[f].aisle !== "cupboard"' in per, (
+        "staples are counted, so every recipe looks equally thrifty and the preference says nothing"
+    )
+    fill = js_block(html, "function fillRange(){")
+    score = "const score = r => r.macros.protein + OVERLAP_WORTH * overlapWith(r, pantry);"
+    assert score in fill, "overlap is not part of how a meal is chosen"
+    grows = "      used.add(pick.id);\n      perishables(pick).forEach(f => pantry.add(f));"
+    assert grows in fill, "the pantry never grows as the week is filled"
+    # Seeded from the cooking only: a leftover buys nothing, so its ingredients
+    # are not something the week still has to use up.
+    assert "const pantry = pantryFrom(idsIn(a, b, true));" in fill, (
+        "the pantry counts food that is never bought"
+    )
+    # Calories stay the first thing that matters.
+    assert "Math.abs(x.macros.kcal - target) - Math.abs(y.macros.kcal - target)" in fill, (
+        "the calorie ranking has gone, so overlap could drag days off target"
+    )
+
+
+def test_a_locked_meal_survives_being_cleared(tmp_path):
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
+    day_meals = js_block(html, "function clearDayMeals(date){")
+    assert "if (isLocked(day[s])){ kept++; return; }" in day_meals, "Clear ignores locks"
+
+    clear_range = js_block(html, "function clearRange(){")
+    assert "const r = clearDayMeals(d);" in clear_range, (
+        "clearing a range bypasses the per-day clear, so locks are lost"
+    )
+    # Clearing nothing because everything is locked has to say so, or the button
+    # reads as broken.
+    assert "Nothing cleared: all ${kept} planned meals are locked" in clear_range, (
+        "a clear that removes nothing gives no feedback"
+    )
+
+    toggle = js_block(html, "function toggleLock(date, slot){")
+    assert "if (!id) return;" in toggle, "an empty slot can be locked"
+    lock = js_block(html, "function setMeal(date, slot, id, extra){")
+    assert "if (isLocked(prev)) meta.lock = 1;" in lock, (
+        "choosing a different meal for a locked slot silently unlocks it"
+    )
+    for hook in ("[data-lock]", "[data-fillset]", "[data-slotday]", "[data-maxmin]"):
+        assert hook in html, f"{hook} is not in the click selector"
+    # Off is data-leftovers="", which is falsy, so a truthiness check would make
+    # that button silently do nothing.
+    assert 'if ("leftovers" in d){ S.leftovers = !!d.leftovers;' in html, (
+        "the leftovers Off button is dead"
+    )
